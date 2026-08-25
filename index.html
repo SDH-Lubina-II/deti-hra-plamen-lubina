@@ -1,1 +1,243 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SDH Lubina II–Větřkovice – Děti</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    min-height:100vh;
+    color:white;
+
+    background:
+        radial-gradient(circle at top right,#5b1010 0%,transparent 35%),
+        linear-gradient(145deg,#090d13,#151b24);
+}
+
+.app{
+    max-width:950px;
+    margin:auto;
+    padding:20px 16px 40px;
+}
+
+
+/* HLAVNÍ STRÁNKA */
+
+.header{
+    text-align:center;
+    padding:25px 10px 35px;
+}
+
+.logo{
+    font-size:42px;
+    margin-bottom:12px;
+}
+
+.header h1{
+    font-size:22px;
+    line-height:1.35;
+    margin:0;
+}
+
+.header h1 span{
+    color:#ef3333;
+}
+
+.district{
+    margin-top:7px;
+    color:#8995a6;
+    font-size:14px;
+}
+
+.section-title{
+    color:#8796aa;
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    margin:0 5px 14px;
+}
+
+.discipline{
+    width:100%;
+    border:1px solid rgba(255,255,255,.10);
+    border-radius:24px;
+    padding:25px 22px;
+    margin-bottom:16px;
+    color:white;
+    text-align:left;
+    cursor:pointer;
+    background:rgba(255,255,255,.055);
+    transition:.2s;
+}
+
+.discipline:hover{
+    transform:translateY(-2px);
+    background:rgba(255,255,255,.085);
+}
+
+.icon{
+    font-size:46px;
+    margin-bottom:12px;
+}
+
+.name{
+    font-size:23px;
+    font-weight:bold;
+    margin-bottom:7px;
+}
+
+.description{
+    color:#9eabba;
+    font-size:14px;
+}
+
+
+/* MOBIL */
+
+@media(max-width:700px){
+
+    .discipline{
+        padding:22px 20px;
+    }
+
+    .name{
+        font-size:21px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="app">
+
+
+<!-- HLAVIČKA -->
+
+<header class="header">
+
+<div class="logo">
+🔥
+</div>
+
+<h1>
+<span>SBOR DOBROVOLNÝCH HASIČŮ</span><br>
+LUBINA II–VĚTŘKOVICE
+</h1>
+
+<div class="district">
+okres Nový Jičín · Děti · Hra Plamen
+</div>
+
+</header>
+
+
+<!-- SOUTĚŽE -->
+
+<div class="section-title">
+Soutěže
+</div>
+
+
+<!-- POŽÁRNÍ ÚTOK -->
+
+<button
+class="discipline"
+onclick="window.location.href='Požárníutok.html'">
+
+<div class="icon">
+🚒
+</div>
+
+<div class="name">
+Požární útok
+</div>
+
+<div class="description">
+Mladší · Starší
+</div>
+
+</button>
+
+
+<!-- ŠTAFETA DVOJIC -->
+
+<button
+class="discipline"
+onclick="window.location.href='Stafetadvojic.html'">
+
+<div class="icon">
+🏃
+</div>
+
+<div class="name">
+Štafeta dvojic
+</div>
+
+<div class="description">
+Mladší · Starší
+</div>
+
+</button>
+
+
+<!-- 60 M PŘEKÁŽEK -->
+
+<button
+class="discipline"
+onclick="window.location.href='60mprekazky.html'">
+
+<div class="icon">
+🏃‍♂️
+</div>
+
+<div class="name">
+60 m překážek
+</div>
+
+<div class="description">
+Jednotlivci · Mladší · Starší
+</div>
+
+</button>
+
+
+<!-- NASTAVENÍ -->
+
+<button
+class="discipline"
+onclick="window.location.href='nastaveni.html'">
+
+<div class="icon">
+⚙️
+</div>
+
+<div class="name">
+Nastavení
+</div>
+
+<div class="description">
+Nastavení viditelnosti soutěží
+</div>
+
+</button>
+
+
+</div>
+
+</body>
+</html>

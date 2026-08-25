@@ -8,7 +8,6 @@
 
 <title>Štafeta dvojic – SDH Lubina II–Větřkovice</title>
 
-<!-- KNIHOVNA PRO EXCEL -->
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 
 <style>
@@ -93,10 +92,13 @@ input,
 select{
 width:100%;
 padding:13px;
+
 border-radius:12px;
 border:1px solid #354052;
+
 background:#101722;
 color:white;
+
 font-size:15px;
 }
 
@@ -108,14 +110,68 @@ cursor:pointer;
 border:0;
 border-radius:12px;
 padding:13px 18px;
+
 background:#d72f2f;
 color:white;
+
 font-weight:bold;
 cursor:pointer;
 }
 
 .primary:hover{
 background:#ed3a3a;
+}
+
+
+/* IMPORT */
+
+.excel-info{
+color:#8995a6;
+font-size:13px;
+line-height:1.5;
+}
+
+.excel-example{
+margin-top:18px;
+padding:14px;
+
+border:1px solid rgba(255,255,255,.08);
+border-radius:14px;
+
+background:rgba(0,0,0,.15);
+
+overflow-x:auto;
+}
+
+.example-title{
+font-size:14px;
+font-weight:bold;
+color:#aeb9c8;
+margin-bottom:10px;
+}
+
+.example-table{
+width:100%;
+min-width:400px;
+border-collapse:collapse;
+margin:0;
+}
+
+.example-table th{
+padding:8px 10px;
+background:#252e3c;
+font-size:12px;
+}
+
+.example-table td{
+padding:8px 10px;
+
+font-size:12px;
+
+border-bottom:
+1px solid rgba(255,255,255,.06);
+
+white-space:nowrap;
 }
 
 .import-box{
@@ -127,11 +183,17 @@ flex-wrap:wrap;
 
 .import-button{
 border:1px solid #394455;
+
 background:#252e3c;
+
 color:white;
+
 border-radius:12px;
+
 padding:13px 18px;
+
 font-weight:bold;
+
 cursor:pointer;
 }
 
@@ -139,11 +201,24 @@ cursor:pointer;
 background:#394657;
 }
 
-.excel-info{
-color:#8995a6;
+.message{
+text-align:center;
+
+color:#36d399;
+
 font-size:13px;
-line-height:1.5;
+
+min-height:18px;
+
+margin-top:12px;
 }
+
+.message.error{
+color:#ef6b6b;
+}
+
+
+/* TABULKY */
 
 .table-wrap{
 overflow-x:auto;
@@ -153,7 +228,7 @@ table{
 width:100%;
 border-collapse:collapse;
 margin-top:10px;
-min-width:1050px;
+min-width:850px;
 }
 
 th{
@@ -164,14 +239,35 @@ color:white;
 
 td{
 padding:11px 8px;
-border-bottom:1px solid rgba(255,255,255,.08);
+
+border-bottom:
+1px solid rgba(255,255,255,.08);
+
 text-align:center;
+
 color:#dbe2eb;
 }
 
-.place{
-font-size:18px;
+.category-title{
+font-size:21px;
 font-weight:bold;
+margin-bottom:12px;
+}
+
+.start{
+font-weight:bold;
+font-size:17px;
+}
+
+.result{
+font-size:19px;
+font-weight:bold;
+color:#ffd166;
+}
+
+.place{
+font-weight:bold;
+font-size:18px;
 }
 
 .gold{
@@ -186,70 +282,33 @@ color:#cfd3d8;
 color:#cd7f32;
 }
 
-.result{
-font-size:19px;
-font-weight:bold;
-color:#ffd166;
-}
-
-.time-button{
-border:0;
-background:transparent;
-color:#cbd5e1;
-cursor:pointer;
-font-size:16px;
-padding:5px 8px;
-}
-
-.time-button:hover{
-background:rgba(255,255,255,.08);
-border-radius:7px;
-}
-
-.penalty-button{
-border:1px solid #394455;
-background:#252e3c;
-color:#cbd5e1;
-border-radius:8px;
-padding:7px 10px;
-cursor:pointer;
-}
-
-.penalty-button:hover{
-background:#394657;
-}
-
 .action{
 border:0;
 background:transparent;
 color:#aeb9c8;
 cursor:pointer;
 font-size:18px;
-margin:0 3px;
+margin:0 2px;
 }
 
-.category-title{
-font-size:21px;
-font-weight:bold;
-margin-bottom:12px;
+.move{
+border:0;
+background:#252e3c;
+color:white;
+border-radius:7px;
+cursor:pointer;
+padding:5px 8px;
+margin:2px;
+}
+
+.move:hover{
+background:#394657;
 }
 
 .empty{
 text-align:center;
 padding:25px;
 color:#718096;
-}
-
-.message{
-text-align:center;
-color:#36d399;
-font-size:13px;
-min-height:18px;
-margin-top:12px;
-}
-
-.error{
-color:#ef6b6b;
 }
 
 .status{
@@ -261,105 +320,18 @@ margin-top:20px;
 
 .online{
 display:inline-block;
+
 width:7px;
 height:7px;
+
 border-radius:50%;
+
 background:#36d399;
+
 margin-right:6px;
+
 box-shadow:0 0 9px #36d399;
 }
-
-
-/* MODAL TRESTY */
-
-.modal{
-display:none;
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.78);
-z-index:1000;
-padding:20px;
-overflow:auto;
-}
-
-.modal-box{
-max-width:700px;
-margin:30px auto;
-background:#151b24;
-border:1px solid #394455;
-border-radius:22px;
-padding:22px;
-}
-
-.modal-box h2{
-margin-top:0;
-}
-
-.penalty-row{
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:15px;
-padding:13px 0;
-border-bottom:1px solid rgba(255,255,255,.08);
-}
-
-.penalty-name{
-font-size:14px;
-line-height:1.4;
-}
-
-.penalty-count{
-display:flex;
-align-items:center;
-gap:8px;
-}
-
-.small-button{
-border:1px solid #394455;
-background:#252e3c;
-color:white;
-border-radius:8px;
-padding:7px 11px;
-cursor:pointer;
-font-size:16px;
-}
-
-.penalty-number{
-min-width:25px;
-text-align:center;
-font-weight:bold;
-}
-
-.modal-actions{
-display:flex;
-gap:10px;
-margin-top:20px;
-}
-
-.modal-actions button{
-flex:1;
-}
-
-.cancel{
-border:1px solid #394455;
-background:#252e3c;
-color:white;
-border-radius:10px;
-padding:12px;
-cursor:pointer;
-}
-
-.save{
-border:0;
-background:#d72f2f;
-color:white;
-border-radius:10px;
-padding:12px;
-cursor:pointer;
-font-weight:bold;
-}
-
 
 @media(max-width:700px){
 
@@ -379,6 +351,8 @@ grid-template-columns:1fr;
 <div class="app">
 
 
+<!-- ZPĚT -->
+
 <button
 class="back"
 onclick="window.location.href='index.html'">
@@ -388,10 +362,12 @@ onclick="window.location.href='index.html'">
 </button>
 
 
+<!-- HLAVIČKA -->
+
 <header class="header">
 
 <div class="logo">
-🏃
+🏃‍♂️
 </div>
 
 <h1>
@@ -411,7 +387,7 @@ okres Nový Jičín · Štafeta dvojic
 </header>
 
 
-<!-- PŘIDÁNÍ -->
+<!-- PŘIDÁNÍ DRUŽSTVA -->
 
 <div class="card">
 
@@ -425,7 +401,8 @@ okres Nový Jičín · Štafeta dvojic
 id="druzstvo"
 placeholder="Název družstva">
 
-<select id="kategorie">
+<select
+id="kategorie">
 
 <option value="mladsi">
 👦 Mladší
@@ -464,13 +441,58 @@ Excel musí obsahovat sloupce:
 
 <b>Družstvo</b> a <b>Kategorie</b>.
 
-Kategorie musí být:
+<br><br>
+
+Kategorie může být:
 
 <b>Mladší</b> nebo <b>Starší</b>.
 
+<br><br>
+
+Ukázka správného formátu:
+
 </div>
 
+
+<!-- JEDEN ŘÁDEK -->
+
+<div class="excel-example">
+
+<div class="example-title">
+📋 Ukázka Excelu
+</div>
+
+<table class="example-table">
+
+<thead>
+
+<tr>
+
+<th>Družstvo</th>
+<th>Kategorie</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>Lubina A</td>
+<td>Mladší</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+
 <br>
+
 
 <div class="import-box">
 
@@ -478,6 +500,7 @@ Kategorie musí být:
 type="file"
 id="excelFile"
 accept=".xlsx,.xls">
+
 
 <button
 class="import-button"
@@ -489,9 +512,48 @@ onclick="importExcel()">
 
 </div>
 
+
 <div
 id="message"
 class="message">
+</div>
+
+</div>
+
+
+<!-- STARTOVNÍ LISTINA -->
+
+<div class="card">
+
+<h2>
+📋 Startovní listina
+</h2>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Start</th>
+<th>Družstvo</th>
+<th>Kategorie</th>
+<th>Pokus 1</th>
+<th>Pokus 2</th>
+<th>Nejlepší čas</th>
+<th>Akce</th>
+
+</tr>
+
+</thead>
+
+<tbody id="startTab">
+</tbody>
+
+</table>
+
 </div>
 
 </div>
@@ -502,7 +564,7 @@ class="message">
 <div class="card">
 
 <div class="category-title">
-👦 Mladší
+👦 Mladší – výsledky
 </div>
 
 <div class="table-wrap">
@@ -515,17 +577,10 @@ class="message">
 
 <th>Pořadí</th>
 <th>Družstvo</th>
-
-<th>Štafeta 1</th>
-<th>Tresty 1</th>
-<th>Výsledek 1</th>
-
-<th>Štafeta 2</th>
-<th>Tresty 2</th>
-<th>Výsledek 2</th>
-
-<th>Nejlepší</th>
-<th>Akce</th>
+<th>Pokus 1</th>
+<th>Pokus 2</th>
+<th>Nejlepší čas</th>
+<th>Start</th>
 
 </tr>
 
@@ -546,7 +601,7 @@ class="message">
 <div class="card">
 
 <div class="category-title">
-🧑 Starší
+🧑 Starší – výsledky
 </div>
 
 <div class="table-wrap">
@@ -559,17 +614,10 @@ class="message">
 
 <th>Pořadí</th>
 <th>Družstvo</th>
-
-<th>Štafeta 1</th>
-<th>Tresty 1</th>
-<th>Výsledek 1</th>
-
-<th>Štafeta 2</th>
-<th>Tresty 2</th>
-<th>Výsledek 2</th>
-
-<th>Nejlepší</th>
-<th>Akce</th>
+<th>Pokus 1</th>
+<th>Pokus 2</th>
+<th>Nejlepší čas</th>
+<th>Start</th>
 
 </tr>
 
@@ -590,47 +638,6 @@ class="message">
 <span class="online"></span>
 
 Živá aktualizace
-
-</div>
-
-
-</div>
-
-
-<!-- MODAL -->
-
-<div
-id="modal"
-class="modal">
-
-<div class="modal-box">
-
-<h2 id="modalTitle">
-Tresty
-</h2>
-
-<div id="penaltyList">
-</div>
-
-<div class="modal-actions">
-
-<button
-class="cancel"
-onclick="zavritModal()">
-
-Zrušit
-
-</button>
-
-<button
-class="save"
-onclick="ulozitTresty()">
-
-Uložit
-
-</button>
-
-</div>
 
 </div>
 
@@ -666,7 +673,7 @@ from
 const firebaseConfig={
 
 apiKey:
-"AIzaSyDHGLymt1Ram6s0LJSeQLMh-fZJvCM-9jo",
+"AIzaSyDHGLymt1Ram6s0LJSeQLmf-hZJvCM-9jo",
 
 authDomain:
 "deti-hra-plamen-lubina.firebaseapp.com",
@@ -695,42 +702,14 @@ getFirestore(app);
 const col=
 collection(
 db,
-"stafeta_dvojic"
+"stafety_dvojic"
 );
+
 
 let data=[];
 
 
-/* TRESTNÉ CHYBY */
-
-const tresty=[
-
-"Předčasné vyběhnutí člena štafety",
-
-"Nesvinutí rozpadnutého kotouče",
-
-"Nerozložení hadice na vyznačenou čáru",
-
-"Nesprávné napojení hadice",
-
-"Nesprávné rozvinutí hadice u hydrantového nástavce",
-
-"Neoběhnutí nebo nesprávné oběhnutí mety",
-
-"Neúplné svinutí hadice",
-
-"Hození hadice, koncovky nebo proudnice",
-
-"Chození po nesprávné straně",
-
-"Nesprávné svinutí hadice",
-
-"Nesprávné odpojení proudnice nebo hadice"
-
-];
-
-
-/* ČAS */
+/* VALIDACE ČASU */
 
 function validTime(t){
 
@@ -740,20 +719,27 @@ return false;
 if(!t.includes(":"))
 return false;
 
-const c=t.split(":");
+const casti=t.split(":");
 
-if(c.length!==2)
+if(casti.length!==2)
 return false;
 
-const s=Number(c[0]);
-const d=Number(c[1]);
+const sekundy=Number(casti[0]);
+
+const setiny=Number(casti[1]);
 
 if(
-isNaN(s)||
-isNaN(d)||
-s<0||
-d<0||
-d>99
+isNaN(sekundy)||
+isNaN(setiny)
+)
+return false;
+
+if(sekundy<0)
+return false;
+
+if(
+setiny<0||
+setiny>99
 )
 return false;
 
@@ -762,22 +748,14 @@ return true;
 }
 
 
+/* ČAS NA ČÍSLO */
+
 function casNaCislo(cas){
 
-const c=cas.split(":");
+const casti=cas.split(":");
 
-return Number(c[0])*100+
-Number(c[1]);
-
-}
-
-
-function cisloNaCas(cislo){
-
-const s=Math.floor(cislo/100);
-const d=cislo%100;
-
-return s+":"+String(d).padStart(2,"0");
+return Number(casti[0])*100+
+Number(casti[1]);
 
 }
 
@@ -821,12 +799,12 @@ alert(
 );
 
 
-/* RUČNÍ PŘIDÁNÍ */
+/* PŘIDAT DRUŽSTVO */
 
 window.pridatDruzstvo=
 async function(){
 
-const druzstvo=
+const nazev=
 document
 .getElementById("druzstvo")
 .value
@@ -838,7 +816,7 @@ document
 .value;
 
 
-if(!druzstvo){
+if(!nazev){
 
 alert(
 "Zadej název družstva."
@@ -849,23 +827,37 @@ return;
 }
 
 
+const maxStart=
+data.reduce(
+(max,z)=>
+Math.max(
+max,
+Number(z.start)||0
+),
+0
+);
+
+const start=
+maxStart+1;
+
+
 await addDoc(
 
 col,
 
 {
 
-druzstvo:druzstvo,
+druzstvo:
+nazev,
 
-kategorie:kategorie,
+kategorie:
+kategorie,
 
-cas1:"",
+start:
+start,
 
-cas2:"",
-
-tresty1:{},
-
-tresty2:{},
+pokus1:"",
+pokus2:"",
 
 vytvoreno:
 serverTimestamp()
@@ -892,8 +884,9 @@ document.getElementById(
 "excelFile"
 );
 
+
 if(
-!input.files ||
+!input.files||
 !input.files.length
 ){
 
@@ -906,15 +899,13 @@ return;
 }
 
 
+try{
+
 const file=
 input.files[0];
 
-
-try{
-
 const buffer=
 await file.arrayBuffer();
-
 
 const workbook=
 XLSX.read(
@@ -924,13 +915,10 @@ type:"array"
 }
 );
 
-
 const sheet=
-workbook
-.Sheets[
+workbook.Sheets[
 workbook.SheetNames[0]
 ];
-
 
 const rows=
 XLSX.utils.sheet_to_json(
@@ -964,31 +952,24 @@ najdiHodnotu(
 row,
 [
 "Družstvo",
-"Druzstvo",
-"družstvo",
-"druzstvo"
+"Druzstvo"
 ]
 );
-
 
 const kategorie=
 najdiHodnotu(
 row,
 [
-"Kategorie",
-"kategorie"
+"Kategorie"
 ]
 );
 
 
 if(
-!druzstvo ||
+!druzstvo||
 !kategorie
-){
-
+)
 continue;
-
-}
 
 
 const kat=
@@ -997,11 +978,23 @@ kategorie
 );
 
 
-if(!kat){
-
+if(!kat)
 continue;
 
-}
+
+const maxStart=
+data.reduce(
+(max,z)=>
+Math.max(
+max,
+Number(z.start)||0
+),
+0
+);
+
+
+const start=
+maxStart+1;
 
 
 await addDoc(
@@ -1016,13 +1009,11 @@ String(druzstvo).trim(),
 kategorie:
 kat,
 
-cas1:"",
+start:
+start,
 
-cas2:"",
-
-tresty1:{},
-
-tresty2:{},
+pokus1:"",
+pokus2:"",
 
 vytvoreno:
 serverTimestamp(),
@@ -1040,26 +1031,29 @@ pocet++;
 
 
 zobrazZpravu(
+
 "✓ Import dokončen. Přidáno družstev: "+
 pocet,
+
 false
+
 );
 
 
 input.value="";
 
-
 }
+
 catch(error){
 
-console.error(
-"Chyba Excel:",
-error
-);
+console.error(error);
 
 zobrazZpravu(
+
 "Excel se nepodařilo načíst.",
+
 true
+
 );
 
 }
@@ -1073,24 +1067,6 @@ function najdiHodnotu(
 row,
 nazvy
 ){
-
-for(
-const nazev of nazvy
-){
-
-if(
-Object.prototype.hasOwnProperty.call(
-row,
-nazev
-)
-){
-
-return row[nazev];
-
-}
-
-}
-
 
 const klice=
 Object.keys(row);
@@ -1113,8 +1089,7 @@ const nazev of nazvy
 
 if(
 normal===
-nazev
-.toLowerCase()
+nazev.toLowerCase()
 ){
 
 return row[klic];
@@ -1124,6 +1099,7 @@ return row[klic];
 }
 
 }
+
 
 return "";
 
@@ -1143,7 +1119,7 @@ String(hodnota)
 
 
 if(
-text==="mladší" ||
+text==="mladší"||
 text==="mladsi"
 ){
 
@@ -1153,7 +1129,7 @@ return "mladsi";
 
 
 if(
-text==="starší" ||
+text==="starší"||
 text==="starsi"
 ){
 
@@ -1167,55 +1143,51 @@ return "";
 }
 
 
-/* SOUČET TRESTŮ */
+/* NEJLEPŠÍ ČAS */
 
-function soucetTrestu(obj){
+function nejlepsiCas(z){
 
-if(!obj)
-return 0;
+const p1=
+validTime(z.pokus1)
+?
+casNaCislo(z.pokus1)
+:
+null;
 
-let pocet=0;
+const p2=
+validTime(z.pokus2)
+?
+casNaCislo(z.pokus2)
+:
+null;
 
-Object.values(obj)
-.forEach(
-x=>{
-pocet+=Number(x)||0;
-}
-);
-
-return pocet;
-
-}
-
-
-/* VÝSLEDEK */
-
-function vysledek(
-cas,
-trestyObj
-){
 
 if(
-!validTime(cas)
+p1===null&&
+p2===null
 )
 return null;
 
 
-return casNaCislo(cas)
-+
-soucetTrestu(trestyObj)
-*
-1000;
+if(p1===null)
+return p2;
 
-}
+if(p2===null)
+return p1;
 
 
-/* ZADAT ČAS */
+return Math.min(
+p1,
+p2
+);
+
+
+/* ZADÁNÍ ČASU */
 
 window.ulozCas=
 async function(
 id,
-cisloStafety
+pokus
 ){
 
 const z=
@@ -1228,37 +1200,36 @@ return;
 
 
 const pole=
-cisloStafety===1
+pokus===1
 ?
-"cas1"
+"pokus1"
 :
-"cas2";
+"pokus2";
 
 
-const stary=
-z[pole]||"";
-
-
-const novy=
+const hodnota=
 prompt(
-"Čas štafety "+
-cisloStafety+
-" – například 45:23",
-stary
+
+"Pokus "+
+pokus+
+" – čas například 45:32",
+
+z[pole]||""
+
 );
 
 
-if(novy===null)
+if(hodnota===null)
 return;
 
 
 if(
-novy!=="" &&
-!validTime(novy)
+hodnota!==""&&
+!validTime(hodnota)
 ){
 
 alert(
-"Špatný čas. Použij například 45:23."
+"Špatný čas. Použij například 45:32."
 );
 
 return;
@@ -1270,228 +1241,23 @@ await updateDoc(
 
 doc(
 db,
-"stafeta_dvojic",
+"stafety_dvojic",
 id
 ),
 
 {
 
-[pole]:novy
-
-}
-
-);
-
-};
-
-
-/* MODAL */
-
-let modalId=null;
-let modalStafeta=null;
-let modalTresty={};
-
-
-/* OTEVŘÍT TRESTY */
-
-window.otevritTresty=
-function(
-id,
-stafeta
-){
-
-const z=
-data.find(
-x=>x.id===id
-);
-
-if(!z)
-return;
-
-
-modalId=id;
-modalStafeta=stafeta;
-
-
-const puvodni=
-stafeta===1
-?
-z.tresty1
-:
-z.tresty2;
-
-
-modalTresty=
-JSON.parse(
-JSON.stringify(
-puvodni||{}
-)
-);
-
-
-document
-.getElementById("modalTitle")
-.textContent=
-"Tresty – štafeta "+
-stafeta;
-
-
-const list=
-document
-.getElementById(
-"penaltyList"
-);
-
-list.innerHTML="";
-
-
-tresty.forEach(
-(nazev,index)=>{
-
-const hodnota=
-Number(
-modalTresty[index]||0
-);
-
-
-list.innerHTML+=`
-
-<div class="penalty-row">
-
-<div class="penalty-name">
-
-${index+1}. ${nazev}
-
-</div>
-
-<div class="penalty-count">
-
-<button
-class="small-button"
-onclick="zmenTrest(${index},-1)">
-
-−
-
-</button>
-
-<div
-class="penalty-number"
-id="penalty${index}">
-
-${hodnota}
-
-</div>
-
-<button
-class="small-button"
-onclick="zmenTrest(${index},1)">
-
-+
-
-</button>
-
-</div>
-
-</div>
-
-`;
-
-});
-
-
-document
-.getElementById("modal")
-.style.display="block";
-
-};
-
-
-/* ZMĚNA TRESTU */
-
-window.zmenTrest=
-function(
-index,
-zmena
-){
-
-let hodnota=
-Number(
-modalTresty[index]||0
-);
-
-hodnota+=zmena;
-
-if(hodnota<0)
-hodnota=0;
-
-modalTresty[index]=hodnota;
-
-
-document
-.getElementById(
-"penalty"+index
-)
-.textContent=
-hodnota;
-
-};
-
-
-/* ULOŽIT TRESTY */
-
-window.ulozitTresty=
-async function(){
-
-if(!modalId)
-return;
-
-
-const pole=
-modalStafeta===1
-?
-"tresty1"
-:
-"tresty2";
-
-
-await updateDoc(
-
-doc(
-db,
-"stafeta_dvojic",
-modalId
-),
-
-{
-
 [pole]:
-modalTresty
+hodnota
 
 }
 
 );
 
-
-zavritModal();
-
 };
 
 
-/* ZAVŘÍT */
-
-window.zavritModal=
-function(){
-
-document
-.getElementById("modal")
-.style.display="none";
-
-modalId=null;
-
-};
-
-
-/* EDIT */
+/* EDIT DRUŽSTVA */
 
 window.editDruzstvo=
 async function(id){
@@ -1511,6 +1277,7 @@ prompt(
 z.druzstvo
 );
 
+
 if(novy===null)
 return;
 
@@ -1523,7 +1290,7 @@ await updateDoc(
 
 doc(
 db,
-"stafeta_dvojic",
+"stafety_dvojic",
 id
 ),
 
@@ -1556,7 +1323,7 @@ await deleteDoc(
 
 doc(
 db,
-"stafeta_dvojic",
+"stafety_dvojic",
 id
 )
 
@@ -1565,136 +1332,406 @@ id
 };
 
 
-/* VYKRESLENÍ */
+/* POSUN NAHORU */
 
-window.render=
-function(){
+window.posunNahoru=
+async function(id){
 
-vykresli(
-"mladsi",
-"mladsiTab"
+const seznam=
+[...data].sort(
+(a,b)=>
+Number(a.start||0)-
+Number(b.start||0)
 );
 
-vykresli(
-"starsi",
-"starsiTab"
+
+const index=
+seznam.findIndex(
+x=>x.id===id
+);
+
+
+if(index<=0)
+return;
+
+
+const predchozi=
+seznam[index-1];
+
+const aktualni=
+seznam[index];
+
+
+await updateDoc(
+
+doc(
+db,
+"stafety_dvojic",
+aktualni.id
+),
+
+{
+start:
+predchozi.start
+}
+
+);
+
+
+await updateDoc(
+
+doc(
+db,
+"stafety_dvojic",
+predchozi.id
+),
+
+{
+start:
+aktualni.start
+}
+
 );
 
 };
 
 
-/* KATEGORIE */
+/* POSUN DOLŮ */
 
-function vykresli(
-kategorie,
-elementId
-){
-
-const tabulka=
-document.getElementById(
-elementId
-);
-
-tabulka.innerHTML="";
-
+window.posunDolu=
+async function(id){
 
 const seznam=
-data.filter(
-z=>
-z.kategorie===kategorie
+[...data].sort(
+(a,b)=>
+Number(a.start||0)-
+Number(b.start||0)
 );
 
 
-/* ŘAZENÍ */
-
-const serazeno=
-[...seznam].sort(
-(a,b)=>{
-
-const a1=
-vysledek(
-a.cas1,
-a.tresty1
+const index=
+seznam.findIndex(
+x=>x.id===id
 );
-
-const a2=
-vysledek(
-a.cas2,
-a.tresty2
-);
-
-const b1=
-vysledek(
-b.cas1,
-b.tresty1
-);
-
-const b2=
-vysledek(
-b.cas2,
-b.tresty2
-);
-
-
-const bestA=
-a1!==null &&
-a2!==null
-?
-Math.min(a1,a2)
-:
-a1!==null
-?
-a1
-:
-a2;
-
-
-const bestB=
-b1!==null &&
-b2!==null
-?
-Math.min(b1,b2)
-:
-b1!==null
-?
-b1
-:
-b2;
 
 
 if(
-bestA===null &&
-bestB===null
+index<0||
+index>=seznam.length-1
 )
-return 0;
+return;
 
 
-if(bestA===null)
-return 1;
+const dalsi=
+seznam[index+1];
+
+const aktualni=
+seznam[index];
 
 
-if(bestB===null)
-return -1;
+await updateDoc(
+
+doc(
+db,
+"stafety_dvojic",
+aktualni.id
+),
+
+{
+start:
+dalsi.start
+}
+
+);
 
 
-return bestA-bestB;
+await updateDoc(
+
+doc(
+db,
+"stafety_dvojic",
+dalsi.id
+),
+
+{
+start:
+aktualni.start
+}
+
+);
+
+};
+
+
+/* RENDER */
+
+window.render=
+function(){
+
+const startTab=
+document.getElementById(
+"startTab"
+);
+
+const mladsiTab=
+document.getElementById(
+"mladsiTab"
+);
+
+const starsiTab=
+document.getElementById(
+"starsiTab"
+);
+
+
+startTab.innerHTML="";
+mladsiTab.innerHTML="";
+starsiTab.innerHTML="";
+
+
+const mladsi=
+[...data]
+.filter(
+z=>z.kategorie==="mladsi"
+)
+.sort(
+(a,b)=>
+Number(a.start||0)-
+Number(b.start||0)
+);
+
+
+const starsi=
+[...data]
+.filter(
+z=>z.kategorie==="starsi"
+)
+.sort(
+(a,b)=>
+Number(a.start||0)-
+Number(b.start||0)
+);
+
+
+/*
+MLADŠÍ STARTUJÍ PRVNÍ,
+POTOM STARŠÍ
+*/
+
+const startList=[
+...mladsi,
+...starsi
+];
+
+
+/* STARTOVNÍ LISTINA */
+
+if(!startList.length){
+
+startTab.innerHTML=`
+
+<tr>
+
+<td
+colspan="7"
+class="empty">
+
+Zatím není přidané žádné družstvo.
+
+</td>
+
+</tr>
+
+`;
+
+}
+else{
+
+startList.forEach(
+(z,index)=>{
+
+const best=
+nejlepsiCas(z);
+
+
+startTab.innerHTML+=`
+
+<tr>
+
+<td class="start">
+
+${index+1}
+
+</td>
+
+<td>
+
+${z.druzstvo}
+
+</td>
+
+<td>
+
+${nazevKategorie(z.kategorie)}
+
+</td>
+
+<td>
+
+<button
+class="action"
+onclick="ulozCas('${z.id}',1)">
+
+${z.pokus1||"Pokus 1"}
+
+</button>
+
+</td>
+
+<td>
+
+<button
+class="action"
+onclick="ulozCas('${z.id}',2)">
+
+${z.pokus2||"Pokus 2"}
+
+</button>
+
+</td>
+
+<td class="result">
+
+${
+best!==null
+?
+cisloNaCas(best)
+:
+"-"
+}
+
+</td>
+
+<td>
+
+<button
+class="move"
+onclick="posunNahoru('${z.id}')">
+
+⬆️
+
+</button>
+
+<button
+class="move"
+onclick="posunDolu('${z.id}')">
+
+⬇️
+
+</button>
+
+<button
+class="action"
+onclick="editDruzstvo('${z.id}')">
+
+✏️
+
+</button>
+
+<button
+class="action"
+onclick="smazDruzstvo('${z.id}')">
+
+🗑️
+
+</button>
+
+</td>
+
+</tr>
+
+`;
 
 });
 
+}
 
-if(
-serazeno.length===0
+
+/* VÝSLEDKY */
+
+vykresliVysledky(
+mladsiTab,
+mladsi
+);
+
+vykresliVysledky(
+starsiTab,
+starsi
+);
+
+};
+
+
+/* PŘEVOD ČÍSLA NA ČAS */
+
+function cisloNaCas(cislo){
+
+const sekundy=
+Math.floor(cislo/100);
+
+const setiny=
+cislo%100;
+
+return sekundy+
+":"+
+String(setiny).padStart(2,"0");
+
+}
+
+
+/* NÁZEV KATEGORIE */
+
+function nazevKategorie(k){
+
+if(k==="starsi")
+return "🧑 Starší";
+
+return "👦 Mladší";
+
+}
+
+
+/* VÝSLEDKY */
+
+function vykresliVysledky(
+tabulka,
+seznam
 ){
+
+const platne=
+seznam
+.filter(
+z=>
+nejlepsiCas(z)!==null
+)
+.sort(
+(a,b)=>
+nejlepsiCas(a)-
+nejlepsiCas(b)
+);
+
+
+if(!platne.length){
 
 tabulka.innerHTML=`
 
 <tr>
 
 <td
-colspan="10"
+colspan="6"
 class="empty">
 
-Zatím není přidané žádné družstvo.
+Zatím není žádný výsledek.
 
 </td>
 
@@ -1707,79 +1744,24 @@ return;
 }
 
 
-serazeno.forEach(
+platne.forEach(
 (z,index)=>{
 
-const v1=
-vysledek(
-z.cas1,
-z.tresty1
-);
+let trida="";
 
-const v2=
-vysledek(
-z.cas2,
-z.tresty2
-);
-
-
-let best=null;
-
-
-if(
-v1!==null &&
-v2!==null
-){
-
-best=
-Math.min(
-v1,
-v2
-);
-
-}
-else if(
-v1!==null
-){
-
-best=v1;
-
-}
-else if(
-v2!==null
-){
-
-best=v2;
-
-}
-
-
-let placeClass="";
-
-
-if(best!==null){
 
 if(index===0)
-placeClass="gold";
+trida="gold";
 
 if(index===1)
-placeClass="silver";
+trida="silver";
 
 if(index===2)
-placeClass="bronze";
-
-}
+trida="bronze";
 
 
-const t1=
-soucetTrestu(
-z.tresty1
-);
-
-const t2=
-soucetTrestu(
-z.tresty2
-);
+const best=
+nejlepsiCas(z);
 
 
 tabulka.innerHTML+=`
@@ -1787,142 +1769,39 @@ tabulka.innerHTML+=`
 <tr>
 
 <td
-class="place ${placeClass}">
+class="place ${trida}">
 
-${best!==null
-?
-(index+1)+"."
-:
-"-"
-}
+${index+1}.
 
 </td>
 
-
 <td>
+
 ${z.druzstvo}
-</td>
 
+</td>
 
 <td>
 
-<button
-class="time-button"
-onclick="ulozCas('${z.id}',1)">
-
-${z.cas1||"—"}
-
-</button>
+${z.pokus1||"-"}
 
 </td>
-
 
 <td>
 
-<button
-class="penalty-button"
-onclick="otevritTresty('${z.id}',1)">
-
-${t1
-?
-t1+" × 10 s"
-:
-"0 s"
-}
-
-</button>
+${z.pokus2||"-"}
 
 </td>
 
+<td class="result">
 
-<td
-class="result">
-
-${v1!==null
-?
-cisloNaCas(v1)
-:
-"—"
-}
+${cisloNaCas(best)}
 
 </td>
-
 
 <td>
 
-<button
-class="time-button"
-onclick="ulozCas('${z.id}',2)">
-
-${z.cas2||"—"}
-
-</button>
-
-</td>
-
-
-<td>
-
-<button
-class="penalty-button"
-onclick="otevritTresty('${z.id}',2)">
-
-${t2
-?
-t2+" × 10 s"
-:
-"0 s"
-}
-
-</button>
-
-</td>
-
-
-<td
-class="result">
-
-${v2!==null
-?
-cisloNaCas(v2)
-:
-"—"
-}
-
-</td>
-
-
-<td
-class="result">
-
-${best!==null
-?
-cisloNaCas(best)
-:
-"—"
-}
-
-</td>
-
-
-<td>
-
-<button
-class="action"
-onclick="editDruzstvo('${z.id}')">
-
-✏️
-
-</button>
-
-
-<button
-class="action"
-onclick="smazDruzstvo('${z.id}')">
-
-🗑️
-
-</button>
+${z.start}
 
 </td>
 
@@ -1961,7 +1840,7 @@ setTimeout(
 ()=>{
 el.textContent="";
 },
-3500
+4000
 );
 
 }

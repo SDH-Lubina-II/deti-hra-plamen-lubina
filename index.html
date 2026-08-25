@@ -11,107 +11,148 @@
 <style>
 
 *{
-box-sizing:border-box;
+    box-sizing:border-box;
 }
 
 body{
-margin:0;
-font-family:Arial,sans-serif;
-min-height:100vh;
-color:white;
+    margin:0;
+    font-family:Arial,sans-serif;
+    min-height:100vh;
+    color:white;
 
-background:
-radial-gradient(circle at top right,#5b1010 0%,transparent 35%),
-linear-gradient(145deg,#090d13,#151b24);
+    background:
+        radial-gradient(
+            circle at top right,
+            #5b1010 0%,
+            transparent 35%
+        ),
+        linear-gradient(
+            145deg,
+            #090d13,
+            #151b24
+        );
 }
 
 .app{
-max-width:950px;
-margin:auto;
-padding:20px 16px 40px;
+    max-width:950px;
+    margin:auto;
+    padding:20px 16px 40px;
 }
 
+
+/* HLAVIČKA */
+
 .header{
-text-align:center;
-padding:25px 10px 35px;
+    text-align:center;
+    padding:25px 10px 35px;
 }
 
 .logo{
-font-size:42px;
-margin-bottom:12px;
+    font-size:42px;
+    margin-bottom:12px;
 }
 
 .header h1{
-font-size:22px;
-line-height:1.35;
-margin:0;
+    font-size:22px;
+    line-height:1.35;
+    margin:0;
 }
 
 .header h1 span{
-color:#ef3333;
+    color:#ef3333;
 }
 
 .district{
-margin-top:7px;
-color:#8995a6;
-font-size:14px;
+    margin-top:7px;
+    color:#8995a6;
+    font-size:14px;
 }
+
+
+/* NADPIS */
 
 .section-title{
-color:#8796aa;
-font-size:13px;
-text-transform:uppercase;
-letter-spacing:2px;
-margin:0 5px 14px;
+    color:#8796aa;
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    margin:0 5px 14px;
 }
 
+
+/* TLAČÍTKA SOUTĚŽÍ */
+
 .discipline{
-width:100%;
-border:1px solid rgba(255,255,255,.10);
-border-radius:24px;
-padding:25px 22px;
-margin-bottom:16px;
-color:white;
-text-align:left;
-cursor:pointer;
-background:rgba(255,255,255,.055);
-transition:.2s;
+    width:100%;
+
+    border:1px solid rgba(255,255,255,.10);
+
+    border-radius:24px;
+
+    padding:25px 22px;
+
+    margin-bottom:16px;
+
+    color:white;
+
+    text-align:left;
+
+    cursor:pointer;
+
+    background:rgba(255,255,255,.055);
+
+    transition:.2s;
 }
 
 .discipline:hover{
-transform:translateY(-2px);
-background:rgba(255,255,255,.085);
+    transform:translateY(-2px);
+
+    background:rgba(255,255,255,.085);
 }
 
 .icon{
-font-size:46px;
-margin-bottom:12px;
+    font-size:46px;
+
+    margin-bottom:12px;
 }
 
 .name{
-font-size:23px;
-font-weight:bold;
-margin-bottom:7px;
+    font-size:23px;
+
+    font-weight:bold;
+
+    margin-bottom:7px;
 }
 
 .description{
-color:#9eabba;
-font-size:14px;
+    color:#9eabba;
+
+    font-size:14px;
 }
 
+
+/* SKRYTÁ SOUTĚŽ */
+
 .hidden{
-display:none;
+    display:none;
 }
+
+
+/* MOBIL */
 
 @media(max-width:700px){
 
-.discipline{
-padding:22px 20px;
-}
+    .app{
+        padding:15px 12px 30px;
+    }
 
-.name{
-font-size:21px;
-}
+    .discipline{
+        padding:22px 20px;
+    }
+
+    .name{
+        font-size:21px;
+    }
 
 }
 
@@ -129,93 +170,95 @@ font-size:21px;
 
 <header class="header">
 
-<div class="logo">
-🔥
-</div>
+    <div class="logo">
+        🔥
+    </div>
 
-<h1>
-<span>SBOR DOBROVOLNÝCH HASIČŮ</span><br>
-LUBINA II–VĚTŘKOVICE
-</h1>
+    <h1>
+        <span>SBOR DOBROVOLNÝCH HASIČŮ</span><br>
+        LUBINA II–VĚTŘKOVICE
+    </h1>
 
-<div
-class="district"
-id="udajeZavodu">
+    <div
+        class="district"
+        id="udajeZavodu">
 
-Děti · Hra Plamen
+        Děti · Hra Plamen
 
-</div>
+    </div>
 
 </header>
 
 
+<!-- SOUTĚŽE -->
+
 <div class="section-title">
-Soutěže
+    Soutěže
 </div>
 
 
 <!-- POŽÁRNÍ ÚTOK -->
 
 <button
-id="tlacitkoPozarni"
-class="discipline"
-onclick="window.location.href='Pozarnutok.html'">
+    id="tlacitkoPozarni"
+    class="discipline"
+    onclick="window.location.href='pozarniutok.html'">
 
-<div class="icon">
-🚒
-</div>
+    <div class="icon">
+        🚒
+    </div>
 
-<div class="name">
-Požární útok
-</div>
+    <div class="name">
+        Požární útok
+    </div>
 
-<div class="description">
-Mladší · Starší
-</div>
-
-</button>
-
-
-<!-- ŠTAFETA -->
-
-<button
-id="tlacitkoStafeta"
-class="discipline"
-onclick="window.location.href='Stafetadvojic.html'">
-
-<div class="icon">
-🏃
-</div>
-
-<div class="name">
-Štafeta dvojic
-</div>
-
-<div class="description">
-Mladší · Starší
-</div>
+    <div class="description">
+        Mladší · Starší
+    </div>
 
 </button>
 
 
-<!-- 60 M -->
+<!-- ŠTAFETA DVOJIC -->
 
 <button
-id="tlacitko60"
-class="discipline"
-onclick="window.location.href='60mprekazky.html'">
+    id="tlacitkoStafeta"
+    class="discipline"
+    onclick="window.location.href='stafetadvojic.html'">
 
-<div class="icon">
-🏃‍♂️
-</div>
+    <div class="icon">
+        🏃
+    </div>
 
-<div class="name">
-60 m překážek
-</div>
+    <div class="name">
+        Štafeta dvojic
+    </div>
 
-<div class="description">
-Jednotlivci · Mladší · Starší
-</div>
+    <div class="description">
+        Mladší · Starší
+    </div>
+
+</button>
+
+
+<!-- 60 M PŘEKÁŽEK -->
+
+<button
+    id="tlacitko60"
+    class="discipline"
+    onclick="window.location.href='60mprekazky.html'">
+
+    <div class="icon">
+        🏃‍♂️
+    </div>
+
+    <div class="name">
+        60 m překážek
+    </div>
+
+    <div class="description">
+        Jednotlivci · Mladší · Starší
+    </div>
 
 </button>
 
@@ -223,20 +266,20 @@ Jednotlivci · Mladší · Starší
 <!-- NASTAVENÍ -->
 
 <button
-class="discipline"
-onclick="window.location.href='nastaveni.html'">
+    class="discipline"
+    onclick="window.location.href='nastaveni.html'">
 
-<div class="icon">
-⚙️
-</div>
+    <div class="icon">
+        ⚙️
+    </div>
 
-<div class="name">
-Nastavení
-</div>
+    <div class="name">
+        Nastavení
+    </div>
 
-<div class="description">
-Nastavení soutěží a závodu
-</div>
+    <div class="description">
+        Nastavení soutěží a závodu
+    </div>
 
 </button>
 
@@ -246,183 +289,215 @@ Nastavení soutěží a závodu
 
 <script type="module">
 
+
+/* FIREBASE */
+
 import {
-initializeApp
+    initializeApp
 }
 from
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
 
 import {
-getFirestore,
-doc,
-getDoc
+    getFirestore,
+    doc,
+    getDoc
 }
 from
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
 
-/* FIREBASE */
+const firebaseConfig = {
 
-const firebaseConfig={
+    apiKey:
+    "AIzaSyDHGLymt1Ram6s0LJSeQLMh-fZJvCM-9jo",
 
-apiKey:
-"AIzaSyDHGLymt1Ram6s0LJSeQLMh-fZJvCM-9jo",
+    authDomain:
+    "deti-hra-plamen-lubina.firebaseapp.com",
 
-authDomain:
-"deti-hra-plamen-lubina.firebaseapp.com",
+    projectId:
+    "deti-hra-plamen-lubina",
 
-projectId:
-"deti-hra-plamen-lubina",
+    storageBucket:
+    "deti-hra-plamen-lubina.firebasestorage.app",
 
-storageBucket:
-"deti-hra-plamen-lubina.firebasestorage.app",
+    messagingSenderId:
+    "511766112817",
 
-messagingSenderId:
-"511766112817",
-
-appId:
-"1:511766112817:web:3e9a11e9c10f234c7ac310"
+    appId:
+    "1:511766112817:web:3e9a11e9c10f234c7ac310"
 
 };
 
 
-const app=
-initializeApp(firebaseConfig);
-
-const db=
-getFirestore(app);
+const app =
+    initializeApp(firebaseConfig);
 
 
-/* NASTAVENÍ */
+const db =
+    getFirestore(app);
 
-const nastaveniRef=
-doc(
-db,
-"nastaveni",
-"viditelnost"
-);
+
+/* FIREBASE NASTAVENÍ */
+
+const nastaveniRef =
+    doc(
+        db,
+        "nastaveni",
+        "viditelnost"
+    );
 
 
 /* NAČTENÍ NASTAVENÍ */
 
 async function nacistNastaveni(){
 
-try{
+    try{
 
-const snap=
-await getDoc(nastaveniRef);
-
-
-if(!snap.exists())
-return;
+        const snap =
+            await getDoc(
+                nastaveniRef
+            );
 
 
-const data=
-snap.data();
+        if(!snap.exists()){
+            return;
+        }
 
 
-/* VIDITELNOST SOUTĚŽÍ */
+        const data =
+            snap.data();
 
-if(data.pozarniUtok===false){
 
-document
-.getElementById("tlacitkoPozarni")
-.classList.add("hidden");
+        /*
+        VIDITELNOST SOUTĚŽÍ
+        */
+
+        if(
+            data.pozarniUtok === false
+        ){
+
+            document
+                .getElementById(
+                    "tlacitkoPozarni"
+                )
+                .classList.add(
+                    "hidden"
+                );
+
+        }
+
+
+        if(
+            data.stafeta === false
+        ){
+
+            document
+                .getElementById(
+                    "tlacitkoStafeta"
+                )
+                .classList.add(
+                    "hidden"
+                );
+
+        }
+
+
+        if(
+            data.prekazky60 === false
+        ){
+
+            document
+                .getElementById(
+                    "tlacitko60"
+                )
+                .classList.add(
+                    "hidden"
+                );
+
+        }
+
+
+        /*
+        ÚDAJE ZÁVODU
+        */
+
+        const udaje =
+            document.getElementById(
+                "udajeZavodu"
+            );
+
+
+        const casti = [];
+
+
+        if(data.misto){
+
+            casti.push(
+                data.misto
+            );
+
+        }
+
+
+        if(data.rocnik){
+
+            casti.push(
+                "ročník " +
+                data.rocnik
+            );
+
+        }
+
+
+        if(data.datum){
+
+            const datum =
+                new Date(
+                    data.datum +
+                    "T00:00:00"
+                );
+
+
+            if(
+                !isNaN(
+                    datum.getTime()
+                )
+            ){
+
+                casti.push(
+                    datum.toLocaleDateString(
+                        "cs-CZ"
+                    )
+                );
+
+            }
+
+        }
+
+
+        if(casti.length > 0){
+
+            udaje.textContent =
+                casti.join(" · ");
+
+        }
+
+    }
+    catch(error){
+
+        console.error(
+            "Chyba při načítání nastavení:",
+            error
+        );
+
+    }
 
 }
 
 
-if(data.stafeta===false){
-
-document
-.getElementById("tlacitkoStafeta")
-.classList.add("hidden");
-
-}
-
-
-if(data.prekazky60===false){
-
-document
-.getElementById("tlacitko60")
-.classList.add("hidden");
-
-}
-
-
-/* ÚDAJE ZÁVODU */
-
-const udaje=
-document.getElementById("udajeZavodu");
-
-
-const casti=[];
-
-
-if(data.misto){
-
-casti.push(data.misto);
-
-}
-
-
-if(data.rocnik){
-
-casti.push(
-"ročník "+data.rocnik
-);
-
-}
-
-
-if(data.datum){
-
-const datum=
-new Date(
-data.datum+"T00:00:00"
-);
-
-
-if(!isNaN(datum.getTime())){
-
-casti.push(
-datum.toLocaleDateString(
-"cs-CZ"
-)
-);
-
-}
-
-}
-
-
-if(casti.length>0){
-
-udaje.textContent=
-casti.join(" · ");
-
-}else{
-
-udaje.textContent=
-"Děti · Hra Plamen";
-
-}
-
-
-}catch(error){
-
-console.error(
-"Chyba při načítání nastavení:",
-error
-);
-
-}
-
-}
-
-
-/* START */
+/* SPUSTIT */
 
 nacistNastaveni();
 

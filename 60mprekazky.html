@@ -8,7 +8,6 @@
 
 <title>60 m překážek – SDH Lubina II–Větřkovice</title>
 
-<!-- Knihovna pro Excel -->
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 
 <style>
@@ -33,9 +32,6 @@ max-width:1250px;
 margin:auto;
 padding:20px 16px 40px;
 }
-
-
-/* HLAVIČKA */
 
 .header{
 text-align:center;
@@ -63,9 +59,6 @@ color:#8995a6;
 font-size:14px;
 }
 
-
-/* ZPĚT */
-
 .back{
 border:1px solid #394455;
 background:transparent;
@@ -75,9 +68,6 @@ border-radius:11px;
 cursor:pointer;
 margin-bottom:15px;
 }
-
-
-/* KARTY */
 
 .card{
 background:rgba(255,255,255,.055);
@@ -91,9 +81,6 @@ margin-bottom:16px;
 margin:0 0 18px;
 font-size:24px;
 }
-
-
-/* FORM */
 
 .form{
 display:grid;
@@ -172,9 +159,7 @@ margin:0;
 
 .example-table th{
 padding:8px 10px;
-
 background:#252e3c;
-
 font-size:12px;
 }
 
@@ -241,19 +226,14 @@ overflow-x:auto;
 
 table{
 width:100%;
-
 border-collapse:collapse;
-
 margin-top:10px;
-
 min-width:1050px;
 }
 
 th{
 padding:12px 8px;
-
 background:#b92828;
-
 color:white;
 }
 
@@ -270,9 +250,7 @@ color:#dbe2eb;
 
 .category-title{
 font-size:21px;
-
 font-weight:bold;
-
 margin-bottom:12px;
 }
 
@@ -281,7 +259,6 @@ margin-bottom:12px;
 
 .place{
 font-size:18px;
-
 font-weight:bold;
 }
 
@@ -302,29 +279,21 @@ color:#cd7f32;
 
 .result{
 font-size:19px;
-
 font-weight:bold;
-
 color:#ffd166;
 }
 
 .time-button{
 border:0;
-
 background:transparent;
-
 color:#cbd5e1;
-
 cursor:pointer;
-
 font-size:16px;
-
 padding:5px 8px;
 }
 
 .time-button:hover{
 background:rgba(255,255,255,.08);
-
 border-radius:7px;
 }
 
@@ -402,8 +371,7 @@ background:#36d399;
 
 margin-right:6px;
 
-box-shadow:
-0 0 9px #36d399;
+box-shadow:0 0 9px #36d399;
 }
 
 
@@ -559,8 +527,6 @@ grid-template-columns:1fr;
 <div class="app">
 
 
-<!-- ZPĚT -->
-
 <button
 class="back"
 onclick="window.location.href='index.html'">
@@ -569,8 +535,6 @@ onclick="window.location.href='index.html'">
 
 </button>
 
-
-<!-- HLAVIČKA -->
 
 <header class="header">
 
@@ -685,9 +649,7 @@ Kategorie může být:
 <div class="excel-example">
 
 <div class="example-title">
-
 📋 Vzor Excelu
-
 </div>
 
 <table class="example-table">
@@ -713,33 +675,6 @@ Kategorie může být:
 <td>Jan</td>
 <td>Lubina</td>
 <td>Mladší chlapci</td>
-
-</tr>
-
-<tr>
-
-<td>Nováková</td>
-<td>Anna</td>
-<td>Lubina</td>
-<td>Mladší dívky</td>
-
-</tr>
-
-<tr>
-
-<td>Dvořák</td>
-<td>Petr</td>
-<td>Lubina</td>
-<td>Starší chlapci</td>
-
-</tr>
-
-<tr>
-
-<td>Černá</td>
-<td>Eva</td>
-<td>Lubina</td>
-<td>Starší dívky</td>
 
 </tr>
 
@@ -794,9 +729,7 @@ class="message">
 <div class="card">
 
 <div class="category-title">
-
 👦 Mladší chlapci
-
 </div>
 
 <div class="table-wrap">
@@ -811,13 +744,10 @@ class="message">
 <th>Příjmení</th>
 <th>Jméno</th>
 <th>Družstvo</th>
-
 <th>Pokus 1</th>
 <th>Tresty 1</th>
-
 <th>Pokus 2</th>
 <th>Tresty 2</th>
-
 <th>Nejlepší</th>
 <th>Akce</th>
 
@@ -825,8 +755,7 @@ class="message">
 
 </thead>
 
-<tbody
-id="mladsiChlapciTab">
+<tbody id="mladsiChlapciTab">
 </tbody>
 
 </table>
@@ -841,9 +770,7 @@ id="mladsiChlapciTab">
 <div class="card">
 
 <div class="category-title">
-
 👧 Mladší dívky
-
 </div>
 
 <div class="table-wrap">
@@ -858,13 +785,10 @@ id="mladsiChlapciTab">
 <th>Příjmení</th>
 <th>Jméno</th>
 <th>Družstvo</th>
-
 <th>Pokus 1</th>
 <th>Tresty 1</th>
-
 <th>Pokus 2</th>
 <th>Tresty 2</th>
-
 <th>Nejlepší</th>
 <th>Akce</th>
 
@@ -872,8 +796,7 @@ id="mladsiChlapciTab">
 
 </thead>
 
-<tbody
-id="mladsiDivkyTab">
+<tbody id="mladsiDivkyTab">
 </tbody>
 
 </table>
@@ -888,9 +811,7 @@ id="mladsiDivkyTab">
 <div class="card">
 
 <div class="category-title">
-
 🧑 Starší chlapci
-
 </div>
 
 <div class="table-wrap">
@@ -905,13 +826,10 @@ id="mladsiDivkyTab">
 <th>Příjmení</th>
 <th>Jméno</th>
 <th>Družstvo</th>
-
 <th>Pokus 1</th>
 <th>Tresty 1</th>
-
 <th>Pokus 2</th>
 <th>Tresty 2</th>
-
 <th>Nejlepší</th>
 <th>Akce</th>
 
@@ -919,8 +837,7 @@ id="mladsiDivkyTab">
 
 </thead>
 
-<tbody
-id="starsiChlapciTab">
+<tbody id="starsiChlapciTab">
 </tbody>
 
 </table>
@@ -935,9 +852,7 @@ id="starsiChlapciTab">
 <div class="card">
 
 <div class="category-title">
-
 👩 Starší dívky
-
 </div>
 
 <div class="table-wrap">
@@ -952,13 +867,10 @@ id="starsiChlapciTab">
 <th>Příjmení</th>
 <th>Jméno</th>
 <th>Družstvo</th>
-
 <th>Pokus 1</th>
 <th>Tresty 1</th>
-
 <th>Pokus 2</th>
 <th>Tresty 2</th>
-
 <th>Nejlepší</th>
 <th>Akce</th>
 
@@ -966,8 +878,7 @@ id="starsiChlapciTab">
 
 </thead>
 
-<tbody
-id="starsiDivkyTab">
+<tbody id="starsiDivkyTab">
 </tbody>
 
 </table>
@@ -985,11 +896,10 @@ id="starsiDivkyTab">
 
 </div>
 
-
 </div>
 
 
-<!-- MODAL TRESTŮ -->
+<!-- MODAL -->
 
 <div
 id="modal"
@@ -1081,10 +991,8 @@ appId:
 const app=
 initializeApp(firebaseConfig);
 
-
 const db=
 getFirestore(app);
-
 
 const col=
 collection(
@@ -1131,7 +1039,6 @@ if(c.length!==2)
 return false;
 
 const s=Number(c[0]);
-
 const d=Number(c[1]);
 
 if(
@@ -1212,7 +1119,7 @@ alert(
 );
 
 
-/* RUČNÍ PŘIDÁNÍ */
+/* PŘIDAT ZÁVODNÍKA */
 
 window.pridatZavodnika=
 async function(){
@@ -1262,17 +1169,10 @@ col,
 
 {
 
-prijmeni:
-prijmeni,
-
-jmeno:
-jmeno,
-
-druzstvo:
-druzstvo,
-
-kategorie:
-kategorie,
+prijmeni:prijmeni,
+jmeno:jmeno,
+druzstvo:druzstvo,
+kategorie:kategorie,
 
 pokus1:"",
 pokus2:"",
@@ -1322,27 +1222,6 @@ const dataVzor=[
 "Jan",
 "Lubina",
 "Mladší chlapci"
-],
-
-[
-"Nováková",
-"Anna",
-"Lubina",
-"Mladší dívky"
-],
-
-[
-"Dvořák",
-"Petr",
-"Lubina",
-"Starší chlapci"
-],
-
-[
-"Černá",
-"Eva",
-"Lubina",
-"Starší dívky"
 ]
 
 ];
@@ -1361,9 +1240,7 @@ XLSX.utils.book_new();
 XLSX.utils.book_append_sheet(
 
 workbook,
-
 worksheet,
-
 "60 m"
 
 );
@@ -1372,7 +1249,6 @@ worksheet,
 XLSX.writeFile(
 
 workbook,
-
 "vzor_60m_prekazky.xlsx"
 
 );
@@ -1410,38 +1286,28 @@ try{
 const file=
 input.files[0];
 
-
 const buffer=
 await file.arrayBuffer();
 
-
 const workbook=
 XLSX.read(
-
 buffer,
-
 {
 type:"array"
 }
-
 );
-
 
 const sheet=
 workbook.Sheets[
 workbook.SheetNames[0]
 ];
 
-
 const rows=
 XLSX.utils.sheet_to_json(
-
 sheet,
-
 {
 defval:""
 }
-
 );
 
 
@@ -1472,7 +1338,6 @@ row,
 ]
 );
 
-
 const jmeno=
 najdiHodnotu(
 row,
@@ -1482,7 +1347,6 @@ row,
 ]
 );
 
-
 const druzstvo=
 najdiHodnotu(
 row,
@@ -1491,7 +1355,6 @@ row,
 "Druzstvo"
 ]
 );
-
 
 const kategorie=
 najdiHodnotu(
@@ -1507,11 +1370,8 @@ if(
 !jmeno||
 !druzstvo||
 !kategorie
-){
-
+)
 continue;
-
-}
 
 
 const kat=
@@ -1520,11 +1380,8 @@ kategorie
 );
 
 
-if(!kat){
-
+if(!kat)
 continue;
-
-}
 
 
 await addDoc(
@@ -1542,8 +1399,7 @@ String(jmeno).trim(),
 druzstvo:
 String(druzstvo).trim(),
 
-kategorie:
-kat,
+kategorie:kat,
 
 pokus1:"",
 pokus2:"",
@@ -1567,12 +1423,8 @@ pocet++;
 
 
 zobrazZpravu(
-
-"✓ Import dokončen. Přidáno závodníků: "+
-pocet,
-
+"✓ Import dokončen. Přidáno závodníků: "+pocet,
 false
-
 );
 
 
@@ -1582,18 +1434,11 @@ input.value="";
 
 catch(error){
 
-console.error(
-"Excel chyba:",
-error
-);
-
+console.error(error);
 
 zobrazZpravu(
-
 "Excel se nepodařilo načíst.",
-
 true
-
 );
 
 }
@@ -1629,8 +1474,7 @@ const nazev of nazvy
 
 if(
 normal===
-nazev
-.toLowerCase()
+nazev.toLowerCase()
 ){
 
 return row[klic];
@@ -1662,41 +1506,29 @@ String(hodnota)
 if(
 text==="mladší chlapci"||
 text==="mladsi chlapci"
-){
-
+)
 return "mladsi_chlapci";
-
-}
 
 
 if(
 text==="mladší dívky"||
 text==="mladsi divky"
-){
-
+)
 return "mladsi_divky";
-
-}
 
 
 if(
 text==="starší chlapci"||
 text==="starsi chlapci"
-){
-
+)
 return "starsi_chlapci";
-
-}
 
 
 if(
 text==="starší dívky"||
 text==="starsi divky"
-){
-
+)
 return "starsi_divky";
-
-}
 
 
 return "";
@@ -1711,18 +1543,13 @@ function soucetTrestu(obj){
 if(!obj)
 return 0;
 
-
 let pocet=0;
-
 
 Object.values(obj)
 .forEach(
 x=>{
-
 pocet+=Number(x)||0;
-
 });
-
 
 return pocet;
 
@@ -1736,14 +1563,12 @@ cas,
 trestyObj
 ){
 
-if(
-!validTime(cas)
-)
+if(!validTime(cas))
 return null;
 
 
 /*
-JEDEN TREST = 10 SEKUND
+1 TREST = 10 SEKUND
 */
 
 return
@@ -1754,7 +1579,7 @@ soucetTrestu(trestyObj)*
 }
 
 
-/* ZADÁNÍ ČASU */
+/* ZADAT ČAS */
 
 window.ulozCas=
 async function(
@@ -1779,10 +1604,6 @@ pokus===1
 "pokus2";
 
 
-const stary=
-z[pole]||"";
-
-
 const novy=
 prompt(
 
@@ -1790,7 +1611,7 @@ prompt(
 pokus+
 " – čas například 18:42",
 
-stary
+z[pole]||""
 
 );
 
@@ -1823,8 +1644,7 @@ id
 
 {
 
-[pole]:
-novy
+[pole]:novy
 
 }
 
@@ -1836,9 +1656,7 @@ novy
 /* MODAL TRESTŮ */
 
 let modalId=null;
-
 let modalPokus=null;
-
 let modalTresty={};
 
 
@@ -1858,7 +1676,6 @@ return;
 
 
 modalId=id;
-
 modalPokus=pokus;
 
 
@@ -1879,9 +1696,7 @@ puvodni||{}
 
 
 document
-.getElementById(
-"modalTitle"
-)
+.getElementById("modalTitle")
 .textContent=
 "Trestné body – pokus "+
 pokus;
@@ -1889,10 +1704,7 @@ pokus;
 
 const list=
 document
-.getElementById(
-"penaltyList"
-);
-
+.getElementById("penaltyList");
 
 list.innerHTML="";
 
@@ -1971,13 +1783,10 @@ Number(
 modalTresty[index]||0
 );
 
-
 hodnota+=zmena;
-
 
 if(hodnota<0)
 hodnota=0;
-
 
 modalTresty[index]=hodnota;
 
@@ -1986,8 +1795,7 @@ document
 .getElementById(
 "penalty"+index
 )
-.textContent=
-hodnota;
+.textContent=hodnota;
 
 };
 
@@ -2032,7 +1840,7 @@ zavritModal();
 };
 
 
-/* ZAVŘÍT MODAL */
+/* ZAVŘÍT */
 
 window.zavritModal=
 function(){
@@ -2041,15 +1849,13 @@ document
 .getElementById("modal")
 .style.display="none";
 
-
 modalId=null;
-
 modalPokus=null;
 
 };
 
 
-/* EDIT ZÁVODNÍKA */
+/* EDIT */
 
 window.editZavodnik=
 async function(id){
@@ -2069,7 +1875,6 @@ prompt(
 z.prijmeni
 );
 
-
 if(prijmeni===null)
 return;
 
@@ -2080,7 +1885,6 @@ prompt(
 z.jmeno
 );
 
-
 if(jmeno===null)
 return;
 
@@ -2090,7 +1894,6 @@ prompt(
 "Družstvo:",
 z.druzstvo
 );
-
 
 if(druzstvo===null)
 return;
@@ -2203,18 +2006,14 @@ document.getElementById(
 elementId
 );
 
-
 tabulka.innerHTML="";
 
 
 const seznam=
 data.filter(
-z=>
-z.kategorie===kategorie
+z=>z.kategorie===kategorie
 );
 
-
-/* ŘAZENÍ */
 
 const serazeno=
 [...seznam].sort(
@@ -2272,11 +2071,8 @@ b2;
 if(
 bestA===null&&
 bestB===null
-){
-
+)
 return 0;
-
-}
 
 
 if(bestA===null)
@@ -2292,9 +2088,7 @@ return bestA-bestB;
 });
 
 
-if(
-serazeno.length===0
-){
+if(!serazeno.length){
 
 tabulka.innerHTML=`
 
@@ -2326,7 +2120,6 @@ z.pokus1,
 z.tresty1
 );
 
-
 const v2=
 vysledek(
 z.pokus2,
@@ -2342,20 +2135,15 @@ v1!==null&&
 v2!==null
 ){
 
-best=
-Math.min(v1,v2);
+best=Math.min(v1,v2);
 
 }
-else if(
-v1!==null
-){
+else if(v1!==null){
 
 best=v1;
 
 }
-else if(
-v2!==null
-){
+else if(v2!==null){
 
 best=v2;
 
@@ -2384,7 +2172,6 @@ soucetTrestu(
 z.tresty1
 );
 
-
 const t2=
 soucetTrestu(
 z.tresty2
@@ -2408,21 +2195,17 @@ best!==null
 
 </td>
 
-
 <td>
 ${z.prijmeni}
 </td>
-
 
 <td>
 ${z.jmeno}
 </td>
 
-
 <td>
 ${z.druzstvo}
 </td>
-
 
 <td>
 
@@ -2435,7 +2218,6 @@ ${z.pokus1||"—"}
 </button>
 
 </td>
-
 
 <td>
 
@@ -2455,7 +2237,6 @@ t1+" × 10 s"
 
 </td>
 
-
 <td>
 
 <button
@@ -2467,7 +2248,6 @@ ${z.pokus2||"—"}
 </button>
 
 </td>
-
 
 <td>
 
@@ -2487,7 +2267,6 @@ t2+" × 10 s"
 
 </td>
 
-
 <td
 class="result">
 
@@ -2501,7 +2280,6 @@ cisloNaCas(best)
 
 </td>
 
-
 <td>
 
 <button
@@ -2511,7 +2289,6 @@ onclick="editZavodnik('${z.id}')">
 ✏️
 
 </button>
-
 
 <button
 class="action"
@@ -2544,9 +2321,7 @@ document.getElementById(
 "message"
 );
 
-
 el.textContent=text;
-
 
 el.className=
 chyba
@@ -2569,4 +2344,4 @@ el.textContent="";
 
 </body>
 
-  </html> 
+</html> 

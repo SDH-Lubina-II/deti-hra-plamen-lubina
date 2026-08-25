@@ -8,6 +8,7 @@
 
 <title>60 m překážek – SDH Lubina II–Větřkovice</title>
 
+<!-- Knihovna pro Excel -->
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 
 <style>
@@ -32,6 +33,9 @@ max-width:1250px;
 margin:auto;
 padding:20px 16px 40px;
 }
+
+
+/* HLAVIČKA */
 
 .header{
 text-align:center;
@@ -59,6 +63,9 @@ color:#8995a6;
 font-size:14px;
 }
 
+
+/* ZPĚT */
+
 .back{
 border:1px solid #394455;
 background:transparent;
@@ -68,6 +75,9 @@ border-radius:11px;
 cursor:pointer;
 margin-bottom:15px;
 }
+
+
+/* KARTY */
 
 .card{
 background:rgba(255,255,255,.055);
@@ -82,6 +92,9 @@ margin:0 0 18px;
 font-size:24px;
 }
 
+
+/* FORM */
+
 .form{
 display:grid;
 grid-template-columns:1.2fr 1.2fr 1fr 1fr auto;
@@ -92,10 +105,13 @@ input,
 select{
 width:100%;
 padding:13px;
+
 border-radius:12px;
 border:1px solid #354052;
+
 background:#101722;
 color:white;
+
 font-size:15px;
 }
 
@@ -107,14 +123,70 @@ cursor:pointer;
 border:0;
 border-radius:12px;
 padding:13px 18px;
+
 background:#d72f2f;
 color:white;
+
 font-weight:bold;
 cursor:pointer;
 }
 
 .primary:hover{
 background:#ed3a3a;
+}
+
+
+/* EXCEL */
+
+.excel-info{
+color:#8995a6;
+font-size:13px;
+line-height:1.5;
+}
+
+.excel-example{
+margin-top:18px;
+padding:14px;
+
+border:1px solid rgba(255,255,255,.08);
+border-radius:14px;
+
+background:rgba(0,0,0,.15);
+
+overflow-x:auto;
+}
+
+.example-title{
+font-size:14px;
+font-weight:bold;
+color:#aeb9c8;
+margin-bottom:10px;
+}
+
+.example-table{
+width:100%;
+min-width:600px;
+border-collapse:collapse;
+margin:0;
+}
+
+.example-table th{
+padding:8px 10px;
+
+background:#252e3c;
+
+font-size:12px;
+}
+
+.example-table td{
+padding:8px 10px;
+
+font-size:12px;
+
+border-bottom:
+1px solid rgba(255,255,255,.06);
+
+white-space:nowrap;
 }
 
 .import-box{
@@ -126,11 +198,17 @@ flex-wrap:wrap;
 
 .import-button{
 border:1px solid #394455;
+
 background:#252e3c;
+
 color:white;
+
 border-radius:12px;
+
 padding:13px 18px;
+
 font-weight:bold;
+
 cursor:pointer;
 }
 
@@ -138,23 +216,24 @@ cursor:pointer;
 background:#394657;
 }
 
-.excel-info{
-color:#8995a6;
-font-size:13px;
-line-height:1.5;
-}
-
 .message{
 text-align:center;
+
 color:#36d399;
+
 font-size:13px;
+
 min-height:18px;
+
 margin-top:12px;
 }
 
-.error{
+.message.error{
 color:#ef6b6b;
 }
+
+
+/* TABULKY */
 
 .table-wrap{
 overflow-x:auto;
@@ -162,26 +241,47 @@ overflow-x:auto;
 
 table{
 width:100%;
+
 border-collapse:collapse;
+
 margin-top:10px;
-min-width:1000px;
+
+min-width:1050px;
 }
 
 th{
 padding:12px 8px;
+
 background:#b92828;
+
 color:white;
 }
 
 td{
 padding:11px 8px;
-border-bottom:1px solid rgba(255,255,255,.08);
+
+border-bottom:
+1px solid rgba(255,255,255,.08);
+
 text-align:center;
+
 color:#dbe2eb;
 }
 
+.category-title{
+font-size:21px;
+
+font-weight:bold;
+
+margin-bottom:12px;
+}
+
+
+/* POŘADÍ */
+
 .place{
 font-size:18px;
+
 font-weight:bold;
 }
 
@@ -197,32 +297,51 @@ color:#cfd3d8;
 color:#cd7f32;
 }
 
+
+/* ČAS */
+
 .result{
 font-size:19px;
+
 font-weight:bold;
+
 color:#ffd166;
 }
 
 .time-button{
 border:0;
+
 background:transparent;
+
 color:#cbd5e1;
+
 cursor:pointer;
+
 font-size:16px;
+
 padding:5px 8px;
 }
 
 .time-button:hover{
 background:rgba(255,255,255,.08);
+
 border-radius:7px;
 }
 
+
+/* TRESTY */
+
 .penalty-button{
 border:1px solid #394455;
+
 background:#252e3c;
+
 color:#cbd5e1;
+
 border-radius:8px;
+
 padding:7px 10px;
+
 cursor:pointer;
 }
 
@@ -230,42 +349,61 @@ cursor:pointer;
 background:#394657;
 }
 
+
+/* AKCE */
+
 .action{
 border:0;
+
 background:transparent;
+
 color:#aeb9c8;
+
 cursor:pointer;
+
 font-size:18px;
+
 margin:0 3px;
 }
 
-.category-title{
-font-size:21px;
-font-weight:bold;
-margin-bottom:12px;
-}
+
+/* PRÁZDNÁ TABULKA */
 
 .empty{
 text-align:center;
+
 padding:25px;
+
 color:#718096;
 }
 
+
+/* STATUS */
+
 .status{
 text-align:center;
+
 color:#68778b;
+
 font-size:12px;
+
 margin-top:20px;
 }
 
 .online{
 display:inline-block;
+
 width:7px;
 height:7px;
+
 border-radius:50%;
+
 background:#36d399;
+
 margin-right:6px;
-box-shadow:0 0 9px #36d399;
+
+box-shadow:
+0 0 9px #36d399;
 }
 
 
@@ -273,20 +411,31 @@ box-shadow:0 0 9px #36d399;
 
 .modal{
 display:none;
+
 position:fixed;
+
 inset:0;
+
 background:rgba(0,0,0,.78);
+
 z-index:1000;
+
 padding:20px;
+
 overflow:auto;
 }
 
 .modal-box{
 max-width:650px;
+
 margin:40px auto;
+
 background:#151b24;
+
 border:1px solid #394455;
+
 border-radius:22px;
+
 padding:22px;
 }
 
@@ -296,43 +445,62 @@ margin-top:0;
 
 .penalty-row{
 display:flex;
+
 align-items:center;
+
 justify-content:space-between;
+
 gap:15px;
+
 padding:13px 0;
-border-bottom:1px solid rgba(255,255,255,.08);
+
+border-bottom:
+1px solid rgba(255,255,255,.08);
 }
 
 .penalty-name{
 font-size:14px;
+
 line-height:1.4;
 }
 
 .penalty-count{
 display:flex;
+
 align-items:center;
+
 gap:8px;
 }
 
 .small-button{
 border:1px solid #394455;
+
 background:#252e3c;
+
 color:white;
+
 border-radius:8px;
+
 padding:7px 11px;
+
 cursor:pointer;
+
 font-size:16px;
 }
 
 .penalty-number{
 min-width:25px;
+
 text-align:center;
+
 font-weight:bold;
 }
 
 .modal-actions{
 display:flex;
+
 gap:10px;
+
 margin-top:20px;
 }
 
@@ -342,21 +510,36 @@ flex:1;
 
 .cancel{
 border:1px solid #394455;
+
 background:#252e3c;
+
 color:white;
+
 border-radius:10px;
+
 padding:12px;
+
 cursor:pointer;
 }
 
 .save{
 border:0;
+
 background:#d72f2f;
+
 color:white;
+
 border-radius:10px;
+
 padding:12px;
+
 cursor:pointer;
+
+font-weight:bold;
 }
+
+
+/* MOBIL */
 
 @media(max-width:800px){
 
@@ -376,6 +559,8 @@ grid-template-columns:1fr;
 <div class="app">
 
 
+<!-- ZPĚT -->
+
 <button
 class="back"
 onclick="window.location.href='index.html'">
@@ -384,6 +569,8 @@ onclick="window.location.href='index.html'">
 
 </button>
 
+
+<!-- HLAVIČKA -->
 
 <header class="header">
 
@@ -464,7 +651,7 @@ onclick="pridatZavodnika()">
 </div>
 
 
-<!-- IMPORT -->
+<!-- IMPORT EXCEL -->
 
 <div class="card">
 
@@ -474,13 +661,16 @@ onclick="pridatZavodnika()">
 
 <div class="excel-info">
 
-Excel musí obsahovat sloupce:
+Excel musí obsahovat tyto sloupce:
 
-<b>Příjmení</b>, <b>Jméno</b>, <b>Družstvo</b> a <b>Kategorie</b>.
+<b>Příjmení</b>,
+<b>Jméno</b>,
+<b>Družstvo</b> a
+<b>Kategorie</b>.
 
 <br><br>
 
-Kategorie musí být:
+Kategorie může být:
 
 <b>Mladší chlapci</b>,
 <b>Mladší dívky</b>,
@@ -489,7 +679,79 @@ Kategorie musí být:
 
 </div>
 
+
+<!-- MINI VZOR -->
+
+<div class="excel-example">
+
+<div class="example-title">
+
+📋 Vzor Excelu
+
+</div>
+
+<table class="example-table">
+
+<thead>
+
+<tr>
+
+<th>Příjmení</th>
+<th>Jméno</th>
+<th>Družstvo</th>
+<th>Kategorie</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>Novák</td>
+<td>Jan</td>
+<td>Lubina</td>
+<td>Mladší chlapci</td>
+
+</tr>
+
+<tr>
+
+<td>Nováková</td>
+<td>Anna</td>
+<td>Lubina</td>
+<td>Mladší dívky</td>
+
+</tr>
+
+<tr>
+
+<td>Dvořák</td>
+<td>Petr</td>
+<td>Lubina</td>
+<td>Starší chlapci</td>
+
+</tr>
+
+<tr>
+
+<td>Černá</td>
+<td>Eva</td>
+<td>Lubina</td>
+<td>Starší dívky</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+
 <br>
+
 
 <div class="import-box">
 
@@ -497,6 +759,7 @@ Kategorie musí být:
 type="file"
 id="excelFile"
 accept=".xlsx,.xls">
+
 
 <button
 class="import-button"
@@ -506,7 +769,17 @@ onclick="importExcel()">
 
 </button>
 
+
+<button
+class="import-button"
+onclick="stahnoutVzor()">
+
+📄 Stáhnout vzor Excelu
+
+</button>
+
 </div>
+
 
 <div
 id="message"
@@ -538,10 +811,13 @@ class="message">
 <th>Příjmení</th>
 <th>Jméno</th>
 <th>Družstvo</th>
+
 <th>Pokus 1</th>
 <th>Tresty 1</th>
+
 <th>Pokus 2</th>
 <th>Tresty 2</th>
+
 <th>Nejlepší</th>
 <th>Akce</th>
 
@@ -549,7 +825,8 @@ class="message">
 
 </thead>
 
-<tbody id="mladsiChlapciTab">
+<tbody
+id="mladsiChlapciTab">
 </tbody>
 
 </table>
@@ -581,10 +858,13 @@ class="message">
 <th>Příjmení</th>
 <th>Jméno</th>
 <th>Družstvo</th>
+
 <th>Pokus 1</th>
 <th>Tresty 1</th>
+
 <th>Pokus 2</th>
 <th>Tresty 2</th>
+
 <th>Nejlepší</th>
 <th>Akce</th>
 
@@ -592,7 +872,8 @@ class="message">
 
 </thead>
 
-<tbody id="mladsiDivkyTab">
+<tbody
+id="mladsiDivkyTab">
 </tbody>
 
 </table>
@@ -624,10 +905,13 @@ class="message">
 <th>Příjmení</th>
 <th>Jméno</th>
 <th>Družstvo</th>
+
 <th>Pokus 1</th>
 <th>Tresty 1</th>
+
 <th>Pokus 2</th>
 <th>Tresty 2</th>
+
 <th>Nejlepší</th>
 <th>Akce</th>
 
@@ -635,7 +919,8 @@ class="message">
 
 </thead>
 
-<tbody id="starsiChlapciTab">
+<tbody
+id="starsiChlapciTab">
 </tbody>
 
 </table>
@@ -667,10 +952,13 @@ class="message">
 <th>Příjmení</th>
 <th>Jméno</th>
 <th>Družstvo</th>
+
 <th>Pokus 1</th>
 <th>Tresty 1</th>
+
 <th>Pokus 2</th>
 <th>Tresty 2</th>
+
 <th>Nejlepší</th>
 <th>Akce</th>
 
@@ -678,7 +966,8 @@ class="message">
 
 </thead>
 
-<tbody id="starsiDivkyTab">
+<tbody
+id="starsiDivkyTab">
 </tbody>
 
 </table>
@@ -700,7 +989,7 @@ class="message">
 </div>
 
 
-<!-- MODAL TRESTY -->
+<!-- MODAL TRESTŮ -->
 
 <div
 id="modal"
@@ -769,7 +1058,7 @@ from
 const firebaseConfig={
 
 apiKey:
-"AIzaSyDHGLymt1Ram6s0LJSeQLg9Q9GxiZEIoVGFsay2pbo",
+"AIzaSyDHGLymt1Ram6s0LJSeQLmf-hZJvCM-9jo",
 
 authDomain:
 "deti-hra-plamen-lubina.firebaseapp.com",
@@ -792,8 +1081,10 @@ appId:
 const app=
 initializeApp(firebaseConfig);
 
+
 const db=
 getFirestore(app);
+
 
 const col=
 collection(
@@ -805,13 +1096,7 @@ db,
 let data=[];
 
 
-/*
-TRESTY
-
-ZÁKLAD JE PŘIPRAVENÝ TAK,
-ABYCHOM JE MOHLI POZDĚJI
-UPRAVIT PŘESNĚ PODLE PRAVIDEL
-*/
+/* TRESTY */
 
 const tresty=[
 
@@ -846,6 +1131,7 @@ if(c.length!==2)
 return false;
 
 const s=Number(c[0]);
+
 const d=Number(c[1]);
 
 if(
@@ -918,7 +1204,7 @@ render();
 console.error(error);
 
 alert(
-"Chyba při načítání Firebase."
+"Chyba při načítání dat z Firebase."
 );
 
 }
@@ -926,7 +1212,7 @@ alert(
 );
 
 
-/* PŘIDAT ZÁVODNÍKA */
+/* RUČNÍ PŘIDÁNÍ */
 
 window.pridatZavodnika=
 async function(){
@@ -956,8 +1242,8 @@ document
 
 
 if(
-!prijmeni ||
-!jmeno ||
+!prijmeni||
+!jmeno||
 !druzstvo
 ){
 
@@ -988,14 +1274,10 @@ druzstvo,
 kategorie:
 kategorie,
 
-pokus1:
-"",
-
-pokus2:
-"",
+pokus1:"",
+pokus2:"",
 
 tresty1:{},
-
 tresty2:{},
 
 vytvoreno:
@@ -1021,6 +1303,83 @@ document
 };
 
 
+/* STAŽENÍ VZORU EXCELU */
+
+window.stahnoutVzor=
+function(){
+
+const dataVzor=[
+
+[
+"Příjmení",
+"Jméno",
+"Družstvo",
+"Kategorie"
+],
+
+[
+"Novák",
+"Jan",
+"Lubina",
+"Mladší chlapci"
+],
+
+[
+"Nováková",
+"Anna",
+"Lubina",
+"Mladší dívky"
+],
+
+[
+"Dvořák",
+"Petr",
+"Lubina",
+"Starší chlapci"
+],
+
+[
+"Černá",
+"Eva",
+"Lubina",
+"Starší dívky"
+]
+
+];
+
+
+const worksheet=
+XLSX.utils.aoa_to_sheet(
+dataVzor
+);
+
+
+const workbook=
+XLSX.utils.book_new();
+
+
+XLSX.utils.book_append_sheet(
+
+workbook,
+
+worksheet,
+
+"60 m"
+
+);
+
+
+XLSX.writeFile(
+
+workbook,
+
+"vzor_60m_prekazky.xlsx"
+
+);
+
+};
+
+
 /* IMPORT EXCEL */
 
 window.importExcel=
@@ -1031,8 +1390,9 @@ document.getElementById(
 "excelFile"
 );
 
+
 if(
-!input.files ||
+!input.files||
 !input.files.length
 ){
 
@@ -1050,28 +1410,38 @@ try{
 const file=
 input.files[0];
 
+
 const buffer=
 await file.arrayBuffer();
 
+
 const workbook=
 XLSX.read(
+
 buffer,
+
 {
 type:"array"
 }
+
 );
+
 
 const sheet=
 workbook.Sheets[
 workbook.SheetNames[0]
 ];
 
+
 const rows=
 XLSX.utils.sheet_to_json(
+
 sheet,
+
 {
 defval:""
 }
+
 );
 
 
@@ -1098,48 +1468,44 @@ najdiHodnotu(
 row,
 [
 "Příjmení",
-"Prijmeni",
-"příjmení",
-"prijmeni"
+"Prijmeni"
 ]
 );
+
 
 const jmeno=
 najdiHodnotu(
 row,
 [
 "Jméno",
-"Jmeno",
-"jméno",
-"jmeno"
+"Jmeno"
 ]
 );
+
 
 const druzstvo=
 najdiHodnotu(
 row,
 [
 "Družstvo",
-"Druzstvo",
-"družstvo",
-"druzstvo"
+"Druzstvo"
 ]
 );
+
 
 const kategorie=
 najdiHodnotu(
 row,
 [
-"Kategorie",
-"kategorie"
+"Kategorie"
 ]
 );
 
 
 if(
-!prijmeni ||
-!jmeno ||
-!druzstvo ||
+!prijmeni||
+!jmeno||
+!druzstvo||
 !kategorie
 ){
 
@@ -1154,8 +1520,11 @@ kategorie
 );
 
 
-if(!kat)
+if(!kat){
+
 continue;
+
+}
 
 
 await addDoc(
@@ -1177,18 +1546,15 @@ kategorie:
 kat,
 
 pokus1:"",
-
 pokus2:"",
 
 tresty1:{},
-
 tresty2:{},
 
 vytvoreno:
 serverTimestamp(),
 
-importExcel:
-true
+importExcel:true
 
 }
 
@@ -1201,22 +1567,33 @@ pocet++;
 
 
 zobrazZpravu(
+
 "✓ Import dokončen. Přidáno závodníků: "+
 pocet,
+
 false
+
 );
 
 
 input.value="";
 
 }
+
 catch(error){
 
-console.error(error);
+console.error(
+"Excel chyba:",
+error
+);
+
 
 zobrazZpravu(
+
 "Excel se nepodařilo načíst.",
+
 true
+
 );
 
 }
@@ -1264,6 +1641,7 @@ return row[klic];
 
 }
 
+
 return "";
 
 }
@@ -1282,31 +1660,43 @@ String(hodnota)
 
 
 if(
-text==="mladší chlapci" ||
+text==="mladší chlapci"||
 text==="mladsi chlapci"
-)
+){
+
 return "mladsi_chlapci";
 
+}
+
 
 if(
-text==="mladší dívky" ||
+text==="mladší dívky"||
 text==="mladsi divky"
-)
+){
+
 return "mladsi_divky";
 
+}
+
 
 if(
-text==="starší chlapci" ||
+text==="starší chlapci"||
 text==="starsi chlapci"
-)
+){
+
 return "starsi_chlapci";
 
+}
+
 
 if(
-text==="starší dívky" ||
+text==="starší dívky"||
 text==="starsi divky"
-)
+){
+
 return "starsi_divky";
+
+}
 
 
 return "";
@@ -1321,16 +1711,18 @@ function soucetTrestu(obj){
 if(!obj)
 return 0;
 
+
 let pocet=0;
+
 
 Object.values(obj)
 .forEach(
 x=>{
 
-pocet+=
-Number(x)||0;
+pocet+=Number(x)||0;
 
 });
+
 
 return pocet;
 
@@ -1351,21 +1743,18 @@ return null;
 
 
 /*
-ZDE JE TREST
-10 SEKUND ZA JEDEN TREST.
+JEDEN TREST = 10 SEKUND
 */
 
 return
-casNaCislo(cas)
-+
-soucetTrestu(trestyObj)
-*
+casNaCislo(cas)+
+soucetTrestu(trestyObj)*
 1000;
 
 }
 
 
-/* ZADAT ČAS */
+/* ZADÁNÍ ČASU */
 
 window.ulozCas=
 async function(
@@ -1396,10 +1785,13 @@ z[pole]||"";
 
 const novy=
 prompt(
-"Čas pokusu "+
+
+"Pokus "+
 pokus+
-" – například 18:42",
+" – čas například 18:42",
+
 stary
+
 );
 
 
@@ -1408,7 +1800,7 @@ return;
 
 
 if(
-novy!=="" &&
+novy!==""&&
 !validTime(novy)
 ){
 
@@ -1441,7 +1833,7 @@ novy
 };
 
 
-/* MODAL */
+/* MODAL TRESTŮ */
 
 let modalId=null;
 
@@ -1449,8 +1841,6 @@ let modalPokus=null;
 
 let modalTresty={};
 
-
-/* TRESTY */
 
 window.otevritTresty=
 function(
@@ -1489,7 +1879,9 @@ puvodni||{}
 
 
 document
-.getElementById("modalTitle")
+.getElementById(
+"modalTitle"
+)
 .textContent=
 "Trestné body – pokus "+
 pokus;
@@ -1500,6 +1892,7 @@ document
 .getElementById(
 "penaltyList"
 );
+
 
 list.innerHTML="";
 
@@ -1565,7 +1958,7 @@ document
 };
 
 
-/* ZMĚNA */
+/* ZMĚNA TRESTU */
 
 window.zmenTrest=
 function(
@@ -1578,10 +1971,13 @@ Number(
 modalTresty[index]||0
 );
 
+
 hodnota+=zmena;
+
 
 if(hodnota<0)
 hodnota=0;
+
 
 modalTresty[index]=hodnota;
 
@@ -1596,7 +1992,7 @@ hodnota;
 };
 
 
-/* ULOŽIT */
+/* ULOŽIT TRESTY */
 
 window.ulozitTresty=
 async function(){
@@ -1636,7 +2032,7 @@ zavritModal();
 };
 
 
-/* ZAVŘÍT */
+/* ZAVŘÍT MODAL */
 
 window.zavritModal=
 function(){
@@ -1645,12 +2041,15 @@ document
 .getElementById("modal")
 .style.display="none";
 
+
 modalId=null;
+
+modalPokus=null;
 
 };
 
 
-/* EDIT */
+/* EDIT ZÁVODNÍKA */
 
 window.editZavodnik=
 async function(id){
@@ -1670,6 +2069,7 @@ prompt(
 z.prijmeni
 );
 
+
 if(prijmeni===null)
 return;
 
@@ -1679,6 +2079,7 @@ prompt(
 "Jméno:",
 z.jmeno
 );
+
 
 if(jmeno===null)
 return;
@@ -1690,8 +2091,24 @@ prompt(
 z.druzstvo
 );
 
+
 if(druzstvo===null)
 return;
+
+
+if(
+!prijmeni.trim()||
+!jmeno.trim()||
+!druzstvo.trim()
+){
+
+alert(
+"Údaje nesmí být prázdné."
+);
+
+return;
+
+}
 
 
 await updateDoc(
@@ -1774,7 +2191,7 @@ vykresli(
 };
 
 
-/* TABULKA */
+/* VYKRESLENÍ */
 
 function vykresli(
 kategorie,
@@ -1786,6 +2203,7 @@ document.getElementById(
 elementId
 );
 
+
 tabulka.innerHTML="";
 
 
@@ -1796,7 +2214,7 @@ z.kategorie===kategorie
 );
 
 
-/* ŘAZENÍ PODLE NEJLEPŠÍHO */
+/* ŘAZENÍ */
 
 const serazeno=
 [...seznam].sort(
@@ -1828,8 +2246,7 @@ b.tresty2
 
 
 const bestA=
-a1!==null &&
-a2!==null
+a1!==null&&a2!==null
 ?
 Math.min(a1,a2)
 :
@@ -1841,8 +2258,7 @@ a2;
 
 
 const bestB=
-b1!==null &&
-b2!==null
+b1!==null&&b2!==null
 ?
 Math.min(b1,b2)
 :
@@ -1854,10 +2270,13 @@ b2;
 
 
 if(
-bestA===null &&
+bestA===null&&
 bestB===null
-)
+){
+
 return 0;
+
+}
 
 
 if(bestA===null)
@@ -1907,6 +2326,7 @@ z.pokus1,
 z.tresty1
 );
 
+
 const v2=
 vysledek(
 z.pokus2,
@@ -1918,7 +2338,7 @@ let best=null;
 
 
 if(
-v1!==null &&
+v1!==null&&
 v2!==null
 ){
 
@@ -1964,6 +2384,7 @@ soucetTrestu(
 z.tresty1
 );
 
+
 const t2=
 soucetTrestu(
 z.tresty2
@@ -1977,7 +2398,8 @@ tabulka.innerHTML+=`
 <td
 class="place ${trida}">
 
-${best!==null
+${
+best!==null
 ?
 (index+1)+"."
 :
@@ -1988,23 +2410,17 @@ ${best!==null
 
 
 <td>
-
 ${z.prijmeni}
-
 </td>
 
 
 <td>
-
 ${z.jmeno}
-
 </td>
 
 
 <td>
-
 ${z.druzstvo}
-
 </td>
 
 
@@ -2027,7 +2443,8 @@ ${z.pokus1||"—"}
 class="penalty-button"
 onclick="otevritTresty('${z.id}',1)">
 
-${t1
+${
+t1
 ?
 t1+" × 10 s"
 :
@@ -2058,7 +2475,8 @@ ${z.pokus2||"—"}
 class="penalty-button"
 onclick="otevritTresty('${z.id}',2)">
 
-${t2
+${
+t2
 ?
 t2+" × 10 s"
 :
@@ -2073,7 +2491,8 @@ t2+" × 10 s"
 <td
 class="result">
 
-${best!==null
+${
+best!==null
 ?
 cisloNaCas(best)
 :
@@ -2125,7 +2544,9 @@ document.getElementById(
 "message"
 );
 
+
 el.textContent=text;
+
 
 el.className=
 chyba
@@ -2148,4 +2569,4 @@ el.textContent="";
 
 </body>
 
-</html> 
+  </html> 

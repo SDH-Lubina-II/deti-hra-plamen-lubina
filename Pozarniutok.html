@@ -1,1 +1,1410 @@
+<!DOCTYPE html>
+<html lang="cs">
 
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Požární útok – SDH Lubina II–Větřkovice</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+}
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+min-height:100vh;
+color:white;
+
+background:
+radial-gradient(circle at top right,#5b1010 0%,transparent 35%),
+linear-gradient(145deg,#090d13,#151b24);
+}
+
+.app{
+max-width:1100px;
+margin:auto;
+padding:20px 16px 40px;
+}
+
+.header{
+text-align:center;
+padding:15px 10px 25px;
+}
+
+.logo{
+font-size:42px;
+margin-bottom:10px;
+}
+
+.header h1{
+font-size:23px;
+line-height:1.35;
+margin:0;
+}
+
+.header h1 span{
+color:#ef3333;
+}
+
+.district{
+margin-top:7px;
+color:#8995a6;
+font-size:14px;
+}
+
+.back{
+border:1px solid #394455;
+background:transparent;
+color:#aeb9c8;
+padding:10px 15px;
+border-radius:11px;
+cursor:pointer;
+margin-bottom:15px;
+}
+
+.card{
+background:rgba(255,255,255,.055);
+border:1px solid rgba(255,255,255,.10);
+border-radius:22px;
+padding:20px;
+margin-bottom:16px;
+}
+
+.card h2{
+margin:0 0 18px;
+font-size:24px;
+}
+
+.form{
+display:grid;
+grid-template-columns:1.4fr 1fr auto;
+gap:10px;
+}
+
+input,
+select{
+width:100%;
+padding:13px;
+
+border-radius:12px;
+border:1px solid #354052;
+
+background:#101722;
+color:white;
+
+font-size:15px;
+}
+
+select{
+cursor:pointer;
+}
+
+.primary{
+border:0;
+border-radius:12px;
+padding:13px 18px;
+
+background:#d72f2f;
+color:white;
+
+font-weight:bold;
+cursor:pointer;
+}
+
+.primary:hover{
+background:#ed3a3a;
+}
+
+.table-wrap{
+overflow-x:auto;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:10px;
+min-width:800px;
+}
+
+th{
+padding:12px 8px;
+background:#b92828;
+color:white;
+}
+
+td{
+padding:11px 8px;
+border-bottom:1px solid rgba(255,255,255,.08);
+text-align:center;
+color:#dbe2eb;
+}
+
+.start{
+font-weight:bold;
+font-size:17px;
+}
+
+.result{
+font-size:19px;
+font-weight:bold;
+color:#ffd166;
+}
+
+.place{
+font-weight:bold;
+font-size:18px;
+}
+
+.gold{
+color:#ffd700;
+}
+
+.silver{
+color:#cfd3d8;
+}
+
+.bronze{
+color:#cd7f32;
+}
+
+.action{
+border:0;
+background:transparent;
+color:#aeb9c8;
+cursor:pointer;
+font-size:18px;
+margin:0 2px;
+}
+
+.move{
+border:0;
+background:#252e3c;
+color:white;
+border-radius:7px;
+cursor:pointer;
+padding:5px 8px;
+margin:2px;
+}
+
+.move:hover{
+background:#394657;
+}
+
+.category-title{
+font-size:21px;
+font-weight:bold;
+margin-bottom:12px;
+}
+
+.category{
+margin-bottom:25px;
+}
+
+.empty{
+text-align:center;
+padding:25px;
+color:#718096;
+}
+
+.status{
+text-align:center;
+color:#68778b;
+font-size:12px;
+margin-top:20px;
+}
+
+.online{
+display:inline-block;
+width:7px;
+height:7px;
+border-radius:50%;
+background:#36d399;
+margin-right:6px;
+box-shadow:0 0 9px #36d399;
+}
+
+.np-button{
+border:1px solid #394455;
+background:#252e3c;
+color:#cbd5e1;
+border-radius:8px;
+padding:7px 10px;
+cursor:pointer;
+}
+
+.np-button.active{
+background:#b92828;
+border-color:#ef3333;
+color:white;
+}
+
+@media(max-width:700px){
+
+.form{
+grid-template-columns:1fr;
+}
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="app">
+
+
+<button
+class="back"
+onclick="window.location.href='index.html'">
+
+← Zpět
+
+</button>
+
+
+<header class="header">
+
+<div class="logo">
+🚒
+</div>
+
+<h1>
+<span>SBOR DOBROVOLNÝCH HASIČŮ</span><br>
+LUBINA II–VĚTŘKOVICE
+</h1>
+
+<div class="district">
+okres Nový Jičín · Požární útok
+</div>
+
+</header>
+
+
+<!-- PŘIDÁNÍ DRUŽSTVA -->
+
+<div class="card">
+
+<h2>
+➕ Startovní listina
+</h2>
+
+<div class="form">
+
+<input
+id="druzstvo"
+placeholder="Název družstva">
+
+<select id="kategorie">
+
+<option value="mladsi">
+👦 Mladší
+</option>
+
+<option value="starsi">
+🧑 Starší
+</option>
+
+</select>
+
+<button
+class="primary"
+onclick="pridatDruzstvo()">
+
++ Přidat
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- MLADŠÍ STARTOVNÍ LISTINA -->
+
+<div class="card category">
+
+<div class="category-title">
+👦 Mladší – startovní listina
+</div>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Start</th>
+<th>Družstvo</th>
+<th>LP</th>
+<th>PP</th>
+<th>Výsledný čas</th>
+<th>NP</th>
+<th>Pořadí</th>
+<th>Akce</th>
+
+</tr>
+
+</thead>
+
+<tbody id="startMladsiTab"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- STARŠÍ STARTOVNÍ LISTINA -->
+
+<div class="card category">
+
+<div class="category-title">
+🧑 Starší – startovní listina
+</div>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Start</th>
+<th>Družstvo</th>
+<th>LP</th>
+<th>PP</th>
+<th>Výsledný čas</th>
+<th>NP</th>
+<th>Pořadí</th>
+<th>Akce</th>
+
+</tr>
+
+</thead>
+
+<tbody id="startStarsiTab"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- MLADŠÍ VÝSLEDKY -->
+
+<div class="card category">
+
+<div class="category-title">
+👦 Mladší – průběžné pořadí
+</div>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Pořadí</th>
+<th>Družstvo</th>
+<th>LP</th>
+<th>PP</th>
+<th>Výsledný čas</th>
+<th>Start</th>
+
+</tr>
+
+</thead>
+
+<tbody id="mladsiTab"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- STARŠÍ VÝSLEDKY -->
+
+<div class="card category">
+
+<div class="category-title">
+🧑 Starší – průběžné pořadí
+</div>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Pořadí</th>
+<th>Družstvo</th>
+<th>LP</th>
+<th>PP</th>
+<th>Výsledný čas</th>
+<th>Start</th>
+
+</tr>
+
+</thead>
+
+<tbody id="starsiTab"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<div class="status">
+
+<span class="online"></span>
+
+Živá aktualizace
+
+</div>
+
+</div>
+
+
+<script type="module">
+
+
+import {
+initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+
+import {
+getFirestore,
+collection,
+addDoc,
+onSnapshot,
+deleteDoc,
+doc,
+updateDoc,
+serverTimestamp
+}
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+
+/* FIREBASE */
+
+const firebaseConfig={
+
+apiKey:
+"AIzaSyDHGLymt1Ram6s0LJSeQLMh-fZJvCM-9jo",
+
+authDomain:
+"deti-hra-plamen-lubina.firebaseapp.com",
+
+projectId:
+"deti-hra-plamen-lubina",
+
+storageBucket:
+"deti-hra-plamen-lubina.firebasestorage.app",
+
+messagingSenderId:
+"511766112817",
+
+appId:
+"1:511766112817:web:3e9a11e9c10f234c7ac310"
+
+};
+
+
+const app=
+initializeApp(firebaseConfig);
+
+const db=
+getFirestore(app);
+
+
+const col=
+collection(db,"pozarni_utok");
+
+
+let data=[];
+
+
+/* VALIDACE ČASU */
+
+function validTime(t){
+
+if(!t.includes(":"))
+return false;
+
+const casti=t.split(":");
+
+if(casti.length!==2)
+return false;
+
+const sekundy=Number(casti[0]);
+const setiny=Number(casti[1]);
+
+if(
+isNaN(sekundy)||
+isNaN(setiny)
+)
+return false;
+
+if(sekundy<0)
+return false;
+
+if(setiny<0||setiny>99)
+return false;
+
+return true;
+
+}
+
+
+/* PŘEVOD ČASU */
+
+function casNaCislo(cas){
+
+const casti=cas.split(":");
+
+return Number(casti[0])*100+
+Number(casti[1]);
+
+}
+
+
+/* REALTIME */
+
+onSnapshot(
+col,
+(snap)=>{
+
+data=[];
+
+snap.forEach(d=>{
+
+data.push({
+
+id:d.id,
+...d.data()
+
+});
+
+});
+
+render();
+
+},
+(error)=>{
+
+console.error("Firebase chyba:",error);
+
+alert(
+"Chyba při načítání dat z Firebase."
+);
+
+}
+);
+
+
+/* PŘIDAT DRUŽSTVO */
+
+window.pridatDruzstvo=async function(){
+
+try{
+
+const nazev=
+document
+.getElementById("druzstvo")
+.value
+.trim();
+
+const kategorie=
+document
+.getElementById("kategorie")
+.value;
+
+
+if(!nazev){
+
+alert(
+"Zadej název družstva."
+);
+
+return;
+
+}
+
+
+/*
+STARTOVNÍ ČÍSLO SE URČÍ
+SAMOSTATNĚ PRO KAŽDOU KATEGORII
+*/
+
+const kategorieData=
+data.filter(
+z=>z.kategorie===kategorie
+);
+
+const start=
+kategorieData.length+1;
+
+
+await addDoc(
+
+col,
+
+{
+
+druzstvo:nazev,
+
+kategorie:kategorie,
+
+start:start,
+
+lp:"",
+
+pp:"",
+
+np:false,
+
+vytvoreno:
+serverTimestamp()
+
+}
+
+);
+
+
+document
+.getElementById("druzstvo")
+.value="";
+
+}catch(error){
+
+console.error(error);
+
+alert(
+"Družstvo se nepodařilo přidat."
+);
+
+}
+
+};
+
+
+/* VÝPOČET VÝSLEDKU */
+
+function vypocitejVysledek(z){
+
+if(z.np)
+return "NP";
+
+if(
+!validTime(z.lp)||
+!validTime(z.pp)
+)
+return "-";
+
+
+/*
+VÝSLEDNÝ ČAS JE
+POMALEJŠÍ Z LP A PP
+*/
+
+if(
+casNaCislo(z.lp)
+>
+casNaCislo(z.pp)
+){
+
+return z.lp;
+
+}
+
+return z.pp;
+
+}
+
+
+/* ULOŽIT LP / PP */
+
+window.ulozCas=async function(id,typ){
+
+const z=
+data.find(x=>x.id===id);
+
+if(!z)
+return;
+
+
+const hodnota=
+prompt(
+
+typ==="lp"
+?
+"Čas levého terče LP:"
+:
+"Čas pravého terče PP:",
+
+z[typ]||""
+
+);
+
+
+if(!hodnota)
+return;
+
+
+if(!validTime(hodnota)){
+
+alert(
+"Špatný čas! Použij například 17:42."
+);
+
+return;
+
+}
+
+
+await updateDoc(
+
+doc(db,"pozarni_utok",id),
+
+{
+
+[typ]:hodnota,
+
+np:false
+
+}
+
+);
+
+};
+
+
+/* NP */
+
+window.prepnoutNP=async function(id){
+
+const z=
+data.find(x=>x.id===id);
+
+if(!z)
+return;
+
+
+await updateDoc(
+
+doc(db,"pozarni_utok",id),
+
+{
+
+np:!z.np
+
+}
+
+);
+
+};
+
+
+/* EDIT DRUŽSTVA */
+
+window.editDruzstvo=async function(id){
+
+const z=
+data.find(x=>x.id===id);
+
+if(!z)
+return;
+
+
+const novy=
+prompt(
+"Družstvo:",
+z.druzstvo
+);
+
+if(!novy)
+return;
+
+
+await updateDoc(
+
+doc(db,"pozarni_utok",id),
+
+{
+
+druzstvo:novy
+
+}
+
+);
+
+};
+
+
+/* SMAZAT */
+
+window.smazDruzstvo=async function(id){
+
+if(!confirm(
+"Opravdu chceš smazat toto družstvo?"
+))
+return;
+
+
+await deleteDoc(
+
+doc(db,"pozarni_utok",id)
+
+);
+
+};
+
+
+/* POSUN NAHORU */
+
+window.posunNahoru=async function(id){
+
+const aktualni=
+data.find(x=>x.id===id);
+
+if(!aktualni)
+return;
+
+
+const startList=
+data
+.filter(
+x=>x.kategorie===aktualni.kategorie
+)
+.sort(
+(a,b)=>
+Number(a.start||0)-
+Number(b.start||0)
+);
+
+
+const index=
+startList.findIndex(
+x=>x.id===id
+);
+
+if(index<=0)
+return;
+
+
+const predchozi=
+startList[index-1];
+
+
+await updateDoc(
+
+doc(db,"pozarni_utok",aktualni.id),
+
+{
+start:predchozi.start
+}
+
+);
+
+await updateDoc(
+
+doc(db,"pozarni_utok",predchozi.id),
+
+{
+start:aktualni.start
+}
+
+);
+
+};
+
+
+/* POSUN DOLŮ */
+
+window.posunDolu=async function(id){
+
+const aktualni=
+data.find(x=>x.id===id);
+
+if(!aktualni)
+return;
+
+
+const startList=
+data
+.filter(
+x=>x.kategorie===aktualni.kategorie
+)
+.sort(
+(a,b)=>
+Number(a.start||0)-
+Number(b.start||0)
+);
+
+
+const index=
+startList.findIndex(
+x=>x.id===id
+);
+
+if(
+index<0||
+index>=startList.length-1
+)
+return;
+
+
+const dalsi=
+startList[index+1];
+
+
+await updateDoc(
+
+doc(db,"pozarni_utok",aktualni.id),
+
+{
+start:dalsi.start
+}
+
+);
+
+await updateDoc(
+
+doc(db,"pozarni_utok",dalsi.id),
+
+{
+start:aktualni.start
+}
+
+);
+
+};
+
+
+/* VYKRESLENÍ */
+
+window.render=function(){
+
+const startMladsiTab=
+document.getElementById("startMladsiTab");
+
+const startStarsiTab=
+document.getElementById("startStarsiTab");
+
+const mladsiTab=
+document.getElementById("mladsiTab");
+
+const starsiTab=
+document.getElementById("starsiTab");
+
+
+startMladsiTab.innerHTML="";
+startStarsiTab.innerHTML="";
+mladsiTab.innerHTML="";
+starsiTab.innerHTML="";
+
+
+const mladsi=
+data
+.filter(
+z=>z.kategorie==="mladsi"
+)
+.sort(
+(a,b)=>
+Number(a.start||0)-
+Number(b.start||0)
+);
+
+
+const starsi=
+data
+.filter(
+z=>z.kategorie==="starsi"
+)
+.sort(
+(a,b)=>
+Number(a.start||0)-
+Number(b.start||0)
+);
+
+
+/* STARTOVNÍ LISTINY */
+
+vykresliStartovniListinu(
+startMladsiTab,
+mladsi
+);
+
+vykresliStartovniListinu(
+startStarsiTab,
+starsi
+);
+
+
+/* VÝSLEDKY */
+
+vykresliVysledky(
+mladsiTab,
+mladsi
+);
+
+vykresliVysledky(
+starsiTab,
+starsi
+);
+
+};
+
+
+/* STARTOVNÍ LISTINA */
+
+function vykresliStartovniListinu(
+tabulka,
+seznam
+){
+
+if(seznam.length===0){
+
+tabulka.innerHTML=`
+
+<tr>
+
+<td
+colspan="8"
+class="empty">
+
+Zatím není přidané žádné družstvo.
+
+</td>
+
+</tr>
+
+`;
+
+return;
+
+}
+
+
+seznam.forEach(
+(z,index)=>{
+
+const vysledek=
+vypocitejVysledek(z);
+
+
+tabulka.innerHTML+=`
+
+<tr>
+
+<td class="start">
+${z.start}
+</td>
+
+<td>
+${z.druzstvo}
+</td>
+
+<td>
+
+<button
+class="action"
+onclick="ulozCas('${z.id}','lp')">
+
+${z.lp||"LP"}
+
+</button>
+
+</td>
+
+<td>
+
+<button
+class="action"
+onclick="ulozCas('${z.id}','pp')">
+
+${z.pp||"PP"}
+
+</button>
+
+</td>
+
+<td class="result">
+
+${vysledek}
+
+</td>
+
+<td>
+
+<button
+class="np-button ${z.np?"active":""}"
+onclick="prepnoutNP('${z.id}')">
+
+${z.np?"NP ✓":"NP"}
+
+</button>
+
+</td>
+
+<td>
+
+${
+z.np
+?
+"NP"
+:
+vysledek!=="-"
+?
+poradiVysledku(seznam,z)
+:
+"-"
+}
+
+</td>
+
+<td>
+
+<button
+class="move"
+onclick="posunNahoru('${z.id}')">
+
+⬆️
+
+</button>
+
+<button
+class="move"
+onclick="posunDolu('${z.id}')">
+
+⬇️
+
+</button>
+
+<button
+class="action"
+onclick="editDruzstvo('${z.id}')">
+
+✏️
+
+</button>
+
+<button
+class="action"
+onclick="smazDruzstvo('${z.id}')">
+
+🗑️
+
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+}
+
+
+/* POŘADÍ VÝSLEDKŮ */
+
+function poradiVysledku(seznam,z){
+
+const platne=
+seznam
+.filter(x=>
+!x.np &&
+validTime(x.lp) &&
+validTime(x.pp)
+)
+.sort(
+(a,b)=>
+casNaCislo(
+vypocitejVysledek(a)
+)
+-
+casNaCislo(
+vypocitejVysledek(b)
+)
+);
+
+
+const index=
+platne.findIndex(
+x=>x.id===z.id
+);
+
+
+if(index<0)
+return "-";
+
+
+return `${index+1}.`;
+
+}
+
+
+/* VÝSLEDKY */
+
+function vykresliVysledky(
+tabulka,
+seznam
+){
+
+const platne=
+seznam
+.filter(z=>
+!z.np &&
+validTime(z.lp) &&
+validTime(z.pp)
+)
+.sort(
+(a,b)=>
+casNaCislo(
+vypocitejVysledek(a)
+)
+-
+casNaCislo(
+vypocitejVysledek(b)
+)
+);
+
+
+const np=
+seznam.filter(
+z=>z.np
+);
+
+
+const vysledky=[
+...platne,
+...np
+];
+
+
+if(vysledky.length===0){
+
+tabulka.innerHTML=`
+
+<tr>
+
+<td
+colspan="6"
+class="empty">
+
+Zatím není žádný výsledek.
+
+</td>
+
+</tr>
+
+`;
+
+return;
+
+}
+
+
+vysledky.forEach(
+(z,index)=>{
+
+const jeNP=z.np;
+
+
+/*
+POŘADÍ SE POČÍTÁ JEN
+Z PLATNÝCH VÝSLEDKŮ
+*/
+
+const poradi=
+jeNP
+?
+"NP"
+:
+`${index+1}.`;
+
+
+let mistoClass="";
+
+
+if(!jeNP){
+
+if(index===0)
+mistoClass="gold";
+
+if(index===1)
+mistoClass="silver";
+
+if(index===2)
+mistoClass="bronze";
+
+}
+
+
+tabulka.innerHTML+=`
+
+<tr>
+
+<td class="place ${mistoClass}">
+${poradi}
+</td>
+
+<td>
+${z.druzstvo}
+</td>
+
+<td>
+${z.lp||"-"}
+</td>
+
+<td>
+${z.pp||"-"}
+</td>
+
+<td class="result">
+${vypocitejVysledek(z)}
+</td>
+
+<td>
+${z.start}
+</td>
+
+</tr>
+
+`;
+
+});
+
+}
+
+</script>
+
+</body>
+</html>

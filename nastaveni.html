@@ -1,1 +1,999 @@
+<!DOCTYPE html>
+<html lang="cs">
 
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Nastavení – SDH Lubina II–Větřkovice</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+}
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+min-height:100vh;
+color:white;
+
+background:
+radial-gradient(circle at top right,#5b1010 0%,transparent 35%),
+linear-gradient(145deg,#090d13,#151b24);
+}
+
+.app{
+max-width:700px;
+margin:auto;
+padding:20px 16px 40px;
+}
+
+.back{
+border:1px solid #394455;
+background:transparent;
+color:#aeb9c8;
+padding:10px 15px;
+border-radius:11px;
+cursor:pointer;
+margin-bottom:15px;
+}
+
+.header{
+text-align:center;
+padding:15px 10px 25px;
+}
+
+.logo{
+font-size:42px;
+margin-bottom:10px;
+}
+
+.header h1{
+font-size:23px;
+line-height:1.35;
+margin:0;
+}
+
+.header h1 span{
+color:#ef3333;
+}
+
+.district{
+margin-top:7px;
+color:#8995a6;
+font-size:14px;
+}
+
+
+/* KARTA */
+
+.card{
+background:rgba(255,255,255,.055);
+border:1px solid rgba(255,255,255,.10);
+border-radius:22px;
+padding:20px;
+margin-bottom:16px;
+}
+
+.card h2{
+margin:0 0 8px;
+font-size:24px;
+}
+
+.subtitle{
+color:#8995a6;
+font-size:14px;
+margin-bottom:20px;
+}
+
+
+/* NASTAVENÍ SOUTĚŽÍ */
+
+.setting{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:15px;
+
+padding:17px 0;
+
+border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.setting:last-child{
+border-bottom:0;
+}
+
+.setting-info{
+display:flex;
+align-items:center;
+gap:14px;
+}
+
+.setting-icon{
+font-size:32px;
+width:42px;
+text-align:center;
+}
+
+.setting-name{
+font-size:17px;
+font-weight:bold;
+}
+
+.setting-description{
+color:#8995a6;
+font-size:13px;
+margin-top:4px;
+}
+
+
+/* SWITCH */
+
+.switch{
+position:relative;
+display:inline-block;
+width:54px;
+height:30px;
+flex-shrink:0;
+}
+
+.switch input{
+opacity:0;
+width:0;
+height:0;
+}
+
+.slider{
+position:absolute;
+cursor:pointer;
+inset:0;
+
+background:#303947;
+
+border-radius:30px;
+
+transition:.2s;
+}
+
+.slider:before{
+content:"";
+
+position:absolute;
+
+height:22px;
+width:22px;
+
+left:4px;
+top:4px;
+
+background:white;
+
+border-radius:50%;
+
+transition:.2s;
+}
+
+input:checked + .slider{
+background:#b92828;
+}
+
+input:checked + .slider:before{
+transform:translateX(24px);
+}
+
+
+/* FORMULÁŘ */
+
+.form-row{
+margin-bottom:15px;
+}
+
+.form-row:last-child{
+margin-bottom:0;
+}
+
+.form-row label{
+display:block;
+
+color:#aeb9c8;
+
+font-size:13px;
+
+margin-bottom:7px;
+}
+
+input[type="text"],
+input[type="date"]{
+
+width:100%;
+
+padding:13px;
+
+border-radius:12px;
+
+border:1px solid #354052;
+
+background:#101722;
+
+color:white;
+
+font-size:15px;
+}
+
+input::placeholder{
+color:#738095;
+}
+
+
+/* ULOŽIT */
+
+.primary{
+width:100%;
+
+border:0;
+border-radius:12px;
+
+padding:14px 18px;
+
+background:#d72f2f;
+color:white;
+
+font-weight:bold;
+font-size:15px;
+
+cursor:pointer;
+}
+
+.primary:hover{
+background:#ed3a3a;
+}
+
+
+/* SPRÁVA VÝSLEDKŮ */
+
+.management-button{
+
+width:100%;
+
+border:1px solid rgba(255,255,255,.10);
+
+border-radius:15px;
+
+padding:16px;
+
+margin-bottom:10px;
+
+background:#101722;
+
+color:white;
+
+text-align:left;
+
+cursor:pointer;
+
+display:flex;
+
+align-items:center;
+
+gap:14px;
+
+font-family:inherit;
+
+transition:.2s;
+}
+
+.management-button:last-child{
+margin-bottom:0;
+}
+
+.management-button:hover{
+background:#182231;
+
+transform:translateY(-1px);
+}
+
+.management-icon{
+font-size:30px;
+
+width:40px;
+
+text-align:center;
+}
+
+.management-name{
+font-size:16px;
+
+font-weight:bold;
+}
+
+.management-description{
+color:#8995a6;
+
+font-size:13px;
+
+margin-top:4px;
+}
+
+
+/* ZPRÁVA */
+
+.message{
+text-align:center;
+
+font-size:13px;
+
+color:#36d399;
+
+margin-top:15px;
+
+min-height:18px;
+}
+
+.error{
+color:#ef6b6b;
+}
+
+
+/* STATUS */
+
+.status{
+text-align:center;
+
+color:#68778b;
+
+font-size:12px;
+
+margin-top:20px;
+}
+
+.online{
+display:inline-block;
+
+width:7px;
+height:7px;
+
+border-radius:50%;
+
+background:#36d399;
+
+margin-right:6px;
+
+box-shadow:0 0 9px #36d399;
+}
+
+
+@media(max-width:700px){
+
+.app{
+padding:15px 12px 30px;
+}
+
+.card{
+padding:18px;
+}
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="app">
+
+
+<!-- ZPĚT -->
+
+<button
+class="back"
+onclick="window.location.href='index.html'">
+
+← Zpět
+
+</button>
+
+
+<!-- HLAVIČKA -->
+
+<header class="header">
+
+<div class="logo">
+⚙️
+</div>
+
+<h1>
+<span>SBOR DOBROVOLNÝCH HASIČŮ</span><br>
+LUBINA II–VĚTŘKOVICE
+</h1>
+
+<div class="district">
+okres Nový Jičín · Nastavení
+</div>
+
+</header>
+
+
+<!-- VIDITELNOST -->
+
+<div class="card">
+
+<h2>
+⚙️ Viditelnost soutěží
+</h2>
+
+<div class="subtitle">
+Vyber, které soutěže se mají zobrazovat na hlavní stránce.
+</div>
+
+
+<!-- POŽÁRNÍ ÚTOK -->
+
+<div class="setting">
+
+<div class="setting-info">
+
+<div class="setting-icon">
+🚒
+</div>
+
+<div>
+
+<div class="setting-name">
+Požární útok
+</div>
+
+<div class="setting-description">
+Mladší · Starší
+</div>
+
+</div>
+
+</div>
+
+
+<label class="switch">
+
+<input
+type="checkbox"
+id="pozarniUtok"
+checked>
+
+<span class="slider"></span>
+
+</label>
+
+</div>
+
+
+<!-- ŠTAFETA -->
+
+<div class="setting">
+
+<div class="setting-info">
+
+<div class="setting-icon">
+🏃
+</div>
+
+<div>
+
+<div class="setting-name">
+Štafeta dvojic
+</div>
+
+<div class="setting-description">
+Mladší · Starší
+</div>
+
+</div>
+
+</div>
+
+
+<label class="switch">
+
+<input
+type="checkbox"
+id="stafeta"
+checked>
+
+<span class="slider"></span>
+
+</label>
+
+</div>
+
+
+<!-- 60 M -->
+
+<div class="setting">
+
+<div class="setting-info">
+
+<div class="setting-icon">
+🏃‍♂️
+</div>
+
+<div>
+
+<div class="setting-name">
+60 m překážek
+</div>
+
+<div class="setting-description">
+Jednotlivci · Mladší · Starší
+</div>
+
+</div>
+
+</div>
+
+
+<label class="switch">
+
+<input
+type="checkbox"
+id="prekazky60"
+checked>
+
+<span class="slider"></span>
+
+</label>
+
+</div>
+
+</div>
+
+
+<!-- ÚDAJE ZÁVODU -->
+
+<div class="card">
+
+<h2>
+📝 Údaje závodu
+</h2>
+
+<div class="subtitle">
+Tyto údaje se budou používat v hlavičce aplikace.
+</div>
+
+
+<!-- DATUM -->
+
+<div class="form-row">
+
+<label for="datum">
+Datum soutěže
+</label>
+
+<input
+type="date"
+id="datum">
+
+</div>
+
+
+<!-- ROČNÍK -->
+
+<div class="form-row">
+
+<label for="rocnik">
+Ročník
+</label>
+
+<input
+type="text"
+id="rocnik"
+placeholder="Například 2026">
+
+</div>
+
+
+<!-- MÍSTO -->
+
+<div class="form-row">
+
+<label for="misto">
+Místo konání
+</label>
+
+<input
+type="text"
+id="misto"
+placeholder="Například Lubina">
+
+</div>
+
+</div>
+
+
+<!-- ULOŽIT -->
+
+<button
+class="primary"
+onclick="ulozitNastaveni()">
+
+💾 Uložit nastavení
+
+</button>
+
+
+<div
+id="message"
+class="message">
+</div>
+
+
+<!-- SPRÁVA VÝSLEDKŮ -->
+
+<div class="card">
+
+<h2>
+📋 Správa výsledků
+</h2>
+
+<div class="subtitle">
+Otevři správu jednotlivých soutěží.
+</div>
+
+
+<!-- POŽÁRNÍ ÚTOK -->
+
+<button
+class="management-button"
+onclick="window.location.href='Pozarnutok.html'">
+
+<div class="management-icon">
+🚒
+</div>
+
+<div>
+
+<div class="management-name">
+Požární útok
+</div>
+
+<div class="management-description">
+Startovní listiny a výsledky · Mladší / Starší
+</div>
+
+</div>
+
+</button>
+
+
+<!-- ŠTAFETA -->
+
+<button
+class="management-button"
+onclick="window.location.href='Stafetadvojic.html'">
+
+<div class="management-icon">
+🏃
+</div>
+
+<div>
+
+<div class="management-name">
+Štafeta dvojic
+</div>
+
+<div class="management-description">
+Startovní listiny a výsledky · Mladší / Starší
+</div>
+
+</div>
+
+</button>
+
+
+<!-- 60 M -->
+
+<button
+class="management-button"
+onclick="window.location.href='60mprekazky.html'">
+
+<div class="management-icon">
+🏃‍♂️
+</div>
+
+<div>
+
+<div class="management-name">
+60 m překážek
+</div>
+
+<div class="management-description">
+Jednotlivci · Mladší / Starší
+</div>
+
+</div>
+
+</button>
+
+</div>
+
+
+<div class="status">
+
+<span class="online"></span>
+
+Připojeno k Firebase
+
+</div>
+
+
+</div>
+
+
+<script type="module">
+
+
+/* FIREBASE */
+
+import {
+initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+
+import {
+getFirestore,
+doc,
+getDoc,
+setDoc
+}
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+
+const firebaseConfig={
+
+apiKey:
+"AIzaSyDHGLymt1Ram6s0LJSeQLMh-fZJvCM-9jo",
+
+authDomain:
+"deti-hra-plamen-lubina.firebaseapp.com",
+
+projectId:
+"deti-hra-plamen-lubina",
+
+storageBucket:
+"deti-hra-plamen-lubina.firebasestorage.app",
+
+messagingSenderId:
+"511766112817",
+
+appId:
+"1:511766112817:web:3e9a11e9c10f234c7ac310"
+
+};
+
+
+const app=
+initializeApp(firebaseConfig);
+
+const db=
+getFirestore(app);
+
+
+/*
+DOKUMENT:
+
+nastaveni
+    ↓
+viditelnost
+*/
+
+const nastaveniRef=
+doc(
+db,
+"nastaveni",
+"viditelnost"
+);
+
+
+/* NAČTENÍ */
+
+async function nacistNastaveni(){
+
+try{
+
+const snap=
+await getDoc(nastaveniRef);
+
+
+if(!snap.exists())
+return;
+
+
+const data=
+snap.data();
+
+
+/* SOUTĚŽE */
+
+document
+.getElementById("pozarniUtok")
+.checked=
+data.pozarniUtok!==false;
+
+
+document
+.getElementById("stafeta")
+.checked=
+data.stafeta!==false;
+
+
+document
+.getElementById("prekazky60")
+.checked=
+data.prekazky60!==false;
+
+
+/* DATUM */
+
+document
+.getElementById("datum")
+.value=
+data.datum||"";
+
+
+/* ROČNÍK */
+
+document
+.getElementById("rocnik")
+.value=
+data.rocnik||"";
+
+
+/* MÍSTO */
+
+document
+.getElementById("misto")
+.value=
+data.misto||"";
+
+
+}catch(error){
+
+console.error(
+"Chyba při načítání nastavení:",
+error
+);
+
+zobrazZpravu(
+"Chyba při načítání nastavení.",
+true
+);
+
+}
+
+}
+
+
+/* ULOŽENÍ */
+
+window.ulozitNastaveni=
+async function(){
+
+const data={
+
+pozarniUtok:
+document
+.getElementById("pozarniUtok")
+.checked,
+
+stafeta:
+document
+.getElementById("stafeta")
+.checked,
+
+prekazky60:
+document
+.getElementById("prekazky60")
+.checked,
+
+datum:
+document
+.getElementById("datum")
+.value,
+
+rocnik:
+document
+.getElementById("rocnik")
+.value
+.trim(),
+
+misto:
+document
+.getElementById("misto")
+.value
+.trim()
+
+};
+
+
+try{
+
+await setDoc(
+nastaveniRef,
+data
+);
+
+
+zobrazZpravu(
+"✓ Nastavení bylo uloženo.",
+false
+);
+
+
+}catch(error){
+
+console.error(
+"Chyba při ukládání:",
+error
+);
+
+zobrazZpravu(
+"Chyba při ukládání nastavení.",
+true
+);
+
+}
+
+};
+
+
+/* ZPRÁVA */
+
+function zobrazZpravu(
+text,
+chyba
+){
+
+const message=
+document.getElementById("message");
+
+
+message.textContent=
+text;
+
+
+message.className=
+chyba
+?
+"message error"
+:
+"message";
+
+
+setTimeout(
+()=>{
+
+message.textContent="";
+
+},
+3000
+);
+
+}
+
+
+/* START */
+
+nacistNastaveni();
+
+</script>
+
+
+</body>
+
+</html>

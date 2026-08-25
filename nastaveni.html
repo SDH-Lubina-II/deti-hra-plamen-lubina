@@ -11,371 +11,395 @@
 <style>
 
 *{
-box-sizing:border-box;
+    box-sizing:border-box;
 }
 
 body{
-margin:0;
-font-family:Arial,sans-serif;
-min-height:100vh;
-color:white;
+    margin:0;
+    font-family:Arial,sans-serif;
+    min-height:100vh;
+    color:white;
 
-background:
-radial-gradient(circle at top right,#5b1010 0%,transparent 35%),
-linear-gradient(145deg,#090d13,#151b24);
+    background:
+        radial-gradient(
+            circle at top right,
+            #5b1010 0%,
+            transparent 35%
+        ),
+        linear-gradient(
+            145deg,
+            #090d13,
+            #151b24
+        );
 }
 
 .app{
-max-width:700px;
-margin:auto;
-padding:20px 16px 40px;
+    max-width:700px;
+    margin:auto;
+    padding:20px 16px 40px;
 }
+
+
+/* ZPĚT */
 
 .back{
-border:1px solid #394455;
-background:transparent;
-color:#aeb9c8;
-padding:10px 15px;
-border-radius:11px;
-cursor:pointer;
-margin-bottom:15px;
+    border:1px solid #394455;
+    background:transparent;
+    color:#aeb9c8;
+
+    padding:10px 15px;
+
+    border-radius:11px;
+
+    cursor:pointer;
+
+    margin-bottom:15px;
 }
 
+
+/* HLAVIČKA */
+
 .header{
-text-align:center;
-padding:15px 10px 25px;
+    text-align:center;
+    padding:15px 10px 25px;
 }
 
 .logo{
-font-size:42px;
-margin-bottom:10px;
+    font-size:42px;
+    margin-bottom:10px;
 }
 
 .header h1{
-font-size:23px;
-line-height:1.35;
-margin:0;
+    font-size:23px;
+    line-height:1.35;
+    margin:0;
 }
 
 .header h1 span{
-color:#ef3333;
+    color:#ef3333;
 }
 
 .district{
-margin-top:7px;
-color:#8995a6;
-font-size:14px;
+    margin-top:7px;
+    color:#8995a6;
+    font-size:14px;
 }
 
 
-/* KARTA */
+/* KARTY */
 
 .card{
-background:rgba(255,255,255,.055);
-border:1px solid rgba(255,255,255,.10);
-border-radius:22px;
-padding:20px;
-margin-bottom:16px;
+    background:rgba(255,255,255,.055);
+
+    border:1px solid rgba(255,255,255,.10);
+
+    border-radius:22px;
+
+    padding:20px;
+
+    margin-bottom:16px;
 }
 
 .card h2{
-margin:0 0 8px;
-font-size:24px;
+    margin:0 0 8px;
+
+    font-size:24px;
 }
 
 .subtitle{
-color:#8995a6;
-font-size:14px;
-margin-bottom:20px;
+    color:#8995a6;
+
+    font-size:14px;
+
+    margin-bottom:18px;
 }
 
 
-/* NASTAVENÍ SOUTĚŽÍ */
+/* SOUTĚŽ */
 
 .setting{
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:15px;
+    display:flex;
 
-padding:17px 0;
+    align-items:center;
 
-border-bottom:1px solid rgba(255,255,255,.08);
+    justify-content:space-between;
+
+    gap:15px;
+
+    padding:17px 0;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
 }
 
 .setting:last-child{
-border-bottom:0;
+    border-bottom:0;
 }
 
 .setting-info{
-display:flex;
-align-items:center;
-gap:14px;
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
 }
 
 .setting-icon{
-font-size:32px;
-width:42px;
-text-align:center;
+    font-size:32px;
+
+    width:42px;
+
+    text-align:center;
 }
 
 .setting-name{
-font-size:17px;
-font-weight:bold;
+    font-size:17px;
+
+    font-weight:bold;
 }
 
 .setting-description{
-color:#8995a6;
-font-size:13px;
-margin-top:4px;
+    color:#8995a6;
+
+    font-size:13px;
+
+    margin-top:4px;
 }
 
 
 /* SWITCH */
 
 .switch{
-position:relative;
-display:inline-block;
-width:54px;
-height:30px;
-flex-shrink:0;
+    position:relative;
+
+    display:inline-block;
+
+    width:54px;
+    height:30px;
+
+    flex-shrink:0;
 }
 
 .switch input{
-opacity:0;
-width:0;
-height:0;
+    opacity:0;
+
+    width:0;
+    height:0;
 }
 
 .slider{
-position:absolute;
-cursor:pointer;
-inset:0;
+    position:absolute;
 
-background:#303947;
+    cursor:pointer;
 
-border-radius:30px;
+    inset:0;
 
-transition:.2s;
+    background:#303947;
+
+    border-radius:30px;
+
+    transition:.2s;
 }
 
 .slider:before{
-content:"";
+    content:"";
 
-position:absolute;
+    position:absolute;
 
-height:22px;
-width:22px;
+    height:22px;
+    width:22px;
 
-left:4px;
-top:4px;
+    left:4px;
+    top:4px;
 
-background:white;
+    background:white;
 
-border-radius:50%;
+    border-radius:50%;
 
-transition:.2s;
+    transition:.2s;
 }
 
 input:checked + .slider{
-background:#b92828;
+    background:#b92828;
 }
 
 input:checked + .slider:before{
-transform:translateX(24px);
+    transform:translateX(24px);
 }
 
 
-/* FORMULÁŘ */
+/* ÚDAJE */
 
 .form-row{
-margin-bottom:15px;
+    margin-bottom:15px;
 }
 
 .form-row:last-child{
-margin-bottom:0;
+    margin-bottom:0;
 }
 
 .form-row label{
-display:block;
+    display:block;
 
-color:#aeb9c8;
+    color:#aeb9c8;
 
-font-size:13px;
+    font-size:13px;
 
-margin-bottom:7px;
+    margin-bottom:7px;
 }
 
 input[type="text"],
 input[type="date"]{
 
-width:100%;
+    width:100%;
 
-padding:13px;
+    padding:13px;
 
-border-radius:12px;
+    border-radius:12px;
 
-border:1px solid #354052;
+    border:1px solid #354052;
 
-background:#101722;
+    background:#101722;
 
-color:white;
+    color:white;
 
-font-size:15px;
-}
-
-input::placeholder{
-color:#738095;
+    font-size:15px;
 }
 
 
 /* ULOŽIT */
 
 .primary{
-width:100%;
+    width:100%;
 
-border:0;
-border-radius:12px;
+    border:0;
 
-padding:14px 18px;
+    border-radius:12px;
 
-background:#d72f2f;
-color:white;
+    padding:14px 18px;
 
-font-weight:bold;
-font-size:15px;
+    background:#d72f2f;
 
-cursor:pointer;
+    color:white;
+
+    font-weight:bold;
+
+    font-size:15px;
+
+    cursor:pointer;
 }
 
 .primary:hover{
-background:#ed3a3a;
+    background:#ed3a3a;
 }
 
 
-/* SPRÁVA VÝSLEDKŮ */
+/* SPRÁVA */
 
 .management-button{
 
-width:100%;
+    width:100%;
 
-border:1px solid rgba(255,255,255,.10);
+    border:1px solid rgba(255,255,255,.10);
 
-border-radius:15px;
+    border-radius:15px;
 
-padding:16px;
+    padding:16px;
 
-margin-bottom:10px;
+    margin-bottom:10px;
 
-background:#101722;
+    background:#101722;
 
-color:white;
+    color:white;
 
-text-align:left;
+    text-align:left;
 
-cursor:pointer;
+    cursor:pointer;
 
-display:flex;
+    display:flex;
 
-align-items:center;
+    align-items:center;
 
-gap:14px;
+    gap:14px;
 
-font-family:inherit;
+    font-family:inherit;
 
-transition:.2s;
-}
-
-.management-button:last-child{
-margin-bottom:0;
+    transition:.2s;
 }
 
 .management-button:hover{
-background:#182231;
+    background:#182231;
 
-transform:translateY(-1px);
+    transform:translateY(-1px);
 }
 
 .management-icon{
-font-size:30px;
+    font-size:30px;
 
-width:40px;
+    width:40px;
 
-text-align:center;
+    text-align:center;
 }
 
 .management-name{
-font-size:16px;
+    font-size:16px;
 
-font-weight:bold;
+    font-weight:bold;
 }
 
 .management-description{
-color:#8995a6;
+    color:#8995a6;
 
-font-size:13px;
+    font-size:13px;
 
-margin-top:4px;
+    margin-top:4px;
 }
 
 
 /* ZPRÁVA */
 
 .message{
-text-align:center;
 
-font-size:13px;
+    text-align:center;
 
-color:#36d399;
+    font-size:13px;
 
-margin-top:15px;
+    color:#36d399;
 
-min-height:18px;
+    min-height:18px;
+
+    margin:14px 0;
 }
 
 .error{
-color:#ef6b6b;
+    color:#ef6b6b;
 }
 
 
 /* STATUS */
 
 .status{
-text-align:center;
+    text-align:center;
 
-color:#68778b;
+    color:#68778b;
 
-font-size:12px;
+    font-size:12px;
 
-margin-top:20px;
+    margin-top:20px;
 }
 
 .online{
-display:inline-block;
+    display:inline-block;
 
-width:7px;
-height:7px;
+    width:7px;
+    height:7px;
 
-border-radius:50%;
+    border-radius:50%;
 
-background:#36d399;
+    background:#36d399;
 
-margin-right:6px;
+    margin-right:6px;
 
-box-shadow:0 0 9px #36d399;
-}
-
-
-@media(max-width:700px){
-
-.app{
-padding:15px 12px 30px;
-}
-
-.card{
-padding:18px;
-}
-
+    box-shadow:0 0 9px #36d399;
 }
 
 </style>
@@ -408,12 +432,17 @@ onclick="window.location.href='index.html'">
 </div>
 
 <h1>
+
 <span>SBOR DOBROVOLNÝCH HASIČŮ</span><br>
+
 LUBINA II–VĚTŘKOVICE
+
 </h1>
 
 <div class="district">
+
 okres Nový Jičín · Nastavení
+
 </div>
 
 </header>
@@ -428,7 +457,7 @@ okres Nový Jičín · Nastavení
 </h2>
 
 <div class="subtitle">
-Vyber, které soutěže se mají zobrazovat na hlavní stránce.
+Změna se uloží automaticky.
 </div>
 
 
@@ -461,8 +490,7 @@ Mladší · Starší
 
 <input
 type="checkbox"
-id="pozarniUtok"
-checked>
+id="pozarniUtok">
 
 <span class="slider"></span>
 
@@ -500,8 +528,7 @@ Mladší · Starší
 
 <input
 type="checkbox"
-id="stafeta"
-checked>
+id="stafeta">
 
 <span class="slider"></span>
 
@@ -539,8 +566,7 @@ Jednotlivci · Mladší · Starší
 
 <input
 type="checkbox"
-id="prekazky60"
-checked>
+id="prekazky60">
 
 <span class="slider"></span>
 
@@ -560,11 +586,9 @@ checked>
 </h2>
 
 <div class="subtitle">
-Tyto údaje se budou používat v hlavičce aplikace.
+Tyto údaje se zobrazí v hlavičce aplikace.
 </div>
 
-
-<!-- DATUM -->
 
 <div class="form-row">
 
@@ -579,8 +603,6 @@ id="datum">
 </div>
 
 
-<!-- ROČNÍK -->
-
 <div class="form-row">
 
 <label for="rocnik">
@@ -590,12 +612,10 @@ Ročník
 <input
 type="text"
 id="rocnik"
-placeholder="Například 2026">
+placeholder="Například 2026/2027">
 
 </div>
 
-
-<!-- MÍSTO -->
 
 <div class="form-row">
 
@@ -613,13 +633,11 @@ placeholder="Například Lubina">
 </div>
 
 
-<!-- ULOŽIT -->
-
 <button
 class="primary"
-onclick="ulozitNastaveni()">
+onclick="ulozitUdaje()">
 
-💾 Uložit nastavení
+💾 Uložit údaje závodu
 
 </button>
 
@@ -627,6 +645,7 @@ onclick="ulozitNastaveni()">
 <div
 id="message"
 class="message">
+
 </div>
 
 
@@ -639,7 +658,7 @@ class="message">
 </h2>
 
 <div class="subtitle">
-Otevři správu jednotlivých soutěží.
+Otevři správu konkrétní soutěže.
 </div>
 
 
@@ -647,7 +666,7 @@ Otevři správu jednotlivých soutěží.
 
 <button
 class="management-button"
-onclick="window.location.href='Pozarnutok.html'">
+onclick="window.location.href='pozarniutok.html'">
 
 <div class="management-icon">
 🚒
@@ -660,7 +679,7 @@ Požární útok
 </div>
 
 <div class="management-description">
-Startovní listiny a výsledky · Mladší / Starší
+Mladší · Starší
 </div>
 
 </div>
@@ -672,7 +691,7 @@ Startovní listiny a výsledky · Mladší / Starší
 
 <button
 class="management-button"
-onclick="window.location.href='Stafetadvojic.html'">
+onclick="window.location.href='stafetadvojic.html'">
 
 <div class="management-icon">
 🏃
@@ -685,7 +704,7 @@ onclick="window.location.href='Stafetadvojic.html'">
 </div>
 
 <div class="management-description">
-Startovní listiny a výsledky · Mladší / Starší
+Mladší · Starší
 </div>
 
 </div>
@@ -710,7 +729,7 @@ onclick="window.location.href='60mprekazky.html'">
 </div>
 
 <div class="management-description">
-Jednotlivci · Mladší / Starší
+Jednotlivci · Mladší · Starší
 </div>
 
 </div>
@@ -754,6 +773,8 @@ from
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
 
+/* FIREBASE KONFIGURACE */
+
 const firebaseConfig={
 
 apiKey:
@@ -778,25 +799,39 @@ appId:
 
 
 const app=
-initializeApp(firebaseConfig);
+initializeApp(
+firebaseConfig
+);
 
 const db=
 getFirestore(app);
 
 
-/*
-DOKUMENT:
-
-nastaveni
-    ↓
-viditelnost
-*/
+/* DOKUMENT NASTAVENÍ */
 
 const nastaveniRef=
 doc(
 db,
 "nastaveni",
 "viditelnost"
+);
+
+
+/* ELEMENTY */
+
+const pozarni=
+document.getElementById(
+"pozarniUtok"
+);
+
+const stafeta=
+document.getElementById(
+"stafeta"
+);
+
+const prekazky=
+document.getElementById(
+"prekazky60"
 );
 
 
@@ -807,65 +842,61 @@ async function nacistNastaveni(){
 try{
 
 const snap=
-await getDoc(nastaveniRef);
+await getDoc(
+nastaveniRef
+);
 
 
-if(!snap.exists())
+if(!snap.exists()){
+
+/*
+POKUD NASTAVENÍ
+JEŠTĚ NEEXISTUJE,
+VŠECHNO JE ZAPNUTÉ.
+*/
+
+pozarni.checked=true;
+stafeta.checked=true;
+prekazky.checked=true;
+
 return;
+
+}
 
 
 const data=
 snap.data();
 
 
-/* SOUTĚŽE */
-
-document
-.getElementById("pozarniUtok")
-.checked=
-data.pozarniUtok!==false;
+pozarni.checked=
+data.pozarniUtok !== false;
 
 
-document
-.getElementById("stafeta")
-.checked=
-data.stafeta!==false;
+stafeta.checked=
+data.stafeta !== false;
 
 
-document
-.getElementById("prekazky60")
-.checked=
-data.prekazky60!==false;
+prekazky.checked=
+data.prekazky60 !== false;
 
 
-/* DATUM */
-
-document
-.getElementById("datum")
-.value=
-data.datum||"";
+document.getElementById("datum").value=
+data.datum || "";
 
 
-/* ROČNÍK */
-
-document
-.getElementById("rocnik")
-.value=
-data.rocnik||"";
+document.getElementById("rocnik").value=
+data.rocnik || "";
 
 
-/* MÍSTO */
-
-document
-.getElementById("misto")
-.value=
-data.misto||"";
+document.getElementById("misto").value=
+data.misto || "";
 
 
-}catch(error){
+}
+catch(error){
 
 console.error(
-"Chyba při načítání nastavení:",
+"Chyba načítání:",
 error
 );
 
@@ -879,27 +910,97 @@ true
 }
 
 
-/* ULOŽENÍ */
+/* AUTOMATICKÉ ULOŽENÍ SOUTĚŽÍ */
 
-window.ulozitNastaveni=
-async function(){
+async function ulozitViditelnost(){
 
-const data={
+try{
+
+await setDoc(
+
+nastaveniRef,
+
+{
 
 pozarniUtok:
-document
-.getElementById("pozarniUtok")
-.checked,
+pozarni.checked,
 
 stafeta:
-document
-.getElementById("stafeta")
-.checked,
+stafeta.checked,
 
 prekazky60:
-document
-.getElementById("prekazky60")
-.checked,
+prekazky.checked
+
+},
+
+{
+
+merge:true
+
+}
+
+);
+
+
+zobrazZpravu(
+"✓ Nastavení soutěží uloženo.",
+false
+);
+
+
+}
+catch(error){
+
+console.error(
+"Chyba ukládání:",
+error
+);
+
+zobrazZpravu(
+"Chyba při ukládání.",
+true
+);
+
+}
+
+}
+
+
+/*
+KAŽDÝ PŘEPÍNAČ
+SE ULOŽÍ OKAMŽITĚ
+*/
+
+pozarni.addEventListener(
+"change",
+ulozitViditelnost
+);
+
+
+stafeta.addEventListener(
+"change",
+ulozitViditelnost
+);
+
+
+prekazky.addEventListener(
+"change",
+ulozitViditelnost
+);
+
+
+/* ULOŽENÍ ÚDAJŮ */
+
+window.ulozitUdaje=
+async function(){
+
+try{
+
+await setDoc(
+
+nastaveniRef,
+
+{
 
 datum:
 document
@@ -918,32 +1019,33 @@ document
 .value
 .trim()
 
-};
+},
 
+{
 
-try{
+merge:true
 
-await setDoc(
-nastaveniRef,
-data
+}
+
 );
 
 
 zobrazZpravu(
-"✓ Nastavení bylo uloženo.",
+"✓ Údaje závodu uloženy.",
 false
 );
 
 
-}catch(error){
+}
+catch(error){
 
 console.error(
-"Chyba při ukládání:",
+"Chyba ukládání:",
 error
 );
 
 zobrazZpravu(
-"Chyba při ukládání nastavení.",
+"Chyba při ukládání údajů.",
 true
 );
 
@@ -960,12 +1062,12 @@ chyba
 ){
 
 const message=
-document.getElementById("message");
-
+document.getElementById(
+"message"
+);
 
 message.textContent=
 text;
-
 
 message.className=
 chyba
@@ -976,12 +1078,12 @@ chyba
 
 
 setTimeout(
-()=>{
+function(){
 
 message.textContent="";
 
 },
-3000
+2500
 );
 
 }
@@ -996,4 +1098,4 @@ nacistNastaveni();
 
 </body>
 
-</html>
+</html> 

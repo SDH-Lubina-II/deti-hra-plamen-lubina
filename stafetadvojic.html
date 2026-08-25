@@ -8,6 +8,9 @@
 
 <title>Štafeta dvojic – SDH Lubina II–Větřkovice</title>
 
+<!-- KNIHOVNA PRO EXCEL -->
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
 <style>
 
 *{
@@ -115,6 +118,33 @@ cursor:pointer;
 background:#ed3a3a;
 }
 
+.import-box{
+display:flex;
+align-items:center;
+gap:10px;
+flex-wrap:wrap;
+}
+
+.import-button{
+border:1px solid #394455;
+background:#252e3c;
+color:white;
+border-radius:12px;
+padding:13px 18px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.import-button:hover{
+background:#394657;
+}
+
+.excel-info{
+color:#8995a6;
+font-size:13px;
+line-height:1.5;
+}
+
 .table-wrap{
 overflow-x:auto;
 }
@@ -210,6 +240,18 @@ padding:25px;
 color:#718096;
 }
 
+.message{
+text-align:center;
+color:#36d399;
+font-size:13px;
+min-height:18px;
+margin-top:12px;
+}
+
+.error{
+color:#ef6b6b;
+}
+
 .status{
 text-align:center;
 color:#68778b;
@@ -228,34 +270,24 @@ box-shadow:0 0 9px #36d399;
 }
 
 
-/* MODAL */
+/* MODAL TRESTY */
 
 .modal{
 display:none;
-
 position:fixed;
 inset:0;
-
 background:rgba(0,0,0,.78);
-
 z-index:1000;
-
 padding:20px;
-
 overflow:auto;
 }
 
 .modal-box{
 max-width:700px;
-
 margin:30px auto;
-
 background:#151b24;
-
 border:1px solid #394455;
-
 border-radius:22px;
-
 padding:22px;
 }
 
@@ -265,15 +297,10 @@ margin-top:0;
 
 .penalty-row{
 display:flex;
-
 align-items:center;
-
 justify-content:space-between;
-
 gap:15px;
-
 padding:13px 0;
-
 border-bottom:1px solid rgba(255,255,255,.08);
 }
 
@@ -292,29 +319,21 @@ gap:8px;
 border:1px solid #394455;
 background:#252e3c;
 color:white;
-
 border-radius:8px;
-
 padding:7px 11px;
-
 cursor:pointer;
-
 font-size:16px;
 }
 
 .penalty-number{
 min-width:25px;
-
 text-align:center;
-
 font-weight:bold;
 }
 
 .modal-actions{
 display:flex;
-
 gap:10px;
-
 margin-top:20px;
 }
 
@@ -324,31 +343,20 @@ flex:1;
 
 .cancel{
 border:1px solid #394455;
-
 background:#252e3c;
-
 color:white;
-
 border-radius:10px;
-
 padding:12px;
-
 cursor:pointer;
 }
 
 .save{
 border:0;
-
 background:#d72f2f;
-
 color:white;
-
 border-radius:10px;
-
 padding:12px;
-
 cursor:pointer;
-
 font-weight:bold;
 }
 
@@ -371,8 +379,6 @@ grid-template-columns:1fr;
 <div class="app">
 
 
-<!-- ZPĚT -->
-
 <button
 class="back"
 onclick="window.location.href='index.html'">
@@ -381,8 +387,6 @@ onclick="window.location.href='index.html'">
 
 </button>
 
-
-<!-- HLAVIČKA -->
 
 <header class="header">
 
@@ -407,12 +411,12 @@ okres Nový Jičín · Štafeta dvojic
 </header>
 
 
-<!-- PŘIDÁNÍ DRUŽSTVA -->
+<!-- PŘIDÁNÍ -->
 
 <div class="card">
 
 <h2>
-➕ Startovní listina
+➕ Přidat družstvo
 </h2>
 
 <div class="form">
@@ -421,8 +425,7 @@ okres Nový Jičín · Štafeta dvojic
 id="druzstvo"
 placeholder="Název družstva">
 
-<select
-id="kategorie">
+<select id="kategorie">
 
 <option value="mladsi">
 👦 Mladší
@@ -447,6 +450,53 @@ onclick="pridatDruzstvo()">
 </div>
 
 
+<!-- IMPORT EXCEL -->
+
+<div class="card">
+
+<h2>
+📥 Import z Excelu
+</h2>
+
+<div class="excel-info">
+
+Excel musí obsahovat sloupce:
+
+<b>Družstvo</b> a <b>Kategorie</b>.
+
+Kategorie musí být:
+
+<b>Mladší</b> nebo <b>Starší</b>.
+
+</div>
+
+<br>
+
+<div class="import-box">
+
+<input
+type="file"
+id="excelFile"
+accept=".xlsx,.xls">
+
+<button
+class="import-button"
+onclick="importExcel()">
+
+📥 Načíst Excel
+
+</button>
+
+</div>
+
+<div
+id="message"
+class="message">
+</div>
+
+</div>
+
+
 <!-- MLADŠÍ -->
 
 <div class="card">
@@ -464,23 +514,17 @@ onclick="pridatDruzstvo()">
 <tr>
 
 <th>Pořadí</th>
-
 <th>Družstvo</th>
 
 <th>Štafeta 1</th>
-
 <th>Tresty 1</th>
-
 <th>Výsledek 1</th>
 
 <th>Štafeta 2</th>
-
 <th>Tresty 2</th>
-
 <th>Výsledek 2</th>
 
 <th>Nejlepší</th>
-
 <th>Akce</th>
 
 </tr>
@@ -514,23 +558,17 @@ onclick="pridatDruzstvo()">
 <tr>
 
 <th>Pořadí</th>
-
 <th>Družstvo</th>
 
 <th>Štafeta 1</th>
-
 <th>Tresty 1</th>
-
 <th>Výsledek 1</th>
 
 <th>Štafeta 2</th>
-
 <th>Tresty 2</th>
-
 <th>Výsledek 2</th>
 
 <th>Nejlepší</th>
-
 <th>Akce</th>
 
 </tr>
@@ -559,7 +597,7 @@ onclick="pridatDruzstvo()">
 </div>
 
 
-<!-- MODAL TRESTY -->
+<!-- MODAL -->
 
 <div
 id="modal"
@@ -568,11 +606,10 @@ class="modal">
 <div class="modal-box">
 
 <h2 id="modalTitle">
-Trestné sekundy
+Tresty
 </h2>
 
-<div
-id="penaltyList">
+<div id="penaltyList">
 </div>
 
 <div class="modal-actions">
@@ -655,13 +692,11 @@ initializeApp(firebaseConfig);
 const db=
 getFirestore(app);
 
-
 const col=
 collection(
 db,
 "stafeta_dvojic"
 );
-
 
 let data=[];
 
@@ -695,7 +730,7 @@ const tresty=[
 ];
 
 
-/* VALIDACE ČASU */
+/* ČAS */
 
 function validTime(t){
 
@@ -710,22 +745,16 @@ const c=t.split(":");
 if(c.length!==2)
 return false;
 
-const sekundy=
-Number(c[0]);
-
-const setiny=
-Number(c[1]);
+const s=Number(c[0]);
+const d=Number(c[1]);
 
 if(
-isNaN(sekundy)||
-isNaN(setiny)
+isNaN(s)||
+isNaN(d)||
+s<0||
+d<0||
+d>99
 )
-return false;
-
-if(sekundy<0)
-return false;
-
-if(setiny<0||setiny>99)
 return false;
 
 return true;
@@ -733,35 +762,22 @@ return true;
 }
 
 
-/* PŘEVOD ČASU */
-
 function casNaCislo(cas){
 
-const c=
-cas.split(":");
+const c=cas.split(":");
 
-return
-Number(c[0])*100+
+return Number(c[0])*100+
 Number(c[1]);
 
 }
 
 
-/* ZPĚT NA ČAS */
-
 function cisloNaCas(cislo){
 
-const sekundy=
-Math.floor(cislo/100);
+const s=Math.floor(cislo/100);
+const d=cislo%100;
 
-const setiny=
-cislo%100;
-
-return (
-sekundy+
-":"+
-String(setiny).padStart(2,"0")
-);
+return s+":"+String(d).padStart(2,"0");
 
 }
 
@@ -794,10 +810,7 @@ render();
 
 (error)=>{
 
-console.error(
-"Firebase chyba:",
-error
-);
+console.error(error);
 
 alert(
 "Chyba při načítání dat z Firebase."
@@ -808,7 +821,7 @@ alert(
 );
 
 
-/* PŘIDAT DRUŽSTVO */
+/* RUČNÍ PŘIDÁNÍ */
 
 window.pridatDruzstvo=
 async function(){
@@ -836,31 +849,23 @@ return;
 }
 
 
-try{
-
 await addDoc(
 
 col,
 
 {
 
-druzstvo:
-druzstvo,
+druzstvo:druzstvo,
 
-kategorie:
-kategorie,
+kategorie:kategorie,
 
-cas1:
-"",
+cas1:"",
 
-cas2:
-"",
+cas2:"",
 
-tresty1:
-{},
+tresty1:{},
 
-tresty2:
-{},
+tresty2:{},
 
 vytvoreno:
 serverTimestamp()
@@ -874,19 +879,292 @@ document
 .getElementById("druzstvo")
 .value="";
 
+};
+
+
+/* IMPORT EXCEL */
+
+window.importExcel=
+async function(){
+
+const input=
+document.getElementById(
+"excelFile"
+);
+
+if(
+!input.files ||
+!input.files.length
+){
+
+alert(
+"Vyber nejdříve Excel soubor."
+);
+
+return;
+
+}
+
+
+const file=
+input.files[0];
+
+
+try{
+
+const buffer=
+await file.arrayBuffer();
+
+
+const workbook=
+XLSX.read(
+buffer,
+{
+type:"array"
+}
+);
+
+
+const sheet=
+workbook
+.Sheets[
+workbook.SheetNames[0]
+];
+
+
+const rows=
+XLSX.utils.sheet_to_json(
+sheet,
+{
+defval:""
+}
+);
+
+
+if(!rows.length){
+
+alert(
+"Excel neobsahuje žádná data."
+);
+
+return;
+
+}
+
+
+let pocet=0;
+
+
+for(
+const row of rows
+){
+
+const druzstvo=
+najdiHodnotu(
+row,
+[
+"Družstvo",
+"Druzstvo",
+"družstvo",
+"druzstvo"
+]
+);
+
+
+const kategorie=
+najdiHodnotu(
+row,
+[
+"Kategorie",
+"kategorie"
+]
+);
+
+
+if(
+!druzstvo ||
+!kategorie
+){
+
+continue;
+
+}
+
+
+const kat=
+normalizujKategorii(
+kategorie
+);
+
+
+if(!kat){
+
+continue;
+
+}
+
+
+await addDoc(
+
+col,
+
+{
+
+druzstvo:
+String(druzstvo).trim(),
+
+kategorie:
+kat,
+
+cas1:"",
+
+cas2:"",
+
+tresty1:{},
+
+tresty2:{},
+
+vytvoreno:
+serverTimestamp(),
+
+importExcel:true
+
+}
+
+);
+
+
+pocet++;
+
+}
+
+
+zobrazZpravu(
+"✓ Import dokončen. Přidáno družstev: "+
+pocet,
+false
+);
+
+
+input.value="";
+
 
 }
 catch(error){
 
-console.error(error);
+console.error(
+"Chyba Excel:",
+error
+);
 
-alert(
-"Družstvo se nepodařilo přidat."
+zobrazZpravu(
+"Excel se nepodařilo načíst.",
+true
 );
 
 }
 
 };
+
+
+/* NAJÍT HODNOTU */
+
+function najdiHodnotu(
+row,
+nazvy
+){
+
+for(
+const nazev of nazvy
+){
+
+if(
+Object.prototype.hasOwnProperty.call(
+row,
+nazev
+)
+){
+
+return row[nazev];
+
+}
+
+}
+
+
+const klice=
+Object.keys(row);
+
+
+for(
+const klic of klice
+){
+
+const normal=
+klic
+.toString()
+.trim()
+.toLowerCase();
+
+
+for(
+const nazev of nazvy
+){
+
+if(
+normal===
+nazev
+.toLowerCase()
+){
+
+return row[klic];
+
+}
+
+}
+
+}
+
+return "";
+
+}
+
+
+/* KATEGORIE */
+
+function normalizujKategorii(
+hodnota
+){
+
+const text=
+String(hodnota)
+.trim()
+.toLowerCase();
+
+
+if(
+text==="mladší" ||
+text==="mladsi"
+){
+
+return "mladsi";
+
+}
+
+
+if(
+text==="starší" ||
+text==="starsi"
+){
+
+return "starsi";
+
+}
+
+
+return "";
+
+}
 
 
 /* SOUČET TRESTŮ */
@@ -900,56 +1178,34 @@ let pocet=0;
 
 Object.values(obj)
 .forEach(
-hodnota=>{
-
-pocet+=
-Number(hodnota)||0;
-
-});
+x=>{
+pocet+=Number(x)||0;
+}
+);
 
 return pocet;
 
 }
 
 
-/* VÝSLEDEK ŠTAFETY */
+/* VÝSLEDEK */
 
-function vysledek(cas,trestyObj){
+function vysledek(
+cas,
+trestyObj
+){
 
-if(!validTime(cas))
+if(
+!validTime(cas)
+)
 return null;
 
-const zaklad=
-casNaCislo(cas);
 
-const pocetTrestu=
-soucetTrestu(trestyObj);
-
-return (
-zaklad+
-pocetTrestu*1000
-);
-
-}
-
-
-/* OPRAVA
-1 SEKUNDA = 100 JEDNOTEK
-10 SEKUND = 1000 */
-
-function casNaText(cislo){
-
-const sekundy=
-Math.floor(cislo/100);
-
-const setiny=
-cislo%100;
-
-return (
-sekundy+
-":"+
-String(setiny).padStart(2,"0")
-);
+return casNaCislo(cas)
++
+soucetTrestu(trestyObj)
+*
+1000;
 
 }
 
@@ -957,7 +1213,10 @@ String(setiny).padStart(2,"0")
 /* ZADAT ČAS */
 
 window.ulozCas=
-async function(id,stafeta){
+async function(
+id,
+cisloStafety
+){
 
 const z=
 data.find(
@@ -969,7 +1228,7 @@ return;
 
 
 const pole=
-stafeta===1
+cisloStafety===1
 ?
 "cas1"
 :
@@ -983,7 +1242,7 @@ z[pole]||"";
 const novy=
 prompt(
 "Čas štafety "+
-stafeta+
+cisloStafety+
 " – například 45:23",
 stary
 );
@@ -1017,8 +1276,7 @@ id
 
 {
 
-[pole]:
-novy
+[pole]:novy
 
 }
 
@@ -1030,16 +1288,17 @@ novy
 /* MODAL */
 
 let modalId=null;
-
 let modalStafeta=null;
-
 let modalTresty={};
 
 
 /* OTEVŘÍT TRESTY */
 
 window.otevritTresty=
-function(id,stafeta){
+function(
+id,
+stafeta
+){
 
 const z=
 data.find(
@@ -1051,7 +1310,6 @@ return;
 
 
 modalId=id;
-
 modalStafeta=stafeta;
 
 
@@ -1080,8 +1338,9 @@ stafeta;
 
 const list=
 document
-.getElementById("penaltyList");
-
+.getElementById(
+"penaltyList"
+);
 
 list.innerHTML="";
 
@@ -1150,7 +1409,10 @@ document
 /* ZMĚNA TRESTU */
 
 window.zmenTrest=
-function(index,zmena){
+function(
+index,
+zmena
+){
 
 let hodnota=
 Number(
@@ -1308,12 +1570,12 @@ id
 window.render=
 function(){
 
-vykresliKategorii(
+vykresli(
 "mladsi",
 "mladsiTab"
 );
 
-vykresliKategorii(
+vykresli(
 "starsi",
 "starsiTab"
 );
@@ -1321,9 +1583,9 @@ vykresliKategorii(
 };
 
 
-/* VYKRESLENÍ KATEGORIE */
+/* KATEGORIE */
 
-function vykresliKategorii(
+function vykresli(
 kategorie,
 elementId
 ){
@@ -1343,7 +1605,7 @@ z.kategorie===kategorie
 );
 
 
-/* ŘAZENÍ PODLE NEJLEPŠÍHO VÝSLEDKU */
+/* ŘAZENÍ */
 
 const serazeno=
 [...seznam].sort(
@@ -1420,7 +1682,9 @@ return bestA-bestB;
 });
 
 
-if(serazeno.length===0){
+if(
+serazeno.length===0
+){
 
 tabulka.innerHTML=`
 
@@ -1474,12 +1738,16 @@ v2
 );
 
 }
-else if(v1!==null){
+else if(
+v1!==null
+){
 
 best=v1;
 
 }
-else if(v2!==null){
+else if(
+v2!==null
+){
 
 best=v2;
 
@@ -1503,12 +1771,12 @@ placeClass="bronze";
 }
 
 
-const tresty1=
+const t1=
 soucetTrestu(
 z.tresty1
 );
 
-const tresty2=
+const t2=
 soucetTrestu(
 z.tresty2
 );
@@ -1517,7 +1785,6 @@ z.tresty2
 tabulka.innerHTML+=`
 
 <tr>
-
 
 <td
 class="place ${placeClass}">
@@ -1556,9 +1823,9 @@ ${z.cas1||"—"}
 class="penalty-button"
 onclick="otevritTresty('${z.id}',1)">
 
-${tresty1
+${t1
 ?
-tresty1+" × 10 s"
+t1+" × 10 s"
 :
 "0 s"
 }
@@ -1573,7 +1840,7 @@ class="result">
 
 ${v1!==null
 ?
-casNaText(v1)
+cisloNaCas(v1)
 :
 "—"
 }
@@ -1600,9 +1867,9 @@ ${z.cas2||"—"}
 class="penalty-button"
 onclick="otevritTresty('${z.id}',2)">
 
-${tresty2
+${t2
 ?
-tresty2+" × 10 s"
+t2+" × 10 s"
 :
 "0 s"
 }
@@ -1617,7 +1884,7 @@ class="result">
 
 ${v2!==null
 ?
-casNaText(v2)
+cisloNaCas(v2)
 :
 "—"
 }
@@ -1630,7 +1897,7 @@ class="result">
 
 ${best!==null
 ?
-casNaText(best)
+cisloNaCas(best)
 :
 "—"
 }
@@ -1659,7 +1926,6 @@ onclick="smazDruzstvo('${z.id}')">
 
 </td>
 
-
 </tr>
 
 `;
@@ -1668,8 +1934,40 @@ onclick="smazDruzstvo('${z.id}')">
 
 }
 
+
+/* ZPRÁVA */
+
+function zobrazZpravu(
+text,
+chyba
+){
+
+const el=
+document.getElementById(
+"message"
+);
+
+el.textContent=text;
+
+el.className=
+chyba
+?
+"message error"
+:
+"message";
+
+
+setTimeout(
+()=>{
+el.textContent="";
+},
+3500
+);
+
+}
+
 </script>
 
 </body>
 
-  </html>
+</html> 

@@ -1,1 +1,1675 @@
+<!DOCTYPE html>
+<html lang="cs">
 
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Štafeta dvojic – SDH Lubina II–Větřkovice</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+}
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+min-height:100vh;
+color:white;
+
+background:
+radial-gradient(circle at top right,#5b1010 0%,transparent 35%),
+linear-gradient(145deg,#090d13,#151b24);
+}
+
+.app{
+max-width:1200px;
+margin:auto;
+padding:20px 16px 40px;
+}
+
+.header{
+text-align:center;
+padding:15px 10px 25px;
+}
+
+.logo{
+font-size:42px;
+margin-bottom:10px;
+}
+
+.header h1{
+font-size:23px;
+line-height:1.35;
+margin:0;
+}
+
+.header h1 span{
+color:#ef3333;
+}
+
+.district{
+margin-top:7px;
+color:#8995a6;
+font-size:14px;
+}
+
+.back{
+border:1px solid #394455;
+background:transparent;
+color:#aeb9c8;
+padding:10px 15px;
+border-radius:11px;
+cursor:pointer;
+margin-bottom:15px;
+}
+
+.card{
+background:rgba(255,255,255,.055);
+border:1px solid rgba(255,255,255,.10);
+border-radius:22px;
+padding:20px;
+margin-bottom:16px;
+}
+
+.card h2{
+margin:0 0 18px;
+font-size:24px;
+}
+
+.form{
+display:grid;
+grid-template-columns:1.5fr 1fr auto;
+gap:10px;
+}
+
+input,
+select{
+width:100%;
+padding:13px;
+border-radius:12px;
+border:1px solid #354052;
+background:#101722;
+color:white;
+font-size:15px;
+}
+
+select{
+cursor:pointer;
+}
+
+.primary{
+border:0;
+border-radius:12px;
+padding:13px 18px;
+background:#d72f2f;
+color:white;
+font-weight:bold;
+cursor:pointer;
+}
+
+.primary:hover{
+background:#ed3a3a;
+}
+
+.table-wrap{
+overflow-x:auto;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:10px;
+min-width:1050px;
+}
+
+th{
+padding:12px 8px;
+background:#b92828;
+color:white;
+}
+
+td{
+padding:11px 8px;
+border-bottom:1px solid rgba(255,255,255,.08);
+text-align:center;
+color:#dbe2eb;
+}
+
+.place{
+font-size:18px;
+font-weight:bold;
+}
+
+.gold{
+color:#ffd700;
+}
+
+.silver{
+color:#cfd3d8;
+}
+
+.bronze{
+color:#cd7f32;
+}
+
+.result{
+font-size:19px;
+font-weight:bold;
+color:#ffd166;
+}
+
+.time-button{
+border:0;
+background:transparent;
+color:#cbd5e1;
+cursor:pointer;
+font-size:16px;
+padding:5px 8px;
+}
+
+.time-button:hover{
+background:rgba(255,255,255,.08);
+border-radius:7px;
+}
+
+.penalty-button{
+border:1px solid #394455;
+background:#252e3c;
+color:#cbd5e1;
+border-radius:8px;
+padding:7px 10px;
+cursor:pointer;
+}
+
+.penalty-button:hover{
+background:#394657;
+}
+
+.action{
+border:0;
+background:transparent;
+color:#aeb9c8;
+cursor:pointer;
+font-size:18px;
+margin:0 3px;
+}
+
+.category-title{
+font-size:21px;
+font-weight:bold;
+margin-bottom:12px;
+}
+
+.empty{
+text-align:center;
+padding:25px;
+color:#718096;
+}
+
+.status{
+text-align:center;
+color:#68778b;
+font-size:12px;
+margin-top:20px;
+}
+
+.online{
+display:inline-block;
+width:7px;
+height:7px;
+border-radius:50%;
+background:#36d399;
+margin-right:6px;
+box-shadow:0 0 9px #36d399;
+}
+
+
+/* MODAL */
+
+.modal{
+display:none;
+
+position:fixed;
+inset:0;
+
+background:rgba(0,0,0,.78);
+
+z-index:1000;
+
+padding:20px;
+
+overflow:auto;
+}
+
+.modal-box{
+max-width:700px;
+
+margin:30px auto;
+
+background:#151b24;
+
+border:1px solid #394455;
+
+border-radius:22px;
+
+padding:22px;
+}
+
+.modal-box h2{
+margin-top:0;
+}
+
+.penalty-row{
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+gap:15px;
+
+padding:13px 0;
+
+border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.penalty-name{
+font-size:14px;
+line-height:1.4;
+}
+
+.penalty-count{
+display:flex;
+align-items:center;
+gap:8px;
+}
+
+.small-button{
+border:1px solid #394455;
+background:#252e3c;
+color:white;
+
+border-radius:8px;
+
+padding:7px 11px;
+
+cursor:pointer;
+
+font-size:16px;
+}
+
+.penalty-number{
+min-width:25px;
+
+text-align:center;
+
+font-weight:bold;
+}
+
+.modal-actions{
+display:flex;
+
+gap:10px;
+
+margin-top:20px;
+}
+
+.modal-actions button{
+flex:1;
+}
+
+.cancel{
+border:1px solid #394455;
+
+background:#252e3c;
+
+color:white;
+
+border-radius:10px;
+
+padding:12px;
+
+cursor:pointer;
+}
+
+.save{
+border:0;
+
+background:#d72f2f;
+
+color:white;
+
+border-radius:10px;
+
+padding:12px;
+
+cursor:pointer;
+
+font-weight:bold;
+}
+
+
+@media(max-width:700px){
+
+.form{
+grid-template-columns:1fr;
+}
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="app">
+
+
+<!-- ZPĚT -->
+
+<button
+class="back"
+onclick="window.location.href='index.html'">
+
+← Zpět
+
+</button>
+
+
+<!-- HLAVIČKA -->
+
+<header class="header">
+
+<div class="logo">
+🏃
+</div>
+
+<h1>
+
+<span>SBOR DOBROVOLNÝCH HASIČŮ</span><br>
+
+LUBINA II–VĚTŘKOVICE
+
+</h1>
+
+<div class="district">
+
+okres Nový Jičín · Štafeta dvojic
+
+</div>
+
+</header>
+
+
+<!-- PŘIDÁNÍ DRUŽSTVA -->
+
+<div class="card">
+
+<h2>
+➕ Startovní listina
+</h2>
+
+<div class="form">
+
+<input
+id="druzstvo"
+placeholder="Název družstva">
+
+<select
+id="kategorie">
+
+<option value="mladsi">
+👦 Mladší
+</option>
+
+<option value="starsi">
+🧑 Starší
+</option>
+
+</select>
+
+<button
+class="primary"
+onclick="pridatDruzstvo()">
+
++ Přidat
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- MLADŠÍ -->
+
+<div class="card">
+
+<div class="category-title">
+👦 Mladší
+</div>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Pořadí</th>
+
+<th>Družstvo</th>
+
+<th>Štafeta 1</th>
+
+<th>Tresty 1</th>
+
+<th>Výsledek 1</th>
+
+<th>Štafeta 2</th>
+
+<th>Tresty 2</th>
+
+<th>Výsledek 2</th>
+
+<th>Nejlepší</th>
+
+<th>Akce</th>
+
+</tr>
+
+</thead>
+
+<tbody id="mladsiTab">
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- STARŠÍ -->
+
+<div class="card">
+
+<div class="category-title">
+🧑 Starší
+</div>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Pořadí</th>
+
+<th>Družstvo</th>
+
+<th>Štafeta 1</th>
+
+<th>Tresty 1</th>
+
+<th>Výsledek 1</th>
+
+<th>Štafeta 2</th>
+
+<th>Tresty 2</th>
+
+<th>Výsledek 2</th>
+
+<th>Nejlepší</th>
+
+<th>Akce</th>
+
+</tr>
+
+</thead>
+
+<tbody id="starsiTab">
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<div class="status">
+
+<span class="online"></span>
+
+Živá aktualizace
+
+</div>
+
+
+</div>
+
+
+<!-- MODAL TRESTY -->
+
+<div
+id="modal"
+class="modal">
+
+<div class="modal-box">
+
+<h2 id="modalTitle">
+Trestné sekundy
+</h2>
+
+<div
+id="penaltyList">
+</div>
+
+<div class="modal-actions">
+
+<button
+class="cancel"
+onclick="zavritModal()">
+
+Zrušit
+
+</button>
+
+<button
+class="save"
+onclick="ulozitTresty()">
+
+Uložit
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<script type="module">
+
+
+/* FIREBASE */
+
+import {
+initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+
+import {
+getFirestore,
+collection,
+addDoc,
+onSnapshot,
+deleteDoc,
+doc,
+updateDoc,
+serverTimestamp
+}
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+
+const firebaseConfig={
+
+apiKey:
+"AIzaSyDHGLymt1Ram6s0LJSeQLMh-fZJvCM-9jo",
+
+authDomain:
+"deti-hra-plamen-lubina.firebaseapp.com",
+
+projectId:
+"deti-hra-plamen-lubina",
+
+storageBucket:
+"deti-hra-plamen-lubina.firebasestorage.app",
+
+messagingSenderId:
+"511766112817",
+
+appId:
+"1:511766112817:web:3e9a11e9c10f234c7ac310"
+
+};
+
+
+const app=
+initializeApp(firebaseConfig);
+
+const db=
+getFirestore(app);
+
+
+const col=
+collection(
+db,
+"stafeta_dvojic"
+);
+
+
+let data=[];
+
+
+/* TRESTNÉ CHYBY */
+
+const tresty=[
+
+"Předčasné vyběhnutí člena štafety",
+
+"Nesvinutí rozpadnutého kotouče",
+
+"Nerozložení hadice na vyznačenou čáru",
+
+"Nesprávné napojení hadice",
+
+"Nesprávné rozvinutí hadice u hydrantového nástavce",
+
+"Neoběhnutí nebo nesprávné oběhnutí mety",
+
+"Neúplné svinutí hadice",
+
+"Hození hadice, koncovky nebo proudnice",
+
+"Chození po nesprávné straně",
+
+"Nesprávné svinutí hadice",
+
+"Nesprávné odpojení proudnice nebo hadice"
+
+];
+
+
+/* VALIDACE ČASU */
+
+function validTime(t){
+
+if(!t)
+return false;
+
+if(!t.includes(":"))
+return false;
+
+const c=t.split(":");
+
+if(c.length!==2)
+return false;
+
+const sekundy=
+Number(c[0]);
+
+const setiny=
+Number(c[1]);
+
+if(
+isNaN(sekundy)||
+isNaN(setiny)
+)
+return false;
+
+if(sekundy<0)
+return false;
+
+if(setiny<0||setiny>99)
+return false;
+
+return true;
+
+}
+
+
+/* PŘEVOD ČASU */
+
+function casNaCislo(cas){
+
+const c=
+cas.split(":");
+
+return
+Number(c[0])*100+
+Number(c[1]);
+
+}
+
+
+/* ZPĚT NA ČAS */
+
+function cisloNaCas(cislo){
+
+const sekundy=
+Math.floor(cislo/100);
+
+const setiny=
+cislo%100;
+
+return (
+sekundy+
+":"+
+String(setiny).padStart(2,"0")
+);
+
+}
+
+
+/* REALTIME */
+
+onSnapshot(
+
+col,
+
+(snap)=>{
+
+data=[];
+
+snap.forEach(
+d=>{
+
+data.push({
+
+id:d.id,
+...d.data()
+
+});
+
+});
+
+render();
+
+},
+
+(error)=>{
+
+console.error(
+"Firebase chyba:",
+error
+);
+
+alert(
+"Chyba při načítání dat z Firebase."
+);
+
+}
+
+);
+
+
+/* PŘIDAT DRUŽSTVO */
+
+window.pridatDruzstvo=
+async function(){
+
+const druzstvo=
+document
+.getElementById("druzstvo")
+.value
+.trim();
+
+const kategorie=
+document
+.getElementById("kategorie")
+.value;
+
+
+if(!druzstvo){
+
+alert(
+"Zadej název družstva."
+);
+
+return;
+
+}
+
+
+try{
+
+await addDoc(
+
+col,
+
+{
+
+druzstvo:
+druzstvo,
+
+kategorie:
+kategorie,
+
+cas1:
+"",
+
+cas2:
+"",
+
+tresty1:
+{},
+
+tresty2:
+{},
+
+vytvoreno:
+serverTimestamp()
+
+}
+
+);
+
+
+document
+.getElementById("druzstvo")
+.value="";
+
+
+}
+catch(error){
+
+console.error(error);
+
+alert(
+"Družstvo se nepodařilo přidat."
+);
+
+}
+
+};
+
+
+/* SOUČET TRESTŮ */
+
+function soucetTrestu(obj){
+
+if(!obj)
+return 0;
+
+let pocet=0;
+
+Object.values(obj)
+.forEach(
+hodnota=>{
+
+pocet+=
+Number(hodnota)||0;
+
+});
+
+return pocet;
+
+}
+
+
+/* VÝSLEDEK ŠTAFETY */
+
+function vysledek(cas,trestyObj){
+
+if(!validTime(cas))
+return null;
+
+const zaklad=
+casNaCislo(cas);
+
+const pocetTrestu=
+soucetTrestu(trestyObj);
+
+return (
+zaklad+
+pocetTrestu*1000
+);
+
+}
+
+
+/* OPRAVA
+1 SEKUNDA = 100 JEDNOTEK
+10 SEKUND = 1000 */
+
+function casNaText(cislo){
+
+const sekundy=
+Math.floor(cislo/100);
+
+const setiny=
+cislo%100;
+
+return (
+sekundy+
+":"+
+String(setiny).padStart(2,"0")
+);
+
+}
+
+
+/* ZADAT ČAS */
+
+window.ulozCas=
+async function(id,stafeta){
+
+const z=
+data.find(
+x=>x.id===id
+);
+
+if(!z)
+return;
+
+
+const pole=
+stafeta===1
+?
+"cas1"
+:
+"cas2";
+
+
+const stary=
+z[pole]||"";
+
+
+const novy=
+prompt(
+"Čas štafety "+
+stafeta+
+" – například 45:23",
+stary
+);
+
+
+if(novy===null)
+return;
+
+
+if(
+novy!=="" &&
+!validTime(novy)
+){
+
+alert(
+"Špatný čas. Použij například 45:23."
+);
+
+return;
+
+}
+
+
+await updateDoc(
+
+doc(
+db,
+"stafeta_dvojic",
+id
+),
+
+{
+
+[pole]:
+novy
+
+}
+
+);
+
+};
+
+
+/* MODAL */
+
+let modalId=null;
+
+let modalStafeta=null;
+
+let modalTresty={};
+
+
+/* OTEVŘÍT TRESTY */
+
+window.otevritTresty=
+function(id,stafeta){
+
+const z=
+data.find(
+x=>x.id===id
+);
+
+if(!z)
+return;
+
+
+modalId=id;
+
+modalStafeta=stafeta;
+
+
+const puvodni=
+stafeta===1
+?
+z.tresty1
+:
+z.tresty2;
+
+
+modalTresty=
+JSON.parse(
+JSON.stringify(
+puvodni||{}
+)
+);
+
+
+document
+.getElementById("modalTitle")
+.textContent=
+"Tresty – štafeta "+
+stafeta;
+
+
+const list=
+document
+.getElementById("penaltyList");
+
+
+list.innerHTML="";
+
+
+tresty.forEach(
+(nazev,index)=>{
+
+const hodnota=
+Number(
+modalTresty[index]||0
+);
+
+
+list.innerHTML+=`
+
+<div class="penalty-row">
+
+<div class="penalty-name">
+
+${index+1}. ${nazev}
+
+</div>
+
+<div class="penalty-count">
+
+<button
+class="small-button"
+onclick="zmenTrest(${index},-1)">
+
+−
+
+</button>
+
+<div
+class="penalty-number"
+id="penalty${index}">
+
+${hodnota}
+
+</div>
+
+<button
+class="small-button"
+onclick="zmenTrest(${index},1)">
+
++
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+
+document
+.getElementById("modal")
+.style.display="block";
+
+};
+
+
+/* ZMĚNA TRESTU */
+
+window.zmenTrest=
+function(index,zmena){
+
+let hodnota=
+Number(
+modalTresty[index]||0
+);
+
+hodnota+=zmena;
+
+if(hodnota<0)
+hodnota=0;
+
+modalTresty[index]=hodnota;
+
+
+document
+.getElementById(
+"penalty"+index
+)
+.textContent=
+hodnota;
+
+};
+
+
+/* ULOŽIT TRESTY */
+
+window.ulozitTresty=
+async function(){
+
+if(!modalId)
+return;
+
+
+const pole=
+modalStafeta===1
+?
+"tresty1"
+:
+"tresty2";
+
+
+await updateDoc(
+
+doc(
+db,
+"stafeta_dvojic",
+modalId
+),
+
+{
+
+[pole]:
+modalTresty
+
+}
+
+);
+
+
+zavritModal();
+
+};
+
+
+/* ZAVŘÍT */
+
+window.zavritModal=
+function(){
+
+document
+.getElementById("modal")
+.style.display="none";
+
+modalId=null;
+
+};
+
+
+/* EDIT */
+
+window.editDruzstvo=
+async function(id){
+
+const z=
+data.find(
+x=>x.id===id
+);
+
+if(!z)
+return;
+
+
+const novy=
+prompt(
+"Družstvo:",
+z.druzstvo
+);
+
+if(novy===null)
+return;
+
+
+if(!novy.trim())
+return;
+
+
+await updateDoc(
+
+doc(
+db,
+"stafeta_dvojic",
+id
+),
+
+{
+
+druzstvo:
+novy.trim()
+
+}
+
+);
+
+};
+
+
+/* SMAZAT */
+
+window.smazDruzstvo=
+async function(id){
+
+if(
+!confirm(
+"Opravdu chceš smazat toto družstvo?"
+)
+)
+return;
+
+
+await deleteDoc(
+
+doc(
+db,
+"stafeta_dvojic",
+id
+)
+
+);
+
+};
+
+
+/* VYKRESLENÍ */
+
+window.render=
+function(){
+
+vykresliKategorii(
+"mladsi",
+"mladsiTab"
+);
+
+vykresliKategorii(
+"starsi",
+"starsiTab"
+);
+
+};
+
+
+/* VYKRESLENÍ KATEGORIE */
+
+function vykresliKategorii(
+kategorie,
+elementId
+){
+
+const tabulka=
+document.getElementById(
+elementId
+);
+
+tabulka.innerHTML="";
+
+
+const seznam=
+data.filter(
+z=>
+z.kategorie===kategorie
+);
+
+
+/* ŘAZENÍ PODLE NEJLEPŠÍHO VÝSLEDKU */
+
+const serazeno=
+[...seznam].sort(
+(a,b)=>{
+
+const a1=
+vysledek(
+a.cas1,
+a.tresty1
+);
+
+const a2=
+vysledek(
+a.cas2,
+a.tresty2
+);
+
+const b1=
+vysledek(
+b.cas1,
+b.tresty1
+);
+
+const b2=
+vysledek(
+b.cas2,
+b.tresty2
+);
+
+
+const bestA=
+a1!==null &&
+a2!==null
+?
+Math.min(a1,a2)
+:
+a1!==null
+?
+a1
+:
+a2;
+
+
+const bestB=
+b1!==null &&
+b2!==null
+?
+Math.min(b1,b2)
+:
+b1!==null
+?
+b1
+:
+b2;
+
+
+if(
+bestA===null &&
+bestB===null
+)
+return 0;
+
+
+if(bestA===null)
+return 1;
+
+
+if(bestB===null)
+return -1;
+
+
+return bestA-bestB;
+
+});
+
+
+if(serazeno.length===0){
+
+tabulka.innerHTML=`
+
+<tr>
+
+<td
+colspan="10"
+class="empty">
+
+Zatím není přidané žádné družstvo.
+
+</td>
+
+</tr>
+
+`;
+
+return;
+
+}
+
+
+serazeno.forEach(
+(z,index)=>{
+
+const v1=
+vysledek(
+z.cas1,
+z.tresty1
+);
+
+const v2=
+vysledek(
+z.cas2,
+z.tresty2
+);
+
+
+let best=null;
+
+
+if(
+v1!==null &&
+v2!==null
+){
+
+best=
+Math.min(
+v1,
+v2
+);
+
+}
+else if(v1!==null){
+
+best=v1;
+
+}
+else if(v2!==null){
+
+best=v2;
+
+}
+
+
+let placeClass="";
+
+
+if(best!==null){
+
+if(index===0)
+placeClass="gold";
+
+if(index===1)
+placeClass="silver";
+
+if(index===2)
+placeClass="bronze";
+
+}
+
+
+const tresty1=
+soucetTrestu(
+z.tresty1
+);
+
+const tresty2=
+soucetTrestu(
+z.tresty2
+);
+
+
+tabulka.innerHTML+=`
+
+<tr>
+
+
+<td
+class="place ${placeClass}">
+
+${best!==null
+?
+(index+1)+"."
+:
+"-"
+}
+
+</td>
+
+
+<td>
+${z.druzstvo}
+</td>
+
+
+<td>
+
+<button
+class="time-button"
+onclick="ulozCas('${z.id}',1)">
+
+${z.cas1||"—"}
+
+</button>
+
+</td>
+
+
+<td>
+
+<button
+class="penalty-button"
+onclick="otevritTresty('${z.id}',1)">
+
+${tresty1
+?
+tresty1+" × 10 s"
+:
+"0 s"
+}
+
+</button>
+
+</td>
+
+
+<td
+class="result">
+
+${v1!==null
+?
+casNaText(v1)
+:
+"—"
+}
+
+</td>
+
+
+<td>
+
+<button
+class="time-button"
+onclick="ulozCas('${z.id}',2)">
+
+${z.cas2||"—"}
+
+</button>
+
+</td>
+
+
+<td>
+
+<button
+class="penalty-button"
+onclick="otevritTresty('${z.id}',2)">
+
+${tresty2
+?
+tresty2+" × 10 s"
+:
+"0 s"
+}
+
+</button>
+
+</td>
+
+
+<td
+class="result">
+
+${v2!==null
+?
+casNaText(v2)
+:
+"—"
+}
+
+</td>
+
+
+<td
+class="result">
+
+${best!==null
+?
+casNaText(best)
+:
+"—"
+}
+
+</td>
+
+
+<td>
+
+<button
+class="action"
+onclick="editDruzstvo('${z.id}')">
+
+✏️
+
+</button>
+
+
+<button
+class="action"
+onclick="smazDruzstvo('${z.id}')">
+
+🗑️
+
+</button>
+
+</td>
+
+
+</tr>
+
+`;
+
+});
+
+}
+
+</script>
+
+</body>
+
+  </html>

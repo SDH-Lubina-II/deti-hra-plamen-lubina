@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="cs">
-
 <head>
 
 <meta charset="UTF-8">
@@ -8,336 +7,395 @@
 
 <title>Štafeta dvojic – SDH Lubina II–Větřkovice</title>
 
-<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
-
 <style>
 
 *{
-box-sizing:border-box;
+    box-sizing:border-box;
 }
 
 body{
-margin:0;
-font-family:Arial,sans-serif;
-min-height:100vh;
-color:white;
+    margin:0;
+    font-family:Arial,sans-serif;
+    min-height:100vh;
+    color:white;
 
-background:
-radial-gradient(circle at top right,#5b1010 0%,transparent 35%),
-linear-gradient(145deg,#090d13,#151b24);
+    background:
+        radial-gradient(circle at top right,#5b1010 0%,transparent 35%),
+        linear-gradient(145deg,#090d13,#151b24);
 }
 
 .app{
-max-width:1200px;
-margin:auto;
-padding:20px 16px 40px;
+    max-width:950px;
+    margin:auto;
+    padding:20px 16px 40px;
 }
 
 .header{
-text-align:center;
-padding:15px 10px 25px;
+    text-align:center;
+    padding:15px 10px 25px;
 }
 
 .logo{
-font-size:42px;
-margin-bottom:10px;
+    font-size:42px;
+    margin-bottom:10px;
 }
 
 .header h1{
-font-size:23px;
-line-height:1.35;
-margin:0;
+    font-size:23px;
+    line-height:1.35;
+    margin:0;
 }
 
 .header h1 span{
-color:#ef3333;
+    color:#ef3333;
 }
 
 .district{
-margin-top:7px;
-color:#8995a6;
-font-size:14px;
+    margin-top:7px;
+    color:#8995a6;
+    font-size:14px;
 }
 
 .back{
-border:1px solid #394455;
-background:transparent;
-color:#aeb9c8;
-padding:10px 15px;
-border-radius:11px;
-cursor:pointer;
-margin-bottom:15px;
+    border:1px solid #394455;
+    background:transparent;
+    color:#aeb9c8;
+    padding:10px 15px;
+    border-radius:11px;
+    cursor:pointer;
+    margin-bottom:15px;
 }
 
 .card{
-background:rgba(255,255,255,.055);
-border:1px solid rgba(255,255,255,.10);
-border-radius:22px;
-padding:20px;
-margin-bottom:16px;
+    background:rgba(255,255,255,.055);
+    border:1px solid rgba(255,255,255,.10);
+    border-radius:22px;
+    padding:20px;
+    margin-bottom:16px;
 }
 
 .card h2{
-margin:0 0 18px;
-font-size:24px;
+    margin:0 0 18px;
+    font-size:24px;
 }
 
 .form{
-display:grid;
-grid-template-columns:1.5fr 1fr auto;
-gap:10px;
+    display:grid;
+    grid-template-columns:1.5fr 1fr auto;
+    gap:10px;
 }
 
 input,
 select{
-width:100%;
-padding:13px;
-
-border-radius:12px;
-border:1px solid #354052;
-
-background:#101722;
-color:white;
-
-font-size:15px;
-}
-
-select{
-cursor:pointer;
+    width:100%;
+    padding:13px;
+    border-radius:12px;
+    border:1px solid #354052;
+    background:#101722;
+    color:white;
+    font-size:15px;
 }
 
 .primary{
-border:0;
-border-radius:12px;
-padding:13px 18px;
-
-background:#d72f2f;
-color:white;
-
-font-weight:bold;
-cursor:pointer;
+    border:0;
+    border-radius:12px;
+    padding:13px 18px;
+    background:#d72f2f;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
 }
 
 .primary:hover{
-background:#ed3a3a;
+    background:#ed3a3a;
 }
 
 
 /* IMPORT */
 
 .excel-info{
-color:#8995a6;
-font-size:13px;
-line-height:1.5;
+    color:#8995a6;
+    font-size:13px;
+    line-height:1.5;
 }
 
 .excel-example{
-margin-top:18px;
-padding:14px;
-
-border:1px solid rgba(255,255,255,.08);
-border-radius:14px;
-
-background:rgba(0,0,0,.15);
-
-overflow-x:auto;
+    margin-top:18px;
+    padding:14px;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:14px;
+    background:rgba(0,0,0,.15);
+    overflow-x:auto;
 }
 
 .example-title{
-font-size:14px;
-font-weight:bold;
-color:#aeb9c8;
-margin-bottom:10px;
+    font-size:14px;
+    font-weight:bold;
+    color:#aeb9c8;
+    margin-bottom:10px;
 }
 
 .example-table{
-width:100%;
-min-width:400px;
-border-collapse:collapse;
-margin:0;
+    width:100%;
+    border-collapse:collapse;
 }
 
 .example-table th{
-padding:8px 10px;
-background:#252e3c;
-font-size:12px;
+    padding:8px 10px;
+    background:#252e3c;
+    font-size:12px;
+    text-align:left;
 }
 
 .example-table td{
-padding:8px 10px;
-
-font-size:12px;
-
-border-bottom:
-1px solid rgba(255,255,255,.06);
-
-white-space:nowrap;
+    padding:8px 10px;
+    font-size:12px;
+    border-bottom:1px solid rgba(255,255,255,.06);
 }
 
 .import-box{
-display:flex;
-align-items:center;
-gap:10px;
-flex-wrap:wrap;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
 }
 
 .import-button{
-border:1px solid #394455;
-
-background:#252e3c;
-
-color:white;
-
-border-radius:12px;
-
-padding:13px 18px;
-
-font-weight:bold;
-
-cursor:pointer;
-}
-
-.import-button:hover{
-background:#394657;
+    border:1px solid #394455;
+    background:#252e3c;
+    color:white;
+    border-radius:12px;
+    padding:13px 18px;
+    font-weight:bold;
+    cursor:pointer;
 }
 
 .message{
-text-align:center;
-
-color:#36d399;
-
-font-size:13px;
-
-min-height:18px;
-
-margin-top:12px;
+    text-align:center;
+    color:#36d399;
+    font-size:13px;
+    min-height:18px;
+    margin-top:12px;
 }
 
 .message.error{
-color:#ef6b6b;
+    color:#ef6b6b;
 }
 
 
-/* TABULKY */
+/* PREPINAC */
 
-.table-wrap{
-overflow-x:auto;
+.category-buttons{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-bottom:16px;
 }
 
-table{
-width:100%;
-border-collapse:collapse;
-margin-top:10px;
-min-width:850px;
+.category-button{
+    border:1px solid #394455;
+    background:#101722;
+    color:#aeb9c8;
+    border-radius:13px;
+    padding:14px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
 }
 
-th{
-padding:12px 8px;
-background:#b92828;
-color:white;
+.category-button.active{
+    background:#b92828;
+    border-color:#ef3333;
+    color:white;
 }
 
-td{
-padding:11px 8px;
 
-border-bottom:
-1px solid rgba(255,255,255,.08);
+/* DRUZSTVO */
 
-text-align:center;
-
-color:#dbe2eb;
+.team-card{
+    background:rgba(255,255,255,.055);
+    border:1px solid rgba(255,255,255,.10);
+    border-radius:20px;
+    padding:18px;
+    margin-bottom:14px;
 }
 
-.category-title{
-font-size:21px;
-font-weight:bold;
-margin-bottom:12px;
+.team-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    margin-bottom:15px;
 }
 
-.start{
-font-weight:bold;
-font-size:17px;
+.team-name{
+    font-size:21px;
+    font-weight:bold;
 }
 
-.result{
-font-size:19px;
-font-weight:bold;
-color:#ffd166;
+.team-start{
+    color:#8995a6;
+    font-size:13px;
 }
 
-.place{
-font-weight:bold;
-font-size:18px;
+.relay{
+    border:1px solid rgba(255,255,255,.08);
+    background:rgba(0,0,0,.16);
+    border-radius:15px;
+    padding:15px;
+    margin-top:12px;
 }
 
-.gold{
-color:#ffd700;
+.relay-title{
+    font-size:17px;
+    font-weight:bold;
+    margin-bottom:12px;
 }
 
-.silver{
-color:#cfd3d8;
+.measure-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
 }
 
-.bronze{
-color:#cd7f32;
+.measure{
+    background:#101722;
+    border:1px solid #354052;
+    border-radius:11px;
+    padding:12px;
+    text-align:center;
+    cursor:pointer;
+}
+
+.measure-label{
+    display:block;
+    color:#8995a6;
+    font-size:12px;
+    margin-bottom:5px;
+}
+
+.measure-value{
+    font-size:18px;
+    font-weight:bold;
+}
+
+.relay-result{
+    margin-top:12px;
+    padding-top:12px;
+    border-top:1px solid rgba(255,255,255,.08);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.result-label{
+    color:#8995a6;
+}
+
+.result-value{
+    color:#ffd166;
+    font-size:21px;
+    font-weight:bold;
+}
+
+.total{
+    margin-top:14px;
+    padding:14px;
+    border-radius:13px;
+    background:#252e3c;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.total-label{
+    font-weight:bold;
+}
+
+.total-value{
+    color:#ffd166;
+    font-size:23px;
+    font-weight:bold;
+}
+
+.team-actions{
+    margin-top:14px;
+    text-align:right;
 }
 
 .action{
-border:0;
-background:transparent;
-color:#aeb9c8;
-cursor:pointer;
-font-size:18px;
-margin:0 2px;
+    border:0;
+    background:transparent;
+    color:#aeb9c8;
+    cursor:pointer;
+    font-size:18px;
+    margin-left:5px;
 }
 
 .move{
-border:0;
-background:#252e3c;
-color:white;
-border-radius:7px;
-cursor:pointer;
-padding:5px 8px;
-margin:2px;
+    border:0;
+    background:#252e3c;
+    color:white;
+    border-radius:7px;
+    cursor:pointer;
+    padding:6px 9px;
+    margin-left:3px;
 }
 
-.move:hover{
-background:#394657;
+.place{
+    font-size:18px;
+    font-weight:bold;
+    color:#dbe2eb;
+}
+
+.gold{
+    color:#ffd700;
+}
+
+.silver{
+    color:#cfd3d8;
+}
+
+.bronze{
+    color:#cd7f32;
 }
 
 .empty{
-text-align:center;
-padding:25px;
-color:#718096;
+    text-align:center;
+    padding:30px;
+    color:#718096;
 }
 
 .status{
-text-align:center;
-color:#68778b;
-font-size:12px;
-margin-top:20px;
+    text-align:center;
+    color:#68778b;
+    font-size:12px;
+    margin-top:20px;
 }
 
 .online{
-display:inline-block;
-
-width:7px;
-height:7px;
-
-border-radius:50%;
-
-background:#36d399;
-
-margin-right:6px;
-
-box-shadow:0 0 9px #36d399;
+    display:inline-block;
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#36d399;
+    margin-right:6px;
+    box-shadow:0 0 9px #36d399;
 }
 
-@media(max-width:700px){
+@media(max-width:650px){
 
-.form{
-grid-template-columns:1fr;
-}
+    .form{
+        grid-template-columns:1fr;
+    }
+
+    .measure-row{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .team-header{
+        align-items:flex-start;
+    }
 
 }
 
@@ -351,8 +409,6 @@ grid-template-columns:1fr;
 <div class="app">
 
 
-<!-- ZPĚT -->
-
 <button
 class="back"
 onclick="window.location.href='index.html'">
@@ -361,8 +417,6 @@ onclick="window.location.href='index.html'">
 
 </button>
 
-
-<!-- HLAVIČKA -->
 
 <header class="header">
 
@@ -387,7 +441,7 @@ okres Nový Jičín · Štafeta dvojic
 </header>
 
 
-<!-- PŘIDÁNÍ DRUŽSTVA -->
+<!-- PŘIDÁNÍ -->
 
 <div class="card">
 
@@ -427,7 +481,7 @@ onclick="pridatDruzstvo()">
 </div>
 
 
-<!-- IMPORT EXCEL -->
+<!-- IMPORT -->
 
 <div class="card">
 
@@ -447,14 +501,8 @@ Kategorie může být:
 
 <b>Mladší</b> nebo <b>Starší</b>.
 
-<br><br>
-
-Ukázka správného formátu:
-
 </div>
 
-
-<!-- JEDEN ŘÁDEK -->
 
 <div class="excel-example">
 
@@ -467,10 +515,8 @@ Ukázka správného formátu:
 <thead>
 
 <tr>
-
 <th>Družstvo</th>
 <th>Kategorie</th>
-
 </tr>
 
 </thead>
@@ -478,10 +524,8 @@ Ukázka správného formátu:
 <tbody>
 
 <tr>
-
 <td>Lubina A</td>
 <td>Mladší</td>
-
 </tr>
 
 </tbody>
@@ -500,7 +544,6 @@ Ukázka správného formátu:
 type="file"
 id="excelFile"
 accept=".xlsx,.xls">
-
 
 <button
 class="import-button"
@@ -521,114 +564,39 @@ class="message">
 </div>
 
 
-<!-- STARTOVNÍ LISTINA -->
+<!-- VYSLEDKY -->
 
 <div class="card">
 
 <h2>
-📋 Startovní listina
+🏆 Výsledky
 </h2>
 
-<div class="table-wrap">
 
-<table>
+<div class="category-buttons">
 
-<thead>
+<button
+id="btnMladsi"
+class="category-button active"
+onclick="vyberKategorii('mladsi')">
 
-<tr>
+👦 Mladší
 
-<th>Start</th>
-<th>Družstvo</th>
-<th>Kategorie</th>
-<th>Pokus 1</th>
-<th>Pokus 2</th>
-<th>Nejlepší čas</th>
-<th>Akce</th>
+</button>
 
-</tr>
+<button
+id="btnStarsi"
+class="category-button"
+onclick="vyberKategorii('starsi')">
 
-</thead>
+🧑 Starší
 
-<tbody id="startTab">
-</tbody>
-
-</table>
-
-</div>
+</button>
 
 </div>
 
 
-<!-- MLADŠÍ -->
-
-<div class="card">
-
-<div class="category-title">
-👦 Mladší – výsledky
-</div>
-
-<div class="table-wrap">
-
-<table>
-
-<thead>
-
-<tr>
-
-<th>Pořadí</th>
-<th>Družstvo</th>
-<th>Pokus 1</th>
-<th>Pokus 2</th>
-<th>Nejlepší čas</th>
-<th>Start</th>
-
-</tr>
-
-</thead>
-
-<tbody id="mladsiTab">
-</tbody>
-
-</table>
-
-</div>
-
-</div>
-
-
-<!-- STARŠÍ -->
-
-<div class="card">
-
-<div class="category-title">
-🧑 Starší – výsledky
-</div>
-
-<div class="table-wrap">
-
-<table>
-
-<thead>
-
-<tr>
-
-<th>Pořadí</th>
-<th>Družstvo</th>
-<th>Pokus 1</th>
-<th>Pokus 2</th>
-<th>Nejlepší čas</th>
-<th>Start</th>
-
-</tr>
-
-</thead>
-
-<tbody id="starsiTab">
-</tbody>
-
-</table>
-
-</div>
+<div id="vysledky"></div>
 
 </div>
 
@@ -641,13 +609,12 @@ class="message">
 
 </div>
 
+
 </div>
 
 
 <script type="module">
 
-
-/* FIREBASE */
 
 import {
 initializeApp
@@ -708,8 +675,10 @@ db,
 
 let data=[];
 
+let vybranaKategorie="mladsi";
 
-/* VALIDACE ČASU */
+
+/* ČAS */
 
 function validTime(t){
 
@@ -725,7 +694,6 @@ if(casti.length!==2)
 return false;
 
 const sekundy=Number(casti[0]);
-
 const setiny=Number(casti[1]);
 
 if(
@@ -737,10 +705,7 @@ return false;
 if(sekundy<0)
 return false;
 
-if(
-setiny<0||
-setiny>99
-)
+if(setiny<0||setiny>99)
 return false;
 
 return true;
@@ -748,14 +713,108 @@ return true;
 }
 
 
-/* ČAS NA ČÍSLO */
-
 function casNaCislo(cas){
 
 const casti=cas.split(":");
 
 return Number(casti[0])*100+
 Number(casti[1]);
+
+}
+
+
+function cisloNaCas(cislo){
+
+const sekundy=
+Math.floor(cislo/100);
+
+const setiny=
+cislo%100;
+
+return sekundy+
+":"+
+String(setiny).padStart(2,"0");
+
+}
+
+
+/*
+VÝSLEDEK JEDNÉ ŠTAFETY
+
+BEREME HORŠÍ
+ZE DVOU MĚŘENÍ
+*/
+
+function vysledekStafety(
+m1,
+m2
+){
+
+const a=
+validTime(m1)
+?
+casNaCislo(m1)
+:
+null;
+
+const b=
+validTime(m2)
+?
+casNaCislo(m2)
+:
+null;
+
+
+if(a===null&&b===null)
+return null;
+
+if(a===null)
+return b;
+
+if(b===null)
+return a;
+
+
+/* HORŠÍ ČAS */
+
+return Math.max(a,b);
+
+}
+
+
+/*
+CELKOVÝ VÝSLEDEK
+
+Z OBOU ŠTAFET
+BEREME LEPŠÍ
+*/
+
+function celkovyVysledek(z){
+
+const s1=
+vysledekStafety(
+z.s1m1,
+z.s1m2
+);
+
+const s2=
+vysledekStafety(
+z.s2m1,
+z.s2m2
+);
+
+
+if(s1===null&&s2===null)
+return null;
+
+if(s1===null)
+return s2;
+
+if(s2===null)
+return s1;
+
+
+return Math.min(s1,s2);
 
 }
 
@@ -799,7 +858,7 @@ alert(
 );
 
 
-/* PŘIDAT DRUŽSTVO */
+/* PŘIDAT */
 
 window.pridatDruzstvo=
 async function(){
@@ -837,9 +896,6 @@ Number(z.start)||0
 0
 );
 
-const start=
-maxStart+1;
-
 
 await addDoc(
 
@@ -847,17 +903,17 @@ col,
 
 {
 
-druzstvo:
-nazev,
+druzstvo:nazev,
 
-kategorie:
-kategorie,
+kategorie:kategorie,
 
-start:
-start,
+start:maxStart+1,
 
-pokus1:"",
-pokus2:"",
+s1m1:"",
+s1m2:"",
+
+s2m1:"",
+s2m2:"",
 
 vytvoreno:
 serverTimestamp()
@@ -874,7 +930,7 @@ document
 };
 
 
-/* IMPORT EXCEL */
+/* IMPORT */
 
 window.importExcel=
 async function(){
@@ -901,8 +957,7 @@ return;
 
 try{
 
-const file=
-input.files[0];
+const file=input.files[0];
 
 const buffer=
 await file.arrayBuffer();
@@ -941,6 +996,16 @@ return;
 
 
 let pocet=0;
+
+let maxStart=
+data.reduce(
+(max,z)=>
+Math.max(
+max,
+Number(z.start)||0
+),
+0
+);
 
 
 for(
@@ -982,19 +1047,7 @@ if(!kat)
 continue;
 
 
-const maxStart=
-data.reduce(
-(max,z)=>
-Math.max(
-max,
-Number(z.start)||0
-),
-0
-);
-
-
-const start=
-maxStart+1;
+maxStart++;
 
 
 await addDoc(
@@ -1006,14 +1059,15 @@ col,
 druzstvo:
 String(druzstvo).trim(),
 
-kategorie:
-kat,
+kategorie:kat,
 
-start:
-start,
+start:maxStart,
 
-pokus1:"",
-pokus2:"",
+s1m1:"",
+s1m2:"",
+
+s2m1:"",
+s2m2:"",
 
 vytvoreno:
 serverTimestamp(),
@@ -1031,14 +1085,9 @@ pocet++;
 
 
 zobrazZpravu(
-
-"✓ Import dokončen. Přidáno družstev: "+
-pocet,
-
+"✓ Import dokončen. Přidáno družstev: "+pocet,
 false
-
 );
-
 
 input.value="";
 
@@ -1049,11 +1098,8 @@ catch(error){
 console.error(error);
 
 zobrazZpravu(
-
 "Excel se nepodařilo načíst.",
-
 true
-
 );
 
 }
@@ -1068,12 +1114,8 @@ row,
 nazvy
 ){
 
-const klice=
-Object.keys(row);
-
-
 for(
-const klic of klice
+const klic of Object.keys(row)
 ){
 
 const normal=
@@ -1100,7 +1142,6 @@ return row[klic];
 
 }
 
-
 return "";
 
 }
@@ -1121,21 +1162,15 @@ String(hodnota)
 if(
 text==="mladší"||
 text==="mladsi"
-){
-
+)
 return "mladsi";
-
-}
 
 
 if(
 text==="starší"||
 text==="starsi"
-){
-
+)
 return "starsi";
-
-}
 
 
 return "";
@@ -1143,51 +1178,41 @@ return "";
 }
 
 
-/* NEJLEPŠÍ ČAS */
+/* VYBRAT KATEGORII */
 
-function nejlepsiCas(z){
+window.vyberKategorii=
+function(kategorie){
 
-const p1=
-validTime(z.pokus1)
-?
-casNaCislo(z.pokus1)
-:
-null;
+vybranaKategorie=kategorie;
 
-const p2=
-validTime(z.pokus2)
-?
-casNaCislo(z.pokus2)
-:
-null;
-
-
-if(
-p1===null&&
-p2===null
-)
-return null;
-
-
-if(p1===null)
-return p2;
-
-if(p2===null)
-return p1;
-
-
-return Math.min(
-p1,
-p2
+document
+.getElementById("btnMladsi")
+.classList
+.toggle(
+"active",
+kategorie==="mladsi"
 );
 
+document
+.getElementById("btnStarsi")
+.classList
+.toggle(
+"active",
+kategorie==="starsi"
+);
 
-/* ZADÁNÍ ČASU */
+render();
+
+};
+
+
+/* ZADAT CAS */
 
 window.ulozCas=
 async function(
 id,
-pokus
+soutez,
+mereni
 ){
 
 const z=
@@ -1200,22 +1225,16 @@ return;
 
 
 const pole=
-pokus===1
-?
-"pokus1"
-:
-"pokus2";
+"s"+
+soutez+
+"m"+
+mereni;
 
 
 const hodnota=
 prompt(
-
-"Pokus "+
-pokus+
-" – čas například 45:32",
-
+"Zadej čas:",
 z[pole]||""
-
 );
 
 
@@ -1229,7 +1248,7 @@ hodnota!==""&&
 ){
 
 alert(
-"Špatný čas. Použij například 45:32."
+"Špatný čas. Použij například 23:45."
 );
 
 return;
@@ -1247,8 +1266,7 @@ id
 
 {
 
-[pole]:
-hodnota
+[pole]:hodnota
 
 }
 
@@ -1257,7 +1275,7 @@ hodnota
 };
 
 
-/* EDIT DRUŽSTVA */
+/* EDIT */
 
 window.editDruzstvo=
 async function(id){
@@ -1278,11 +1296,10 @@ z.druzstvo
 );
 
 
-if(novy===null)
-return;
-
-
-if(!novy.trim())
+if(
+novy===null||
+!novy.trim()
+)
 return;
 
 
@@ -1355,42 +1372,25 @@ if(index<=0)
 return;
 
 
-const predchozi=
+const pred=
 seznam[index-1];
 
-const aktualni=
+const akt=
 seznam[index];
 
 
 await updateDoc(
-
-doc(
-db,
-"stafety_dvojic",
-aktualni.id
-),
-
+doc(db,"stafety_dvojic",akt.id),
 {
-start:
-predchozi.start
+start:pred.start
 }
-
 );
 
-
 await updateDoc(
-
-doc(
-db,
-"stafety_dvojic",
-predchozi.id
-),
-
+doc(db,"stafety_dvojic",pred.id),
 {
-start:
-aktualni.start
+start:akt.start
 }
-
 );
 
 };
@@ -1425,39 +1425,22 @@ return;
 const dalsi=
 seznam[index+1];
 
-const aktualni=
+const akt=
 seznam[index];
 
 
 await updateDoc(
-
-doc(
-db,
-"stafety_dvojic",
-aktualni.id
-),
-
+doc(db,"stafety_dvojic",akt.id),
 {
-start:
-dalsi.start
+start:dalsi.start
 }
-
 );
 
-
 await updateDoc(
-
-doc(
-db,
-"stafety_dvojic",
-dalsi.id
-),
-
+doc(db,"stafety_dvojic",dalsi.id),
 {
-start:
-aktualni.start
+start:akt.start
 }
-
 );
 
 };
@@ -1468,151 +1451,288 @@ aktualni.start
 window.render=
 function(){
 
-const startTab=
+const box=
 document.getElementById(
-"startTab"
+"vysledky"
 );
 
-const mladsiTab=
-document.getElementById(
-"mladsiTab"
-);
-
-const starsiTab=
-document.getElementById(
-"starsiTab"
-);
+box.innerHTML="";
 
 
-startTab.innerHTML="";
-mladsiTab.innerHTML="";
-starsiTab.innerHTML="";
-
-
-const mladsi=
-[...data]
+const seznam=
+data
 .filter(
-z=>z.kategorie==="mladsi"
+z=>
+z.kategorie===
+vybranaKategorie
 )
 .sort(
-(a,b)=>
-Number(a.start||0)-
-Number(b.start||0)
+(a,b)=>{
+
+const aa=
+celkovyVysledek(a);
+
+const bb=
+celkovyVysledek(b);
+
+
+if(aa===null&&bb===null)
+return Number(a.start)-Number(b.start);
+
+if(aa===null)
+return 1;
+
+if(bb===null)
+return -1;
+
+return aa-bb;
+
+}
 );
 
 
-const starsi=
-[...data]
-.filter(
-z=>z.kategorie==="starsi"
-)
-.sort(
-(a,b)=>
-Number(a.start||0)-
-Number(b.start||0)
-);
+if(!seznam.length){
 
+box.innerHTML=`
 
-/*
-MLADŠÍ STARTUJÍ PRVNÍ,
-POTOM STARŠÍ
-*/
-
-const startList=[
-...mladsi,
-...starsi
-];
-
-
-/* STARTOVNÍ LISTINA */
-
-if(!startList.length){
-
-startTab.innerHTML=`
-
-<tr>
-
-<td
-colspan="7"
-class="empty">
+<div class="empty">
 
 Zatím není přidané žádné družstvo.
 
-</td>
-
-</tr>
+</div>
 
 `;
 
-}
-else{
+return;
 
-startList.forEach(
+}
+
+
+seznam.forEach(
 (z,index)=>{
 
-const best=
-nejlepsiCas(z);
+vykresliDruzstvo(
+box,
+z,
+index
+);
+
+});
+
+};
 
 
-startTab.innerHTML+=`
+/* VYKRESLIT DRUŽSTVO */
 
-<tr>
+function vykresliDruzstvo(
+box,
+z,
+index
+){
 
-<td class="start">
+const s1=
+vysledekStafety(
+z.s1m1,
+z.s1m2
+);
 
-${index+1}
+const s2=
+vysledekStafety(
+z.s2m1,
+z.s2m2
+);
 
-</td>
+const celkem=
+celkovyVysledek(z);
 
-<td>
+
+let placeClass="";
+
+if(celkem!==null){
+
+if(index===0)
+placeClass="gold";
+
+if(index===1)
+placeClass="silver";
+
+if(index===2)
+placeClass="bronze";
+
+}
+
+
+const html=`
+
+<div class="team-card">
+
+<div class="team-header">
+
+<div>
+
+<div class="team-name">
+
+<span class="place ${placeClass}">
+${celkem!==null ? (index+1)+". " : ""}
+</span>
 
 ${z.druzstvo}
 
-</td>
+</div>
 
-<td>
+<div class="team-start">
 
-${nazevKategorie(z.kategorie)}
+Startovní číslo: ${z.start||"-"}
 
-</td>
+</div>
 
-<td>
+</div>
 
-<button
-class="action"
-onclick="ulozCas('${z.id}',1)">
+</div>
 
-${z.pokus1||"Pokus 1"}
 
-</button>
+<!-- ŠTAFETA 1 -->
 
-</td>
+<div class="relay">
 
-<td>
+<div class="relay-title">
 
-<button
-class="action"
-onclick="ulozCas('${z.id}',2)">
+🏃 Štafeta 1
 
-${z.pokus2||"Pokus 2"}
+</div>
 
-</button>
+<div class="measure-row">
 
-</td>
+<div
+class="measure"
+onclick="ulozCas('${z.id}',1,1)">
 
-<td class="result">
+<span class="measure-label">
+Měření 1
+</span>
 
-${
-best!==null
-?
-cisloNaCas(best)
-:
-"-"
-}
+<span class="measure-value">
+${z.s1m1||"—"}
+</span>
 
-</td>
+</div>
 
-<td>
+
+<div
+class="measure"
+onclick="ulozCas('${z.id}',1,2)">
+
+<span class="measure-label">
+Měření 2
+</span>
+
+<span class="measure-value">
+${z.s1m2||"—"}
+</span>
+
+</div>
+
+</div>
+
+
+<div class="relay-result">
+
+<span class="result-label">
+Výsledek štafety
+</span>
+
+<span class="result-value">
+
+${s1!==null ? cisloNaCas(s1) : "—"}
+
+</span>
+
+</div>
+
+</div>
+
+
+<!-- ŠTAFETA 2 -->
+
+<div class="relay">
+
+<div class="relay-title">
+
+🏃 Štafeta 2
+
+</div>
+
+<div class="measure-row">
+
+<div
+class="measure"
+onclick="ulozCas('${z.id}',2,1)">
+
+<span class="measure-label">
+Měření 1
+</span>
+
+<span class="measure-value">
+${z.s2m1||"—"}
+</span>
+
+</div>
+
+
+<div
+class="measure"
+onclick="ulozCas('${z.id}',2,2)">
+
+<span class="measure-label">
+Měření 2
+</span>
+
+<span class="measure-value">
+${z.s2m2||"—"}
+</span>
+
+</div>
+
+</div>
+
+
+<div class="relay-result">
+
+<span class="result-label">
+Výsledek štafety
+</span>
+
+<span class="result-value">
+
+${s2!==null ? cisloNaCas(s2) : "—"}
+
+</span>
+
+</div>
+
+</div>
+
+
+<!-- CELKEM -->
+
+<div class="total">
+
+<span class="total-label">
+
+Celkový výsledek
+
+</span>
+
+<span class="total-value">
+
+${celkem!==null ? cisloNaCas(celkem) : "—"}
+
+</span>
+
+</div>
+
+
+<div class="team-actions">
 
 <button
 class="move"
@@ -1646,170 +1766,14 @@ onclick="smazDruzstvo('${z.id}')">
 
 </button>
 
-</td>
+</div>
 
-</tr>
-
-`;
-
-});
-
-}
-
-
-/* VÝSLEDKY */
-
-vykresliVysledky(
-mladsiTab,
-mladsi
-);
-
-vykresliVysledky(
-starsiTab,
-starsi
-);
-
-};
-
-
-/* PŘEVOD ČÍSLA NA ČAS */
-
-function cisloNaCas(cislo){
-
-const sekundy=
-Math.floor(cislo/100);
-
-const setiny=
-cislo%100;
-
-return sekundy+
-":"+
-String(setiny).padStart(2,"0");
-
-}
-
-
-/* NÁZEV KATEGORIE */
-
-function nazevKategorie(k){
-
-if(k==="starsi")
-return "🧑 Starší";
-
-return "👦 Mladší";
-
-}
-
-
-/* VÝSLEDKY */
-
-function vykresliVysledky(
-tabulka,
-seznam
-){
-
-const platne=
-seznam
-.filter(
-z=>
-nejlepsiCas(z)!==null
-)
-.sort(
-(a,b)=>
-nejlepsiCas(a)-
-nejlepsiCas(b)
-);
-
-
-if(!platne.length){
-
-tabulka.innerHTML=`
-
-<tr>
-
-<td
-colspan="6"
-class="empty">
-
-Zatím není žádný výsledek.
-
-</td>
-
-</tr>
+</div>
 
 `;
 
-return;
 
-}
-
-
-platne.forEach(
-(z,index)=>{
-
-let trida="";
-
-
-if(index===0)
-trida="gold";
-
-if(index===1)
-trida="silver";
-
-if(index===2)
-trida="bronze";
-
-
-const best=
-nejlepsiCas(z);
-
-
-tabulka.innerHTML+=`
-
-<tr>
-
-<td
-class="place ${trida}">
-
-${index+1}.
-
-</td>
-
-<td>
-
-${z.druzstvo}
-
-</td>
-
-<td>
-
-${z.pokus1||"-"}
-
-</td>
-
-<td>
-
-${z.pokus2||"-"}
-
-</td>
-
-<td class="result">
-
-${cisloNaCas(best)}
-
-</td>
-
-<td>
-
-${z.start}
-
-</td>
-
-</tr>
-
-`;
-
-});
+box.innerHTML+=html;
 
 }
 
@@ -1848,5 +1812,4 @@ el.textContent="";
 </script>
 
 </body>
-
 </html> 

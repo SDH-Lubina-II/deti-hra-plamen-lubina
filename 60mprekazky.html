@@ -1,1 +1,1373 @@
+<!DOCTYPE html>
+<html lang="cs">
 
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>60 m překážek – SDH Lubina II–Větřkovice</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+}
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+min-height:100vh;
+color:white;
+
+background:
+radial-gradient(circle at top right,#5b1010 0%,transparent 35%),
+linear-gradient(145deg,#090d13,#151b24);
+}
+
+.app{
+max-width:1100px;
+margin:auto;
+padding:20px 16px 40px;
+}
+
+.header{
+text-align:center;
+padding:15px 10px 25px;
+}
+
+.logo{
+font-size:42px;
+margin-bottom:10px;
+}
+
+.header h1{
+font-size:23px;
+line-height:1.35;
+margin:0;
+}
+
+.header h1 span{
+color:#ef3333;
+}
+
+.district{
+margin-top:7px;
+color:#8995a6;
+font-size:14px;
+}
+
+.back{
+border:1px solid #394455;
+background:transparent;
+color:#aeb9c8;
+padding:10px 15px;
+border-radius:11px;
+cursor:pointer;
+margin-bottom:15px;
+}
+
+.card{
+background:rgba(255,255,255,.055);
+border:1px solid rgba(255,255,255,.10);
+border-radius:22px;
+padding:20px;
+margin-bottom:16px;
+}
+
+.card h2{
+margin:0 0 18px;
+font-size:24px;
+}
+
+.form{
+display:grid;
+grid-template-columns:1.2fr 1.2fr 1.2fr 1fr auto;
+gap:10px;
+}
+
+input,
+select{
+width:100%;
+padding:13px;
+border-radius:12px;
+border:1px solid #354052;
+background:#101722;
+color:white;
+font-size:15px;
+}
+
+select{
+cursor:pointer;
+}
+
+.primary{
+border:0;
+border-radius:12px;
+padding:13px 18px;
+background:#d72f2f;
+color:white;
+font-weight:bold;
+cursor:pointer;
+}
+
+.primary:hover{
+background:#ed3a3a;
+}
+
+.table-wrap{
+overflow-x:auto;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:10px;
+min-width:950px;
+}
+
+th{
+padding:12px 8px;
+background:#b92828;
+color:white;
+}
+
+td{
+padding:11px 8px;
+border-bottom:1px solid rgba(255,255,255,.08);
+text-align:center;
+color:#dbe2eb;
+}
+
+.place{
+font-weight:bold;
+font-size:18px;
+}
+
+.gold{
+color:#ffd700;
+}
+
+.silver{
+color:#cfd3d8;
+}
+
+.bronze{
+color:#cd7f32;
+}
+
+.best{
+font-size:19px;
+font-weight:bold;
+color:#ffd166;
+}
+
+.ok{
+color:#36d399;
+font-weight:bold;
+}
+
+.np{
+color:#ef6b6b;
+font-weight:bold;
+}
+
+.time-button{
+border:0;
+background:transparent;
+color:#cbd5e1;
+cursor:pointer;
+font-size:16px;
+padding:5px 8px;
+}
+
+.time-button:hover{
+background:rgba(255,255,255,.08);
+border-radius:7px;
+}
+
+.status-button{
+border:1px solid #394455;
+background:#252e3c;
+color:#cbd5e1;
+border-radius:8px;
+padding:7px 10px;
+cursor:pointer;
+}
+
+.status-button.np-active{
+background:#b92828;
+border-color:#ef3333;
+color:white;
+}
+
+.action{
+border:0;
+background:transparent;
+color:#aeb9c8;
+cursor:pointer;
+font-size:18px;
+margin:0 3px;
+}
+
+.category-title{
+font-size:21px;
+font-weight:bold;
+margin-bottom:12px;
+}
+
+.empty{
+text-align:center;
+padding:25px;
+color:#718096;
+}
+
+.status{
+text-align:center;
+color:#68778b;
+font-size:12px;
+margin-top:20px;
+}
+
+.online{
+display:inline-block;
+width:7px;
+height:7px;
+border-radius:50%;
+background:#36d399;
+margin-right:6px;
+box-shadow:0 0 9px #36d399;
+}
+
+@media(max-width:800px){
+
+.form{
+grid-template-columns:1fr 1fr;
+}
+
+.form .primary{
+grid-column:1 / -1;
+}
+
+}
+
+@media(max-width:500px){
+
+.form{
+grid-template-columns:1fr;
+}
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="app">
+
+
+<!-- ZPĚT -->
+
+<button
+class="back"
+onclick="window.location.href='index.html'">
+
+← Zpět
+
+</button>
+
+
+<!-- HLAVIČKA -->
+
+<header class="header">
+
+<div class="logo">
+🏃
+</div>
+
+<h1>
+<span>SBOR DOBROVOLNÝCH HASIČŮ</span><br>
+LUBINA II–VĚTŘKOVICE
+</h1>
+
+<div class="district">
+okres Nový Jičín · 60 m překážek
+</div>
+
+</header>
+
+
+<!-- PŘIDÁNÍ ZÁVODNÍKA -->
+
+<div class="card">
+
+<h2>
+➕ Přidat závodníka
+</h2>
+
+<div class="form">
+
+<input
+id="prijmeni"
+placeholder="Příjmení">
+
+<input
+id="jmeno"
+placeholder="Jméno">
+
+<input
+id="druzstvo"
+placeholder="Družstvo">
+
+<select id="kategorie">
+
+<option value="mladsi_chlapci">
+👦 Mladší chlapci
+</option>
+
+<option value="mladsi_divky">
+👧 Mladší dívky
+</option>
+
+<option value="starsi_chlapci">
+🧑 Starší chlapci
+</option>
+
+<option value="starsi_divky">
+👩 Starší dívky
+</option>
+
+</select>
+
+<button
+class="primary"
+onclick="pridatZavodnika()">
+
++ Přidat
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- MLADŠÍ CHLAPCI -->
+
+<div class="card">
+
+<div class="category-title">
+👦 Mladší chlapci
+</div>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Pořadí</th>
+<th>Příjmení</th>
+<th>Jméno</th>
+<th>Družstvo</th>
+<th>1. pokus</th>
+<th>Stav</th>
+<th>2. pokus</th>
+<th>Stav</th>
+<th>Nejlepší</th>
+<th>Akce</th>
+
+</tr>
+
+</thead>
+
+<tbody id="mladsiChlapciTab"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- MLADŠÍ DÍVKY -->
+
+<div class="card">
+
+<div class="category-title">
+👧 Mladší dívky
+</div>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Pořadí</th>
+<th>Příjmení</th>
+<th>Jméno</th>
+<th>Družstvo</th>
+<th>1. pokus</th>
+<th>Stav</th>
+<th>2. pokus</th>
+<th>Stav</th>
+<th>Nejlepší</th>
+<th>Akce</th>
+
+</tr>
+
+</thead>
+
+<tbody id="mladsiDivkyTab"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- STARŠÍ CHLAPCI -->
+
+<div class="card">
+
+<div class="category-title">
+🧑 Starší chlapci
+</div>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Pořadí</th>
+<th>Příjmení</th>
+<th>Jméno</th>
+<th>Družstvo</th>
+<th>1. pokus</th>
+<th>Stav</th>
+<th>2. pokus</th>
+<th>Stav</th>
+<th>Nejlepší</th>
+<th>Akce</th>
+
+</tr>
+
+</thead>
+
+<tbody id="starsiChlapciTab"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- STARŠÍ DÍVKY -->
+
+<div class="card">
+
+<div class="category-title">
+👩 Starší dívky
+</div>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Pořadí</th>
+<th>Příjmení</th>
+<th>Jméno</th>
+<th>Družstvo</th>
+<th>1. pokus</th>
+<th>Stav</th>
+<th>2. pokus</th>
+<th>Stav</th>
+<th>Nejlepší</th>
+<th>Akce</th>
+
+</tr>
+
+</thead>
+
+<tbody id="starsiDivkyTab"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<div class="status">
+
+<span class="online"></span>
+
+Živá aktualizace
+
+</div>
+
+
+</div>
+
+
+<script type="module">
+
+
+/* FIREBASE */
+
+import {
+initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+
+import {
+getFirestore,
+collection,
+addDoc,
+onSnapshot,
+deleteDoc,
+doc,
+updateDoc,
+serverTimestamp
+}
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+
+/* FIREBASE KONFIGURACE */
+
+const firebaseConfig={
+
+apiKey:
+"AIzaSyDHGLymt1Ram6s0LJSeQLMh-fZJvCM-9jo",
+
+authDomain:
+"deti-hra-plamen-lubina.firebaseapp.com",
+
+projectId:
+"deti-hra-plamen-lubina",
+
+storageBucket:
+"deti-hra-plamen-lubina.firebasestorage.app",
+
+messagingSenderId:
+"511766112817",
+
+appId:
+"1:511766112817:web:3e9a11e9c10f234c7ac310"
+
+};
+
+
+const app=
+initializeApp(
+firebaseConfig
+);
+
+const db=
+getFirestore(app);
+
+
+const col=
+collection(
+db,
+"60m_prekazky"
+);
+
+
+let data=[];
+
+
+/* VALIDACE ČASU */
+
+function validTime(t){
+
+if(!t)
+return false;
+
+if(!t.includes(":"))
+return false;
+
+const casti=t.split(":");
+
+if(casti.length!==2)
+return false;
+
+const sekundy=
+Number(casti[0]);
+
+const setiny=
+Number(casti[1]);
+
+if(
+isNaN(sekundy)||
+isNaN(setiny)
+)
+return false;
+
+if(sekundy<0)
+return false;
+
+if(setiny<0||setiny>99)
+return false;
+
+return true;
+
+}
+
+
+/* PŘEVOD ČASU */
+
+function casNaCislo(cas){
+
+const casti=
+cas.split(":");
+
+return
+Number(casti[0])*100+
+Number(casti[1]);
+
+}
+
+
+/* REALTIME */
+
+onSnapshot(
+
+col,
+
+(snap)=>{
+
+data=[];
+
+snap.forEach(
+d=>{
+
+data.push({
+
+id:d.id,
+...d.data()
+
+});
+
+});
+
+
+render();
+
+},
+
+(error)=>{
+
+console.error(
+"Firebase chyba:",
+error
+);
+
+alert(
+"Chyba při načítání dat z Firebase."
+);
+
+}
+
+);
+
+
+/* PŘIDAT ZÁVODNÍKA */
+
+window.pridatZavodnika=
+async function(){
+
+const prijmeni=
+document
+.getElementById("prijmeni")
+.value
+.trim();
+
+const jmeno=
+document
+.getElementById("jmeno")
+.value
+.trim();
+
+const druzstvo=
+document
+.getElementById("druzstvo")
+.value
+.trim();
+
+const kategorie=
+document
+.getElementById("kategorie")
+.value;
+
+
+if(
+!prijmeni||
+!jmeno||
+!druzstvo
+){
+
+alert(
+"Vyplň příjmení, jméno a družstvo."
+);
+
+return;
+
+}
+
+
+try{
+
+await addDoc(
+
+col,
+
+{
+
+prijmeni:
+prijmeni,
+
+jmeno:
+jmeno,
+
+druzstvo:
+druzstvo,
+
+kategorie:
+kategorie,
+
+pokus1:
+"",
+
+stav1:
+"OK",
+
+pokus2:
+"",
+
+stav2:
+"OK",
+
+vytvoreno:
+serverTimestamp()
+
+}
+
+);
+
+
+document
+.getElementById("prijmeni")
+.value="";
+
+document
+.getElementById("jmeno")
+.value="";
+
+document
+.getElementById("druzstvo")
+.value="";
+
+
+}
+catch(error){
+
+console.error(error);
+
+alert(
+"Závodníka se nepodařilo přidat."
+);
+
+}
+
+};
+
+
+/* VÝPOČET NEJLEPŠÍHO */
+
+function nejlepsiCas(z){
+
+const casy=[];
+
+
+/* POKUS 1 */
+
+if(
+z.stav1!=="NP" &&
+validTime(z.pokus1)
+){
+
+casy.push(
+z.pokus1
+);
+
+}
+
+
+/* POKUS 2 */
+
+if(
+z.stav2!=="NP" &&
+validTime(z.pokus2)
+){
+
+casy.push(
+z.pokus2
+);
+
+}
+
+
+/* ŽÁDNÝ PLATNÝ ČAS */
+
+if(casy.length===0)
+return "-";
+
+
+/* JEDEN ČAS */
+
+if(casy.length===1)
+return casy[0];
+
+
+/* LEPŠÍ ČAS */
+
+return
+casNaCislo(casy[0])
+<
+casNaCislo(casy[1])
+?
+casy[0]
+:
+casy[1];
+
+}
+
+
+/* ZADÁNÍ ČASU */
+
+window.ulozCas=
+async function(id,pokus){
+
+const z=
+data.find(
+x=>x.id===id
+);
+
+if(!z)
+return;
+
+
+const stare=
+pokus===1
+?
+z.pokus1||""
+:
+z.pokus2||"";
+
+
+const novy=
+prompt(
+"Zadej čas například 14:82",
+stare
+);
+
+
+if(novy===null)
+return;
+
+
+if(novy!==""&&!validTime(novy)){
+
+alert(
+"Špatný čas! Použij například 14:82."
+);
+
+return;
+
+}
+
+
+const pole=
+pokus===1
+?
+"pokus1"
+:
+"pokus2";
+
+
+await updateDoc(
+
+doc(
+db,
+"60m_prekazky",
+id
+),
+
+{
+
+[pole]:
+novy,
+
+[pokus===1?"stav1":"stav2"]:
+novy
+?
+"OK"
+:
+"OK"
+
+}
+
+);
+
+};
+
+
+/* NP */
+
+window.prepnoutNP=
+async function(id,pokus){
+
+const z=
+data.find(
+x=>x.id===id
+);
+
+if(!z)
+return;
+
+
+const pole=
+pokus===1
+?
+"stav1"
+:
+"stav2";
+
+
+const aktualni=
+z[pole]||"OK";
+
+
+await updateDoc(
+
+doc(
+db,
+"60m_prekazky",
+id
+),
+
+{
+
+[pole]:
+aktualni==="NP"
+?
+"OK"
+:
+"NP"
+
+}
+
+);
+
+};
+
+
+/* EDIT ZÁVODNÍKA */
+
+window.editZavodnik=
+async function(id){
+
+const z=
+data.find(
+x=>x.id===id
+);
+
+if(!z)
+return;
+
+
+const prijmeni=
+prompt(
+"Příjmení:",
+z.prijmeni
+);
+
+if(prijmeni===null)
+return;
+
+
+const jmeno=
+prompt(
+"Jméno:",
+z.jmeno
+);
+
+if(jmeno===null)
+return;
+
+
+const druzstvo=
+prompt(
+"Družstvo:",
+z.druzstvo
+);
+
+if(druzstvo===null)
+return;
+
+
+await updateDoc(
+
+doc(
+db,
+"60m_prekazky",
+id
+),
+
+{
+
+prijmeni:
+prijmeni.trim(),
+
+jmeno:
+jmeno.trim(),
+
+druzstvo:
+druzstvo.trim()
+
+}
+
+);
+
+};
+
+
+/* SMAZAT */
+
+window.smazZavodnika=
+async function(id){
+
+if(
+!confirm(
+"Opravdu chceš smazat tohoto závodníka?"
+)
+)
+return;
+
+
+await deleteDoc(
+
+doc(
+db,
+"60m_prekazky",
+id
+)
+
+);
+
+};
+
+
+/* VYKRESLENÍ */
+
+window.render=
+function(){
+
+vykresliKategorie(
+"mladsi_chlapci",
+"mladsiChlapciTab"
+);
+
+vykresliKategorie(
+"mladsi_divky",
+"mladsiDivkyTab"
+);
+
+vykresliKategorie(
+"starsi_chlapci",
+"starsiChlapciTab"
+);
+
+vykresliKategorie(
+"starsi_divky",
+"starsiDivkyTab"
+);
+
+};
+
+
+/* VYKRESLENÍ KATEGORIE */
+
+function vykresliKategorie(
+kategorie,
+elementId
+){
+
+const tabulka=
+document.getElementById(
+elementId
+);
+
+tabulka.innerHTML="";
+
+
+const seznam=
+data
+.filter(
+z=>
+z.kategorie===kategorie
+);
+
+
+/*
+ZÁVODNÍCI S PLATNÝM
+ČASEM SE ŘADÍ PODLE ČASU.
+
+ZBYTEK JE DOLE.
+*/
+
+const serazeno=
+[...seznam].sort(
+(a,b)=>{
+
+const casA=
+nejlepsiCas(a);
+
+const casB=
+nejlepsiCas(b);
+
+
+const platnyA=
+validTime(casA);
+
+const platnyB=
+validTime(casB);
+
+
+if(
+platnyA &&
+!platnyB
+)
+return -1;
+
+
+if(
+!platnyA &&
+platnyB
+)
+return 1;
+
+
+if(
+platnyA &&
+platnyB
+){
+
+return
+casNaCislo(casA)-
+casNaCislo(casB);
+
+}
+
+
+return
+(a.prijmeni||"")
+.localeCompare(
+(b.prijmeni||""),
+"cs"
+);
+
+});
+
+
+if(serazeno.length===0){
+
+tabulka.innerHTML=`
+
+<tr>
+
+<td
+colspan="10"
+class="empty">
+
+Zatím není přidaný žádný závodník.
+
+</td>
+
+</tr>
+
+`;
+
+return;
+
+}
+
+
+serazeno.forEach(
+(z,index)=>{
+
+const nej=
+nejlepsiCas(z);
+
+
+const platny=
+validTime(nej);
+
+
+let mistoClass="";
+
+
+if(platny){
+
+if(index===0)
+mistoClass="gold";
+
+if(index===1)
+mistoClass="silver";
+
+if(index===2)
+mistoClass="bronze";
+
+}
+
+
+tabulka.innerHTML+=`
+
+<tr>
+
+<td class="place ${mistoClass}">
+
+${platny ? (index+1)+"." : "-"}
+
+</td>
+
+
+<td>
+${z.prijmeni}
+</td>
+
+
+<td>
+${z.jmeno}
+</td>
+
+
+<td>
+${z.druzstvo}
+</td>
+
+
+<td>
+
+<button
+class="time-button"
+onclick="ulozCas('${z.id}',1)">
+
+${z.pokus1||"—"}
+
+</button>
+
+</td>
+
+
+<td>
+
+<button
+class="status-button ${z.stav1==="NP"?"np-active":""}"
+onclick="prepnoutNP('${z.id}',1)">
+
+${z.stav1==="NP"?"NP":"OK"}
+
+</button>
+
+</td>
+
+
+<td>
+
+<button
+class="time-button"
+onclick="ulozCas('${z.id}',2)">
+
+${z.pokus2||"—"}
+
+</button>
+
+</td>
+
+
+<td>
+
+<button
+class="status-button ${z.stav2==="NP"?"np-active":""}"
+onclick="prepnoutNP('${z.id}',2)">
+
+${z.stav2==="NP"?"NP":"OK"}
+
+</button>
+
+</td>
+
+
+<td class="best">
+
+${nej}
+
+</td>
+
+
+<td>
+
+<button
+class="action"
+onclick="editZavodnik('${z.id}')">
+
+✏️
+
+</button>
+
+
+<button
+class="action"
+onclick="smazZavodnika('${z.id}')">
+
+🗑️
+
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+}
+
+</script>
+
+</body>
+
+</html>

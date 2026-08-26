@@ -305,17 +305,13 @@ border-radius:7px;
 
 .time-input{
 width:90px;
-
 padding:8px 6px;
-
 text-align:center;
 
 border:1px solid #394455;
-
 border-radius:8px;
 
 background:#101722;
-
 color:white;
 
 font-size:15px;
@@ -333,8 +329,10 @@ border-color:#ef3333;
 border:1px solid #394455;
 background:#252e3c;
 color:#cbd5e1;
+
 border-radius:8px;
 padding:7px 10px;
+
 cursor:pointer;
 }
 
@@ -357,11 +355,16 @@ margin-top:20px;
 
 .online{
 display:inline-block;
+
 width:7px;
 height:7px;
+
 border-radius:50%;
+
 background:#36d399;
+
 margin-right:6px;
+
 box-shadow:0 0 9px #36d399;
 }
 
@@ -995,7 +998,7 @@ String(hodnota ?? "")
 .trim();
 
 
-/* PRÁZDNÉ ZŮSTANE PRÁZDNÉ */
+/* Prázdné zůstává prázdné */
 
 if(text==="")
 return "";
@@ -1072,7 +1075,7 @@ return null;
 }
 
 
-/* VALIDACE ČASU */
+/* VALIDACE */
 
 function validTime(t){
 
@@ -1112,6 +1115,9 @@ Number(casti[1]);
 /* ČÍSLO NA ČAS */
 
 function cisloNaCas(cislo){
+
+if(cislo===null)
+return "—";
 
 const sekundy=
 Math.floor(cislo/100);
@@ -1157,7 +1163,8 @@ render();
 console.error(error);
 
 alert(
-"Chyba při načítání dat z Firebase."
+"Chyba při načítání dat z Firebase:\n"+
+error.message
 );
 
 }
@@ -1165,7 +1172,9 @@ alert(
 );
 
 
-/* PŘIDAT ZÁVODNÍKA */
+/* =========================
+   PŘIDAT ZÁVODNÍKA
+========================= */
 
 window.pridatZavodnika=
 async function(){
@@ -1209,6 +1218,34 @@ return;
 }
 
 
+try{
+
+/*
+Najdeme nejvyšší pořadí.
+*/
+
+let maxPoradi=0;
+
+data.forEach(
+z=>{
+
+maxPoradi=
+Math.max(
+maxPoradi,
+Number(z.poradi)||0
+);
+
+});
+
+
+const novePoradi=
+maxPoradi+1;
+
+
+/*
+Uložení závodníka
+*/
+
 await addDoc(
 
 col,
@@ -1227,6 +1264,14 @@ druzstvo,
 kategorie:
 kategorie,
 
+/*
+Toto pořadí zůstává stejné.
+Zadání času ho nezmění.
+*/
+
+poradi:
+novePoradi,
+
 pokus1:"",
 pokus2:"",
 
@@ -1241,6 +1286,10 @@ serverTimestamp()
 );
 
 
+/*
+Vyčistit formulář
+*/
+
 document
 .getElementById("prijmeni")
 .value="";
@@ -1253,10 +1302,29 @@ document
 .getElementById("druzstvo")
 .value="";
 
+
+}
+
+catch(error){
+
+console.error(
+"CHYBA PŘI PŘIDÁNÍ ZÁVODNÍKA:",
+error
+);
+
+alert(
+"Závodníka se nepodařilo přidat.\n\n"+
+error.message
+);
+
+}
+
 };
 
 
-/* IMPORT EXCEL */
+/* =========================
+   IMPORT EXCEL
+========================= */
 
 window.importExcel=
 async function(){
@@ -1322,6 +1390,17 @@ return;
 }
 
 
+let maxPoradi=
+data.reduce(
+(max,z)=>
+Math.max(
+max,
+Number(z.poradi)||0
+),
+0
+);
+
+
 let pocet=0;
 
 
@@ -1384,6 +1463,9 @@ if(!kat)
 continue;
 
 
+maxPoradi++;
+
+
 await addDoc(
 
 col,
@@ -1401,6 +1483,9 @@ String(druzstvo).trim(),
 
 kategorie:
 kat,
+
+poradi:
+maxPoradi,
 
 pokus1:"",
 pokus2:"",
@@ -1442,8 +1527,12 @@ catch(error){
 console.error(error);
 
 zobrazZpravu(
-"Excel se nepodařilo načíst.",
+
+"Excel se nepodařilo načíst.\n"+
+error.message,
+
 true
+
 );
 
 }
@@ -1451,7 +1540,9 @@ true
 };
 
 
-/* NAJÍT HODNOTU */
+/* =========================
+   NAJÍT HODNOTU
+========================= */
 
 function najdiHodnotu(
 row,
@@ -1496,7 +1587,9 @@ return "";
 }
 
 
-/* KATEGORIE */
+/* =========================
+   KATEGORIE
+========================= */
 
 function normalizujKategorii(
 hodnota
@@ -1541,7 +1634,9 @@ return "";
 }
 
 
-/* VÝSLEDEK JEDNOHO POKUSU */
+/* =========================
+   VÝSLEDEK POKUSU
+========================= */
 
 function vysledekPokus(
 cas,
@@ -1554,6 +1649,7 @@ return null;
 
 /*
 1 trestný bod = 10 sekund
+1000 setin = 10 sekund
 */
 
 return casNaCislo(cas)+
@@ -1562,7 +1658,9 @@ return casNaCislo(cas)+
 }
 
 
-/* NEJLEPŠÍ VÝSLEDEK */
+/* =========================
+   NEJLEPŠÍ VÝSLEDEK
+========================= */
 
 function nejlepsiVysledek(z){
 
@@ -1594,7 +1692,7 @@ return Math.min(a,b);
 
 
 /* =========================
-   EDITACE ČASU
+   ZADÁNÍ ČASU
 ========================= */
 
 window.ulozCas=
@@ -1624,15 +1722,11 @@ const staraHodnota=
 z[pole]||"";
 
 
-/*
-Nahrazujeme prompt
-přímým políčkem v tabulce.
-*/
-
 const td=
 document.querySelector(
 `[data-time-cell="${id}-${pokus}"]`
 );
+
 
 if(!td)
 return;
@@ -1670,14 +1764,27 @@ input.focus();
 input.select();
 
 
+let ulozeno=false;
+
+
+/* ULOŽENÍ */
+
 async function ulozit(){
+
+if(ulozeno)
+return;
+
+
+ulozeno=true;
+
 
 let hodnota=
 input.value.trim();
 
 
 /*
-Prázdné = prázdné.
+Prázdné znamená,
+že čas zůstane prázdný.
 */
 
 if(hodnota===""){
@@ -1721,9 +1828,12 @@ normalizujCas(hodnota);
 
 if(cas===null){
 
+ulozeno=false;
+
 alert(
 "Špatný čas.\n\n"+
-"Zadej například:\n15 55"
+"Zadej například:\n"+
+"15 55"
 );
 
 input.focus();
@@ -1753,7 +1863,10 @@ cas
 );
 
 }
+
 catch(error){
+
+ulozeno=false;
 
 alert(
 "Chyba při ukládání času:\n"+
@@ -1765,9 +1878,7 @@ error.message
 }
 
 
-/*
-Enter = uložit
-*/
+/* ENTER */
 
 input.addEventListener(
 "keydown",
@@ -1783,6 +1894,8 @@ ulozit();
 
 if(e.key==="Escape"){
 
+ulozeno=true;
+
 render();
 
 }
@@ -1790,9 +1903,7 @@ render();
 });
 
 
-/*
-Kliknutí mimo pole = uložit
-*/
+/* KLIK MIMO */
 
 input.addEventListener(
 "blur",
@@ -1808,14 +1919,18 @@ ulozit,
 };
 
 
-/* MODAL TRESTŮ */
+/* =========================
+   MODAL TRESTŮ
+========================= */
 
 let modalId=null;
+
 let modalPokus=null;
+
 let modalTresty=0;
 
 
-/* OTEVŘÍT TRESTY */
+/* OTEVŘÍT */
 
 window.otevritTresty=
 function(
@@ -1833,6 +1948,7 @@ return;
 
 
 modalId=id;
+
 modalPokus=pokus;
 
 
@@ -1885,7 +2001,9 @@ list.innerHTML+=`
 <div class="modal-row">
 
 <div>
+
 Celkem trestných bodů
+
 </div>
 
 <div class="counter">
@@ -1926,7 +2044,7 @@ document
 };
 
 
-/* ZMĚNA POČTU TRESTŮ */
+/* ZMĚNA TRESTŮ */
 
 window.zmenTrest=
 function(zmena){
@@ -1962,6 +2080,8 @@ modalPokus===1
 "tresty2";
 
 
+try{
+
 await updateDoc(
 
 doc(
@@ -1982,10 +2102,21 @@ modalTresty
 
 zavritModal();
 
+}
+
+catch(error){
+
+alert(
+"Chyba při ukládání trestů:\n"+
+error.message
+);
+
+}
+
 };
 
 
-/* ZAVŘÍT MODAL */
+/* ZAVŘÍT */
 
 window.zavritModal=
 function(){
@@ -1995,12 +2126,15 @@ document
 .style.display="none";
 
 modalId=null;
+
 modalPokus=null;
 
 };
 
 
-/* EDIT ZÁVODNÍKA */
+/* =========================
+   EDITACE
+========================= */
 
 window.editZavodnik=
 async function(id){
@@ -2059,6 +2193,8 @@ return;
 }
 
 
+try{
+
 await updateDoc(
 
 doc(
@@ -2080,10 +2216,25 @@ druzstvo.trim()
 
 }
 
+);
+
+}
+
+catch(error){
+
+alert(
+"Chyba při úpravě:\n"+
+error.message
+);
+
+}
+
 };
 
 
-/* SMAZAT */
+/* =========================
+   SMAZAT
+========================= */
 
 window.smazZavodnika=
 async function(id){
@@ -2096,6 +2247,8 @@ if(
 return;
 
 
+try{
+
 await deleteDoc(
 
 doc(
@@ -2106,10 +2259,23 @@ id
 
 );
 
+}
+
+catch(error){
+
+alert(
+"Chyba při mazání:\n"+
+error.message
+);
+
+}
+
 };
 
 
-/* RENDER */
+/* =========================
+   RENDER
+========================= */
 
 window.render=
 function(){
@@ -2137,7 +2303,9 @@ vykresli(
 };
 
 
-/* VYKRESLENÍ TABULKY */
+/* =========================
+   TABULKA
+========================= */
 
 function vykresli(
 kategorie,
@@ -2162,15 +2330,13 @@ z=>z.kategorie===kategorie
 
 /*
 DŮLEŽITÉ:
-Pořadí se při zadání času nemění.
-
-Proto řadíme podle původního
-pořadí přidání.
+Řadíme pouze podle uloženého pořadí.
+Čas ho nikdy nezmění.
 */
 
 return (
-Number(a.poradi||a.start||0)-
-Number(b.poradi||b.start||0)
+Number(a.poradi||0)-
+Number(b.poradi||0)
 );
 
 });
@@ -2205,6 +2371,12 @@ seznam.forEach(
 const best=
 nejlepsiVysledek(z);
 
+
+/*
+Pořadí výsledků se zobrazuje
+podle času, ale samotné řazení
+tabulky se nemění.
+*/
 
 let trida="";
 
@@ -2248,22 +2420,30 @@ best!==null
 </td>
 
 <td>
+
 ${z.prijmeni}
+
 </td>
 
 <td>
+
 ${z.jmeno}
+
 </td>
 
 <td>
+
 ${z.druzstvo}
+
 </td>
 
 <td
 data-time-cell="${z.id}-1">
 
 <button
+
 class="time-button"
+
 onclick="ulozCas('${z.id}',1)">
 
 ${z.pokus1||"—"}
@@ -2275,7 +2455,9 @@ ${z.pokus1||"—"}
 <td>
 
 <button
+
 class="penalty-button"
+
 onclick="otevritTresty('${z.id}',1)">
 
 ${t1} b.
@@ -2288,7 +2470,9 @@ ${t1} b.
 data-time-cell="${z.id}-2">
 
 <button
+
 class="time-button"
+
 onclick="ulozCas('${z.id}',2)">
 
 ${z.pokus2||"—"}
@@ -2300,7 +2484,9 @@ ${z.pokus2||"—"}
 <td>
 
 <button
+
 class="penalty-button"
+
 onclick="otevritTresty('${z.id}',2)">
 
 ${t2} b.
@@ -2325,15 +2511,19 @@ cisloNaCas(best)
 <td>
 
 <button
+
 class="action"
-onclick="editZavodnik('${z.id}')">
+
+onclick="editZavodnika('${z.id}')">
 
 ✏️
 
 </button>
 
 <button
+
 class="action"
+
 onclick="smazZavodnika('${z.id}')">
 
 🗑️
@@ -2351,7 +2541,9 @@ onclick="smazZavodnika('${z.id}')">
 }
 
 
-/* ZPRÁVA */
+/* =========================
+   ZPRÁVA
+========================= */
 
 function zobrazZpravu(
 text,
@@ -2362,6 +2554,10 @@ const el=
 document.getElementById(
 "message"
 );
+
+if(!el)
+return;
+
 
 el.textContent=text;
 
@@ -2375,7 +2571,9 @@ chyba
 
 setTimeout(
 ()=>{
+
 el.textContent="";
+
 },
 4000
 );
@@ -2385,4 +2583,5 @@ el.textContent="";
 </script>
 
 </body>
-</html> 
+
+   </html> 

@@ -98,7 +98,14 @@ font-weight:bold;
 cursor:pointer;
 }
 
-.primary:hover{background:#ed3a3a}
+.primary:hover{
+background:#ed3a3a;
+}
+
+.primary:disabled{
+opacity:.6;
+cursor:not-allowed;
+}
 
 .message{
 text-align:center;
@@ -107,8 +114,13 @@ min-height:18px;
 margin-top:12px;
 }
 
-.message.success{color:#36d399}
-.message.error{color:#ef6b6b}
+.message.success{
+color:#36d399;
+}
+
+.message.error{
+color:#ef6b6b;
+}
 
 .excel-info{
 color:#8995a6;
@@ -160,7 +172,9 @@ font-weight:bold;
 cursor:pointer;
 }
 
-.table-wrap{overflow-x:auto}
+.table-wrap{
+overflow-x:auto;
+}
 
 table{
 width:100%;
@@ -203,8 +217,13 @@ padding:11px;
 border:1px solid #354052;
 }
 
-.attempt.one{border-top:3px solid #4da3ff}
-.attempt.two{border-top:3px solid #b36cff}
+.attempt.one{
+border-top:3px solid #4da3ff;
+}
+
+.attempt.two{
+border-top:3px solid #b36cff;
+}
 
 .attempt-title{
 font-size:13px;
@@ -212,8 +231,13 @@ font-weight:bold;
 margin-bottom:8px;
 }
 
-.attempt.one .attempt-title{color:#65b3ff}
-.attempt.two .attempt-title{color:#c38aff}
+.attempt.one .attempt-title{
+color:#65b3ff;
+}
+
+.attempt.two .attempt-title{
+color:#c38aff;
+}
 
 .attempt-buttons{
 display:flex;
@@ -232,7 +256,9 @@ font-weight:bold;
 cursor:pointer;
 }
 
-.time-button:hover{border-color:#ef3333}
+.time-button:hover{
+border-color:#ef3333;
+}
 
 .np-button{
 border:1px solid #394455;
@@ -257,8 +283,14 @@ min-height:15px;
 color:#718096;
 }
 
-.valid{color:#36d399!important}
-.np-status{color:#ff7070!important;font-weight:bold}
+.valid{
+color:#36d399!important;
+}
+
+.np-status{
+color:#ff7070!important;
+font-weight:bold;
+}
 
 .time-input{
 width:100%;
@@ -278,7 +310,9 @@ font-weight:bold;
 color:#ffd166;
 }
 
-.best-np{color:#ff6666}
+.best-np{
+color:#ff6666;
+}
 
 .action{
 border:0;
@@ -399,7 +433,11 @@ color:white;
 }
 
 @media(max-width:900px){
-.form{grid-template-columns:1fr}
+
+.form{
+grid-template-columns:1fr;
+}
+
 }
 
 </style>
@@ -410,13 +448,20 @@ color:white;
 
 <div class="app">
 
-<button class="back" onclick="location.href='index.html'">
+<button
+class="back"
+onclick="location.href='index.html'">
+
 ← Zpět
+
 </button>
+
 
 <header class="header">
 
-<div class="logo">🏃</div>
+<div class="logo">
+🏃
+</div>
 
 <h1>
 <span>SBOR DOBROVOLNÝCH HASIČŮ</span><br>
@@ -434,32 +479,62 @@ okres Nový Jičín · 60 m překážek
 
 <div class="card">
 
-<h2>➕ Přidat závodníka</h2>
+<h2>
+➕ Přidat závodníka
+</h2>
 
 <div class="form">
 
-<input id="prijmeni" placeholder="Příjmení">
+<input
+id="prijmeni"
+placeholder="Příjmení"
+autocomplete="off">
 
-<input id="jmeno" placeholder="Jméno">
+<input
+id="jmeno"
+placeholder="Jméno"
+autocomplete="off">
 
-<input id="druzstvo" placeholder="Družstvo">
+<input
+id="druzstvo"
+placeholder="Družstvo"
+autocomplete="off">
 
 <select id="kategorie">
 
-<option value="mladsi_chlapci">👦 Mladší chlapci</option>
-<option value="mladsi_divky">👧 Mladší dívky</option>
-<option value="starsi_chlapci">🧑 Starší chlapci</option>
-<option value="starsi_divky">👩 Starší dívky</option>
+<option value="mladsi_chlapci">
+👦 Mladší chlapci
+</option>
+
+<option value="mladsi_divky">
+👧 Mladší dívky
+</option>
+
+<option value="starsi_chlapci">
+🧑 Starší chlapci
+</option>
+
+<option value="starsi_divky">
+👩 Starší dívky
+</option>
 
 </select>
 
-<button class="primary" onclick="pridatZavodnika()">
+<button
+id="pridatButton"
+class="primary"
+onclick="pridatZavodnika()">
+
 + Přidat
+
 </button>
 
 </div>
 
-<div id="message" class="message"></div>
+<div
+id="message"
+class="message">
+</div>
 
 </div>
 
@@ -468,7 +543,9 @@ okres Nový Jičín · 60 m překážek
 
 <div class="card">
 
-<h2>📥 Import z Excelu</h2>
+<h2>
+📥 Import z Excelu
+</h2>
 
 <div class="excel-info">
 
@@ -486,21 +563,25 @@ Excel musí obsahovat:
 <table class="example-table">
 
 <thead>
+
 <tr>
 <th>Příjmení</th>
 <th>Jméno</th>
 <th>Družstvo</th>
 <th>Kategorie</th>
 </tr>
+
 </thead>
 
 <tbody>
+
 <tr>
 <td>Novák</td>
 <td>Jan</td>
 <td>Lubina</td>
 <td>Mladší chlapci</td>
 </tr>
+
 </tbody>
 
 </table>
@@ -509,10 +590,17 @@ Excel musí obsahovat:
 
 <div class="import-box">
 
-<input type="file" id="excelFile" accept=".xlsx,.xls">
+<input
+type="file"
+id="excelFile"
+accept=".xlsx,.xls">
 
-<button class="import-button" onclick="importExcel()">
+<button
+class="import-button"
+onclick="importExcel()">
+
 📥 Načíst Excel
+
 </button>
 
 </div>
@@ -520,16 +608,20 @@ Excel musí obsahovat:
 </div>
 
 
-<!-- TABULKY -->
+<!-- MLADŠÍ CHLAPCI -->
 
 <div class="card">
 
-<div class="category-title">👦 Mladší chlapci</div>
+<div class="category-title">
+👦 Mladší chlapci
+</div>
 
 <div class="table-wrap">
 
 <table>
+
 <thead>
+
 <tr>
 <th>Pořadí</th>
 <th>Příjmení</th>
@@ -540,9 +632,11 @@ Excel musí obsahovat:
 <th>Nejlepší</th>
 <th>Akce</th>
 </tr>
+
 </thead>
 
-<tbody id="mladsiChlapciTab"></tbody>
+<tbody id="mladsiChlapciTab">
+</tbody>
 
 </table>
 
@@ -551,14 +645,20 @@ Excel musí obsahovat:
 </div>
 
 
+<!-- MLADŠÍ DÍVKY -->
+
 <div class="card">
 
-<div class="category-title">👧 Mladší dívky</div>
+<div class="category-title">
+👧 Mladší dívky
+</div>
 
 <div class="table-wrap">
 
 <table>
+
 <thead>
+
 <tr>
 <th>Pořadí</th>
 <th>Příjmení</th>
@@ -569,9 +669,11 @@ Excel musí obsahovat:
 <th>Nejlepší</th>
 <th>Akce</th>
 </tr>
+
 </thead>
 
-<tbody id="mladsiDivkyTab"></tbody>
+<tbody id="mladsiDivkyTab">
+</tbody>
 
 </table>
 
@@ -580,14 +682,20 @@ Excel musí obsahovat:
 </div>
 
 
+<!-- STARŠÍ CHLAPCI -->
+
 <div class="card">
 
-<div class="category-title">🧑 Starší chlapci</div>
+<div class="category-title">
+🧑 Starší chlapci
+</div>
 
 <div class="table-wrap">
 
 <table>
+
 <thead>
+
 <tr>
 <th>Pořadí</th>
 <th>Příjmení</th>
@@ -598,9 +706,11 @@ Excel musí obsahovat:
 <th>Nejlepší</th>
 <th>Akce</th>
 </tr>
+
 </thead>
 
-<tbody id="starsiChlapciTab"></tbody>
+<tbody id="starsiChlapciTab">
+</tbody>
 
 </table>
 
@@ -609,14 +719,20 @@ Excel musí obsahovat:
 </div>
 
 
+<!-- STARŠÍ DÍVKY -->
+
 <div class="card">
 
-<div class="category-title">👩 Starší dívky</div>
+<div class="category-title">
+👩 Starší dívky
+</div>
 
 <div class="table-wrap">
 
 <table>
+
 <thead>
+
 <tr>
 <th>Pořadí</th>
 <th>Příjmení</th>
@@ -627,9 +743,11 @@ Excel musí obsahovat:
 <th>Nejlepší</th>
 <th>Akce</th>
 </tr>
+
 </thead>
 
-<tbody id="starsiDivkyTab"></tbody>
+<tbody id="starsiDivkyTab">
+</tbody>
 
 </table>
 
@@ -639,8 +757,11 @@ Excel musí obsahovat:
 
 
 <div class="status">
+
 <span class="online"></span>
+
 Živá aktualizace
+
 </div>
 
 </div>
@@ -648,28 +769,47 @@ Excel musí obsahovat:
 
 <!-- MODAL NP -->
 
-<div id="modal" class="modal">
+<div
+id="modal"
+class="modal">
 
 <div class="modal-box">
 
-<h2>❌ Neplatný pokus</h2>
+<h2>
+❌ Neplatný pokus
+</h2>
 
-<div id="modalInfo" class="modal-info"></div>
+<div
+id="modalInfo"
+class="modal-info">
+</div>
 
-<div id="reasonList"></div>
+<div id="reasonList">
+</div>
 
 <div class="np-info">
-Vyber důvod neplatného pokusu. Při NP se čas tohoto pokusu vymaže.
+
+Vyber důvod neplatného pokusu.
+Při NP se čas tohoto pokusu vymaže.
+
 </div>
 
 <div class="modal-actions">
 
-<button class="cancel" onclick="zavritModal()">
+<button
+class="cancel"
+onclick="zavritModal()">
+
 Zrušit
+
 </button>
 
-<button class="save" onclick="ulozitNP()">
+<button
+class="save"
+onclick="ulozitNP()">
+
 Uložit NP
+
 </button>
 
 </div>
@@ -681,13 +821,17 @@ Uložit NP
 
 <script type="module">
 
-/* FIREBASE */
+
+/* =========================================
+   FIREBASE
+========================================= */
 
 import {
 initializeApp
 }
 from
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
 
 import {
 getFirestore,
@@ -726,10 +870,14 @@ appId:
 };
 
 
-const app=initializeApp(firebaseConfig);
-const db=getFirestore(app);
+const app=
+initializeApp(firebaseConfig);
 
-const col=collection(
+const db=
+getFirestore(app);
+
+const col=
+collection(
 db,
 "60m_prekazky"
 );
@@ -738,7 +886,9 @@ db,
 let data=[];
 
 
-/* DŮVODY NP */
+/* =========================================
+   DŮVODY NP
+========================================= */
 
 const duvodyNP=[
 
@@ -769,25 +919,41 @@ const duvodyNP=[
 ];
 
 
-/* ČAS */
+/* =========================================
+   ČAS
+========================================= */
 
 function normalizujCas(hodnota){
 
-let text=String(hodnota??"").trim();
+let text=
+String(hodnota??"")
+.trim();
 
-if(text==="") return "";
+
+if(text==="")
+return "";
+
+
+/*
+15:55
+15 55
+1555
+*/
 
 text=text.replace(":"," ");
 
-let casti=text.split(/\s+/);
+let casti=
+text.split(/\s+/);
 
-
-/* 15 55 */
 
 if(casti.length===2){
 
-let s=parseInt(casti[0],10);
-let st=parseInt(casti[1],10);
+let s=
+parseInt(casti[0],10);
+
+let st=
+parseInt(casti[1],10);
+
 
 if(
 !isNaN(s)&&
@@ -797,7 +963,11 @@ st>=0&&
 st<=99
 ){
 
-return s+":"+String(st).padStart(2,"0");
+return (
+s+
+":"+
+String(st).padStart(2,"0")
+);
 
 }
 
@@ -808,8 +978,18 @@ return s+":"+String(st).padStart(2,"0");
 
 if(/^\d{3,4}$/.test(text)){
 
-let st=parseInt(text.slice(-2),10);
-let s=parseInt(text.slice(0,-2),10);
+let st=
+parseInt(
+text.slice(-2),
+10
+);
+
+let s=
+parseInt(
+text.slice(0,-2),
+10
+);
+
 
 if(
 !isNaN(s)&&
@@ -818,11 +998,16 @@ s>=0&&
 st<=99
 ){
 
-return s+":"+String(st).padStart(2,"0");
+return (
+s+
+":"+
+String(st).padStart(2,"0")
+);
 
 }
 
 }
+
 
 return null;
 
@@ -831,13 +1016,21 @@ return null;
 
 function casNaCislo(cas){
 
-if(!cas) return null;
+if(!cas)
+return null;
 
-let normal=normalizujCas(cas);
 
-if(!normal) return null;
+let normal=
+normalizujCas(cas);
 
-let casti=normal.split(":");
+
+if(!normal)
+return null;
+
+
+let casti=
+normal.split(":");
+
 
 return (
 Number(casti[0])*100+
@@ -849,17 +1042,29 @@ Number(casti[1])
 
 function cisloNaCas(cislo){
 
-if(cislo===null) return "—";
+if(cislo===null)
+return "—";
 
-let s=Math.floor(cislo/100);
-let st=cislo%100;
 
-return s+":"+String(st).padStart(2,"0");
+let s=
+Math.floor(cislo/100);
+
+let st=
+cislo%100;
+
+
+return (
+s+
+":"+
+String(st).padStart(2,"0")
+);
 
 }
 
 
-/* REALTIME */
+/* =========================================
+   FIREBASE REALTIME
+========================================= */
 
 onSnapshot(
 
@@ -869,14 +1074,20 @@ snap=>{
 
 data=[];
 
-snap.forEach(d=>{
+
+snap.forEach(
+d=>{
 
 data.push({
+
 id:d.id,
+
 ...d.data()
+
 });
 
 });
+
 
 render();
 
@@ -884,11 +1095,22 @@ render();
 
 error=>{
 
-console.error(error);
+console.error(
+"FIREBASE SNAPSHOT CHYBA:",
+error
+);
+
 
 zobrazZpravu(
-"Firebase chyba: "+error.message,
+
+"Firebase chyba: "+
+(
+error.message||
+"Nelze načíst data."
+),
+
 true
+
 );
 
 }
@@ -896,27 +1118,116 @@ true
 );
 
 
-/* PŘIDAT ZÁVODNÍKA */
+/* =========================================
+   PŘIDÁNÍ ZÁVODNÍKA
+========================================= */
 
-window.pridatZavodnika=async function(){
+window.pridatZavodnika=
+async function(){
+
+const button=
+document.getElementById(
+"pridatButton"
+);
+
+
+const prijmeniEl=
+document.getElementById(
+"prijmeni"
+);
+
+const jmenoEl=
+document.getElementById(
+"jmeno"
+);
+
+const druzstvoEl=
+document.getElementById(
+"druzstvo"
+);
+
+const kategorieEl=
+document.getElementById(
+"kategorie"
+);
+
 
 const prijmeni=
-document.getElementById("prijmeni").value.trim();
+prijmeniEl.value.trim();
 
 const jmeno=
-document.getElementById("jmeno").value.trim();
+jmenoEl.value.trim();
 
 const druzstvo=
-document.getElementById("druzstvo").value.trim();
+druzstvoEl.value.trim();
 
 const kategorie=
-document.getElementById("kategorie").value;
+kategorieEl.value;
 
 
-if(!prijmeni||!jmeno||!druzstvo){
+/* KONTROLA */
 
-alert(
-"Vyplň příjmení, jméno a družstvo."
+if(!prijmeni){
+
+zobrazZpravu(
+"Vyplň příjmení.",
+true
+);
+
+prijmeniEl.focus();
+
+return;
+
+}
+
+
+if(!jmeno){
+
+zobrazZpravu(
+"Vyplň jméno.",
+true
+);
+
+jmenoEl.focus();
+
+return;
+
+}
+
+
+if(!druzstvo){
+
+zobrazZpravu(
+"Vyplň družstvo.",
+true
+);
+
+druzstvoEl.focus();
+
+return;
+
+}
+
+
+const povoleneKategorie=[
+
+"mladsi_chlapci",
+"mladsi_divky",
+"starsi_chlapci",
+"starsi_divky"
+
+];
+
+
+if(
+!povoleneKategorie.includes(
+kategorie
+)
+){
+
+zobrazZpravu(
+"Vyber kategorii.",
+true
 );
 
 return;
@@ -924,13 +1235,38 @@ return;
 }
 
 
+/*
+Zabráníme dvojímu kliknutí.
+*/
+
+button.disabled=true;
+
+button.textContent="Ukládám…";
+
+
 try{
+
+/*
+POŘADÍ SE POČÍTÁ
+POUZE V DANÉ KATEGORII.
+*/
 
 let maxPoradi=0;
 
-for(const z of data){
 
-const p=Number(z.poradi)||0;
+for(
+const z of data
+){
+
+if(
+z.kategorie!==kategorie
+)
+continue;
+
+
+const p=
+Number(z.poradi)||0;
+
 
 if(p>maxPoradi)
 maxPoradi=p;
@@ -938,14 +1274,26 @@ maxPoradi=p;
 }
 
 
+/*
+DOKUMENT DO FIREBASE
+*/
+
 const zaznam={
 
-prijmeni:prijmeni,
-jmeno:jmeno,
-druzstvo:druzstvo,
-kategorie:kategorie,
+prijmeni:
+prijmeni,
 
-poradi:maxPoradi+1,
+jmeno:
+jmeno,
+
+druzstvo:
+druzstvo,
+
+kategorie:
+kategorie,
+
+poradi:
+maxPoradi+1,
 
 pokus1:"",
 pokus2:"",
@@ -956,28 +1304,50 @@ np2:false,
 duvodNP1:[],
 duvodNP2:[],
 
-vytvoreno:serverTimestamp()
+vytvoreno:
+serverTimestamp()
 
 };
 
 
-const reference=
-await addDoc(col,zaznam);
-
-
 /*
-Úspěšné přidání.
+TADY SE OPRAVDU PROVEDE
+ZÁPIS DO FIRESTORE.
 */
 
-console.log(
-"Závodník přidán:",
-reference.id
+const reference=
+await addDoc(
+col,
+zaznam
 );
 
 
-document.getElementById("prijmeni").value="";
-document.getElementById("jmeno").value="";
-document.getElementById("druzstvo").value="";
+/*
+ZÁPIS BYL ÚSPĚŠNÝ.
+PŘIDÁME HO I LOKÁLNĚ,
+ABY SE UKÁZAL OKAMŽITĚ.
+*/
+
+data.push({
+
+id:
+reference.id,
+
+...zaznam
+
+});
+
+
+render();
+
+
+/*
+VYČISTÍME FORMULÁŘ.
+*/
+
+prijmeniEl.value="";
+jmenoEl.value="";
+druzstvoEl.value="";
 
 
 zobrazZpravu(
@@ -985,34 +1355,68 @@ zobrazZpravu(
 false
 );
 
+
+console.log(
+"ZÁVODNÍK PŘIDÁN:",
+reference.id
+);
+
 }
 
 catch(error){
 
 console.error(
-"PŘIDÁNÍ ZÁVODNÍKA:",
+"PŘIDÁNÍ ZÁVODNÍKA SELHALO:",
 error
 );
 
+
 zobrazZpravu(
-"Chyba při přidávání: "+error.message,
+
+"Chyba při přidávání: "+
+(
+error.message||
+"Neznámá chyba"
+),
+
 true
+
 );
+
+}
+
+finally{
+
+button.disabled=false;
+
+button.textContent="+ Přidat";
 
 }
 
 };
 
 
-/* EXCEL */
+/* =========================================
+   EXCEL
+========================================= */
 
-window.importExcel=async function(){
+window.importExcel=
+async function(){
 
-const input=document.getElementById("excelFile");
+const input=
+document.getElementById(
+"excelFile"
+);
 
-if(!input.files.length){
 
-alert("Vyber Excel soubor.");
+if(
+!input.files||
+!input.files.length
+){
+
+alert(
+"Vyber Excel soubor."
+);
 
 return;
 
@@ -1024,51 +1428,80 @@ try{
 const buffer=
 await input.files[0].arrayBuffer();
 
+
 const workbook=
 XLSX.read(
 buffer,
-{type:"array"}
+{
+type:"array"
+}
 );
+
 
 const sheet=
 workbook.Sheets[
 workbook.SheetNames[0]
 ];
 
+
 const rows=
 XLSX.utils.sheet_to_json(
 sheet,
-{defval:""}
+{
+defval:""
+}
 );
 
 
-let maxPoradi=
-data.reduce(
-(max,z)=>
-Math.max(max,Number(z.poradi)||0),
-0
-);
+let maxPoradiGlobal=0;
 
 let pocet=0;
 
 
-for(const row of rows){
+for(
+const row of rows
+){
 
 const prijmeni=
-najdi(row,["Příjmení","Prijmeni"]);
+najdi(
+row,
+[
+"Příjmení",
+"Prijmeni"
+]
+);
 
 const jmeno=
-najdi(row,["Jméno","Jmeno"]);
+najdi(
+row,
+[
+"Jméno",
+"Jmeno"
+]
+);
 
 const druzstvo=
-najdi(row,["Družstvo","Druzstvo"]);
+najdi(
+row,
+[
+"Družstvo",
+"Druzstvo"
+]
+);
 
 const kategorie=
-najdi(row,["Kategorie"]);
+najdi(
+row,
+[
+"Kategorie"
+]
+);
 
 
 const kat=
-normalizujKategorii(kategorie);
+normalizujKategorii(
+kategorie
+);
 
 
 if(
@@ -1080,7 +1513,45 @@ if(
 continue;
 
 
-maxPoradi++;
+/*
+POŘADÍ V KATEGORII
+*/
+
+let maxPoradi=0;
+
+
+for(
+const z of data
+){
+
+if(
+z.kategorie!==kat
+)
+continue;
+
+
+maxPoradi=
+Math.max(
+maxPoradi,
+Number(z.poradi)||0
+);
+
+}
+
+
+/*
+Zohledníme i předchozí
+řádky právě importovaného Excelu.
+*/
+
+maxPoradiGlobal=
+Math.max(
+maxPoradiGlobal,
+maxPoradi
+);
+
+
+maxPoradiGlobal++;
 
 
 await addDoc(
@@ -1089,13 +1560,20 @@ col,
 
 {
 
-prijmeni:String(prijmeni).trim(),
-jmeno:String(jmeno).trim(),
-druzstvo:String(druzstvo).trim(),
+prijmeni:
+String(prijmeni).trim(),
 
-kategorie:kat,
+jmeno:
+String(jmeno).trim(),
 
-poradi:maxPoradi,
+druzstvo:
+String(druzstvo).trim(),
+
+kategorie:
+kat,
+
+poradi:
+maxPoradiGlobal,
 
 pokus1:"",
 pokus2:"",
@@ -1106,13 +1584,15 @@ np2:false,
 duvodNP1:[],
 duvodNP2:[],
 
-vytvoreno:serverTimestamp(),
+vytvoreno:
+serverTimestamp(),
 
 importExcel:true
 
 }
 
 );
+
 
 pocet++;
 
@@ -1123,19 +1603,31 @@ input.value="";
 
 
 zobrazZpravu(
-"✓ Import dokončen. Přidáno: "+pocet,
+
+"✓ Import dokončen. Přidáno: "+
+pocet,
+
 false
+
 );
 
 }
 
 catch(error){
 
-console.error(error);
+console.error(
+"CHYBA IMPORTU:",
+error
+);
+
 
 zobrazZpravu(
-"Chyba importu: "+error.message,
+
+"Chyba importu: "+
+error.message,
+
 true
+
 );
 
 }
@@ -1143,33 +1635,63 @@ true
 };
 
 
-function najdi(row,nazvy){
+/* =========================================
+   NAJÍT HODNOTU
+========================================= */
 
-for(const klic of Object.keys(row)){
+function najdi(
+row,
+nazvy
+){
+
+for(
+const klic of Object.keys(row)
+){
 
 const a=
-klic.trim().toLowerCase();
+klic
+.trim()
+.toLowerCase();
 
-for(const nazev of nazvy){
 
-if(a===nazev.toLowerCase())
+for(
+const nazev of nazvy
+){
+
+if(
+a===
+nazev.toLowerCase()
+){
+
 return row[klic];
 
 }
 
 }
 
+}
+
+
 return "";
 
 }
 
 
-function normalizujKategorii(hodnota){
+/* =========================================
+   KATEGORIE
+========================================= */
+
+function normalizujKategorii(
+hodnota
+){
 
 const text=
-String(hodnota||"")
+String(
+hodnota||""
+)
 .trim()
 .toLowerCase();
+
 
 if(
 text==="mladší chlapci"||
@@ -1177,11 +1699,13 @@ text==="mladsi chlapci"
 )
 return "mladsi_chlapci";
 
+
 if(
 text==="mladší dívky"||
 text==="mladsi divky"
 )
 return "mladsi_divky";
+
 
 if(
 text==="starší chlapci"||
@@ -1189,18 +1713,22 @@ text==="starsi chlapci"
 )
 return "starsi_chlapci";
 
+
 if(
 text==="starší dívky"||
 text==="starsi divky"
 )
 return "starsi_divky";
 
+
 return "";
 
 }
 
 
-/* NEJLEPŠÍ */
+/* =========================================
+   NEJLEPŠÍ VÝSLEDEK
+========================================= */
 
 function nejlepsi(z){
 
@@ -1208,38 +1736,82 @@ let a=null;
 let b=null;
 
 
-if(!z.np1&&z.pokus1)
-a=casNaCislo(z.pokus1);
+if(
+!z.np1&&
+z.pokus1
+){
 
-if(!z.np2&&z.pokus2)
-b=casNaCislo(z.pokus2);
+a=
+casNaCislo(
+z.pokus1
+);
+
+}
+
+
+if(
+!z.np2&&
+z.pokus2
+){
+
+b=
+casNaCislo(
+z.pokus2
+);
+
+}
 
 
 if(a===null&&b===null)
 return null;
 
+
 if(a===null)
 return b;
 
+
 if(b===null)
 return a;
+
 
 return Math.min(a,b);
 
 }
 
 
-/* EDITACE ČASU */
+/* =========================================
+   ZADÁNÍ ČASU
+========================================= */
 
-window.ulozCas=function(id,pokus){
+window.ulozCas=
+function(
+id,
+pokus
+){
 
-const z=data.find(x=>x.id===id);
+const z=
+data.find(
+x=>x.id===id
+);
 
-if(!z) return;
+if(!z)
+return;
 
 
-const pole=pokus===1?"pokus1":"pokus2";
-const npPole=pokus===1?"np1":"np2";
+const pole=
+pokus===1
+?
+"pokus1"
+:
+"pokus2";
+
+
+const npPole=
+pokus===1
+?
+"np1"
+:
+"np2";
 
 
 const bunka=
@@ -1247,18 +1819,27 @@ document.querySelector(
 `[data-time="${id}-${pokus}"]`
 );
 
-if(!bunka) return;
+
+if(!bunka)
+return;
 
 
 bunka.innerHTML=`
 
 <input
+
 class="time-input"
+
 id="time-${id}-${pokus}"
+
 value="${z[pole]||""}"
+
 placeholder="15 55"
+
 inputmode="numeric"
+
 autocomplete="off"
+
 >
 
 `;
@@ -1279,23 +1860,32 @@ let hotovo=false;
 
 async function ulozit(){
 
-if(hotovo) return;
+if(hotovo)
+return;
+
 
 hotovo=true;
 
 
-const hodnota=input.value.trim();
+const hodnota=
+input.value.trim();
 
 
 if(hodnota===""){
 
 await updateDoc(
 
-doc(db,"60m_prekazky",id),
+doc(
+db,
+"60m_prekazky",
+id
+),
 
 {
+
 [pole]:"",
 [npPole]:false
+
 }
 
 );
@@ -1305,16 +1895,22 @@ return;
 }
 
 
-const cas=normalizujCas(hodnota);
+const cas=
+normalizujCas(
+hodnota
+);
 
 
 if(cas===null){
 
 hotovo=false;
 
+
 alert(
-"Špatný čas.\n\nZadej například 15 55."
+"Špatný čas.\n\n"+
+"Zadej například 15 55."
 );
+
 
 input.focus();
 
@@ -1327,21 +1923,32 @@ try{
 
 await updateDoc(
 
-doc(db,"60m_prekazky",id),
+doc(
+db,
+"60m_prekazky",
+id
+),
 
 {
+
 [pole]:cas,
+
 [npPole]:false
+
 }
 
 );
 
 }
+
 catch(error){
 
 hotovo=false;
 
-alert(error.message);
+alert(
+"Chyba při ukládání času:\n"+
+error.message
+);
 
 }
 
@@ -1355,6 +1962,7 @@ e=>{
 if(e.key==="Enter"){
 
 e.preventDefault();
+
 ulozit();
 
 }
@@ -1362,6 +1970,7 @@ ulozit();
 if(e.key==="Escape"){
 
 hotovo=true;
+
 render();
 
 }
@@ -1371,33 +1980,52 @@ render();
 
 input.addEventListener(
 "blur",
-()=>setTimeout(ulozit,100)
+()=>setTimeout(
+ulozit,
+100
+)
+
 );
 
 };
 
 
-/* NP */
+/* =========================================
+   NP
+========================================= */
 
 let modalId=null;
 let modalPokus=null;
 
 
-window.otevritNP=function(id,pokus){
+window.otevritNP=
+function(
+id,
+pokus
+){
 
-const z=data.find(x=>x.id===id);
+const z=
+data.find(
+x=>x.id===id
+);
 
-if(!z) return;
+if(!z)
+return;
 
 
 modalId=id;
 modalPokus=pokus;
 
 
-document.getElementById("modalInfo")
+document
+.getElementById("modalInfo")
 .textContent=
-z.prijmeni+" "+z.jmeno+
-" · Pokus "+pokus;
+
+z.prijmeni+
+" "+
+z.jmeno+
+" · Pokus "+
+pokus;
 
 
 const ulozene=
@@ -1411,20 +2039,34 @@ pokus===1
 let html="";
 
 
-duvodyNP.forEach((duvod,index)=>{
+duvodyNP.forEach(
+(duvod,index)=>{
 
 html+=`
 
 <label class="reason">
 
 <input
+
 type="checkbox"
+
 class="npReason"
+
 data-index="${index}"
-${ulozene.includes(index)?"checked":""}
+
+${
+ulozene.includes(index)
+?
+"checked"
+:
+""
+}
+
 >
 
-<span>${duvod}</span>
+<span>
+${duvod}
+</span>
 
 </label>
 
@@ -1433,23 +2075,40 @@ ${ulozene.includes(index)?"checked":""}
 });
 
 
-document.getElementById("reasonList").innerHTML=html;
+document
+.getElementById("reasonList")
+.innerHTML=html;
 
-document.getElementById("modal").style.display="block";
+
+document
+.getElementById("modal")
+.style.display="block";
 
 };
 
 
-window.ulozitNP=async function(){
+/* =========================================
+   ULOŽIT NP
+========================================= */
 
-if(!modalId) return;
+window.ulozitNP=
+async function(){
+
+if(!modalId)
+return;
 
 
 const duvody=
 [
-...document.querySelectorAll(".npReason:checked")
+...
+document.querySelectorAll(
+".npReason:checked"
+)
 ]
-.map(x=>Number(x.dataset.index));
+.map(
+x=>
+Number(x.dataset.index)
+);
 
 
 if(!duvody.length){
@@ -1464,30 +2123,51 @@ return;
 
 
 const npPole=
-modalPokus===1?"np1":"np2";
+modalPokus===1
+?
+"np1"
+:
+"np2";
+
 
 const casPole=
-modalPokus===1?"pokus1":"pokus2";
+modalPokus===1
+?
+"pokus1"
+:
+"pokus2";
+
 
 const duvodPole=
-modalPokus===1?"duvodNP1":"duvodNP2";
+modalPokus===1
+?
+"duvodNP1"
+:
+"duvodNP2";
 
 
 try{
 
 await updateDoc(
 
-doc(db,"60m_prekazky",modalId),
+doc(
+db,
+"60m_prekazky",
+modalId
+),
 
 {
 
 [npPole]:true,
+
 [casPole]:"",
+
 [duvodPole]:duvody
 
 }
 
 );
+
 
 zavritModal();
 
@@ -1505,34 +2185,77 @@ error.message
 };
 
 
-window.zrusitNP=async function(id,pokus){
+/* =========================================
+   ZRUŠIT NP
+========================================= */
+
+window.zrusitNP=
+async function(
+id,
+pokus
+){
 
 const npPole=
-pokus===1?"np1":"np2";
+pokus===1
+?
+"np1"
+:
+"np2";
+
 
 const duvodPole=
-pokus===1?"duvodNP1":"duvodNP2";
+pokus===1
+?
+"duvodNP1"
+:
+"duvodNP2";
 
+
+try{
 
 await updateDoc(
 
-doc(db,"60m_prekazky",id),
+doc(
+db,
+"60m_prekazky",
+id
+),
 
 {
 
 [npPole]:false,
+
 [duvodPole]:[]
 
 }
 
 );
 
+}
+
+catch(error){
+
+alert(
+"Chyba při rušení NP:\n"+
+error.message
+);
+
+}
+
 };
 
 
-window.zavritModal=function(){
+/* =========================================
+   ZAVŘÍT MODAL
+========================================= */
 
-document.getElementById("modal").style.display="none";
+window.zavritModal=
+function(){
+
+document
+.getElementById("modal")
+.style.display="none";
+
 
 modalId=null;
 modalPokus=null;
@@ -1540,31 +2263,53 @@ modalPokus=null;
 };
 
 
-/* EDITACE */
+/* =========================================
+   EDITACE ZÁVODNÍKA
+========================================= */
 
-window.editZavodnik=async function(id){
+window.editZavodnik=
+async function(id){
 
-const z=data.find(x=>x.id===id);
+const z=
+data.find(
+x=>x.id===id
+);
 
-if(!z) return;
+if(!z)
+return;
 
 
 const prijmeni=
-prompt("Příjmení:",z.prijmeni);
+prompt(
+"Příjmení:",
+z.prijmeni
+);
 
-if(prijmeni===null) return;
+
+if(prijmeni===null)
+return;
 
 
 const jmeno=
-prompt("Jméno:",z.jmeno);
+prompt(
+"Jméno:",
+z.jmeno
+);
 
-if(jmeno===null) return;
+
+if(jmeno===null)
+return;
 
 
 const druzstvo=
-prompt("Družstvo:",z.druzstvo);
+prompt(
+"Družstvo:",
+z.druzstvo
+);
 
-if(druzstvo===null) return;
+
+if(druzstvo===null)
+return;
 
 
 if(
@@ -1573,33 +2318,60 @@ if(
 !druzstvo.trim()
 ){
 
-alert("Údaje nesmí být prázdné.");
+alert(
+"Údaje nesmí být prázdné."
+);
 
 return;
 
 }
 
 
+try{
+
 await updateDoc(
 
-doc(db,"60m_prekazky",id),
+doc(
+db,
+"60m_prekazky",
+id
+),
 
 {
 
-prijmeni:prijmeni.trim(),
-jmeno:jmeno.trim(),
-druzstvo:druzstvo.trim()
+prijmeni:
+prijmeni.trim(),
+
+jmeno:
+jmeno.trim(),
+
+druzstvo:
+druzstvo.trim()
 
 }
 
 );
 
+}
+
+catch(error){
+
+alert(
+"Chyba při úpravě:\n"+
+error.message
+);
+
+}
+
 };
 
 
-/* SMAZAT */
+/* =========================================
+   SMAZAT
+========================================= */
 
-window.smazZavodnika=async function(id){
+window.smazZavodnika=
+async function(id){
 
 if(
 !confirm(
@@ -1609,25 +2381,63 @@ if(
 return;
 
 
+try{
+
 await deleteDoc(
-doc(db,"60m_prekazky",id)
+
+doc(
+db,
+"60m_prekazky",
+id
+)
+
 );
+
+}
+
+catch(error){
+
+alert(
+"Chyba při mazání:\n"+
+error.message
+);
+
+}
 
 };
 
 
-/* VYKRESLENÍ POKUSU */
+/* =========================================
+   POKUS
+========================================= */
 
-function pokusHTML(z,pokus){
+function pokusHTML(
+z,
+pokus
+){
 
 const np=
-pokus===1?z.np1:z.np2;
+pokus===1
+?
+z.np1
+:
+z.np2;
+
 
 const cas=
-pokus===1?z.pokus1:z.pokus2;
+pokus===1
+?
+z.pokus1
+:
+z.pokus2;
+
 
 const barva=
-pokus===1?"one":"two";
+pokus===1
+?
+"one"
+:
+"two";
 
 
 if(np){
@@ -1661,7 +2471,9 @@ Zrušit NP
 </div>
 
 <div class="attempt-status np-status">
+
 ✕ Neplatný pokus
+
 </div>
 
 </div>
@@ -1705,9 +2517,22 @@ NP
 
 </div>
 
-<div class="attempt-status ${cas?"valid":""}">
+<div
+class="attempt-status ${
+cas
+?
+"valid"
+:
+""
+}">
 
-${cas?"✓ Platný pokus":"Čas zatím není zadán"}
+${
+cas
+?
+"✓ Platný pokus"
+:
+"Čas zatím není zadán"
+}
 
 </div>
 
@@ -1718,19 +2543,29 @@ ${cas?"✓ Platný pokus":"Čas zatím není zadán"}
 }
 
 
-/* TABULKA */
+/* =========================================
+   TABULKA
+========================================= */
 
-function vykresli(kategorie,idTab){
+function vykresli(
+kategorie,
+idTab
+){
 
 const tab=
-document.getElementById(idTab);
+document.getElementById(
+idTab
+);
 
 tab.innerHTML="";
 
 
 const seznam=
 data
-.filter(z=>z.kategorie===kategorie)
+.filter(
+z=>
+z.kategorie===kategorie
+)
 .sort(
 (a,b)=>
 Number(a.poradi||0)-
@@ -1743,9 +2578,15 @@ if(!seznam.length){
 tab.innerHTML=`
 
 <tr>
-<td colspan="8" class="empty">
+
+<td
+colspan="8"
+class="empty">
+
 Zatím není přidaný žádný závodník.
+
 </td>
+
 </tr>
 
 `;
@@ -1756,13 +2597,15 @@ return;
 
 
 /*
-Pořadí v tabulce je pevné.
-Časy ho nemění.
+POŘADÍ SE NEMĚNÍ
+PODLE ČASU.
 */
 
-seznam.forEach((z,index)=>{
+seznam.forEach(
+(z,index)=>{
 
-const best=nejlepsi(z);
+const best=
+nejlepsi(z);
 
 
 let bestHTML="—";
@@ -1774,15 +2617,24 @@ z.np2
 ){
 
 bestHTML=
-`<span class="best best-np">NP</span>`;
+`
+<span class="best best-np">
+NP
+</span>
+`;
 
 }
-else if(best!==null){
+
+else if(
+best!==null
+){
 
 bestHTML=
-`<span class="best">
+`
+<span class="best">
 ${cisloNaCas(best)}
-</span>`;
+</span>
+`;
 
 }
 
@@ -1792,25 +2644,39 @@ tab.innerHTML+=`
 <tr>
 
 <td class="place">
+
 ${index+1}.
+
 </td>
 
-<td>${z.prijmeni}</td>
-
-<td>${z.jmeno}</td>
-
-<td>${z.druzstvo}</td>
+<td>
+${z.prijmeni}
+</td>
 
 <td>
+${z.jmeno}
+</td>
+
+<td>
+${z.druzstvo}
+</td>
+
+<td>
+
 ${pokusHTML(z,1)}
+
 </td>
 
 <td>
+
 ${pokusHTML(z,2)}
+
 </td>
 
 <td>
+
 ${bestHTML}
+
 </td>
 
 <td>
@@ -1818,13 +2684,17 @@ ${bestHTML}
 <button
 class="action"
 onclick="editZavodnik('${z.id}')">
+
 ✏️
+
 </button>
 
 <button
 class="action"
 onclick="smazZavodnika('${z.id}')">
+
 🗑️
+
 </button>
 
 </td>
@@ -1838,7 +2708,9 @@ onclick="smazZavodnika('${z.id}')">
 }
 
 
-/* RENDER */
+/* =========================================
+   RENDER
+========================================= */
 
 function render(){
 
@@ -1865,14 +2737,24 @@ vykresli(
 }
 
 
-/* HLÁŠKA */
+/* =========================================
+   HLÁŠKA
+========================================= */
 
-function zobrazZpravu(text,chyba){
+function zobrazZpravu(
+text,
+chyba
+){
 
 const el=
-document.getElementById("message");
+document.getElementById(
+"message"
+);
 
-el.textContent=text;
+
+el.textContent=
+text;
+
 
 el.className=
 chyba
@@ -1884,7 +2766,9 @@ chyba
 
 setTimeout(
 ()=>{
+
 el.textContent="";
+
 },
 4000
 );
@@ -1894,4 +2778,5 @@ el.textContent="";
 </script>
 
 </body>
-   </html> 
+
+</html>

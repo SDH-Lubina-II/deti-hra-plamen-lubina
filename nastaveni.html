@@ -6,354 +6,336 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Výsledky – SDH Lubina II–Větřkovice</title>
+<title>Nastavení – SDH Lubina II–Větřkovice</title>
 
 <style>
 
 *{
-box-sizing:border-box;
+    box-sizing:border-box;
 }
 
 body{
-margin:0;
-font-family:Arial,sans-serif;
-min-height:100vh;
-color:white;
+    margin:0;
+    font-family:Arial,sans-serif;
+    min-height:100vh;
+    color:white;
 
-background:
-radial-gradient(circle at top right,#5b1010 0%,transparent 35%),
-linear-gradient(145deg,#090d13,#151b24);
+    background:
+        radial-gradient(
+            circle at top right,
+            #5b1010 0%,
+            transparent 35%
+        ),
+        linear-gradient(
+            145deg,
+            #090d13,
+            #151b24
+        );
 }
 
 .app{
-max-width:1250px;
-margin:auto;
-padding:20px 16px 50px;
-}
-
-.header{
-text-align:center;
-padding:15px 10px 25px;
-}
-
-.logo{
-font-size:42px;
-margin-bottom:10px;
-}
-
-.header h1{
-font-size:23px;
-line-height:1.35;
-margin:0;
-}
-
-.header h1 span{
-color:#ef3333;
-}
-
-.district{
-margin-top:8px;
-color:#8995a6;
-font-size:14px;
+    max-width:700px;
+    margin:auto;
+    padding:20px 16px 40px;
 }
 
 .back{
-border:1px solid #394455;
-background:transparent;
-color:#aeb9c8;
-padding:10px 15px;
-border-radius:11px;
-cursor:pointer;
-margin-bottom:15px;
+    border:1px solid #394455;
+    background:transparent;
+    color:#aeb9c8;
+    padding:10px 15px;
+    border-radius:11px;
+    cursor:pointer;
+    margin-bottom:15px;
 }
 
-
-/* TISK */
-
-.print-button{
-width:100%;
-border:0;
-border-radius:13px;
-padding:14px 18px;
-background:#d72f2f;
-color:white;
-font-weight:bold;
-font-size:16px;
-cursor:pointer;
-margin-bottom:18px;
+.header{
+    text-align:center;
+    padding:15px 10px 25px;
 }
 
-
-/* KARTY */
-
-.card{
-background:rgba(255,255,255,.055);
-border:1px solid rgba(255,255,255,.10);
-border-radius:22px;
-padding:20px;
-margin-bottom:18px;
-}
-
-.discipline-title{
-font-size:24px;
-font-weight:bold;
-padding-bottom:13px;
-margin-bottom:16px;
-border-bottom:1px solid rgba(255,255,255,.10);
-}
-
-.category-title{
-font-size:19px;
-font-weight:bold;
-margin:20px 0 10px;
-}
-
-
-/* TABULKY */
-
-.table-wrap{
-overflow-x:auto;
-}
-
-table{
-width:100%;
-border-collapse:collapse;
-min-width:700px;
-}
-
-th{
-padding:12px 9px;
-background:#b92828;
-font-size:13px;
-white-space:nowrap;
-}
-
-td{
-padding:10px 9px;
-border-bottom:1px solid rgba(255,255,255,.08);
-text-align:center;
-color:#dbe2eb;
-}
-
-td.name{
-text-align:left;
-font-weight:bold;
-}
-
-.result{
-font-size:19px;
-font-weight:bold;
-color:#ffd166;
-}
-
-.np{
-color:#ff6666;
-font-weight:bold;
-}
-
-.empty{
-text-align:center;
-padding:25px;
-color:#718096;
-}
-
-
-/* MEDAILE */
-
-.medal{
-width:42px;
-height:42px;
-display:inline-flex;
-align-items:center;
-justify-content:center;
-}
-
-.medal svg{
-width:42px;
-height:42px;
-}
-
-.normal-place{
-font-size:17px;
-font-weight:bold;
-color:#9aa6b5;
-}
-
-
-/* TISKOVÉ MENU */
-
-.print-modal{
-display:none;
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.85);
-z-index:1000;
-padding:15px;
-overflow:auto;
-}
-
-.print-box{
-max-width:600px;
-margin:30px auto;
-background:#151b24;
-border:1px solid #394455;
-border-radius:22px;
-padding:20px;
-}
-
-.print-box h2{
-margin-top:0;
-}
-
-.print-info{
-color:#8995a6;
-font-size:13px;
-line-height:1.5;
-margin-bottom:18px;
-}
-
-.print-item{
-display:flex;
-align-items:center;
-gap:12px;
-padding:13px;
-margin-bottom:8px;
-background:#101722;
-border:1px solid #303947;
-border-radius:11px;
-cursor:pointer;
-}
-
-.print-item input{
-width:20px;
-height:20px;
-}
-
-.print-actions{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
-margin-top:20px;
-}
-
-.print-actions button{
-padding:13px;
-border-radius:10px;
-font-weight:bold;
-cursor:pointer;
-}
-
-.cancel{
-border:1px solid #394455;
-background:#252e3c;
-color:white;
-}
-
-.print-confirm{
-border:0;
-background:#d72f2f;
-color:white;
-}
-
-
-/* STAV */
-
-.status{
-text-align:center;
-color:#68778b;
-font-size:12px;
-margin-top:25px;
-}
-
-.online{
-display:inline-block;
-width:7px;
-height:7px;
-border-radius:50%;
-background:#36d399;
-margin-right:6px;
-box-shadow:0 0 9px #36d399;
-}
-
-
-/* MOBIL */
-
-@media(max-width:700px){
-
-.app{
-padding:15px 10px 40px;
-}
-
-.card{
-padding:15px;
+.logo{
+    font-size:42px;
+    margin-bottom:10px;
 }
 
 .header h1{
-font-size:20px;
-}
-
-.discipline-title{
-font-size:21px;
-}
-
-}
-
-
-/* TISK */
-
-@media print{
-
-body{
-background:white;
-color:black;
-}
-
-.no-print{
-display:none!important;
-}
-
-.card{
-background:white;
-border:0;
-padding:0;
-margin-bottom:30px;
-}
-
-.header h1{
-color:black;
+    font-size:23px;
+    line-height:1.35;
+    margin:0;
 }
 
 .header h1 span{
-color:#b92828;
+    color:#ef3333;
 }
 
 .district{
-color:#555;
+    margin-top:7px;
+    color:#8995a6;
+    font-size:14px;
 }
 
-.discipline-title,
-.category-title{
-color:black;
+.card{
+    background:rgba(255,255,255,.055);
+    border:1px solid rgba(255,255,255,.10);
+    border-radius:22px;
+    padding:20px;
+    margin-bottom:16px;
 }
 
-th{
-background:#b92828!important;
-color:white!important;
+.card h2{
+    margin:0 0 8px;
+    font-size:24px;
 }
 
-td{
-color:black;
-border-bottom:1px solid #ccc;
+.subtitle{
+    color:#8995a6;
+    font-size:14px;
+    margin-bottom:18px;
 }
 
-.result{
-color:#9b7000;
+.setting{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    padding:17px 0;
+    border-bottom:1px solid rgba(255,255,255,.08);
 }
 
-.np{
-color:#c00;
+.setting:last-child{
+    border-bottom:0;
 }
 
+.setting-info{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.setting-icon{
+    font-size:32px;
+    width:42px;
+    text-align:center;
+}
+
+.setting-name{
+    font-size:17px;
+    font-weight:bold;
+}
+
+.setting-description{
+    color:#8995a6;
+    font-size:13px;
+    margin-top:4px;
+}
+
+/* SWITCH */
+
+.switch{
+    position:relative;
+    display:inline-block;
+    width:54px;
+    height:30px;
+    flex-shrink:0;
+}
+
+.switch input{
+    opacity:0;
+    width:0;
+    height:0;
+}
+
+.slider{
+    position:absolute;
+    cursor:pointer;
+    inset:0;
+    background:#303947;
+    border-radius:30px;
+    transition:.2s;
+}
+
+.slider:before{
+    content:"";
+    position:absolute;
+    height:22px;
+    width:22px;
+    left:4px;
+    top:4px;
+    background:white;
+    border-radius:50%;
+    transition:.2s;
+}
+
+input:checked + .slider{
+    background:#b92828;
+}
+
+input:checked + .slider:before{
+    transform:translateX(24px);
+}
+
+/* ÚDAJE */
+
+.form-row{
+    margin-bottom:15px;
+}
+
+.form-row:last-child{
+    margin-bottom:0;
+}
+
+.form-row label{
+    display:block;
+    color:#aeb9c8;
+    font-size:13px;
+    margin-bottom:7px;
+}
+
+input[type="text"],
+input[type="date"]{
+    width:100%;
+    padding:13px;
+    border-radius:12px;
+    border:1px solid #354052;
+    background:#101722;
+    color:white;
+    font-size:15px;
+}
+
+.primary{
+    width:100%;
+    border:0;
+    border-radius:12px;
+    padding:14px 18px;
+    background:#d72f2f;
+    color:white;
+    font-weight:bold;
+    font-size:15px;
+    cursor:pointer;
+}
+
+.primary:hover{
+    background:#ed3a3a;
+}
+
+/* SPRÁVA VÝSLEDKŮ */
+
+.management-button{
+
+    width:100%;
+
+    border:1px solid rgba(255,255,255,.10);
+
+    border-radius:15px;
+
+    padding:16px;
+
+    margin-bottom:10px;
+
+    background:#101722;
+
+    color:white;
+
+    text-align:left;
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    font-family:inherit;
+
+    transition:.2s;
+}
+
+.management-button:hover{
+    background:#182231;
+}
+
+.management-icon{
+    font-size:30px;
+    width:40px;
+    text-align:center;
+}
+
+.management-name{
+    font-size:16px;
+    font-weight:bold;
+}
+
+.management-description{
+    color:#8995a6;
+    font-size:13px;
+    margin-top:4px;
+}
+
+/* MAZÁNÍ */
+
+.delete-button{
+
+    width:100%;
+
+    border:1px solid #7d3030;
+
+    border-radius:12px;
+
+    padding:12px 15px;
+
+    margin-bottom:15px;
+
+    background:#35191c;
+
+    color:#ffb4b4;
+
+    text-align:center;
+
+    cursor:pointer;
+
+    font-family:inherit;
+
+    font-weight:bold;
+
+}
+
+.delete-button:hover{
+    background:#4a2024;
+}
+
+/* ZPRÁVA */
+
+.message{
+    text-align:center;
+    font-size:13px;
+    color:#36d399;
+    min-height:18px;
+    margin:14px 0;
+}
+
+.error{
+    color:#ef6b6b;
+}
+
+/* STATUS */
+
+.status{
+    text-align:center;
+    color:#68778b;
+    font-size:12px;
+    margin-top:20px;
+}
+
+.online{
+    display:inline-block;
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#36d399;
+    margin-right:6px;
+    box-shadow:0 0 9px #36d399;
 }
 
 </style>
@@ -366,7 +348,7 @@ color:#c00;
 <div class="app">
 
 
-<div class="no-print">
+<!-- ZPĚT -->
 
 <button
 class="back"
@@ -376,13 +358,13 @@ onclick="window.location.href='index.html'">
 
 </button>
 
-</div>
 
+<!-- HLAVIČKA -->
 
 <header class="header">
 
 <div class="logo">
-🏆
+⚙️
 </div>
 
 <h1>
@@ -393,383 +375,340 @@ LUBINA II–VĚTŘKOVICE
 
 </h1>
 
-<div
-class="district"
-id="infoZavodu">
+<div class="district">
 
-okres Nový Jičín · Výsledky
+okres Nový Jičín · Nastavení
 
 </div>
 
 </header>
 
 
-<div class="no-print">
+<!-- VIDITELNOST -->
 
-<button
-class="print-button"
-onclick="otevritTisk()">
+<div class="card">
 
-Tisk výsledků
+<h2>
+⚙️ Viditelnost soutěží
+</h2>
 
-</button>
-
+<div class="subtitle">
+Změna se uloží automaticky.
 </div>
 
 
 <!-- POŽÁRNÍ ÚTOK -->
 
-<div
-id="blokUtok"
-class="card">
+<div class="setting">
 
-<div class="discipline-title">
+<div class="setting-info">
+
+<div class="setting-icon">
+🚒
+</div>
+
+<div>
+
+<div class="setting-name">
 Požární útok
 </div>
 
-
-<div class="category-title">
-Mladší
+<div class="setting-description">
+Mladší · Starší
 </div>
 
-<div class="table-wrap">
-
-<table>
-
-<thead>
-
-<tr>
-<th>Pořadí</th>
-<th>Družstvo</th>
-<th>LP</th>
-<th>PP</th>
-<th>Výsledný čas</th>
-</tr>
-
-</thead>
-
-<tbody id="utokMladsi"></tbody>
-
-</table>
+</div>
 
 </div>
 
 
-<div class="category-title">
-Starší
-</div>
+<label class="switch">
 
-<div class="table-wrap">
+<input
+type="checkbox"
+id="pozarniUtok">
 
-<table>
+<span class="slider"></span>
 
-<thead>
-
-<tr>
-<th>Pořadí</th>
-<th>Družstvo</th>
-<th>LP</th>
-<th>PP</th>
-<th>Výsledný čas</th>
-</tr>
-
-</thead>
-
-<tbody id="utokStarsi"></tbody>
-
-</table>
-
-</div>
+</label>
 
 </div>
 
 
 <!-- ŠTAFETA -->
 
-<div
-id="blokStafeta"
-class="card">
+<div class="setting">
 
-<div class="discipline-title">
+<div class="setting-info">
+
+<div class="setting-icon">
+🏃
+</div>
+
+<div>
+
+<div class="setting-name">
 Štafeta dvojic
 </div>
 
-
-<div class="category-title">
-Mladší
+<div class="setting-description">
+Mladší · Starší
 </div>
 
-<div class="table-wrap">
-
-<table>
-
-<thead>
-
-<tr>
-<th>Pořadí</th>
-<th>Družstvo</th>
-<th>Štafeta 1</th>
-<th>Štafeta 2</th>
-<th>Celkem</th>
-</tr>
-
-</thead>
-
-<tbody id="stafetaMladsi"></tbody>
-
-</table>
+</div>
 
 </div>
 
 
-<div class="category-title">
-Starší
-</div>
+<label class="switch">
 
-<div class="table-wrap">
+<input
+type="checkbox"
+id="stafeta">
 
-<table>
+<span class="slider"></span>
 
-<thead>
-
-<tr>
-<th>Pořadí</th>
-<th>Družstvo</th>
-<th>Štafeta 1</th>
-<th>Štafeta 2</th>
-<th>Celkem</th>
-</tr>
-
-</thead>
-
-<tbody id="stafetaStarsi"></tbody>
-
-</table>
-
-</div>
+</label>
 
 </div>
 
 
 <!-- 60 M -->
 
-<div
-id="blok60"
-class="card">
+<div class="setting">
 
-<div class="discipline-title">
+<div class="setting-info">
+
+<div class="setting-icon">
+🏃‍♂️
+</div>
+
+<div>
+
+<div class="setting-name">
 60 m překážek
 </div>
 
-
-<div class="category-title">
-Mladší chlapci
+<div class="setting-description">
+Jednotlivci · Mladší · Starší
 </div>
-
-<div class="table-wrap">
-
-<table>
-
-<thead>
-
-<tr>
-<th>Pořadí</th>
-<th>Závodník</th>
-<th>Družstvo</th>
-<th>Pokus 1</th>
-<th>Pokus 2</th>
-<th>Nejlepší</th>
-</tr>
-
-</thead>
-
-<tbody id="m60ch"></tbody>
-
-</table>
-
-</div>
-
-
-<div class="category-title">
-Mladší dívky
-</div>
-
-<div class="table-wrap">
-
-<table>
-
-<thead>
-
-<tr>
-<th>Pořadí</th>
-<th>Závodník</th>
-<th>Družstvo</th>
-<th>Pokus 1</th>
-<th>Pokus 2</th>
-<th>Nejlepší</th>
-</tr>
-
-</thead>
-
-<tbody id="m60div"></tbody>
-
-</table>
-
-</div>
-
-
-<div class="category-title">
-Starší chlapci
-</div>
-
-<div class="table-wrap">
-
-<table>
-
-<thead>
-
-<tr>
-<th>Pořadí</th>
-<th>Závodník</th>
-<th>Družstvo</th>
-<th>Pokus 1</th>
-<th>Pokus 2</th>
-<th>Nejlepší</th>
-</tr>
-
-</thead>
-
-<tbody id="s60ch"></tbody>
-
-</table>
-
-</div>
-
-
-<div class="category-title">
-Starší dívky
-</div>
-
-<div class="table-wrap">
-
-<table>
-
-<thead>
-
-<tr>
-<th>Pořadí</th>
-<th>Závodník</th>
-<th>Družstvo</th>
-<th>Pokus 1</th>
-<th>Pokus 2</th>
-<th>Nejlepší</th>
-</tr>
-
-</thead>
-
-<tbody id="s60div"></tbody>
-
-</table>
 
 </div>
 
 </div>
 
 
-<div class="status no-print">
+<label class="switch">
+
+<input
+type="checkbox"
+id="prekazky60">
+
+<span class="slider"></span>
+
+</label>
+
+</div>
+
+</div>
+
+
+<!-- ÚDAJE ZÁVODU -->
+
+<div class="card">
+
+<h2>
+📝 Údaje závodu
+</h2>
+
+<div class="subtitle">
+Tyto údaje se zobrazí v hlavičce aplikace.
+</div>
+
+
+<div class="form-row">
+
+<label for="datum">
+Datum soutěže
+</label>
+
+<input
+type="date"
+id="datum">
+
+</div>
+
+
+<div class="form-row">
+
+<label for="rocnik">
+Ročník
+</label>
+
+<input
+type="text"
+id="rocnik"
+placeholder="Například 2026/2027">
+
+</div>
+
+
+<div class="form-row">
+
+<label for="misto">
+Místo konání
+</label>
+
+<input
+type="text"
+id="misto"
+placeholder="Například Lubina">
+
+</div>
+
+</div>
+
+
+<button
+class="primary"
+onclick="ulozitUdaje()">
+
+💾 Uložit údaje závodu
+
+</button>
+
+
+<div
+id="message"
+class="message">
+</div>
+
+
+<!-- SPRÁVA VÝSLEDKŮ -->
+
+<div class="card">
+
+<h2>
+📋 Správa výsledků
+</h2>
+
+<div class="subtitle">
+Otevření soutěže nebo smazání jejích výsledků.
+</div>
+
+
+<!-- POŽÁRNÍ ÚTOK -->
+
+<button
+class="management-button"
+onclick="window.location.href='pozarniutok.html'">
+
+<div class="management-icon">
+🚒
+</div>
+
+<div>
+
+<div class="management-name">
+Požární útok
+</div>
+
+<div class="management-description">
+Mladší · Starší · Otevřít správu výsledků
+</div>
+
+</div>
+
+</button>
+
+
+<button
+class="delete-button"
+onclick="smazatVysledky('pozarni_utok','Požární útok')">
+
+Smazat všechny výsledky – Požární útok
+
+</button>
+
+
+<!-- ŠTAFETA -->
+
+<button
+class="management-button"
+onclick="window.location.href='stafetadvojic.html'">
+
+<div class="management-icon">
+🏃
+</div>
+
+<div>
+
+<div class="management-name">
+Štafeta dvojic
+</div>
+
+<div class="management-description">
+Mladší · Starší · Otevřít správu výsledků
+</div>
+
+</div>
+
+</button>
+
+
+<button
+class="delete-button"
+onclick="smazatVysledky('stafety_dvojic','Štafeta dvojic')">
+
+Smazat všechny výsledky – Štafeta dvojic
+
+</button>
+
+
+<!-- 60 M -->
+
+<button
+class="management-button"
+onclick="window.location.href='60mprekazky.html'">
+
+<div class="management-icon">
+🏃‍♂️
+</div>
+
+<div>
+
+<div class="management-name">
+60 m překážek
+</div>
+
+<div class="management-description">
+Jednotlivci · Mladší · Starší · Otevřít správu výsledků
+</div>
+
+</div>
+
+</button>
+
+
+<button
+class="delete-button"
+onclick="smazatVysledky('60m_prekazky','60 m překážek')">
+
+Smazat všechny výsledky – 60 m překážek
+
+</button>
+
+</div>
+
+
+<div class="status">
 
 <span class="online"></span>
 
-Živá aktualizace výsledků
+Připojeno k Firebase
 
 </div>
 
-
-</div>
-
-
-<!-- MODAL TISKU -->
-
-<div
-id="printModal"
-class="print-modal no-print">
-
-<div class="print-box">
-
-<h2>
-Tisk výsledků
-</h2>
-
-<div class="print-info">
-
-Vyber výsledky, které chceš vytisknout.
-
-</div>
-
-
-<label class="print-item">
-
-<input
-type="checkbox"
-class="printCheck"
-data-block="blokUtok">
-
-<span>
-Požární útok
-</span>
-
-</label>
-
-
-<label class="print-item">
-
-<input
-type="checkbox"
-class="printCheck"
-data-block="blokStafeta">
-
-<span>
-Štafeta dvojic
-</span>
-
-</label>
-
-
-<label class="print-item">
-
-<input
-type="checkbox"
-class="printCheck"
-data-block="blok60">
-
-<span>
-60 m překážek
-</span>
-
-</label>
-
-
-<div class="print-actions">
-
-<button
-class="cancel"
-onclick="zavritTisk()">
-
-Zrušit
-
-</button>
-
-<button
-class="print-confirm"
-onclick="pripravitTisk()">
-
-Vytisknout
-
-</button>
-
-</div>
-
-</div>
 
 </div>
 
@@ -785,16 +724,21 @@ initializeApp
 from
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
+
 import {
 getFirestore,
-collection,
-onSnapshot,
 doc,
-getDoc
+getDoc,
+setDoc,
+collection,
+getDocs,
+writeBatch
 }
 from
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
+
+/* FIREBASE KONFIGURACE */
 
 const firebaseConfig={
 
@@ -820,1364 +764,463 @@ appId:
 
 
 const app=
-initializeApp(firebaseConfig);
+initializeApp(
+firebaseConfig
+);
 
 const db=
 getFirestore(app);
 
 
-/* DATA */
+/* DOKUMENT NASTAVENÍ */
 
-let utok=[];
-let stafeta=[];
-let prek60=[];
-
-
-/*
-VIDITELNOST VEŘEJNÝCH VÝSLEDKŮ
-
-DŮLEŽITÉ:
-TOTO NEMĚNÍ INDEX.
-POUZE URČUJE, CO SE ZOBRAZÍ
-NA TÉTO STRÁNCE.
-*/
-
-let viditelnost={
-
-pozarniUtok:true,
-stafeta:true,
-prekazky60:true
-
-};
-
-
-/* =========================
-   NAČTENÍ NASTAVENÍ
-========================= */
-
-async function nacistViditelnost(){
-
-try{
-
-const ref=
+const nastaveniRef=
 doc(
 db,
 "nastaveni",
 "viditelnost"
 );
 
+
+/* ELEMENTY */
+
+const pozarni=
+document.getElementById(
+"pozarniUtok"
+);
+
+const stafeta=
+document.getElementById(
+"stafeta"
+);
+
+const prekazky=
+document.getElementById(
+"prekazky60"
+);
+
+
+/* NAČTENÍ NASTAVENÍ */
+
+async function nacistNastaveni(){
+
+try{
+
 const snap=
-await getDoc(ref);
+await getDoc(
+nastaveniRef
+);
 
 
-if(snap.exists()){
+if(!snap.exists()){
+
+/*
+Výchozí stav:
+všechny soutěže jsou zapnuté.
+*/
+
+pozarni.checked=true;
+stafeta.checked=true;
+prekazky.checked=true;
+
+return;
+
+}
+
 
 const data=
 snap.data();
 
 
 /*
-Pokud hodnota není nastavena,
-zůstává true.
+TOTO ZŮSTÁVÁ STEJNÉ.
+PŘEPÍNAČE OVLIVŇUJÍ
+POUZE VIDITELNOST SOUTĚŽÍ.
 */
 
-viditelnost.pozarniUtok=
-data.pozarniUtok!==false;
-
-viditelnost.stafeta=
-data.stafeta!==false;
-
-viditelnost.prekazky60=
-data.prekazky60!==false;
-
-}
+pozarni.checked=
+data.pozarniUtok !== false;
 
 
-/*
-APLIKACE VIDITELNOSTI
-*/
+stafeta.checked=
+data.stafeta !== false;
 
-aplikovatViditelnost();
+
+prekazky.checked=
+data.prekazky60 !== false;
+
+
+document.getElementById("datum").value=
+data.datum || "";
+
+
+document.getElementById("rocnik").value=
+data.rocnik || "";
+
+
+document.getElementById("misto").value=
+data.misto || "";
 
 }
 
 catch(error){
 
 console.error(
-"Chyba načítání viditelnosti:",
+"Chyba načítání:",
 error
 );
 
-/*
-Při chybě raději nic
-neschováme.
-*/
-
-viditelnost.pozarniUtok=true;
-viditelnost.stafeta=true;
-viditelnost.prekazky60=true;
-
-aplikovatViditelnost();
-
-}
-
-}
-
-
-/* =========================
-   VIDITELNOST
-========================= */
-
-function aplikovatViditelnost(){
-
-const utokBlock=
-document.getElementById(
-"blokUtok"
-);
-
-const stafetaBlock=
-document.getElementById(
-"blokStafeta"
-);
-
-const m60Block=
-document.getElementById(
-"blok60"
-);
-
-
-utokBlock.style.display=
-viditelnost.pozarniUtok
-?
-"block"
-:
-"none";
-
-
-stafetaBlock.style.display=
-viditelnost.stafeta
-?
-"block"
-:
-"none";
-
-
-m60Block.style.display=
-viditelnost.prekazky60
-?
-"block"
-:
-"none";
-
-}
-
-
-/* =========================
-   MEDAILE
-========================= */
-
-function medaile(poradi){
-
-if(poradi===1){
-
-return `
-<span class="medal">
-
-<svg viewBox="0 0 64 64">
-
-<path
-d="M19 4 L29 4 L32 22 L22 22"
-fill="#d6a800"/>
-
-<path
-d="M35 4 L45 4 L42 22 L32 22"
-fill="#ffd84a"/>
-
-<circle
-cx="32"
-cy="39"
-r="18"
-fill="#ffd700"
-stroke="#fff0a0"
-stroke-width="3"/>
-
-<text
-x="32"
-y="45"
-text-anchor="middle"
-font-size="17"
-font-weight="bold"
-fill="#8a6500">
-1
-</text>
-
-</svg>
-
-</span>
-`;
-
-}
-
-
-if(poradi===2){
-
-return `
-<span class="medal">
-
-<svg viewBox="0 0 64 64">
-
-<path
-d="M19 4 L29 4 L32 22 L22 22"
-fill="#8e969f"/>
-
-<path
-d="M35 4 L45 4 L42 22 L32 22"
-fill="#cfd4da"/>
-
-<circle
-cx="32"
-cy="39"
-r="18"
-fill="#cfd3d8"
-stroke="#f1f3f5"
-stroke-width="3"/>
-
-<text
-x="32"
-y="45"
-text-anchor="middle"
-font-size="17"
-font-weight="bold"
-fill="#69727c">
-2
-</text>
-
-</svg>
-
-</span>
-`;
-
-}
-
-
-if(poradi===3){
-
-return `
-<span class="medal">
-
-<svg viewBox="0 0 64 64">
-
-<path
-d="M19 4 L29 4 L32 22 L22 22"
-fill="#9c5b24"/>
-
-<path
-d="M35 4 L45 4 L42 22 L32 22"
-fill="#c47b38"/>
-
-<circle
-cx="32"
-cy="39"
-r="18"
-fill="#cd7f32"
-stroke="#e7a15c"
-stroke-width="3"/>
-
-<text
-x="32"
-y="45"
-text-anchor="middle"
-font-size="17"
-font-weight="bold"
-fill="#713b14">
-3
-</text>
-
-</svg>
-
-</span>
-`;
-
-}
-
-
-return `
-<span class="normal-place">
-${poradi}.
-</span>
-`;
-
-}
-
-
-/* =========================
-   ČAS
-========================= */
-
-function casCislo(cas){
-
-if(
-cas===null||
-cas===undefined||
-cas===""
-)
-return null;
-
-
-const casti=
-String(cas)
-.trim()
-.split(":");
-
-
-if(casti.length!==2)
-return null;
-
-
-const s=Number(casti[0]);
-const st=Number(casti[1]);
-
-
-if(
-isNaN(s)||
-isNaN(st)||
-s<0||
-st<0||
-st>99
-)
-return null;
-
-
-return s*100+st;
-
-}
-
-
-function casText(cislo){
-
-if(cislo===null)
-return "—";
-
-
-const s=
-Math.floor(cislo/100);
-
-const st=
-cislo%100;
-
-
-return s+
-":"+
-String(st).padStart(2,"0");
-
-}
-
-
-function esc(text){
-
-return String(text||"")
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
-
-}
-
-
-/* =========================
-   POŽÁRNÍ ÚTOK
-========================= */
-
-function vysledekUtoku(z){
-
-if(z.np)
-return null;
-
-
-const lp=
-casCislo(z.lp);
-
-const pp=
-casCislo(z.pp);
-
-
-if(lp===null&&pp===null)
-return null;
-
-if(lp===null)
-return pp;
-
-if(pp===null)
-return lp;
-
-
-return Math.max(lp,pp);
-
-}
-
-
-function vykresliUtok(kat,id){
-
-const tab=
-document.getElementById(id);
-
-
-const seznam=
-utok.filter(
-z=>z.kategorie===kat
-);
-
-
-const platne=
-seznam
-.filter(
-z=>vysledekUtoku(z)!==null
-)
-.sort(
-(a,b)=>
-vysledekUtoku(a)-
-vysledekUtoku(b)
-);
-
-
-const np=
-seznam.filter(
-z=>z.np
-);
-
-
-const vse=[
-...platne,
-...np
-];
-
-
-tab.innerHTML="";
-
-
-if(!vse.length){
-
-tab.innerHTML=`
-
-<tr>
-
-<td colspan="5" class="empty">
-
-Zatím není žádný výsledek.
-
-</td>
-
-</tr>
-
-`;
-
-return;
-
-}
-
-
-vse.forEach(
-(z,index)=>{
-
-const poradi=
-index+1;
-
-
-tab.innerHTML+=`
-
-<tr>
-
-<td>
-${medaile(poradi)}
-</td>
-
-<td class="name">
-${esc(z.druzstvo)}
-</td>
-
-<td>
-${esc(z.lp||"—")}
-</td>
-
-<td>
-${esc(z.pp||"—")}
-</td>
-
-<td class="result">
-
-${
-z.np
-?
-`<span class="np">NP</span>`
-:
-casText(
-vysledekUtoku(z)
-)
-}
-
-</td>
-
-</tr>
-
-`;
-
-});
-
-}
-
-
-/* =========================
-   ŠTAFETA
-========================= */
-
-function mereni(z,relay,measure){
-
-if(
-z[
-"s"+
-relay+
-"np"+
-measure
-]
-)
-return null;
-
-
-const cas=
-casCislo(
-z[
-"s"+
-relay+
-"m"+
-measure
-]
-);
-
-
-if(cas===null)
-return null;
-
-
-const trest=
-Number(
-z[
-"s"+
-relay+
-"t"+
-measure
-]
-)||0;
-
-
-return cas+
-trest*1000;
-
-}
-
-
-function stafetaVysledek(z,relay){
-
-if(
-relay===2&&
-z.s2bezi===false
-)
-return null;
-
-
-const a=
-mereni(z,relay,1);
-
-const b=
-mereni(z,relay,2);
-
-
-if(a===null&&b===null){
-
-if(
-z["s"+relay+"np1"]&&
-z["s"+relay+"np2"]
-)
-return "NP";
-
-return null;
-
-}
-
-
-if(a===null)
-return b;
-
-if(b===null)
-return a;
-
-
-return Math.max(a,b);
-
-}
-
-
-function celkemStafeta(z){
-
-const a=
-stafetaVysledek(z,1);
-
-const b=
-stafetaVysledek(z,2);
-
-
-if(a==="NP")
-return b;
-
-if(b==="NP")
-return a;
-
-if(a===null&&b===null)
-return null;
-
-if(a===null)
-return b;
-
-if(b===null)
-return a;
-
-
-return Math.min(a,b);
-
-}
-
-
-function vykresliStafetu(kat,id){
-
-const tab=
-document.getElementById(id);
-
-
-const seznam=
-stafeta.filter(
-z=>z.kategorie===kat
-);
-
-
-const platne=
-seznam
-.filter(
-z=>{
-
-const v=
-celkemStafeta(z);
-
-return v!==null&&v!=="NP";
-
-}
-)
-.sort(
-(a,b)=>
-celkemStafeta(a)-
-celkemStafeta(b)
-);
-
-
-const np=
-seznam.filter(
-z=>
-celkemStafeta(z)==="NP"
-);
-
-
-const vse=[
-...platne,
-...np
-];
-
-
-tab.innerHTML="";
-
-
-if(!vse.length){
-
-tab.innerHTML=`
-
-<tr>
-
-<td colspan="5" class="empty">
-
-Zatím není žádný výsledek.
-
-</td>
-
-</tr>
-
-`;
-
-return;
-
-}
-
-
-vse.forEach(
-(z,index)=>{
-
-const poradi=
-index+1;
-
-const s1=
-stafetaVysledek(z,1);
-
-const s2=
-stafetaVysledek(z,2);
-
-const celkem=
-celkemStafeta(z);
-
-
-tab.innerHTML+=`
-
-<tr>
-
-<td>
-${medaile(poradi)}
-</td>
-
-<td class="name">
-${esc(z.druzstvo)}
-</td>
-
-<td>
-
-${
-s1==="NP"
-?
-`<span class="np">NP</span>`
-:
-s1===null
-?
-"—"
-:
-casText(s1)
-}
-
-</td>
-
-<td>
-
-${
-s2==="NP"
-?
-`<span class="np">NP</span>`
-:
-s2===null
-?
-"—"
-:
-casText(s2)
-}
-
-</td>
-
-<td class="result">
-
-${
-celkem==="NP"
-?
-`<span class="np">NP</span>`
-:
-casText(celkem)
-}
-
-</td>
-
-</tr>
-
-`;
-
-});
-
-}
-
-
-/* =========================
-   60 M
-========================= */
-
-function nejlepsi60(z){
-
-let a=null;
-let b=null;
-
-
-if(!z.np1&&z.pokus1)
-a=
-casCislo(z.pokus1);
-
-
-if(!z.np2&&z.pokus2)
-b=
-casCislo(z.pokus2);
-
-
-if(a===null&&b===null)
-return null;
-
-if(a===null)
-return b;
-
-if(b===null)
-return a;
-
-
-return Math.min(a,b);
-
-}
-
-
-function vykresli60(kat,id){
-
-const tab=
-document.getElementById(id);
-
-
-const seznam=
-prek60.filter(
-z=>z.kategorie===kat
-);
-
-
-const platne=
-seznam
-.filter(
-z=>nejlepsi60(z)!==null
-)
-.sort(
-(a,b)=>
-nejlepsi60(a)-
-nejlepsi60(b)
-);
-
-
-const np=
-seznam.filter(
-z=>
-z.np1&&
-z.np2
-);
-
-
-const vse=[
-...platne,
-...np
-];
-
-
-tab.innerHTML="";
-
-
-if(!vse.length){
-
-tab.innerHTML=`
-
-<tr>
-
-<td colspan="6" class="empty">
-
-Zatím není žádný výsledek.
-
-</td>
-
-</tr>
-
-`;
-
-return;
-
-}
-
-
-vse.forEach(
-(z,index)=>{
-
-const poradi=
-index+1;
-
-const best=
-nejlepsi60(z);
-
-
-tab.innerHTML+=`
-
-<tr>
-
-<td>
-${medaile(poradi)}
-</td>
-
-<td class="name">
-
-${esc(
-(z.prijmeni||"")+
-" "+
-(z.jmeno||"")
-)}
-
-</td>
-
-<td>
-${esc(z.druzstvo)}
-</td>
-
-<td>
-
-${
-z.np1
-?
-`<span class="np">NP</span>`
-:
-esc(z.pokus1||"—")
-}
-
-</td>
-
-<td>
-
-${
-z.np2
-?
-`<span class="np">NP</span>`
-:
-esc(z.pokus2||"—")
-}
-
-</td>
-
-<td class="result">
-
-${
-best===null
-?
-`<span class="np">NP</span>`
-:
-casText(best)
-}
-
-</td>
-
-</tr>
-
-`;
-
-});
-
-}
-
-
-/* =========================
-   FIREBASE
-========================= */
-
-onSnapshot(
-
-collection(
-db,
-"pozarni_utok"
-),
-
-snap=>{
-
-utok=[];
-
-snap.forEach(
-d=>{
-
-utok.push({
-id:d.id,
-...d.data()
-});
-
-});
-
-
-vykresliUtok(
-"mladsi",
-"utokMladsi"
-);
-
-vykresliUtok(
-"starsi",
-"utokStarsi"
+zobrazZpravu(
+"Chyba při načítání nastavení.",
+true
 );
 
 }
 
-);
-
-
-onSnapshot(
-
-collection(
-db,
-"stafety_dvojic"
-),
-
-snap=>{
-
-stafeta=[];
-
-snap.forEach(
-d=>{
-
-stafeta.push({
-id:d.id,
-...d.data()
-});
-
-});
-
-
-vykresliStafetu(
-"mladsi",
-"stafetaMladsi"
-);
-
-vykresliStafetu(
-"starsi",
-"stafetaStarsi"
-);
-
 }
 
-);
 
+/* AUTOMATICKÉ ULOŽENÍ VIDITELNOSTI */
 
-onSnapshot(
-
-collection(
-db,
-"60m_prekazky"
-),
-
-snap=>{
-
-prek60=[];
-
-snap.forEach(
-d=>{
-
-prek60.push({
-id:d.id,
-...d.data()
-});
-
-});
-
-
-vykresli60(
-"mladsi_chlapci",
-"m60ch"
-);
-
-vykresli60(
-"mladsi_divky",
-"m60div"
-);
-
-vykresli60(
-"starsi_chlapci",
-"s60ch"
-);
-
-vykresli60(
-"starsi_divky",
-"s60div"
-);
-
-}
-
-);
-
-
-/* =========================
-   ÚDAJE ZÁVODU
-========================= */
-
-async function nacistUdaje(){
+async function ulozitViditelnost(){
 
 try{
 
-const ref=
-doc(
-db,
-"nastaveni",
-"viditelnost"
+await setDoc(
+
+nastaveniRef,
+
+{
+
+pozarniUtok:
+pozarni.checked,
+
+stafeta:
+stafeta.checked,
+
+prekazky60:
+prekazky.checked
+
+},
+
+{
+
+merge:true
+
+}
+
 );
 
-const snap=
-await getDoc(ref);
 
-
-if(!snap.exists())
-return;
-
-
-const data=
-snap.data();
-
-
-let text=
-"okres Nový Jičín · Výsledky";
-
-
-if(data.misto)
-text+=
-" · "+
-data.misto;
-
-
-if(data.datum){
-
-const c=
-data.datum.split("-");
-
-
-if(c.length===3){
-
-text+=
-" · "+
-c[2]+"."+
-c[1]+"."+
-c[0];
-
-}
-
-}
-
-
-document.getElementById(
-"infoZavodu"
-).textContent=text;
+zobrazZpravu(
+"✓ Nastavení soutěží uloženo.",
+false
+);
 
 }
 
 catch(error){
 
-console.error(error);
-
-}
-
-}
-
-
-/* =========================
-   TISK
-========================= */
-
-window.otevritTisk=function(){
-
-const modal=
-document.getElementById(
-"printModal"
+console.error(
+"Chyba ukládání:",
+error
 );
 
-modal.style.display="block";
+zobrazZpravu(
+"Chyba při ukládání.",
+true
+);
+
+}
+
+}
 
 
 /*
-Nabídneme jen soutěže,
-které jsou právě viditelné
-ve výsledcích.
+PŘEPÍNAČE ZŮSTÁVAJÍ
+STEJNĚ JAKO PŘEDTÍM.
 */
 
+pozarni.addEventListener(
+"change",
+ulozitViditelnost
+);
+
+stafeta.addEventListener(
+"change",
+ulozitViditelnost
+);
+
+prekazky.addEventListener(
+"change",
+ulozitViditelnost
+);
+
+
+/* ULOŽENÍ ÚDAJŮ ZÁVODU */
+
+window.ulozitUdaje=
+async function(){
+
+try{
+
+await setDoc(
+
+nastaveniRef,
+
+{
+
+datum:
 document
-.querySelectorAll(".printCheck")
-.forEach(
-check=>{
+.getElementById("datum")
+.value,
 
-const block=
-check.dataset.block;
+rocnik:
+document
+.getElementById("rocnik")
+.value
+.trim(),
 
-let viditelne=true;
+misto:
+document
+.getElementById("misto")
+.value
+.trim()
 
+},
 
-if(block==="blokUtok")
-viditelne=
-viditelnost.pozarniUtok;
+{
 
-if(block==="blokStafeta")
-viditelne=
-viditelnost.stafeta;
-
-if(block==="blok60")
-viditelne=
-viditelnost.prekazky60;
-
-
-check.parentElement.style.display=
-viditelne
-?
-"flex"
-:
-"none";
-
-
-check.checked=false;
+merge:true
 
 }
+
 );
+
+
+zobrazZpravu(
+"✓ Údaje závodu uloženy.",
+false
+);
+
+}
+
+catch(error){
+
+console.error(
+"Chyba ukládání:",
+error
+);
+
+zobrazZpravu(
+"Chyba při ukládání údajů.",
+true
+);
+
+}
 
 };
 
 
-window.zavritTisk=function(){
+/* ==================================================
+   SMAZÁNÍ VÝSLEDKŮ JEDNÉ SOUTĚŽE
+================================================== */
 
-document.getElementById(
-"printModal"
-).style.display="none";
+window.smazatVysledky=
+async function(
+kolekce,
+nazev
+){
 
-};
+/*
+PRVNÍ POTVRZENÍ
+*/
 
+const potvrzeni=
+confirm(
 
-window.pripravitTisk=function(){
+"POZOR!\n\n"+
+"Chceš opravdu smazat VŠECHNY výsledky soutěže:\n\n"+
+nazev+
+"\n\n"+
+"Tato akce smaže všechny závodníky a jejich výsledky z této soutěže.\n"+
+"Ostatní soutěže zůstanou beze změny."
 
-const vybrane=
-[
-...
-document.querySelectorAll(
-".printCheck:checked"
-)
-];
-
-
-if(!vybrane.length){
-
-alert(
-"Vyber alespoň jeden výsledek k tisku."
 );
 
+
+if(!potvrzeni)
 return;
 
-}
 
+/*
+DRUHÉ POTVRZENÍ
+*/
 
-const bloky=[
-"blokUtok",
-"blokStafeta",
-"blok60"
-];
+const druhePotvrzeni=
+confirm(
 
+"OPRAVDU SMAZAT?\n\n"+
+"Soutěž: "+
+nazev+
+"\n\n"+
+"Po potvrzení budou všechna data této soutěže odstraněna."
 
-bloky.forEach(
-id=>{
-
-document
-.getElementById(id)
-.dataset.printHidden="true";
-
-}
 );
 
 
-vybrane.forEach(
-check=>{
+if(!druhePotvrzeni)
+return;
 
-document
-.getElementById(
-check.dataset.block
+
+try{
+
+/*
+NAČTENÍ VŠECH DOKUMENTŮ
+*/
+
+const snap=
+await getDocs(
+collection(
+db,
+kolekce
 )
-.dataset.printHidden="false";
-
-}
 );
 
 
-const style=
-document.createElement("style");
+/*
+Firebase batch má limit 500 operací.
+Proto mažeme po skupinách.
+*/
 
-style.id=
-"printSelectionStyle";
+let batch=
+writeBatch(db);
+
+let pocet=0;
+let celkem=0;
 
 
-style.textContent=`
+for(
+const zaznam
+of snap.docs
+){
 
-@media print{
+batch.delete(zaznam.ref);
 
-[data-print-hidden="true"]{
-display:none!important;
+pocet++;
+celkem++;
+
+
+/*
+Každých 450 záznamů
+uložíme dávku.
+*/
+
+if(pocet>=450){
+
+await batch.commit();
+
+batch=
+writeBatch(db);
+
+pocet=0;
+
 }
 
-[data-print-hidden="false"]{
-display:block!important;
 }
 
-.no-print{
-display:none!important;
-}
+
+/*
+Uložit poslední dávku.
+*/
+
+if(pocet>0){
+
+await batch.commit();
 
 }
 
-`;
+
+/*
+ÚSPĚŠNÉ SMAZÁNÍ
+*/
+
+zobrazZpravu(
+
+"✓ Soutěž „"+
+nazev+
+"“ byla vymazána. Počet záznamů: "+
+celkem,
+
+false
+
+);
+
+}
+
+catch(error){
+
+console.error(
+"Chyba při mazání:",
+error
+);
+
+zobrazZpravu(
+
+"Chyba při mazání výsledků: "+
+error.message,
+
+true
+
+);
+
+}
+
+};
 
 
-document.head.appendChild(style);
+/* ZPRÁVA */
 
+function zobrazZpravu(
+text,
+chyba
+){
 
-zavritTisk();
+const message=
+document.getElementById(
+"message"
+);
+
+message.textContent=
+text;
+
+message.className=
+chyba
+?
+"message error"
+:
+"message";
 
 
 setTimeout(
-()=>{
+function(){
 
-window.print();
+message.textContent="";
 
 },
-200
-);
-
-};
-
-
-window.addEventListener(
-"afterprint",
-()=>{
-
-const bloky=[
-"blokUtok",
-"blokStafeta",
-"blok60"
-];
-
-
-bloky.forEach(
-id=>{
-
-document
-.getElementById(id)
-.removeAttribute(
-"data-print-hidden"
+4000
 );
 
 }
-);
-
-
-const style=
-document.getElementById(
-"printSelectionStyle"
-);
-
-
-if(style)
-style.remove();
-
-});
 
 
 /* START */
 
-nacistViditelnost();
-
-nacistUdaje();
+nacistNastaveni();
 
 </script>
 
+
 </body>
 
-</html> 
+</html>

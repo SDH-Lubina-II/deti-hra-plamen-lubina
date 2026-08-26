@@ -21,14 +21,22 @@ min-height:100vh;
 color:white;
 
 background:
-radial-gradient(circle at top right,#5b1010 0%,transparent 35%),
-linear-gradient(145deg,#090d13,#151b24);
+radial-gradient(
+circle at top right,
+#5b1010 0%,
+transparent 35%
+),
+linear-gradient(
+145deg,
+#090d13,
+#151b24
+);
 }
 
 .app{
-max-width:1250px;
+max-width:760px;
 margin:auto;
-padding:20px 16px 50px;
+padding:20px 16px 40px;
 }
 
 
@@ -36,18 +44,18 @@ padding:20px 16px 50px;
 
 .header{
 text-align:center;
-padding:15px 10px 28px;
+padding:20px 10px 25px;
 }
 
 .logo{
 font-size:42px;
-margin-bottom:10px;
+height:45px;
 }
 
 .header h1{
 font-size:23px;
 line-height:1.35;
-margin:0;
+margin:8px 0;
 }
 
 .header h1 span{
@@ -60,54 +68,231 @@ color:#8995a6;
 font-size:14px;
 }
 
+.live{
+display:inline-flex;
+align-items:center;
+gap:8px;
 
-/* ZPĚT */
+margin-top:18px;
 
-.back{
-border:1px solid #394455;
-background:transparent;
+padding:9px 17px;
+
+border-radius:30px;
+
+background:rgba(54,211,153,.10);
+
 color:#aeb9c8;
-padding:10px 15px;
-border-radius:11px;
-cursor:pointer;
-margin-bottom:15px;
+
+font-size:14px;
+}
+
+.live-dot{
+width:8px;
+height:8px;
+
+border-radius:50%;
+
+background:#36d399;
+
+box-shadow:
+0 0 10px #36d399;
 }
 
 
-/* KARTA */
+/* ÚDAJE ZÁVODU */
 
-.card{
-background:rgba(255,255,255,.055);
-border:1px solid rgba(255,255,255,.10);
-border-radius:22px;
+.race-info{
+text-align:center;
+
+color:#8995a6;
+
+font-size:15px;
+
+line-height:1.6;
+
+margin-bottom:25px;
+}
+
+
+/* NADPIS */
+
+.section-title{
+font-size:14px;
+letter-spacing:3px;
+color:#8995a6;
+
+margin:
+0 0 14px 8px;
+}
+
+
+/* KARTY SOUTĚŽÍ */
+
+.competition-card{
+width:100%;
+
+display:flex;
+align-items:center;
+
+gap:18px;
+
 padding:20px;
-margin-bottom:18px;
+
+margin-bottom:16px;
+
+border-radius:22px;
+
+border:1px solid rgba(255,255,255,.12);
+
+background:
+linear-gradient(
+135deg,
+rgba(255,255,255,.07),
+rgba(255,255,255,.035)
+);
+
+color:white;
+
+text-decoration:none;
+
+transition:
+transform .18s,
+background .18s,
+border-color .18s;
+
+cursor:pointer;
 }
 
-.card h2{
-margin:0 0 18px;
-font-size:23px;
+.competition-card:hover{
+transform:translateY(-2px);
+
+background:
+linear-gradient(
+135deg,
+rgba(255,255,255,.10),
+rgba(255,255,255,.05)
+);
+
+border-color:
+rgba(255,255,255,.20);
 }
 
+.competition-icon{
+width:72px;
+height:72px;
 
-/* NADPIS DISCIPLÍNY */
+flex-shrink:0;
 
-.discipline-title{
+display:flex;
+align-items:center;
+justify-content:center;
+
+border-radius:20px;
+
+background:
+rgba(185,40,40,.14);
+
+border:
+1px solid rgba(185,40,40,.18);
+
+font-size:30px;
+}
+
+.competition-name{
+font-size:22px;
+font-weight:bold;
+}
+
+.competition-description{
+margin-top:6px;
+
+color:#8995a6;
+
+font-size:15px;
+}
+
+.arrow{
+margin-left:auto;
+
+color:#68778b;
+
 font-size:25px;
-font-weight:bold;
+}
+
+
+/* KONKRÉTNÍ VÝSLEDKY */
+
+.result-page{
+display:none;
+}
+
+.result-page.active{
+display:block;
+}
+
+.result-header{
+text-align:center;
+margin-bottom:20px;
+}
+
+.result-header h2{
+margin:0;
+
+font-size:25px;
+}
+
+.result-header p{
+margin:8px 0 0;
+
+color:#8995a6;
+}
+
+
+/* ZPĚT NA SOUTĚŽE */
+
+.back-results{
+display:inline-block;
+
+border:1px solid #394455;
+
+background:transparent;
+
+color:#aeb9c8;
+
+padding:10px 15px;
+
+border-radius:11px;
+
+cursor:pointer;
+
 margin-bottom:18px;
-padding-bottom:12px;
-border-bottom:1px solid rgba(255,255,255,.10);
+
+font-size:14px;
 }
 
-.category-title{
-font-size:19px;
+
+/* VÝSLEDKOVÉ KARTY */
+
+.result-card{
+background:
+rgba(255,255,255,.055);
+
+border:
+1px solid rgba(255,255,255,.10);
+
+border-radius:22px;
+
+padding:18px;
+
+margin-bottom:16px;
+}
+
+.result-category{
+font-size:20px;
 font-weight:bold;
-margin:20px 0 10px;
+
+margin-bottom:14px;
 }
-
-
-/* TABULKA */
 
 .table-wrap{
 overflow-x:auto;
@@ -115,21 +300,30 @@ overflow-x:auto;
 
 table{
 width:100%;
+
 border-collapse:collapse;
-min-width:700px;
+
+min-width:600px;
 }
 
 th{
-padding:12px 9px;
+padding:11px 8px;
+
 background:#b92828;
+
 font-size:13px;
+
 white-space:nowrap;
 }
 
 td{
-padding:10px 9px;
-border-bottom:1px solid rgba(255,255,255,.08);
+padding:10px 8px;
+
+border-bottom:
+1px solid rgba(255,255,255,.08);
+
 text-align:center;
+
 color:#dbe2eb;
 }
 
@@ -138,8 +332,8 @@ text-align:left;
 font-weight:bold;
 }
 
-.result{
-font-size:19px;
+.result-time{
+font-size:18px;
 font-weight:bold;
 color:#ffd166;
 }
@@ -151,7 +345,9 @@ font-weight:bold;
 
 .empty{
 text-align:center;
+
 padding:25px;
+
 color:#718096;
 }
 
@@ -159,84 +355,169 @@ color:#718096;
 /* MEDAILE */
 
 .medal{
-width:42px;
-height:42px;
+width:40px;
+height:40px;
+
 display:inline-flex;
+
 align-items:center;
 justify-content:center;
-position:relative;
 }
 
 .medal svg{
-width:42px;
-height:42px;
-display:block;
+width:40px;
+height:40px;
 }
 
-.medal.gold svg{
-filter:drop-shadow(0 0 5px rgba(255,215,0,.35));
-}
-
-.medal.silver svg{
-filter:drop-shadow(0 0 5px rgba(210,215,225,.25));
-}
-
-.medal.bronze svg{
-filter:drop-shadow(0 0 5px rgba(205,127,50,.30));
-}
-
-
-/* OSTATNÍ POŘADÍ */
-
-.normal-place{
+.place{
 font-size:17px;
 font-weight:bold;
 color:#9aa6b5;
 }
 
 
-/* STAV */
+/* TISK */
+
+.print-area{
+text-align:center;
+
+margin-top:25px;
+
+padding-top:10px;
+}
+
+.print-button{
+border:1px solid #394455;
+
+background:#252e3c;
+
+color:white;
+
+border-radius:12px;
+
+padding:12px 22px;
+
+font-size:14px;
+
+font-weight:bold;
+
+cursor:pointer;
+}
+
+.print-button:hover{
+background:#394657;
+}
+
+
+/* STATUS */
 
 .status{
 text-align:center;
+
 color:#68778b;
+
 font-size:12px;
-margin-top:25px;
+
+margin-top:30px;
 }
 
-.online{
-display:inline-block;
-width:7px;
-height:7px;
-border-radius:50%;
-background:#36d399;
-margin-right:6px;
-box-shadow:0 0 9px #36d399;
+
+/* TISK */
+
+@media print{
+
+body{
+background:white;
+color:black;
+}
+
+.no-print{
+display:none!important;
+}
+
+.app{
+max-width:none;
+padding:0;
+}
+
+.header h1{
+color:black;
+}
+
+.header h1 span{
+color:#b92828;
+}
+
+.district,
+.race-info{
+color:#555;
+}
+
+.result-card{
+background:white;
+border:0;
+padding:0;
+margin-bottom:30px;
+}
+
+.result-category,
+.result-header h2{
+color:black;
+}
+
+th{
+background:#b92828!important;
+color:white!important;
+}
+
+td{
+color:black;
+border-bottom:1px solid #ccc;
+}
+
+.result-time{
+color:#8a6500;
+}
+
+.np{
+color:#c00000;
+}
+
 }
 
 
 /* MOBIL */
 
-@media(max-width:700px){
+@media(max-width:600px){
 
 .app{
-padding:15px 10px 40px;
-}
-
-.card{
-padding:15px;
+padding:15px 12px 35px;
 }
 
 .header h1{
 font-size:20px;
 }
 
-.discipline-title{
-font-size:21px;
+.competition-card{
+padding:16px;
 }
 
-.category-title{
-font-size:18px;
+.competition-icon{
+width:60px;
+height:60px;
+font-size:25px;
+}
+
+.competition-name{
+font-size:19px;
+}
+
+.competition-description{
+font-size:13px;
+}
+
+.arrow{
+font-size:20px;
 }
 
 }
@@ -248,18 +529,8 @@ font-size:18px;
 
 <body>
 
+
 <div class="app">
-
-
-<!-- ZPĚT -->
-
-<button
-class="back"
-onclick="window.location.href='index.html'">
-
-← Zpět
-
-</button>
 
 
 <!-- HLAVIČKA -->
@@ -267,7 +538,7 @@ onclick="window.location.href='index.html'">
 <header class="header">
 
 <div class="logo">
-🏆
+●
 </div>
 
 <h1>
@@ -279,93 +550,286 @@ LUBINA II–VĚTŘKOVICE
 </h1>
 
 <div
-class="district"
-id="infoZavodu">
+class="district">
 
-okres Nový Jičín · Výsledky
+okres Nový Jičín
+
+</div>
+
+
+<div class="live">
+
+<span class="live-dot"></span>
+
+ŽIVÉ VÝSLEDKY
 
 </div>
 
 </header>
 
 
+<!-- ÚDAJE ZÁVODU -->
+
+<div
+id="raceInfo"
+class="race-info">
+
+</div>
+
+
+<!-- ======================================
+     ROZCESTNÍK VÝSLEDKŮ
+====================================== -->
+
+<div
+id="competitionMenu">
+
+
+<div class="section-title">
+SOUTĚŽE
+</div>
+
+
 <!-- POŽÁRNÍ ÚTOK -->
 
-<div class="card">
+<a
+id="cardUtok"
+class="competition-card"
+href="?soutez=utok">
 
-<div class="discipline-title">
+<div class="competition-icon">
+PU
+</div>
+
+<div>
+
+<div class="competition-name">
 Požární útok
 </div>
 
-
-<div class="category-title">
-Mladší
-</div>
-
-<div class="table-wrap">
-
-<table>
-
-<thead>
-
-<tr>
-<th>Pořadí</th>
-<th>Družstvo</th>
-<th>LP</th>
-<th>PP</th>
-<th>Výsledný čas</th>
-</tr>
-
-</thead>
-
-<tbody id="utokMladsi">
-</tbody>
-
-</table>
-
-</div>
-
-
-<div class="category-title">
-Starší
-</div>
-
-<div class="table-wrap">
-
-<table>
-
-<thead>
-
-<tr>
-<th>Pořadí</th>
-<th>Družstvo</th>
-<th>LP</th>
-<th>PP</th>
-<th>Výsledný čas</th>
-</tr>
-
-</thead>
-
-<tbody id="utokStarsi">
-</tbody>
-
-</table>
-
+<div class="competition-description">
+Startovní listina a výsledky
 </div>
 
 </div>
+
+<div class="arrow">
+›
+</div>
+
+</a>
 
 
 <!-- ŠTAFETA -->
 
-<div class="card">
+<a
+id="cardStafeta"
+class="competition-card"
+href="?soutez=stafeta">
 
-<div class="discipline-title">
+<div class="competition-icon">
+SD
+</div>
+
+<div>
+
+<div class="competition-name">
 Štafeta dvojic
 </div>
 
+<div class="competition-description">
+Startovní listina a výsledky
+</div>
 
-<div class="category-title">
+</div>
+
+<div class="arrow">
+›
+</div>
+
+</a>
+
+
+<!-- 60 M -->
+
+<a
+id="card60"
+class="competition-card"
+href="?soutez=60m">
+
+<div class="competition-icon">
+60
+</div>
+
+<div>
+
+<div class="competition-name">
+60 m překážek
+</div>
+
+<div class="competition-description">
+Startovní listina a výsledky
+</div>
+
+</div>
+
+<div class="arrow">
+›
+</div>
+
+</a>
+
+
+</div>
+
+
+<!-- ======================================
+     POŽÁRNÍ ÚTOK
+====================================== -->
+
+<div
+id="pageUtok"
+class="result-page">
+
+
+<button
+class="back-results no-print"
+onclick="zobrazMenu()">
+
+← Soutěže
+
+</button>
+
+
+<div class="result-header">
+
+<h2>
+Požární útok
+</h2>
+
+<p>
+Mladší a starší
+</p>
+
+</div>
+
+
+<div class="result-card">
+
+<div class="result-category">
+Mladší
+</div>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+<th>Pořadí</th>
+<th>Družstvo</th>
+<th>LP</th>
+<th>PP</th>
+<th>Výsledek</th>
+</tr>
+
+</thead>
+
+<tbody
+id="utokMladsi">
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<div class="result-card">
+
+<div class="result-category">
+Starší
+</div>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+<th>Pořadí</th>
+<th>Družstvo</th>
+<th>LP</th>
+<th>PP</th>
+<th>Výsledek</th>
+</tr>
+
+</thead>
+
+<tbody
+id="utokStarsi">
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<div class="print-area no-print">
+
+<button
+class="print-button"
+onclick="window.print()">
+
+Tisk výsledků
+
+</button>
+
+</div>
+
+
+</div>
+
+
+<!-- ======================================
+     ŠTAFETA
+====================================== -->
+
+<div
+id="pageStafeta"
+class="result-page">
+
+
+<button
+class="back-results no-print"
+onclick="zobrazMenu()">
+
+← Soutěže
+
+</button>
+
+
+<div class="result-header">
+
+<h2>
+Štafeta dvojic
+</h2>
+
+<p>
+Mladší a starší
+</p>
+
+</div>
+
+
+<div class="result-card">
+
+<div class="result-category">
 Mladší
 </div>
 
@@ -385,15 +849,20 @@ Mladší
 
 </thead>
 
-<tbody id="stafetaMladsi">
+<tbody
+id="stafetaMladsi">
 </tbody>
 
 </table>
 
 </div>
 
+</div>
 
-<div class="category-title">
+
+<div class="result-card">
+
+<div class="result-category">
 Starší
 </div>
 
@@ -413,7 +882,8 @@ Starší
 
 </thead>
 
-<tbody id="stafetaStarsi">
+<tbody
+id="stafetaStarsi">
 </tbody>
 
 </table>
@@ -423,16 +893,58 @@ Starší
 </div>
 
 
-<!-- 60 M -->
+<div class="print-area no-print">
 
-<div class="card">
+<button
+class="print-button"
+onclick="window.print()">
 
-<div class="discipline-title">
-60 m překážek
+Tisk výsledků
+
+</button>
+
 </div>
 
 
-<div class="category-title">
+</div>
+
+
+<!-- ======================================
+     60 M
+====================================== -->
+
+<div
+id="page60"
+class="result-page">
+
+
+<button
+class="back-results no-print"
+onclick="zobrazMenu()">
+
+← Soutěže
+
+</button>
+
+
+<div class="result-header">
+
+<h2>
+60 m překážek
+</h2>
+
+<p>
+Jednotlivci
+</p>
+
+</div>
+
+
+<!-- MLADŠÍ CHLAPCI -->
+
+<div class="result-card">
+
+<div class="result-category">
 Mladší chlapci
 </div>
 
@@ -453,15 +965,22 @@ Mladší chlapci
 
 </thead>
 
-<tbody id="m60ch">
+<tbody
+id="m60ch">
 </tbody>
 
 </table>
 
 </div>
 
+</div>
 
-<div class="category-title">
+
+<!-- MLADŠÍ DÍVKY -->
+
+<div class="result-card">
+
+<div class="result-category">
 Mladší dívky
 </div>
 
@@ -482,15 +1001,22 @@ Mladší dívky
 
 </thead>
 
-<tbody id="m60div">
+<tbody
+id="m60div">
 </tbody>
 
 </table>
 
 </div>
 
+</div>
 
-<div class="category-title">
+
+<!-- STARŠÍ CHLAPCI -->
+
+<div class="result-card">
+
+<div class="result-category">
 Starší chlapci
 </div>
 
@@ -511,15 +1037,22 @@ Starší chlapci
 
 </thead>
 
-<tbody id="s60ch">
+<tbody
+id="s60ch">
 </tbody>
 
 </table>
 
 </div>
 
+</div>
 
-<div class="category-title">
+
+<!-- STARŠÍ DÍVKY -->
+
+<div class="result-card">
+
+<div class="result-category">
 Starší dívky
 </div>
 
@@ -540,7 +1073,8 @@ Starší dívky
 
 </thead>
 
-<tbody id="s60div">
+<tbody
+id="s60div">
 </tbody>
 
 </table>
@@ -550,11 +1084,26 @@ Starší dívky
 </div>
 
 
-<div class="status">
+<div class="print-area no-print">
 
-<span class="online"></span>
+<button
+class="print-button"
+onclick="window.print()">
 
-Živá aktualizace výsledků
+Tisk výsledků
+
+</button>
+
+</div>
+
+
+</div>
+
+
+<div
+class="status no-print">
+
+Živé výsledky
 
 </div>
 
@@ -572,7 +1121,6 @@ initializeApp
 }
 from
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
-
 
 import {
 getFirestore,
@@ -622,6 +1170,156 @@ let stafeta=[];
 let prek60=[];
 
 
+/* VIDITELNOST */
+
+let viditelnost={
+
+pozarniUtok:true,
+stafeta:true,
+prekazky60:true
+
+};
+
+
+/* =========================
+   ÚDAJE ZÁVODU
+========================= */
+
+async function nacistNastaveni(){
+
+try{
+
+const ref=
+doc(
+db,
+"nastaveni",
+"viditelnost"
+);
+
+const snap=
+await getDoc(ref);
+
+
+if(!snap.exists())
+return;
+
+
+const nastaveni=
+snap.data();
+
+
+viditelnost.pozarniUtok=
+nastaveni.pozarniUtok!==false;
+
+viditelnost.stafeta=
+nastaveni.stafeta!==false;
+
+viditelnost.prekazky60=
+nastaveni.prekazky60!==false;
+
+
+let text="";
+
+
+if(nastaveni.datum){
+
+const casti=
+nastaveni.datum.split("-");
+
+if(casti.length===3){
+
+text+=
+casti[2]+"."+
+casti[1]+"."+
+casti[0];
+
+}
+
+}
+
+
+if(nastaveni.rocnik){
+
+if(text)
+text+=" · ";
+
+text+=
+"ročník "+
+nastaveni.rocnik;
+
+}
+
+
+if(nastaveni.misto){
+
+if(text)
+text+=" · ";
+
+text+=
+nastaveni.misto;
+
+}
+
+
+document
+.getElementById("raceInfo")
+.textContent=text;
+
+
+aplikujViditelnost();
+
+}
+
+catch(error){
+
+console.error(
+"Chyba nastavení:",
+error
+);
+
+}
+
+}
+
+
+/* =========================
+   VIDITELNOST KARET
+========================= */
+
+function aplikujViditelnost(){
+
+document
+.getElementById("cardUtok")
+.style.display=
+viditelnost.pozarniUtok
+?
+"flex"
+:
+"none";
+
+
+document
+.getElementById("cardStafeta")
+.style.display=
+viditelnost.stafeta
+?
+"flex"
+:
+"none";
+
+
+document
+.getElementById("card60")
+.style.display=
+viditelnost.prekazky60
+?
+"flex"
+:
+"none";
+
+}
+
+
 /* =========================
    MEDAILE
 ========================= */
@@ -632,16 +1330,16 @@ if(poradi===1){
 
 return `
 
-<span class="medal gold">
+<span class="medal">
 
 <svg viewBox="0 0 64 64">
 
 <path
-d="M19 4 L29 4 L32 22 L22 22 Z"
+d="M19 4 L29 4 L32 22 L22 22"
 fill="#d6a800"/>
 
 <path
-d="M35 4 L45 4 L42 22 L32 22 Z"
+d="M35 4 L45 4 L42 22 L32 22"
 fill="#ffd84a"/>
 
 <circle
@@ -659,7 +1357,9 @@ text-anchor="middle"
 font-size="17"
 font-weight="bold"
 fill="#8a6500">
+
 1
+
 </text>
 
 </svg>
@@ -675,16 +1375,16 @@ if(poradi===2){
 
 return `
 
-<span class="medal silver">
+<span class="medal">
 
 <svg viewBox="0 0 64 64">
 
 <path
-d="M19 4 L29 4 L32 22 L22 22 Z"
+d="M19 4 L29 4 L32 22 L22 22"
 fill="#8e969f"/>
 
 <path
-d="M35 4 L45 4 L42 22 L32 22 Z"
+d="M35 4 L45 4 L42 22 L32 22"
 fill="#cfd4da"/>
 
 <circle
@@ -702,7 +1402,9 @@ text-anchor="middle"
 font-size="17"
 font-weight="bold"
 fill="#69727c">
+
 2
+
 </text>
 
 </svg>
@@ -718,16 +1420,16 @@ if(poradi===3){
 
 return `
 
-<span class="medal bronze">
+<span class="medal">
 
 <svg viewBox="0 0 64 64">
 
 <path
-d="M19 4 L29 4 L32 22 L22 22 Z"
+d="M19 4 L29 4 L32 22 L22 22"
 fill="#9c5b24"/>
 
 <path
-d="M35 4 L45 4 L42 22 L32 22 Z"
+d="M35 4 L45 4 L42 22 L32 22"
 fill="#c47b38"/>
 
 <circle
@@ -745,7 +1447,9 @@ text-anchor="middle"
 font-size="17"
 font-weight="bold"
 fill="#713b14">
+
 3
+
 </text>
 
 </svg>
@@ -759,7 +1463,7 @@ fill="#713b14">
 
 return `
 
-<span class="normal-place">
+<span class="place">
 ${poradi}.
 </span>
 
@@ -772,33 +1476,28 @@ ${poradi}.
    ČAS
 ========================= */
 
-function normalizujCas(hodnota){
+function casCislo(cas){
 
 if(
-hodnota===null||
-hodnota===undefined||
-hodnota===""
+cas===null||
+cas===undefined||
+cas===""
 )
 return null;
 
 
-const text=
-String(hodnota).trim();
-
-
 const casti=
-text.split(":");
+String(cas)
+.trim()
+.split(":");
 
 
 if(casti.length!==2)
 return null;
 
 
-const s=
-Number(casti[0]);
-
-const st=
-Number(casti[1]);
+const s=Number(casti[0]);
+const st=Number(casti[1]);
 
 
 if(
@@ -816,11 +1515,7 @@ return s*100+st;
 }
 
 
-function casText(hodnota){
-
-const cislo=
-normalizujCas(hodnota);
-
+function casText(cislo){
 
 if(cislo===null)
 return "—";
@@ -840,21 +1535,35 @@ String(st).padStart(2,"0");
 }
 
 
+/* BEZPEČNÝ TEXT */
+
+function esc(text){
+
+return String(text||"")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+
 /* =========================
    POŽÁRNÍ ÚTOK
 ========================= */
 
-function platnyCasUtoku(z){
+function vysledekUtoku(z){
 
 if(z.np)
 return null;
 
 
 const lp=
-normalizujCas(z.lp);
+casCislo(z.lp);
 
 const pp=
-normalizujCas(z.pp);
+casCislo(z.pp);
 
 
 if(lp===null&&pp===null)
@@ -872,16 +1581,13 @@ return Math.max(lp,pp);
 }
 
 
-function vykresliUtok(
-kategorie,
-element
-){
+function vykresliUtok(kategorie,id){
 
 const tab=
-document.getElementById(element);
+document.getElementById(id);
 
 
-let seznam=
+const seznam=
 utok.filter(
 z=>z.kategorie===kategorie
 );
@@ -889,32 +1595,43 @@ z=>z.kategorie===kategorie
 
 const platne=
 seznam
-.filter(z=>!z.np&&platnyCasUtoku(z)!==null)
+.filter(
+z=>vysledekUtoku(z)!==null
+)
 .sort(
 (a,b)=>
-platnyCasUtoku(a)-
-platnyCasUtoku(b)
+vysledekUtoku(a)-
+vysledekUtoku(b)
 );
 
 
-const np=
-seznam.filter(z=>z.np);
+const neplatne=
+seznam.filter(
+z=>z.np
+);
 
 
-const vysledky=[
+const vse=[
 ...platne,
-...np
+...neplatne
 ];
 
 
-if(!vysledky.length){
+tab.innerHTML="";
+
+
+if(!vse.length){
 
 tab.innerHTML=`
 
 <tr>
 
-<td colspan="5" class="empty">
+<td
+colspan="5"
+class="empty">
+
 Zatím není žádný výsledek.
+
 </td>
 
 </tr>
@@ -926,15 +1643,8 @@ return;
 }
 
 
-tab.innerHTML="";
-
-
-vysledky.forEach(
+vse.forEach(
 (z,index)=>{
-
-const jeNP=
-z.np;
-
 
 const poradi=
 index+1;
@@ -945,37 +1655,31 @@ tab.innerHTML+=`
 <tr>
 
 <td>
-
 ${medaile(poradi)}
-
 </td>
 
 <td class="name">
-
-${escapeHTML(z.druzstvo||"")}
-
+${esc(z.druzstvo)}
 </td>
 
 <td>
-
-${z.lp||"—"}
-
+${esc(z.lp||"—")}
 </td>
 
 <td>
-
-${z.pp||"—"}
-
+${esc(z.pp||"—")}
 </td>
 
-<td class="result">
+<td class="result-time">
 
 ${
-jeNP
+z.np
 ?
 `<span class="np">NP</span>`
 :
-casText(platnyCasUtoku(z))
+casText(
+vysledekUtoku(z)
+)
 }
 
 </td>
@@ -993,11 +1697,7 @@ casText(platnyCasUtoku(z))
    ŠTAFETA
 ========================= */
 
-function vysledekMereni(
-z,
-relay,
-measure
-){
+function mereni(z,relay,measure){
 
 if(
 z[
@@ -1011,23 +1711,21 @@ return null;
 
 
 const cas=
+casCislo(
 z[
 "s"+
 relay+
 "m"+
 measure
-];
+]
+);
 
 
-const hodnota=
-normalizujCas(cas);
-
-
-if(hodnota===null)
+if(cas===null)
 return null;
 
 
-const tresty=
+const trest=
 Number(
 z[
 "s"+
@@ -1038,29 +1736,19 @@ measure
 )||0;
 
 
-return hodnota+
-tresty*1000;
+return cas+
+trest*1000;
 
 }
 
 
-function vysledekStafety(
-z,
-relay
-){
-
-if(
-relay===2&&
-z.s2bezi===false
-)
-return null;
-
+function stafetaVysledek(z,relay){
 
 const a=
-vysledekMereni(z,relay,1);
+mereni(z,relay,1);
 
 const b=
-vysledekMereni(z,relay,2);
+mereni(z,relay,2);
 
 
 if(a===null&&b===null){
@@ -1088,47 +1776,40 @@ return Math.max(a,b);
 }
 
 
-function celkovyVysledek(z){
+function celkemStafeta(z){
 
-const s1=
-vysledekStafety(z,1);
+const a=
+stafetaVysledek(z,1);
 
-const s2=
-vysledekStafety(z,2);
+const b=
+stafetaVysledek(z,2);
 
 
-if(s1==="NP")
-return s2;
+if(a==="NP")
+return b;
 
-if(s2==="NP")
-return s1;
+if(b==="NP")
+return a;
 
-if(s1===null&&s2===null)
+if(a===null&&b===null)
 return null;
 
-if(s1===null)
-return s2;
+if(a===null)
+return b;
 
-if(s2===null)
-return s1;
+if(b===null)
+return a;
 
 
-/*
-Z obou štafet se bere lepší.
-*/
-
-return Math.min(s1,s2);
+return Math.min(a,b);
 
 }
 
 
-function vykresliStafetu(
-kategorie,
-element
-){
+function vykresliStafetu(kategorie,id){
 
 const tab=
-document.getElementById(element);
+document.getElementById(id);
 
 
 const seznam=
@@ -1140,39 +1821,50 @@ z=>z.kategorie===kategorie
 const platne=
 seznam
 .filter(
-z=>
-celkovyVysledek(z)!==
-null&&
-celkovyVysledek(z)!=="NP"
+z=>{
+
+const v=
+celkemStafeta(z);
+
+return v!==null&&v!=="NP";
+
+}
 )
 .sort(
 (a,b)=>
-celkovyVysledek(a)-
-celkovyVysledek(b)
+celkemStafeta(a)-
+celkemStafeta(b)
 );
 
 
-const np=
+const neplatne=
 seznam.filter(
 z=>
-celkovyVysledek(z)==="NP"
+celkemStafeta(z)==="NP"
 );
 
 
-const vysledky=[
+const vse=[
 ...platne,
-...np
+...neplatne
 ];
 
 
-if(!vysledky.length){
+tab.innerHTML="";
+
+
+if(!vse.length){
 
 tab.innerHTML=`
 
 <tr>
 
-<td colspan="5" class="empty">
+<td
+colspan="5"
+class="empty">
+
 Zatím není žádný výsledek.
+
 </td>
 
 </tr>
@@ -1184,24 +1876,20 @@ return;
 }
 
 
-tab.innerHTML="";
-
-
-vysledky.forEach(
+vse.forEach(
 (z,index)=>{
-
-const vys=
-celkovyVysledek(z);
 
 const poradi=
 index+1;
 
-
 const s1=
-vysledekStafety(z,1);
+stafetaVysledek(z,1);
 
 const s2=
-vysledekStafety(z,2);
+stafetaVysledek(z,2);
+
+const celkem=
+celkemStafeta(z);
 
 
 tab.innerHTML+=`
@@ -1209,15 +1897,11 @@ tab.innerHTML+=`
 <tr>
 
 <td>
-
 ${medaile(poradi)}
-
 </td>
 
 <td class="name">
-
-${escapeHTML(z.druzstvo||"")}
-
+${esc(z.druzstvo)}
 </td>
 
 <td>
@@ -1231,7 +1915,7 @@ s1===null
 ?
 "—"
 :
-casZCisla(s1)
+casText(s1)
 }
 
 </td>
@@ -1247,19 +1931,19 @@ s2===null
 ?
 "—"
 :
-casZCisla(s2)
+casText(s2)
 }
 
 </td>
 
-<td class="result">
+<td class="result-time">
 
 ${
-vys==="NP"
+celkem==="NP"
 ?
 `<span class="np">NP</span>`
 :
-casZCisla(vys)
+casText(celkem)
 }
 
 </td>
@@ -1269,29 +1953,6 @@ casZCisla(vys)
 `;
 
 });
-
-}
-
-
-function casZCisla(cislo){
-
-if(
-cislo===null||
-cislo===undefined
-)
-return "—";
-
-
-const s=
-Math.floor(cislo/100);
-
-const st=
-cislo%100;
-
-
-return s+
-":"+
-String(st).padStart(2,"0");
 
 }
 
@@ -1306,20 +1967,14 @@ let a=null;
 let b=null;
 
 
-if(
-!z.np1&&
-z.pokus1
-)
+if(!z.np1&&z.pokus1)
 a=
-normalizujCas(z.pokus1);
+casCislo(z.pokus1);
 
 
-if(
-!z.np2&&
-z.pokus2
-)
+if(!z.np2&&z.pokus2)
 b=
-normalizujCas(z.pokus2);
+casCislo(z.pokus2);
 
 
 if(a===null&&b===null)
@@ -1337,13 +1992,10 @@ return Math.min(a,b);
 }
 
 
-function vykresli60(
-kategorie,
-element
-){
+function vykresli60(kategorie,id){
 
 const tab=
-document.getElementById(element);
+document.getElementById(id);
 
 
 const seznam=
@@ -1364,28 +2016,34 @@ nejlepsi60(b)
 );
 
 
-const np=
+const neplatne=
 seznam.filter(
 z=>
-z.np1&&
-z.np2
+z.np1&&z.np2
 );
 
 
-const vysledky=[
+const vse=[
 ...platne,
-...np
+...neplatne
 ];
 
 
-if(!vysledky.length){
+tab.innerHTML="";
+
+
+if(!vse.length){
 
 tab.innerHTML=`
 
 <tr>
 
-<td colspan="6" class="empty">
+<td
+colspan="6"
+class="empty">
+
 Zatím není žádný výsledek.
+
 </td>
 
 </tr>
@@ -1397,17 +2055,14 @@ return;
 }
 
 
-tab.innerHTML="";
-
-
-vysledky.forEach(
+vse.forEach(
 (z,index)=>{
-
-const best=
-nejlepsi60(z);
 
 const poradi=
 index+1;
+
+const best=
+nejlepsi60(z);
 
 
 tab.innerHTML+=`
@@ -1415,14 +2070,12 @@ tab.innerHTML+=`
 <tr>
 
 <td>
-
 ${medaile(poradi)}
-
 </td>
 
 <td class="name">
 
-${escapeHTML(
+${esc(
 (z.prijmeni||"")+
 " "+
 (z.jmeno||"")
@@ -1431,9 +2084,7 @@ ${escapeHTML(
 </td>
 
 <td>
-
-${escapeHTML(z.druzstvo||"")}
-
+${esc(z.druzstvo)}
 </td>
 
 <td>
@@ -1443,7 +2094,7 @@ z.np1
 ?
 `<span class="np">NP</span>`
 :
-casText(z.pokus1)
+esc(z.pokus1||"—")
 }
 
 </td>
@@ -1455,19 +2106,19 @@ z.np2
 ?
 `<span class="np">NP</span>`
 :
-casText(z.pokus2)
+esc(z.pokus2||"—")
 }
 
 </td>
 
-<td class="result">
+<td class="result-time">
 
 ${
 best===null
 ?
 `<span class="np">NP</span>`
 :
-casZCisla(best)
+casText(best)
 }
 
 </td>
@@ -1482,24 +2133,11 @@ casZCisla(best)
 
 
 /* =========================
-   BEZPEČNÉ VLOŽENÍ TEXTU
+   FIREBASE DATA
 ========================= */
 
-function escapeHTML(text){
 
-return String(text)
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
-
-}
-
-
-/* =========================
-   FIREBASE – POŽÁRNÍ ÚTOK
-========================= */
+/* POŽÁRNÍ ÚTOK */
 
 onSnapshot(
 
@@ -1533,22 +2171,12 @@ vykresliUtok(
 "utokStarsi"
 );
 
-},
-
-error=>{
-
-console.error(
-"Požární útok:",
-error
-);
-
 }
+
 );
 
 
-/* =========================
-   FIREBASE – ŠTAFETA
-========================= */
+/* ŠTAFETA */
 
 onSnapshot(
 
@@ -1582,22 +2210,12 @@ vykresliStafetu(
 "stafetaStarsi"
 );
 
-},
-
-error=>{
-
-console.error(
-"Štafeta:",
-error
-);
-
 }
+
 );
 
 
-/* =========================
-   FIREBASE – 60 M
-========================= */
+/* 60 M */
 
 onSnapshot(
 
@@ -1641,96 +2259,203 @@ vykresli60(
 "s60div"
 );
 
-},
-
-error=>{
-
-console.error(
-"60 m:",
-error
-);
-
 }
+
 );
 
 
 /* =========================
-   ÚDAJE ZÁVODU
+   NAVIGACE
 ========================= */
 
-async function nacistUdaje(){
+function zobrazMenu(){
 
-try{
+window.location.href=
+"vysledky.html";
 
-const ref=
-doc(
-db,
-"nastaveni",
-"viditelnost"
+}
+
+
+function zobrazSoutez(nazev){
+
+document
+.getElementById("competitionMenu")
+.style.display="none";
+
+
+document
+.querySelectorAll(".result-page")
+.forEach(
+x=>
+x.classList.remove("active")
 );
 
-const snap=
-await getDoc(ref);
 
+if(nazev==="utok"){
 
-if(!snap.exists())
+document
+.getElementById("pageUtok")
+.classList.add("active");
+
 return;
 
-
-const data=
-snap.data();
+}
 
 
-let text=
-"okres Nový Jičín · Výsledky";
+if(nazev==="stafeta"){
+
+document
+.getElementById("pageStafeta")
+.classList.add("active");
+
+return;
+
+}
 
 
-if(data.misto)
-text+=
-" · "+
-data.misto;
+if(nazev==="60m"){
 
+document
+.getElementById("page60")
+.classList.add("active");
 
-if(data.datum){
-
-const casti=
-data.datum.split("-");
-
-if(casti.length===3){
-
-text+=
-" · "+
-casti[2]+"."+
-casti[1]+"."+
-casti[0];
+return;
 
 }
 
 }
 
 
-document.getElementById(
-"infoZavodu"
-).textContent=text;
+/* =========================
+   URL
+========================= */
 
-}
+function nactiStranku(){
 
-catch(error){
-
-console.error(
-"Chyba načítání údajů:",
-error
+const params=
+new URLSearchParams(
+window.location.search
 );
 
-}
+const soutez=
+params.get("soutez");
+
+
+if(!soutez){
+
+document
+.getElementById("competitionMenu")
+.style.display="block";
+
+return;
 
 }
 
 
-nacistUdaje();
+if(
+soutez==="utok"&&
+!viditelnost.pozarniUtok
+){
+
+zobrazMenu();
+return;
+
+}
+
+
+if(
+soutez==="stafeta"&&
+!viditelnost.stafeta
+){
+
+zobrazMenu();
+return;
+
+}
+
+
+if(
+soutez==="60m"&&
+!viditelnost.prekazky60
+){
+
+zobrazMenu();
+return;
+
+}
+
+
+zobrazSoutez(soutez);
+
+}
+
+
+/* =========================
+   KLIKNUTÍ NA KARTY
+========================= */
+
+document
+.getElementById("cardUtok")
+.addEventListener(
+"click",
+function(e){
+
+e.preventDefault();
+
+window.location.href=
+"vysledky.html?soutez=utok";
+
+}
+);
+
+
+document
+.getElementById("cardStafeta")
+.addEventListener(
+"click",
+function(e){
+
+e.preventDefault();
+
+window.location.href=
+"vysledky.html?soutez=stafeta";
+
+}
+);
+
+
+document
+.getElementById("card60")
+.addEventListener(
+"click",
+function(e){
+
+e.preventDefault();
+
+window.location.href=
+"vysledky.html?soutez=60m";
+
+}
+);
+
+
+/* START */
+
+nacistNastaveni();
+
+
+/*
+Malé zpoždění, aby se nejdříve
+načetlo nastavení viditelnosti.
+*/
+
+setTimeout(
+nactiStranku,
+300
+);
 
 </script>
 
 </body>
 
-  </html>
+   </html> 

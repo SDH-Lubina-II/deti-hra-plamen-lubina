@@ -1,1 +1,1736 @@
+<!DOCTYPE html>
+<html lang="cs">
 
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Výsledky – SDH Lubina II–Větřkovice</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+}
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+min-height:100vh;
+color:white;
+
+background:
+radial-gradient(circle at top right,#5b1010 0%,transparent 35%),
+linear-gradient(145deg,#090d13,#151b24);
+}
+
+.app{
+max-width:1250px;
+margin:auto;
+padding:20px 16px 50px;
+}
+
+
+/* HLAVIČKA */
+
+.header{
+text-align:center;
+padding:15px 10px 28px;
+}
+
+.logo{
+font-size:42px;
+margin-bottom:10px;
+}
+
+.header h1{
+font-size:23px;
+line-height:1.35;
+margin:0;
+}
+
+.header h1 span{
+color:#ef3333;
+}
+
+.district{
+margin-top:8px;
+color:#8995a6;
+font-size:14px;
+}
+
+
+/* ZPĚT */
+
+.back{
+border:1px solid #394455;
+background:transparent;
+color:#aeb9c8;
+padding:10px 15px;
+border-radius:11px;
+cursor:pointer;
+margin-bottom:15px;
+}
+
+
+/* KARTA */
+
+.card{
+background:rgba(255,255,255,.055);
+border:1px solid rgba(255,255,255,.10);
+border-radius:22px;
+padding:20px;
+margin-bottom:18px;
+}
+
+.card h2{
+margin:0 0 18px;
+font-size:23px;
+}
+
+
+/* NADPIS DISCIPLÍNY */
+
+.discipline-title{
+font-size:25px;
+font-weight:bold;
+margin-bottom:18px;
+padding-bottom:12px;
+border-bottom:1px solid rgba(255,255,255,.10);
+}
+
+.category-title{
+font-size:19px;
+font-weight:bold;
+margin:20px 0 10px;
+}
+
+
+/* TABULKA */
+
+.table-wrap{
+overflow-x:auto;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+min-width:700px;
+}
+
+th{
+padding:12px 9px;
+background:#b92828;
+font-size:13px;
+white-space:nowrap;
+}
+
+td{
+padding:10px 9px;
+border-bottom:1px solid rgba(255,255,255,.08);
+text-align:center;
+color:#dbe2eb;
+}
+
+td.name{
+text-align:left;
+font-weight:bold;
+}
+
+.result{
+font-size:19px;
+font-weight:bold;
+color:#ffd166;
+}
+
+.np{
+color:#ff6666;
+font-weight:bold;
+}
+
+.empty{
+text-align:center;
+padding:25px;
+color:#718096;
+}
+
+
+/* MEDAILE */
+
+.medal{
+width:42px;
+height:42px;
+display:inline-flex;
+align-items:center;
+justify-content:center;
+position:relative;
+}
+
+.medal svg{
+width:42px;
+height:42px;
+display:block;
+}
+
+.medal.gold svg{
+filter:drop-shadow(0 0 5px rgba(255,215,0,.35));
+}
+
+.medal.silver svg{
+filter:drop-shadow(0 0 5px rgba(210,215,225,.25));
+}
+
+.medal.bronze svg{
+filter:drop-shadow(0 0 5px rgba(205,127,50,.30));
+}
+
+
+/* OSTATNÍ POŘADÍ */
+
+.normal-place{
+font-size:17px;
+font-weight:bold;
+color:#9aa6b5;
+}
+
+
+/* STAV */
+
+.status{
+text-align:center;
+color:#68778b;
+font-size:12px;
+margin-top:25px;
+}
+
+.online{
+display:inline-block;
+width:7px;
+height:7px;
+border-radius:50%;
+background:#36d399;
+margin-right:6px;
+box-shadow:0 0 9px #36d399;
+}
+
+
+/* MOBIL */
+
+@media(max-width:700px){
+
+.app{
+padding:15px 10px 40px;
+}
+
+.card{
+padding:15px;
+}
+
+.header h1{
+font-size:20px;
+}
+
+.discipline-title{
+font-size:21px;
+}
+
+.category-title{
+font-size:18px;
+}
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="app">
+
+
+<!-- ZPĚT -->
+
+<button
+class="back"
+onclick="window.location.href='index.html'">
+
+← Zpět
+
+</button>
+
+
+<!-- HLAVIČKA -->
+
+<header class="header">
+
+<div class="logo">
+🏆
+</div>
+
+<h1>
+
+<span>SBOR DOBROVOLNÝCH HASIČŮ</span><br>
+
+LUBINA II–VĚTŘKOVICE
+
+</h1>
+
+<div
+class="district"
+id="infoZavodu">
+
+okres Nový Jičín · Výsledky
+
+</div>
+
+</header>
+
+
+<!-- POŽÁRNÍ ÚTOK -->
+
+<div class="card">
+
+<div class="discipline-title">
+Požární útok
+</div>
+
+
+<div class="category-title">
+Mladší
+</div>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+<th>Pořadí</th>
+<th>Družstvo</th>
+<th>LP</th>
+<th>PP</th>
+<th>Výsledný čas</th>
+</tr>
+
+</thead>
+
+<tbody id="utokMladsi">
+</tbody>
+
+</table>
+
+</div>
+
+
+<div class="category-title">
+Starší
+</div>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+<th>Pořadí</th>
+<th>Družstvo</th>
+<th>LP</th>
+<th>PP</th>
+<th>Výsledný čas</th>
+</tr>
+
+</thead>
+
+<tbody id="utokStarsi">
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- ŠTAFETA -->
+
+<div class="card">
+
+<div class="discipline-title">
+Štafeta dvojic
+</div>
+
+
+<div class="category-title">
+Mladší
+</div>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+<th>Pořadí</th>
+<th>Družstvo</th>
+<th>Štafeta 1</th>
+<th>Štafeta 2</th>
+<th>Celkem</th>
+</tr>
+
+</thead>
+
+<tbody id="stafetaMladsi">
+</tbody>
+
+</table>
+
+</div>
+
+
+<div class="category-title">
+Starší
+</div>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+<th>Pořadí</th>
+<th>Družstvo</th>
+<th>Štafeta 1</th>
+<th>Štafeta 2</th>
+<th>Celkem</th>
+</tr>
+
+</thead>
+
+<tbody id="stafetaStarsi">
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- 60 M -->
+
+<div class="card">
+
+<div class="discipline-title">
+60 m překážek
+</div>
+
+
+<div class="category-title">
+Mladší chlapci
+</div>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+<th>Pořadí</th>
+<th>Závodník</th>
+<th>Družstvo</th>
+<th>Pokus 1</th>
+<th>Pokus 2</th>
+<th>Nejlepší</th>
+</tr>
+
+</thead>
+
+<tbody id="m60ch">
+</tbody>
+
+</table>
+
+</div>
+
+
+<div class="category-title">
+Mladší dívky
+</div>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+<th>Pořadí</th>
+<th>Závodník</th>
+<th>Družstvo</th>
+<th>Pokus 1</th>
+<th>Pokus 2</th>
+<th>Nejlepší</th>
+</tr>
+
+</thead>
+
+<tbody id="m60div">
+</tbody>
+
+</table>
+
+</div>
+
+
+<div class="category-title">
+Starší chlapci
+</div>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+<th>Pořadí</th>
+<th>Závodník</th>
+<th>Družstvo</th>
+<th>Pokus 1</th>
+<th>Pokus 2</th>
+<th>Nejlepší</th>
+</tr>
+
+</thead>
+
+<tbody id="s60ch">
+</tbody>
+
+</table>
+
+</div>
+
+
+<div class="category-title">
+Starší dívky
+</div>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+<th>Pořadí</th>
+<th>Závodník</th>
+<th>Družstvo</th>
+<th>Pokus 1</th>
+<th>Pokus 2</th>
+<th>Nejlepší</th>
+</tr>
+
+</thead>
+
+<tbody id="s60div">
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<div class="status">
+
+<span class="online"></span>
+
+Živá aktualizace výsledků
+
+</div>
+
+
+</div>
+
+
+<script type="module">
+
+
+/* FIREBASE */
+
+import {
+initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+
+import {
+getFirestore,
+collection,
+onSnapshot,
+doc,
+getDoc
+}
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+
+const firebaseConfig={
+
+apiKey:
+"AIzaSyDHGLymt1Ram6s0LJSeQLmf-hZJvCM-9jo",
+
+authDomain:
+"deti-hra-plamen-lubina.firebaseapp.com",
+
+projectId:
+"deti-hra-plamen-lubina",
+
+storageBucket:
+"deti-hra-plamen-lubina.firebasestorage.app",
+
+messagingSenderId:
+"511766112817",
+
+appId:
+"1:511766112817:web:3e9a11e9c10f234c7ac310"
+
+};
+
+
+const app=
+initializeApp(firebaseConfig);
+
+const db=
+getFirestore(app);
+
+
+/* DATA */
+
+let utok=[];
+let stafeta=[];
+let prek60=[];
+
+
+/* =========================
+   MEDAILE
+========================= */
+
+function medaile(poradi){
+
+if(poradi===1){
+
+return `
+
+<span class="medal gold">
+
+<svg viewBox="0 0 64 64">
+
+<path
+d="M19 4 L29 4 L32 22 L22 22 Z"
+fill="#d6a800"/>
+
+<path
+d="M35 4 L45 4 L42 22 L32 22 Z"
+fill="#ffd84a"/>
+
+<circle
+cx="32"
+cy="39"
+r="18"
+fill="#ffd700"
+stroke="#fff0a0"
+stroke-width="3"/>
+
+<text
+x="32"
+y="45"
+text-anchor="middle"
+font-size="17"
+font-weight="bold"
+fill="#8a6500">
+1
+</text>
+
+</svg>
+
+</span>
+
+`;
+
+}
+
+
+if(poradi===2){
+
+return `
+
+<span class="medal silver">
+
+<svg viewBox="0 0 64 64">
+
+<path
+d="M19 4 L29 4 L32 22 L22 22 Z"
+fill="#8e969f"/>
+
+<path
+d="M35 4 L45 4 L42 22 L32 22 Z"
+fill="#cfd4da"/>
+
+<circle
+cx="32"
+cy="39"
+r="18"
+fill="#cfd3d8"
+stroke="#f1f3f5"
+stroke-width="3"/>
+
+<text
+x="32"
+y="45"
+text-anchor="middle"
+font-size="17"
+font-weight="bold"
+fill="#69727c">
+2
+</text>
+
+</svg>
+
+</span>
+
+`;
+
+}
+
+
+if(poradi===3){
+
+return `
+
+<span class="medal bronze">
+
+<svg viewBox="0 0 64 64">
+
+<path
+d="M19 4 L29 4 L32 22 L22 22 Z"
+fill="#9c5b24"/>
+
+<path
+d="M35 4 L45 4 L42 22 L32 22 Z"
+fill="#c47b38"/>
+
+<circle
+cx="32"
+cy="39"
+r="18"
+fill="#cd7f32"
+stroke="#e7a15c"
+stroke-width="3"/>
+
+<text
+x="32"
+y="45"
+text-anchor="middle"
+font-size="17"
+font-weight="bold"
+fill="#713b14">
+3
+</text>
+
+</svg>
+
+</span>
+
+`;
+
+}
+
+
+return `
+
+<span class="normal-place">
+${poradi}.
+</span>
+
+`;
+
+}
+
+
+/* =========================
+   ČAS
+========================= */
+
+function normalizujCas(hodnota){
+
+if(
+hodnota===null||
+hodnota===undefined||
+hodnota===""
+)
+return null;
+
+
+const text=
+String(hodnota).trim();
+
+
+const casti=
+text.split(":");
+
+
+if(casti.length!==2)
+return null;
+
+
+const s=
+Number(casti[0]);
+
+const st=
+Number(casti[1]);
+
+
+if(
+isNaN(s)||
+isNaN(st)||
+s<0||
+st<0||
+st>99
+)
+return null;
+
+
+return s*100+st;
+
+}
+
+
+function casText(hodnota){
+
+const cislo=
+normalizujCas(hodnota);
+
+
+if(cislo===null)
+return "—";
+
+
+const s=
+Math.floor(cislo/100);
+
+const st=
+cislo%100;
+
+
+return s+
+":"+
+String(st).padStart(2,"0");
+
+}
+
+
+/* =========================
+   POŽÁRNÍ ÚTOK
+========================= */
+
+function platnyCasUtoku(z){
+
+if(z.np)
+return null;
+
+
+const lp=
+normalizujCas(z.lp);
+
+const pp=
+normalizujCas(z.pp);
+
+
+if(lp===null&&pp===null)
+return null;
+
+if(lp===null)
+return pp;
+
+if(pp===null)
+return lp;
+
+
+return Math.max(lp,pp);
+
+}
+
+
+function vykresliUtok(
+kategorie,
+element
+){
+
+const tab=
+document.getElementById(element);
+
+
+let seznam=
+utok.filter(
+z=>z.kategorie===kategorie
+);
+
+
+const platne=
+seznam
+.filter(z=>!z.np&&platnyCasUtoku(z)!==null)
+.sort(
+(a,b)=>
+platnyCasUtoku(a)-
+platnyCasUtoku(b)
+);
+
+
+const np=
+seznam.filter(z=>z.np);
+
+
+const vysledky=[
+...platne,
+...np
+];
+
+
+if(!vysledky.length){
+
+tab.innerHTML=`
+
+<tr>
+
+<td colspan="5" class="empty">
+Zatím není žádný výsledek.
+</td>
+
+</tr>
+
+`;
+
+return;
+
+}
+
+
+tab.innerHTML="";
+
+
+vysledky.forEach(
+(z,index)=>{
+
+const jeNP=
+z.np;
+
+
+const poradi=
+index+1;
+
+
+tab.innerHTML+=`
+
+<tr>
+
+<td>
+
+${medaile(poradi)}
+
+</td>
+
+<td class="name">
+
+${escapeHTML(z.druzstvo||"")}
+
+</td>
+
+<td>
+
+${z.lp||"—"}
+
+</td>
+
+<td>
+
+${z.pp||"—"}
+
+</td>
+
+<td class="result">
+
+${
+jeNP
+?
+`<span class="np">NP</span>`
+:
+casText(platnyCasUtoku(z))
+}
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+}
+
+
+/* =========================
+   ŠTAFETA
+========================= */
+
+function vysledekMereni(
+z,
+relay,
+measure
+){
+
+if(
+z[
+"s"+
+relay+
+"np"+
+measure
+]
+)
+return null;
+
+
+const cas=
+z[
+"s"+
+relay+
+"m"+
+measure
+];
+
+
+const hodnota=
+normalizujCas(cas);
+
+
+if(hodnota===null)
+return null;
+
+
+const tresty=
+Number(
+z[
+"s"+
+relay+
+"t"+
+measure
+]
+)||0;
+
+
+return hodnota+
+tresty*1000;
+
+}
+
+
+function vysledekStafety(
+z,
+relay
+){
+
+if(
+relay===2&&
+z.s2bezi===false
+)
+return null;
+
+
+const a=
+vysledekMereni(z,relay,1);
+
+const b=
+vysledekMereni(z,relay,2);
+
+
+if(a===null&&b===null){
+
+if(
+z["s"+relay+"np1"]&&
+z["s"+relay+"np2"]
+)
+return "NP";
+
+return null;
+
+}
+
+
+if(a===null)
+return b;
+
+if(b===null)
+return a;
+
+
+return Math.max(a,b);
+
+}
+
+
+function celkovyVysledek(z){
+
+const s1=
+vysledekStafety(z,1);
+
+const s2=
+vysledekStafety(z,2);
+
+
+if(s1==="NP")
+return s2;
+
+if(s2==="NP")
+return s1;
+
+if(s1===null&&s2===null)
+return null;
+
+if(s1===null)
+return s2;
+
+if(s2===null)
+return s1;
+
+
+/*
+Z obou štafet se bere lepší.
+*/
+
+return Math.min(s1,s2);
+
+}
+
+
+function vykresliStafetu(
+kategorie,
+element
+){
+
+const tab=
+document.getElementById(element);
+
+
+const seznam=
+stafeta.filter(
+z=>z.kategorie===kategorie
+);
+
+
+const platne=
+seznam
+.filter(
+z=>
+celkovyVysledek(z)!==
+null&&
+celkovyVysledek(z)!=="NP"
+)
+.sort(
+(a,b)=>
+celkovyVysledek(a)-
+celkovyVysledek(b)
+);
+
+
+const np=
+seznam.filter(
+z=>
+celkovyVysledek(z)==="NP"
+);
+
+
+const vysledky=[
+...platne,
+...np
+];
+
+
+if(!vysledky.length){
+
+tab.innerHTML=`
+
+<tr>
+
+<td colspan="5" class="empty">
+Zatím není žádný výsledek.
+</td>
+
+</tr>
+
+`;
+
+return;
+
+}
+
+
+tab.innerHTML="";
+
+
+vysledky.forEach(
+(z,index)=>{
+
+const vys=
+celkovyVysledek(z);
+
+const poradi=
+index+1;
+
+
+const s1=
+vysledekStafety(z,1);
+
+const s2=
+vysledekStafety(z,2);
+
+
+tab.innerHTML+=`
+
+<tr>
+
+<td>
+
+${medaile(poradi)}
+
+</td>
+
+<td class="name">
+
+${escapeHTML(z.druzstvo||"")}
+
+</td>
+
+<td>
+
+${
+s1==="NP"
+?
+`<span class="np">NP</span>`
+:
+s1===null
+?
+"—"
+:
+casZCisla(s1)
+}
+
+</td>
+
+<td>
+
+${
+s2==="NP"
+?
+`<span class="np">NP</span>`
+:
+s2===null
+?
+"—"
+:
+casZCisla(s2)
+}
+
+</td>
+
+<td class="result">
+
+${
+vys==="NP"
+?
+`<span class="np">NP</span>`
+:
+casZCisla(vys)
+}
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+}
+
+
+function casZCisla(cislo){
+
+if(
+cislo===null||
+cislo===undefined
+)
+return "—";
+
+
+const s=
+Math.floor(cislo/100);
+
+const st=
+cislo%100;
+
+
+return s+
+":"+
+String(st).padStart(2,"0");
+
+}
+
+
+/* =========================
+   60 M
+========================= */
+
+function nejlepsi60(z){
+
+let a=null;
+let b=null;
+
+
+if(
+!z.np1&&
+z.pokus1
+)
+a=
+normalizujCas(z.pokus1);
+
+
+if(
+!z.np2&&
+z.pokus2
+)
+b=
+normalizujCas(z.pokus2);
+
+
+if(a===null&&b===null)
+return null;
+
+if(a===null)
+return b;
+
+if(b===null)
+return a;
+
+
+return Math.min(a,b);
+
+}
+
+
+function vykresli60(
+kategorie,
+element
+){
+
+const tab=
+document.getElementById(element);
+
+
+const seznam=
+prek60.filter(
+z=>z.kategorie===kategorie
+);
+
+
+const platne=
+seznam
+.filter(
+z=>nejlepsi60(z)!==null
+)
+.sort(
+(a,b)=>
+nejlepsi60(a)-
+nejlepsi60(b)
+);
+
+
+const np=
+seznam.filter(
+z=>
+z.np1&&
+z.np2
+);
+
+
+const vysledky=[
+...platne,
+...np
+];
+
+
+if(!vysledky.length){
+
+tab.innerHTML=`
+
+<tr>
+
+<td colspan="6" class="empty">
+Zatím není žádný výsledek.
+</td>
+
+</tr>
+
+`;
+
+return;
+
+}
+
+
+tab.innerHTML="";
+
+
+vysledky.forEach(
+(z,index)=>{
+
+const best=
+nejlepsi60(z);
+
+const poradi=
+index+1;
+
+
+tab.innerHTML+=`
+
+<tr>
+
+<td>
+
+${medaile(poradi)}
+
+</td>
+
+<td class="name">
+
+${escapeHTML(
+(z.prijmeni||"")+
+" "+
+(z.jmeno||"")
+)}
+
+</td>
+
+<td>
+
+${escapeHTML(z.druzstvo||"")}
+
+</td>
+
+<td>
+
+${
+z.np1
+?
+`<span class="np">NP</span>`
+:
+casText(z.pokus1)
+}
+
+</td>
+
+<td>
+
+${
+z.np2
+?
+`<span class="np">NP</span>`
+:
+casText(z.pokus2)
+}
+
+</td>
+
+<td class="result">
+
+${
+best===null
+?
+`<span class="np">NP</span>`
+:
+casZCisla(best)
+}
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+}
+
+
+/* =========================
+   BEZPEČNÉ VLOŽENÍ TEXTU
+========================= */
+
+function escapeHTML(text){
+
+return String(text)
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================
+   FIREBASE – POŽÁRNÍ ÚTOK
+========================= */
+
+onSnapshot(
+
+collection(
+db,
+"pozarni_utok"
+),
+
+snap=>{
+
+utok=[];
+
+snap.forEach(
+d=>{
+
+utok.push({
+id:d.id,
+...d.data()
+});
+
+});
+
+
+vykresliUtok(
+"mladsi",
+"utokMladsi"
+);
+
+vykresliUtok(
+"starsi",
+"utokStarsi"
+);
+
+},
+
+error=>{
+
+console.error(
+"Požární útok:",
+error
+);
+
+}
+);
+
+
+/* =========================
+   FIREBASE – ŠTAFETA
+========================= */
+
+onSnapshot(
+
+collection(
+db,
+"stafety_dvojic"
+),
+
+snap=>{
+
+stafeta=[];
+
+snap.forEach(
+d=>{
+
+stafeta.push({
+id:d.id,
+...d.data()
+});
+
+});
+
+
+vykresliStafetu(
+"mladsi",
+"stafetaMladsi"
+);
+
+vykresliStafetu(
+"starsi",
+"stafetaStarsi"
+);
+
+},
+
+error=>{
+
+console.error(
+"Štafeta:",
+error
+);
+
+}
+);
+
+
+/* =========================
+   FIREBASE – 60 M
+========================= */
+
+onSnapshot(
+
+collection(
+db,
+"60m_prekazky"
+),
+
+snap=>{
+
+prek60=[];
+
+snap.forEach(
+d=>{
+
+prek60.push({
+id:d.id,
+...d.data()
+});
+
+});
+
+
+vykresli60(
+"mladsi_chlapci",
+"m60ch"
+);
+
+vykresli60(
+"mladsi_divky",
+"m60div"
+);
+
+vykresli60(
+"starsi_chlapci",
+"s60ch"
+);
+
+vykresli60(
+"starsi_divky",
+"s60div"
+);
+
+},
+
+error=>{
+
+console.error(
+"60 m:",
+error
+);
+
+}
+);
+
+
+/* =========================
+   ÚDAJE ZÁVODU
+========================= */
+
+async function nacistUdaje(){
+
+try{
+
+const ref=
+doc(
+db,
+"nastaveni",
+"viditelnost"
+);
+
+const snap=
+await getDoc(ref);
+
+
+if(!snap.exists())
+return;
+
+
+const data=
+snap.data();
+
+
+let text=
+"okres Nový Jičín · Výsledky";
+
+
+if(data.misto)
+text+=
+" · "+
+data.misto;
+
+
+if(data.datum){
+
+const casti=
+data.datum.split("-");
+
+if(casti.length===3){
+
+text+=
+" · "+
+casti[2]+"."+
+casti[1]+"."+
+casti[0];
+
+}
+
+}
+
+
+document.getElementById(
+"infoZavodu"
+).textContent=text;
+
+}
+
+catch(error){
+
+console.error(
+"Chyba načítání údajů:",
+error
+);
+
+}
+
+}
+
+
+nacistUdaje();
+
+</script>
+
+</body>
+
+  </html>

@@ -11,327 +11,517 @@
 <style>
 
 *{
-box-sizing:border-box;
+    box-sizing:border-box;
 }
 
 body{
-margin:0;
-font-family:Arial,sans-serif;
-background:
-radial-gradient(circle at top right,#5b1010,transparent 35%),
-linear-gradient(145deg,#090d13,#151b24);
-color:white;
-min-height:100vh;
+    margin:0;
+    font-family:Arial,sans-serif;
+    min-height:100vh;
+    color:white;
+
+    background:
+        radial-gradient(circle at top right,#5b1010 0%,transparent 35%),
+        linear-gradient(145deg,#090d13,#151b24);
 }
 
 .app{
-max-width:900px;
-margin:auto;
-padding:20px 15px 40px;
+    max-width:1000px;
+    margin:auto;
+    padding:20px 15px 40px;
 }
 
 .header{
-text-align:center;
-padding:10px 0 25px;
+    text-align:center;
+    padding:10px 0 25px;
 }
 
 .logo{
-font-size:42px;
+    font-size:42px;
 }
 
-h1{
-font-size:23px;
-line-height:1.4;
+.header h1{
+    font-size:23px;
+    line-height:1.4;
+    margin:8px 0;
 }
 
-h1 span{
-color:#ef3333;
+.header h1 span{
+    color:#ef3333;
 }
 
 .subtitle{
-color:#8995a6;
+    color:#8995a6;
+    font-size:14px;
 }
 
 .back{
-background:transparent;
-border:1px solid #394455;
-color:#fff;
-padding:10px 15px;
-border-radius:10px;
-margin-bottom:15px;
+    background:transparent;
+    border:1px solid #394455;
+    color:white;
+    padding:10px 15px;
+    border-radius:10px;
+    cursor:pointer;
+    margin-bottom:15px;
 }
 
 .card{
-background:rgba(255,255,255,.055);
-border:1px solid rgba(255,255,255,.1);
-border-radius:20px;
-padding:18px;
-margin-bottom:15px;
+    background:rgba(255,255,255,.055);
+    border:1px solid rgba(255,255,255,.10);
+    border-radius:20px;
+    padding:18px;
+    margin-bottom:15px;
 }
 
-h2{
-margin-top:0;
+.card h2{
+    margin-top:0;
 }
 
 .form{
-display:grid;
-grid-template-columns:1.5fr 1fr auto;
-gap:10px;
+    display:grid;
+    grid-template-columns:1.5fr 1fr auto;
+    gap:10px;
 }
 
-input,select{
-width:100%;
-padding:13px;
-border-radius:11px;
-border:1px solid #394455;
-background:#101722;
-color:white;
-font-size:16px;
-}
-
-button{
-cursor:pointer;
+input,
+select{
+    width:100%;
+    padding:13px;
+    border-radius:11px;
+    border:1px solid #394455;
+    background:#101722;
+    color:white;
+    font-size:16px;
 }
 
 .primary{
-background:#d72f2f;
-color:white;
-border:0;
-border-radius:11px;
-padding:13px 18px;
-font-weight:bold;
+    background:#d72f2f;
+    color:white;
+    border:0;
+    border-radius:11px;
+    padding:13px 18px;
+    font-weight:bold;
+    cursor:pointer;
 }
 
 .category{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
-margin-bottom:15px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-bottom:15px;
 }
 
 .category button{
-background:#101722;
-border:1px solid #394455;
-color:#bfc8d5;
-border-radius:11px;
-padding:14px;
-font-weight:bold;
+    background:#101722;
+    border:1px solid #394455;
+    color:#bfc8d5;
+    border-radius:11px;
+    padding:14px;
+    font-weight:bold;
+    cursor:pointer;
 }
 
 .category button.active{
-background:#b92828;
-color:white;
-border-color:#ef3333;
+    background:#b92828;
+    color:white;
+    border-color:#ef3333;
 }
 
+
+/* DRUŽSTVO */
+
 .team{
-background:rgba(0,0,0,.18);
-border:1px solid rgba(255,255,255,.1);
-border-radius:17px;
-padding:16px;
-margin-bottom:14px;
+    background:rgba(0,0,0,.18);
+    border:1px solid rgba(255,255,255,.10);
+    border-radius:17px;
+    padding:16px;
+    margin-bottom:14px;
+}
+
+.team-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    margin-bottom:14px;
 }
 
 .team-name{
-font-size:21px;
-font-weight:bold;
-margin-bottom:4px;
+    font-size:21px;
+    font-weight:bold;
 }
 
 .start{
-font-size:12px;
-color:#8995a6;
+    font-size:12px;
+    color:#8995a6;
+    margin-top:4px;
+}
+
+
+/* ŠTAFETY */
+
+.relays{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
 }
 
 .relay{
-background:#101722;
-border-radius:14px;
-padding:14px;
-margin-top:12px;
+    background:#101722;
+    border-radius:14px;
+    padding:14px;
+    border:1px solid rgba(255,255,255,.07);
 }
 
 .relay-title{
-font-size:17px;
-font-weight:bold;
-margin-bottom:12px;
+    font-size:17px;
+    font-weight:bold;
+    margin-bottom:10px;
 }
 
-.measure{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
+.relay-status{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    margin-bottom:12px;
+}
+
+.status-button{
+    flex:1;
+    padding:9px;
+    border-radius:9px;
+    border:1px solid #394455;
+    background:#252e3c;
+    color:#aeb9c8;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.status-button.active{
+    background:#246b4b;
+    border-color:#36d399;
+    color:white;
+}
+
+.status-button.off{
+    background:#4a2525;
+    border-color:#8b4141;
+    color:#ffbcbc;
+}
+
+
+/* MĚŘENÍ */
+
+.measure-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
 }
 
 .measure-box{
-background:#151d29;
-border:1px solid #354052;
-border-radius:10px;
-padding:10px;
+    background:#151d29;
+    border:1px solid #354052;
+    border-radius:10px;
+    padding:10px;
 }
 
 .measure-title{
-color:#8995a6;
-font-size:12px;
-margin-bottom:6px;
+    color:#8995a6;
+    font-size:12px;
+    margin-bottom:6px;
 }
 
 .time{
-text-align:center;
-font-size:18px;
+    width:100%;
+    text-align:center;
+    font-size:17px;
+    padding:10px 5px;
+}
+
+.time:focus{
+    outline:none;
+    border-color:#ef3333;
 }
 
 .small-button{
-width:100%;
-margin-top:8px;
-padding:9px;
-border-radius:9px;
-border:1px solid #394455;
-background:#252e3c;
-color:white;
+    width:100%;
+    margin-top:8px;
+    padding:9px;
+    border-radius:9px;
+    border:1px solid #394455;
+    background:#252e3c;
+    color:white;
+    cursor:pointer;
 }
 
 .penalty{
-color:#ffb4b4;
-font-size:12px;
-margin-top:6px;
+    color:#ffb4b4;
+    font-size:12px;
+    margin-top:6px;
+    min-height:15px;
+}
+
+.np{
+    color:#ff7070;
+    font-weight:bold;
 }
 
 .result{
-display:flex;
-justify-content:space-between;
-margin-top:12px;
-padding-top:12px;
-border-top:1px solid #303947;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:12px;
+    padding-top:12px;
+    border-top:1px solid #303947;
 }
 
 .result strong{
-color:#ffd166;
-font-size:20px;
+    color:#ffd166;
+    font-size:20px;
 }
 
+.np-result{
+    color:#ff6666 !important;
+}
+
+.not-running{
+    text-align:center;
+    padding:35px 10px;
+    color:#718096;
+}
+
+
+/* CELKEM */
+
 .total{
-background:#252e3c;
-border-radius:12px;
-padding:14px;
-margin-top:12px;
-display:flex;
-justify-content:space-between;
-font-weight:bold;
+    background:#252e3c;
+    border-radius:12px;
+    padding:14px;
+    margin-top:12px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 
 .total strong{
-color:#ffd166;
-font-size:22px;
+    color:#ffd166;
+    font-size:22px;
 }
 
+.total-np{
+    color:#ff6666 !important;
+}
+
+
+/* AKCE */
+
 .actions{
-text-align:right;
-margin-top:12px;
+    text-align:right;
+    margin-top:12px;
 }
 
 .actions button{
-background:#252e3c;
-border:0;
-color:white;
-padding:7px 10px;
-border-radius:7px;
-margin-left:4px;
+    background:#252e3c;
+    border:0;
+    color:white;
+    padding:7px 10px;
+    border-radius:7px;
+    margin-left:4px;
+    cursor:pointer;
 }
 
-.empty{
-text-align:center;
-color:#718096;
-padding:25px;
-}
 
-.error{
-color:#ff6b6b;
-margin-top:10px;
-font-size:13px;
-}
+/* MODAL */
 
 .modal{
-display:none;
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.85);
-z-index:20;
-padding:15px;
-overflow:auto;
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.85);
+    z-index:20;
+    padding:15px;
+    overflow:auto;
 }
 
 .modal-box{
-max-width:600px;
-margin:20px auto;
-background:#151b24;
-border:1px solid #394455;
-border-radius:20px;
-padding:18px;
+    max-width:600px;
+    margin:20px auto;
+    background:#151b24;
+    border:1px solid #394455;
+    border-radius:20px;
+    padding:18px;
+}
+
+.modal-box h2{
+    margin-top:0;
+}
+
+.modal-info{
+    color:#8995a6;
+    font-size:13px;
+    margin-bottom:12px;
 }
 
 .trest{
-display:flex;
-gap:10px;
-padding:10px 0;
-border-bottom:1px solid #29313d;
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    padding:10px 0;
+    border-bottom:1px solid #29313d;
+    cursor:pointer;
 }
 
 .trest input{
-width:20px;
-height:20px;
+    width:20px;
+    height:20px;
+    margin:0;
+    flex:none;
+}
+
+.np-row{
+    margin-top:15px;
+    padding:12px;
+    border-radius:10px;
+    background:rgba(185,40,40,.15);
+    display:flex;
+    gap:10px;
+    align-items:center;
+}
+
+.np-row input{
+    width:20px;
+    height:20px;
 }
 
 .modal-buttons{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
-margin-top:15px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-top:15px;
 }
 
 .modal-buttons button{
-padding:12px;
-border-radius:10px;
-border:0;
+    padding:12px;
+    border-radius:10px;
+    border:0;
+    cursor:pointer;
+    font-weight:bold;
 }
 
 .save{
-background:#d72f2f;
-color:white;
+    background:#d72f2f;
+    color:white;
 }
 
 .cancel{
-background:#252e3c;
-color:white;
+    background:#252e3c;
+    color:white;
 }
 
-@media(max-width:650px){
 
-.form{
-grid-template-columns:1fr;
+/* OSTATNÍ */
+
+.empty{
+    text-align:center;
+    color:#718096;
+    padding:25px;
 }
 
-.measure{
-grid-template-columns:1fr 1fr;
+.error{
+    color:#ff6b6b;
+    margin-top:10px;
+    font-size:13px;
 }
+
+.success{
+    color:#36d399;
+    margin-top:10px;
+    font-size:13px;
+}
+
+.excel-example{
+    margin-top:10px;
+    border:1px solid #394455;
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.excel-example table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.excel-example th,
+.excel-example td{
+    padding:8px;
+    text-align:left;
+    font-size:12px;
+}
+
+.excel-example th{
+    background:#252e3c;
+}
+
+.excel-example td{
+    border-top:1px solid #29313d;
+}
+
+
+/* MOBIL */
+
+@media(max-width:700px){
+
+    .form{
+        grid-template-columns:1fr;
+    }
+
+    .relays{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:450px){
+
+    .measure-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .measure-box{
+        padding:8px;
+    }
+
+    .time{
+        font-size:16px;
+    }
 
 }
 
 </style>
 </head>
 
+
 <body>
 
 <div class="app">
 
+
 <button
 class="back"
 onclick="location.href='index.html'">
+
 ← Zpět
+
 </button>
 
-<div class="header">
 
-<div class="logo">🏃‍♂️</div>
+<header class="header">
+
+<div class="logo">
+🏃‍♂️
+</div>
 
 <h1>
 <span>SBOR DOBROVOLNÝCH HASIČŮ</span><br>
@@ -342,7 +532,7 @@ LUBINA II–VĚTŘKOVICE
 okres Nový Jičín · Štafeta dvojic
 </div>
 
-</div>
+</header>
 
 
 <!-- PŘIDÁNÍ -->
@@ -372,12 +562,14 @@ placeholder="Název družstva">
 <button
 class="primary"
 onclick="pridatDruzstvo()">
+
 + Přidat
+
 </button>
 
 </div>
 
-<div id="chyba"></div>
+<div id="hlaska"></div>
 
 </div>
 
@@ -388,15 +580,43 @@ onclick="pridatDruzstvo()">
 
 <h2>📥 Import z Excelu</h2>
 
-<p>
-Excel musí obsahovat:
-<b>Družstvo</b> a <b>Kategorie</b>.
-</p>
+<div style="color:#8995a6;font-size:13px;line-height:1.5">
 
-<p>
-Příklad jednoho řádku:
-<b>Lubina A | Mladší</b>
-</p>
+Excel musí obsahovat sloupce:
+
+<b>Družstvo</b> a <b>Kategorie</b>.
+
+</div>
+
+
+<div class="excel-example">
+
+<table>
+
+<thead>
+
+<tr>
+<th>Družstvo</th>
+<th>Kategorie</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+<td>Lubina A</td>
+<td>Mladší</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+
+<br>
 
 <input
 type="file"
@@ -408,7 +628,9 @@ accept=".xlsx,.xls">
 <button
 class="primary"
 onclick="importExcel()">
+
 📥 Načíst Excel
+
 </button>
 
 </div>
@@ -426,25 +648,31 @@ onclick="importExcel()">
 id="mladsiBtn"
 class="active"
 onclick="zmenKategorie('mladsi')">
+
 👦 Mladší
+
 </button>
 
 <button
 id="starsiBtn"
 onclick="zmenKategorie('starsi')">
+
 🧑 Starší
+
 </button>
 
 </div>
+
 
 <div id="vysledky"></div>
 
 </div>
 
+
 </div>
 
 
-<!-- TRESTY -->
+<!-- MODAL TRESTŮ -->
 
 <div
 id="modal"
@@ -454,22 +682,47 @@ class="modal">
 
 <h2>⚠️ Tresty</h2>
 
-<p id="modalInfo"></p>
+<div
+id="modalInfo"
+class="modal-info">
+</div>
 
 <div id="tresty"></div>
+
+
+<div class="np-row">
+
+<input
+type="checkbox"
+id="npCheck">
+
+<label for="npCheck">
+
+<strong>
+NP – neplatný pokus
+</strong>
+
+</label>
+
+</div>
+
 
 <div class="modal-buttons">
 
 <button
 class="cancel"
 onclick="zavritModal()">
+
 Zrušit
+
 </button>
 
 <button
 class="save"
 onclick="ulozitTresty()">
+
 Uložit
+
 </button>
 
 </div>
@@ -481,11 +734,13 @@ Uložit
 
 <script type="module">
 
+
 import {
 initializeApp
 }
 from
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
 
 import {
 getFirestore,
@@ -526,17 +781,22 @@ appId:
 };
 
 
-const app=initializeApp(firebaseConfig);
+const app=
+initializeApp(firebaseConfig);
 
-const db=getFirestore(app);
+const db=
+getFirestore(app);
 
 const col=
-collection(db,"stafety_dvojic");
+collection(
+db,
+"stafety_dvojic"
+);
 
 
 let data=[];
 
-let kategorie="mladsi";
+let vybranaKategorie="mladsi";
 
 
 /* TRESTY */
@@ -549,7 +809,7 @@ const tresty=[
 
 "Nerozložená hadice na nebo za čarou",
 
-"Nesprávné napojení hadice na proudnici či nástavec",
+"Nesprávné napojení hadice na proudnici nebo nástavec",
 
 "Nesprávně rozvinutá hadice",
 
@@ -557,15 +817,15 @@ const tresty=[
 
 "Neúplné svinutí hadice",
 
-"Hození hadice nebo proudnice",
+"Hození hadice, koncovky nebo proudnice",
 
-"Chození po nesprávné straně",
+"Chození po nesprávné straně mety nebo hydrantu",
 
 "Nesprávné svinutí hadice",
 
 "Nesprávné odpojení proudnice nebo hadice",
 
-"Pomoc při svinování hadice"
+"Jiné porušení pravidel – 10 s"
 
 ];
 
@@ -579,84 +839,144 @@ let modalRelay=null;
 let modalMeasure=null;
 
 
-/* =====================
+/* =========================
    ČAS
-===================== */
+========================= */
 
-function cas(v){
+/*
+15 55 → 15:55
+*/
 
-v=String(v||"").trim();
+function normalizujCas(hodnota){
 
-if(!v)
-return "";
+let text=
+String(hodnota ?? "")
+.trim();
 
-v=v.replace(":"," ");
 
-let p=v.split(/\s+/);
+if(text==="")
+return "00:00";
 
-if(p.length===2){
 
-let s=parseInt(p[0]);
+text=text.replace(":"," ");
 
-let st=parseInt(p[1]);
+let casti=
+text.split(/\s+/);
+
+
+if(casti.length===2){
+
+let sekundy=
+parseInt(casti[0],10);
+
+let setiny=
+parseInt(casti[1],10);
+
 
 if(
-!isNaN(s)&&
-!isNaN(st)&&
-s>=0&&
-st>=0&&
-st<=99
+!isNaN(sekundy)&&
+!isNaN(setiny)&&
+sekundy>=0&&
+setiny>=0&&
+setiny<=99
 ){
 
-return s+":"+String(st).padStart(2,"0");
+return (
+sekundy+
+":"+
+String(setiny).padStart(2,"0")
+);
 
 }
 
 }
 
-if(/^\d{3,4}$/.test(v)){
 
-let st=parseInt(v.slice(-2));
+/* 1555 */
 
-let s=parseInt(v.slice(0,-2));
+if(/^\d{3,4}$/.test(text)){
 
-if(st<=99)
-return s+":"+String(st).padStart(2,"0");
+let setiny=
+parseInt(text.slice(-2),10);
+
+let sekundy=
+parseInt(text.slice(0,-2),10);
+
+
+if(
+!isNaN(sekundy)&&
+!isNaN(setiny)&&
+setiny<=99
+){
+
+return (
+sekundy+
+":"+
+String(setiny).padStart(2,"0")
+);
 
 }
+
+}
+
 
 return null;
 
 }
 
 
-function cislo(c){
+function casNaCislo(cas){
 
-let p=c.split(":");
+if(!cas)
+return null;
 
-return Number(p[0])*100+
-Number(p[1]);
+let casti=
+cas.split(":");
+
+return (
+Number(casti[0])*100+
+Number(casti[1])
+);
 
 }
 
 
-function casText(c){
+function cisloNaCas(cislo){
 
-if(c===null)
+if(cislo===null)
 return "—";
 
-let s=Math.floor(c/100);
 
-let st=c%100;
+let sekundy=
+Math.floor(cislo/100);
 
-return s+":"+String(st).padStart(2,"0");
+let setiny=
+cislo%100;
+
+
+return (
+sekundy+
+":"+
+String(setiny).padStart(2,"0")
+);
 
 }
 
 
-/* =====================
+/* =========================
    VÝPOČET
-===================== */
+========================= */
+
+
+/*
+NP = neplatné měření.
+
+Pokud je jedno měření NP a druhé platné,
+bere se platné měření.
+
+Pokud jsou obě NP,
+štafeta je NP.
+*/
 
 function vysledekMereni(
 z,
@@ -664,31 +984,63 @@ relay,
 measure
 ){
 
-let c=
-z["s"+relay+"m"+measure];
-
-if(!c)
+if(
+z["s"+relay+"np"+measure]
+)
 return null;
 
-let n=cas(c);
 
-if(!n)
+let cas=
+z["s"+relay+"m"+measure]||"00:00";
+
+
+if(cas==="00:00")
 return null;
 
-let trest=
+
+let cislo=
+casNaCislo(cas);
+
+
+if(cislo===null)
+return null;
+
+
+let pocet=
 Number(
 z["s"+relay+"t"+measure]
 )||0;
 
-return cislo(n)+(trest*1000);
+
+/*
+10 sekund = 1000 setin
+*/
+
+return (
+cislo+
+(pocet*1000)
+);
 
 }
 
+
+/* ŠTAFETA */
 
 function vysledekStafety(
 z,
 relay
 ){
+
+/*
+Štafeta 2 neběží
+*/
+
+if(
+relay===2&&
+z.s2bezi===false
+)
+return null;
+
 
 let a=
 vysledekMereni(z,relay,1);
@@ -696,101 +1048,180 @@ vysledekMereni(z,relay,1);
 let b=
 vysledekMereni(z,relay,2);
 
-if(a===null&&b===null)
+
+if(a===null&&b===null){
+
+/*
+Pokud jsou obě měření označena NP,
+vracíme speciální hodnotu.
+*/
+
+let np1=
+z["s"+relay+"np1"];
+
+let np2=
+z["s"+relay+"np2"];
+
+if(np1&&np2)
+return "NP";
+
 return null;
+
+}
+
 
 if(a===null)
 return b;
 
+
 if(b===null)
 return a;
 
-/* horší měření */
+
+/*
+Z dvou měření se bere HORŠÍ
+*/
 
 return Math.max(a,b);
 
 }
 
 
-function celkem(z){
+/* CELKEM */
 
-let a=
+function celkovyVysledek(z){
+
+let s1=
 vysledekStafety(z,1);
 
-let b=
+let s2=
 vysledekStafety(z,2);
 
-if(a===null&&b===null)
+
+/*
+Štafeta 1 NP
+a štafeta 2 platná
+*/
+
+if(s1==="NP")
+return s2;
+
+
+/*
+Štafeta 2 NP
+a štafeta 1 platná
+*/
+
+if(s2==="NP")
+return s1;
+
+
+if(s1===null&&s2===null)
 return null;
 
-if(a===null)
-return b;
 
-if(b===null)
-return a;
+if(s1===null)
+return s2;
 
-/* lepší štafeta */
 
-return Math.min(a,b);
+if(s2===null)
+return s1;
+
+
+/*
+Z obou štafet se bere LEPŠÍ
+*/
+
+return Math.min(s1,s2);
 
 }
 
 
-/* =====================
+/* =========================
    FIREBASE
-===================== */
+========================= */
 
 onSnapshot(
+
 col,
+
 snap=>{
 
 data=[];
 
-snap.forEach(d=>{
+snap.forEach(
+d=>{
 
 data.push({
+
 id:d.id,
 ...d.data()
+
 });
 
 });
+
+
+/*
+DŮLEŽITÉ:
+Řazení je podle startovního čísla.
+
+NE podle času.
+*/
+
+data.sort(
+(a,b)=>
+Number(a.start||0)-
+Number(b.start||0)
+);
 
 render();
 
 },
+
 error=>{
 
 console.error(error);
 
-zobrazChybu(
-"Firebase chyba: "+error.message
+zobrazHlasku(
+"Firebase chyba: "+
+error.message,
+true
 );
 
 }
+
 );
 
 
-/* =====================
+/* =========================
    PŘIDAT
-===================== */
+========================= */
 
 window.pridatDruzstvo=
 async function(){
 
-let input=
-document.getElementById("druzstvo");
+const input=
+document.getElementById(
+"druzstvo"
+);
 
-let nazev=
+const nazev=
 input.value.trim();
 
-let kat=
-document.getElementById("kategorie").value;
+const kat=
+document
+.getElementById(
+"kategorie"
+)
+.value;
 
 
 if(!nazev){
 
-zobrazChybu(
-"Zadej název družstva."
+zobrazHlasku(
+"Zadej název družstva.",
+true
 );
 
 return;
@@ -800,13 +1231,13 @@ return;
 
 try{
 
-let start=0;
+let maxStart=0;
 
 data.forEach(z=>{
 
-start=
+maxStart=
 Math.max(
-start,
+maxStart,
 Number(z.start)||0
 );
 
@@ -814,50 +1245,77 @@ Number(z.start)||0
 
 
 await addDoc(
+
 col,
+
 {
 
 druzstvo:nazev,
 
 kategorie:kat,
 
-start:start+1,
+start:maxStart+1,
 
-s1m1:"",
-s1m2:"",
+
+/* ŠTAFETA 1 */
+
+s1bezi:true,
+
+s1m1:"00:00",
+s1m2:"00:00",
+
 s1t1:0,
 s1t2:0,
 
-s2m1:"",
-s2m2:"",
+s1np1:false,
+s1np2:false,
+
+s1t1Items:[],
+s1t2Items:[],
+
+
+/* ŠTAFETA 2 */
+
+s2bezi:true,
+
+s2m1:"00:00",
+s2m2:"00:00",
+
 s2t1:0,
 s2t2:0,
 
-s1np1:false,
-s1np2:false,
 s2np1:false,
 s2np2:false,
+
+s2t1Items:[],
+s2t2Items:[],
+
 
 vytvoreno:
 serverTimestamp()
 
 }
+
 );
 
 
 input.value="";
 
-zobrazChybu(
-"✓ Družstvo bylo přidáno."
+zobrazHlasku(
+"✓ Družstvo bylo přidáno.",
+false
 );
 
 }
+
 catch(error){
 
 console.error(error);
 
-zobrazChybu(
-"CHYBA FIREBASE: "+error.message
+zobrazHlasku(
+"CHYBA FIREBASE: "+
+error.message,
+true
 );
 
 }
@@ -865,106 +1323,183 @@ zobrazChybu(
 };
 
 
-/* =====================
+/* =========================
    KATEGORIE
-===================== */
+========================= */
 
 window.zmenKategorie=
-function(k){
+function(kategorie){
 
-kategorie=k;
+vybranaKategorie=
+kategorie;
+
 
 document
 .getElementById("mladsiBtn")
 .classList
-.toggle("active",k==="mladsi");
+.toggle(
+"active",
+kategorie==="mladsi"
+);
+
 
 document
 .getElementById("starsiBtn")
 .classList
-.toggle("active",k==="starsi");
+.toggle(
+"active",
+kategorie==="starsi"
+);
+
 
 render();
 
 };
 
 
-/* =====================
+/* =========================
    RENDER
-===================== */
+========================= */
 
 function render(){
 
-let box=
-document.getElementById("vysledky");
-
-let seznam=
-data.filter(
-z=>z.kategorie===kategorie
+const box=
+document.getElementById(
+"vysledky"
 );
-
-
-seznam.sort((a,b)=>{
-
-let aa=celkem(a);
-
-let bb=celkem(b);
-
-if(aa===null&&bb===null)
-return a.start-b.start;
-
-if(aa===null)
-return 1;
-
-if(bb===null)
-return -1;
-
-return aa-bb;
-
-});
-
 
 box.innerHTML="";
 
 
+const seznam=
+data.filter(
+z=>
+z.kategorie===
+vybranaKategorie
+);
+
+
+/*
+POŘADÍ SE NIKDY
+NEŘADÍ PODLE ČASU.
+*/
+
+seznam.sort(
+(a,b)=>
+Number(a.start||0)-
+Number(b.start||0)
+);
+
+
 if(!seznam.length){
 
-box.innerHTML=
-`<div class="empty">
+box.innerHTML=`
+
+<div class="empty">
+
 Zatím není žádné družstvo.
-</div>`;
+
+</div>
+
+`;
 
 return;
 
 }
 
 
-seznam.forEach((z,i)=>{
+seznam.forEach(
+(z,index)=>{
 
-let vys=celkem(z);
+vykresliDruzstvo(
+box,
+z,
+index
+);
 
-let poradi=
-vys!==null
-?
-(i+1)+". "
-:
-"";
+});
+
+}
+
+
+/* =========================
+   DRUŽSTVO
+========================= */
+
+function vykresliDruzstvo(
+box,
+z,
+index
+){
+
+const vys=
+celkovyVysledek(z);
+
+
+let vysledekHTML=
+"—";
+
+
+if(vys==="NP"){
+
+vysledekHTML=
+`<strong class="total-np">NP</strong>`;
+
+}
+
+else if(vys!==null){
+
+vysledekHTML=
+`<strong>
+${cisloNaCas(vys)}
+</strong>`;
+
+}
+
 
 box.innerHTML+=`
 
 <div class="team">
 
+
+<div class="team-header">
+
+<div>
+
 <div class="team-name">
-${poradi}${z.druzstvo}
+
+${index+1}. ${z.druzstvo}
+
 </div>
 
 <div class="start">
-Start: ${z.start}
+
+Startovní číslo: ${z.start}
+
 </div>
 
-${relayHTML(z,1)}
+</div>
 
-${relayHTML(z,2)}
+</div>
+
+
+<div class="relays">
+
+
+${vytvorStafety(
+z,
+1
+)}
+
+
+${vytvorStafety(
+z,
+2
+)}
+
+
+</div>
+
 
 <div class="total">
 
@@ -972,157 +1507,86 @@ ${relayHTML(z,2)}
 Celkový výsledek
 </span>
 
-<strong>
-${vys!==null?casText(vys):"—"}
-</strong>
+${vysledekHTML}
 
 </div>
+
 
 <div class="actions">
 
 <button
-onclick="posun('${z.id}',-1)">
+onclick="posunNahoru('${z.id}')">
 ⬆️
 </button>
 
 <button
-onclick="posun('${z.id}',1)">
+onclick="posunDolu('${z.id}')">
 ⬇️
 </button>
 
 <button
-onclick="edit('${z.id}')">
+onclick="editDruzstvo('${z.id}')">
 ✏️
 </button>
 
 <button
-onclick="smazat('${z.id}')">
+onclick="smazDruzstvo('${z.id}')">
 🗑️
 </button>
 
 </div>
 
+
 </div>
 
 `;
 
-});
-
 }
 
 
-/* =====================
-   ŠTAFETA HTML
-===================== */
+/* =========================
+   ŠTAFETA
+========================= */
 
-function relayHTML(z,r){
+function vytvorStafety(
+z,
+relay
+){
 
-let a=
-vysledekMereni(z,r,1);
+/*
+ŠTAFETA 2 NEBĚŽÍ
+*/
 
-let b=
-vysledekMereni(z,r,2);
-
-let ta=
-Number(z["s"+r+"t1"])||0;
-
-let tb=
-Number(z["s"+r+"t2"])||0;
-
-let vys=
-vysledekStafety(z,r);
-
+if(
+relay===2&&
+z.s2bezi===false
+){
 
 return `
 
 <div class="relay">
 
 <div class="relay-title">
-🏃 Štafeta ${r}
+
+🏃 Štafeta 2
+
 </div>
 
-<div class="measure">
-
-<div class="measure-box">
-
-<div class="measure-title">
-Měření 1
-</div>
-
-<input
-class="time"
-value="${z["s"+r+"m1"]||""}"
-placeholder="15 55"
-inputmode="numeric"
-onchange="ulozCas(
-this,
-'${z.id}',
-${r},
-1
-)">
+<div class="relay-status">
 
 <button
-class="small-button"
-onclick="trestyModal(
-'${z.id}',
-${r},
-1
-)">
-⚠️ Tresty: ${ta}
+class="status-button off"
+onclick="nastavBezi('${z.id}',true)">
+
+☐ Neběží
+
 </button>
 
-<div class="penalty">
-${ta?"+ "+(ta*10)+" s":"Bez trestu"}
 </div>
 
-</div>
+<div class="not-running">
 
-
-<div class="measure-box">
-
-<div class="measure-title">
-Měření 2
-</div>
-
-<input
-class="time"
-value="${z["s"+r+"m2"]||""}"
-placeholder="15 55"
-inputmode="numeric"
-onchange="ulozCas(
-this,
-'${z.id}',
-${r},
-2
-)">
-
-<button
-class="small-button"
-onclick="trestyModal(
-'${z.id}',
-${r},
-2
-)">
-⚠️ Tresty: ${tb}
-</button>
-
-<div class="penalty">
-${tb?"+ "+(tb*10)+" s":"Bez trestu"}
-</div>
-
-</div>
-
-</div>
-
-<div class="result">
-
-<span>
-Výsledek štafety
-</span>
-
-<strong>
-${vys!==null?casText(vys):"—"}
-</strong>
+Štafeta nebude startovat.
 
 </div>
 
@@ -1133,45 +1597,331 @@ ${vys!==null?casText(vys):"—"}
 }
 
 
-/* =====================
-   ČAS
-===================== */
-
-window.ulozCas=
-async function(input,id,r,m){
-
-let hodnota=
-cas(input.value);
-
-if(
-input.value.trim()!==""&&
-hodnota===null
-){
-
-alert(
-"Špatný čas.\n\nPoužij například 15 55."
+let a=
+vysledekMereni(
+z,
+relay,
+1
 );
 
-input.value="";
+let b=
+vysledekMereni(
+z,
+relay,
+2
+);
+
+
+let vys=
+vysledekStafety(
+z,
+relay
+);
+
+
+let np1=
+z["s"+relay+"np1"]||false;
+
+let np2=
+z["s"+relay+"np2"]||false;
+
+
+let resultHTML="—";
+
+
+if(vys==="NP"){
+
+resultHTML=
+`<strong class="np-result">NP</strong>`;
+
+}
+
+else if(vys!==null){
+
+resultHTML=
+`<strong>
+${cisloNaCas(vys)}
+</strong>`;
+
+}
+
+
+return `
+
+<div class="relay">
+
+
+<div class="relay-title">
+
+🏃 Štafeta ${relay}
+
+</div>
+
+
+${relay===2?`
+
+<div class="relay-status">
+
+<button
+class="status-button active"
+onclick="nastavBezi('${z.id}',false)">
+
+✓ Běží
+
+</button>
+
+</div>
+
+`:""}
+
+
+<div class="measure-grid">
+
+
+<!-- MĚŘENÍ 1 -->
+
+<div class="measure-box">
+
+<div class="measure-title">
+
+Měření 1
+
+</div>
+
+
+<input
+
+class="time"
+
+value="${
+z["s"+relay+"m1"]||"00:00"
+}"
+
+placeholder="00:00"
+
+inputmode="numeric"
+
+onfocus="pripravaCas(this)"
+
+onblur="ulozCas(this,'${z.id}',${relay},1)"
+
+>
+
+
+<button
+
+class="small-button"
+
+onclick="otevritTresty('${z.id}',${relay},1)">
+
+⚠️ Tresty:
+${Number(z["s"+relay+"t1"])||0}
+
+</button>
+
+
+<div class="penalty">
+
+${
+np1
+?
+`<span class="np">NP</span>`
+:
+Number(z["s"+relay+"t1"])
+?
+"+ "+
+(Number(z["s"+relay+"t1"])*10)+
+" s"
+:
+"Bez trestu"
+}
+
+</div>
+
+
+</div>
+
+
+<!-- MĚŘENÍ 2 -->
+
+<div class="measure-box">
+
+<div class="measure-title">
+
+Měření 2
+
+</div>
+
+
+<input
+
+class="time"
+
+value="${
+z["s"+relay+"m2"]||"00:00"
+}"
+
+placeholder="00:00"
+
+inputmode="numeric"
+
+onfocus="pripravaCas(this)"
+
+onblur="ulozCas(this,'${z.id}',${relay},2)"
+
+>
+
+
+<button
+
+class="small-button"
+
+onclick="otevritTresty('${z.id}',${relay},2)">
+
+⚠️ Tresty:
+${Number(z["s"+relay+"t2"])||0}
+
+</button>
+
+
+<div class="penalty">
+
+${
+np2
+?
+`<span class="np">NP</span>`
+:
+Number(z["s"+relay+"t2"])
+?
+"+ "+
+(Number(z["s"+relay+"t2"])*10)+
+" s"
+:
+"Bez trestu"
+}
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<div class="result">
+
+<span>
+
+Výsledek štafety
+
+</span>
+
+${resultHTML}
+
+</div>
+
+
+</div>
+
+`;
+
+}
+
+
+/* =========================
+   PŘÍPRAVA ČASU
+========================= */
+
+window.pripravaCas=
+function(input){
+
+/*
+Když je 00:00,
+při kliknutí se označí celý text.
+*/
+
+if(
+input.value==="00:00"
+){
+
+input.select();
+
+}
+
+};
+
+
+/* =========================
+   ULOŽIT ČAS
+========================= */
+
+window.ulozCas=
+async function(
+input,
+id,
+relay,
+measure
+){
+
+let hodnota=
+input.value.trim();
+
+
+/*
+Pokud uživatel nic nezmění,
+zůstane 00:00.
+*/
+
+if(hodnota===""){
+
+hodnota="00:00";
+
+}
+
+
+let cas=
+normalizujCas(hodnota);
+
+
+if(cas===null){
+
+alert(
+"Špatný čas.\n\n"+
+"Zadej například:\n15 55"
+);
+
+input.value="00:00";
 
 return;
 
 }
 
 
+input.value=cas;
+
+
 try{
 
 await updateDoc(
-doc(db,"stafety_dvojic",id),
+
+doc(
+db,
+"stafety_dvojic",
+id
+),
+
 {
 
-["s"+r+"m"+m]:
-hodnota
+["s"+relay+"m"+measure]:
+cas
 
 }
+
 );
 
 }
+
 catch(error){
 
 alert(
@@ -1184,50 +1934,127 @@ error.message
 };
 
 
-/* =====================
-   TRESTY MODAL
-===================== */
+/* =========================
+   BĚŽÍ / NEBĚŽÍ
+========================= */
 
-window.trestyModal=
-function(id,r,m){
+window.nastavBezi=
+async function(
+id,
+bezi
+){
 
-let z=
-data.find(x=>x.id===id);
+try{
+
+await updateDoc(
+
+doc(
+db,
+"stafety_dvojic",
+id
+),
+
+{
+
+s2bezi:bezi
+
+}
+
+);
+
+}
+
+catch(error){
+
+alert(
+"Chyba:\n"+
+error.message
+);
+
+}
+
+};
+
+
+/* =========================
+   TRESTY
+========================= */
+
+window.otevritTresty=
+function(
+id,
+relay,
+measure
+){
+
+const z=
+data.find(
+x=>x.id===id
+);
 
 if(!z)
 return;
 
-modalId=id;
-modalRelay=r;
-modalMeasure=m;
 
-document.getElementById("modalInfo").textContent=
+modalId=id;
+
+modalRelay=relay;
+
+modalMeasure=measure;
+
+
+document
+.getElementById("modalInfo")
+.textContent=
 z.druzstvo+
 " · Štafeta "+
-r+
+relay+
 " · Měření "+
-m;
+measure;
 
 
-let ulozene=
-z["s"+r+"t"+m+"Items"]||[];
+const ulozene=
+z[
+"s"+
+relay+
+"t"+
+measure+
+"Items"
+]||[];
+
 
 let html="";
 
-tresty.forEach((t,i)=>{
+
+tresty.forEach(
+(t,index)=>{
 
 html+=`
 
 <label class="trest">
 
 <input
+
 type="checkbox"
+
 class="trestCheck"
-data-i="${i}"
-${ulozene.includes(i)?"checked":""}>
+
+data-index="${index}"
+
+${
+ulozene.includes(index)
+?
+"checked"
+:
+""
+}
+
+>
 
 <span>
+
 ${t}
+
 </span>
 
 </label>
@@ -1237,89 +2064,109 @@ ${t}
 });
 
 
-html+=`
-
-<label class="trest">
-
-<input
-type="checkbox"
-id="npCheck"
-${z["s"+r+"np"+m]?"checked":""}>
-
-<strong>
-NP – neplatný pokus
-</strong>
-
-</label>
-
-`;
+document
+.getElementById("tresty")
+.innerHTML=html;
 
 
-document.getElementById("tresty").innerHTML=html;
+document
+.getElementById("npCheck")
+.checked=
+z[
+"s"+
+relay+
+"np"+
+measure
+]||false;
 
-document.getElementById("modal").style.display="block";
+
+document
+.getElementById("modal")
+.style.display="block";
 
 };
 
 
-window.zavritModal=
-function(){
-
-document.getElementById("modal").style.display="none";
-
-modalId=null;
-
-};
-
-
-/* =====================
+/* =========================
    ULOŽIT TRESTY
-===================== */
+========================= */
 
 window.ulozitTresty=
 async function(){
 
-let checked=
+if(!modalId)
+return;
+
+
+const vybrane=
 [
-...document.querySelectorAll(".trestCheck:checked")
+...
+document.querySelectorAll(
+".trestCheck:checked"
+)
 ]
-.map(x=>Number(x.dataset.i));
+.map(
+x=>
+Number(x.dataset.index)
+);
 
 
-let np=
-document.getElementById("npCheck").checked;
+const np=
+document
+.getElementById("npCheck")
+.checked;
+
+
+const fields={};
+
+
+fields[
+"s"+
+modalRelay+
+"t"+
+modalMeasure
+]=
+vybrane.length;
+
+
+fields[
+"s"+
+modalRelay+
+"t"+
+modalMeasure+
+"Items"
+]=
+vybrane;
+
+
+fields[
+"s"+
+modalRelay+
+"np"+
+modalMeasure
+]=
+np;
 
 
 try{
 
-let fields={};
-
-fields[
-"s"+modalRelay+
-"t"+modalMeasure
-]=checked.length;
-
-fields[
-"s"+modalRelay+
-"t"+modalMeasure+
-"Items"
-]=checked;
-
-fields[
-"s"+modalRelay+
-"np"+modalMeasure
-]=np;
-
-
 await updateDoc(
-doc(db,"stafety_dvojic",modalId),
+
+doc(
+db,
+"stafety_dvojic",
+modalId
+),
+
 fields
+
 );
 
 
 zavritModal();
 
 }
+
 catch(error){
 
 alert(
@@ -1332,111 +2179,261 @@ error.message
 };
 
 
-/* =====================
-   EDIT
-===================== */
+/* =========================
+   ZAVŘÍT MODAL
+========================= */
 
-window.edit=
+window.zavritModal=
+function(){
+
+document
+.getElementById("modal")
+.style.display="none";
+
+modalId=null;
+
+modalRelay=null;
+
+modalMeasure=null;
+
+};
+
+
+/* =========================
+   EDITACE
+========================= */
+
+window.editDruzstvo=
 async function(id){
 
-let z=
-data.find(x=>x.id===id);
+const z=
+data.find(
+x=>x.id===id
+);
 
-let n=
+if(!z)
+return;
+
+
+const nove=
 prompt(
-"Družstvo:",
+"Název družstva:",
 z.druzstvo
 );
 
-if(!n)
+
+if(
+nove===null||
+!nove.trim()
+)
 return;
+
 
 await updateDoc(
-doc(db,"stafety_dvojic",id),
+
+doc(
+db,
+"stafety_dvojic",
+id
+),
+
 {
-druzstvo:n.trim()
+
+druzstvo:
+nove.trim()
+
 }
+
 );
+
+
+/*
+START SE NEMĚNÍ.
+*/
 
 };
 
 
-/* =====================
+/* =========================
    SMAZAT
-===================== */
+========================= */
 
-window.smazat=
+window.smazDruzstvo=
 async function(id){
 
-if(!confirm(
+if(
+!confirm(
 "Opravdu chceš smazat družstvo?"
-))
+)
+)
 return;
 
+
 await deleteDoc(
-doc(db,"stafety_dvojic",id)
+
+doc(
+db,
+"stafety_dvojic",
+id
+)
+
 );
 
 };
 
 
-/* =====================
-   POSUN
-===================== */
+/* =========================
+   POSUN NAHORU
+========================= */
 
-window.posun=
-async function(id,smer){
+window.posunNahoru=
+async function(id){
 
-let seznam=
-[...data].sort(
-(a,b)=>a.start-b.start
+const seznam=
+[...data]
+.sort(
+(a,b)=>
+Number(a.start||0)-
+Number(b.start||0)
 );
 
-let i=
+
+const index=
 seznam.findIndex(
 x=>x.id===id
 );
 
-let j=i+smer;
 
-if(j<0||j>=seznam.length)
+if(index<=0)
 return;
 
-let a=seznam[i];
 
-let b=seznam[j];
+const pred=
+seznam[index-1];
+
+const aktualni=
+seznam[index];
+
 
 await updateDoc(
-doc(db,"stafety_dvojic",a.id),
+
+doc(
+db,
+"stafety_dvojic",
+aktualni.id
+),
+
 {
-start:b.start
+start:pred.start
 }
+
 );
 
+
 await updateDoc(
-doc(db,"stafety_dvojic",b.id),
+
+doc(
+db,
+"stafety_dvojic",
+pred.id
+),
+
 {
-start:a.start
+start:aktualni.start
 }
+
 );
 
 };
 
 
-/* =====================
+/* =========================
+   POSUN DOLŮ
+========================= */
+
+window.posunDolu=
+async function(id){
+
+const seznam=
+[...data]
+.sort(
+(a,b)=>
+Number(a.start||0)-
+Number(b.start||0)
+);
+
+
+const index=
+seznam.findIndex(
+x=>x.id===id
+);
+
+
+if(
+index<0||
+index>=seznam.length-1
+)
+return;
+
+
+const dalsi=
+seznam[index+1];
+
+const aktualni=
+seznam[index];
+
+
+await updateDoc(
+
+doc(
+db,
+"stafety_dvojic",
+aktualni.id
+),
+
+{
+start:dalsi.start
+}
+
+);
+
+
+await updateDoc(
+
+doc(
+db,
+"stafety_dvojic",
+dalsi.id
+),
+
+{
+start:aktualni.start
+}
+
+);
+
+};
+
+
+/* =========================
    EXCEL
-===================== */
+========================= */
 
 window.importExcel=
 async function(){
 
-let file=
-document.getElementById("excel").files[0];
+const input=
+document.getElementById(
+"excel"
+);
 
-if(!file){
+if(
+!input.files||
+!input.files.length
+){
 
 alert(
-"Vyber Excel."
+"Vyber Excel soubor."
 );
 
 return;
@@ -1446,103 +2443,163 @@ return;
 
 try{
 
-let buffer=
+const file=
+input.files[0];
+
+const buffer=
 await file.arrayBuffer();
 
-let wb=
+const workbook=
 XLSX.read(
 buffer,
-{type:"array"}
+{
+type:"array"
+}
 );
 
-let sheet=
-wb.Sheets[
-wb.SheetNames[0]
+const sheet=
+workbook.Sheets[
+workbook.SheetNames[0]
 ];
 
-let rows=
+const rows=
 XLSX.utils.sheet_to_json(
 sheet,
-{defval:""}
+{
+defval:""
+}
 );
 
 
-let start=
+let maxStart=
 data.reduce(
 (max,z)=>
-Math.max(max,Number(z.start)||0),
+Math.max(
+max,
+Number(z.start)||0
+),
 0
 );
 
 
-for(let row of rows){
+for(
+const row of rows
+){
 
 let nazev=
 row["Družstvo"]||
 row["Druzstvo"];
 
+
 let kat=
 String(
-row["Kategorie"]||""
+row["Kategorie"]||
+""
 )
-.toLowerCase()
-.trim();
+.trim()
+.toLowerCase();
 
 
 if(!nazev)
 continue;
 
+
 if(
 kat==="mladší"||
 kat==="mladsi"
-)
+){
+
 kat="mladsi";
+
+}
 
 else if(
 kat==="starší"||
 kat==="starsi"
-)
+){
+
 kat="starsi";
 
-else
+}
+
+else{
+
 continue;
 
+}
 
-start++;
+
+maxStart++;
+
 
 await addDoc(
+
 col,
+
 {
 
-druzstvo:String(nazev),
+druzstvo:
+String(nazev).trim(),
 
 kategorie:kat,
 
-start:start,
+start:maxStart,
 
-s1m1:"",
-s1m2:"",
+s1bezi:true,
+
+s1m1:"00:00",
+s1m2:"00:00",
+
 s1t1:0,
 s1t2:0,
 
-s2m1:"",
-s2m2:"",
+s1np1:false,
+s1np2:false,
+
+s1t1Items:[],
+s1t2Items:[],
+
+s2bezi:true,
+
+s2m1:"00:00",
+s2m2:"00:00",
+
 s2t1:0,
-s2t2:0
+s2t2:0,
+
+s2np1:false,
+s2np2:false,
+
+s2t1Items:[],
+s2t2Items:[],
+
+vytvoreno:
+serverTimestamp()
 
 }
+
 );
 
 }
 
-alert("Import dokončen.");
+
+input.value="";
+
+zobrazHlasku(
+"✓ Import dokončen.",
+false
+);
 
 }
+
 catch(error){
 
-alert(
-"Chyba při importu:\n"+
-error.message
+console.error(error);
+
+zobrazHlasku(
+"Chyba při importu: "+
+error.message,
+true
 );
 
 }
@@ -1550,18 +2607,38 @@ error.message
 };
 
 
-/* =====================
-   CHYBA
-===================== */
+/* =========================
+   HLÁŠKA
+========================= */
 
-function zobrazChybu(text){
+function zobrazHlasku(
+text,
+chyba
+){
 
-let el=
-document.getElementById("chyba");
+const el=
+document.getElementById(
+"hlaska"
+);
 
-el.className="error";
+el.className=
+chyba
+?
+"error"
+:
+"success";
 
 el.textContent=text;
+
+
+setTimeout(
+()=>{
+
+el.textContent="";
+
+},
+4000
+);
 
 }
 

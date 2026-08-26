@@ -162,13 +162,8 @@ select{
 
 .relays{
     display:grid;
-
-    /* ŠTAFETA 1 A 2 VEDLE SEBE */
-    grid-template-columns:minmax(0,1fr) minmax(0,1fr);
-
+    grid-template-columns:1fr 1fr;
     gap:12px;
-
-    width:100%;
 }
 
 .relay{
@@ -176,8 +171,6 @@ select{
     border-radius:14px;
     padding:14px;
     border:1px solid rgba(255,255,255,.07);
-
-    min-width:0;
 }
 
 .relay-title{
@@ -231,7 +224,6 @@ select{
     border:1px solid #354052;
     border-radius:10px;
     padding:10px;
-    min-width:0;
 }
 
 .measure-title{
@@ -485,7 +477,6 @@ select{
         grid-template-columns:1fr;
     }
 
-    /* Na mobilu pod sebou */
     .relays{
         grid-template-columns:1fr;
     }
@@ -808,7 +799,15 @@ let data=[];
 let vybranaKategorie="mladsi";
 
 
-/* TRESTY */
+/* =========================
+   TRESTY
+========================= */
+
+/*
+Štafeta požárních dvojic
+11 oficiálních trestných položek.
+Každá položka = 10 sekund.
+*/
 
 const tresty=[
 
@@ -816,25 +815,23 @@ const tresty=[
 
 "Nesvinutí rozpadlého kotouče",
 
-"Nerozložená hadice na nebo za čarou",
+"Nerozložení hadice nejméně na vyznačenou čáru",
 
-"Nesprávné napojení hadice na proudnici nebo nástavec",
+"Nesprávné napojení hadice na proudnici či hydrantový nástavec",
 
-"Nesprávně rozvinutá hadice",
+"Nesprávné rozvinutí hadice u hydrantového nástavce",
 
 "Neoběhnutí nebo nesprávné oběhnutí mety",
 
-"Neúplné svinutí hadice",
+"Neúplné svinutí hadice mezi metou a hydrantovým nástavcem",
 
-"Hození hadice, koncovky nebo proudnice",
+"Hození hadice nebo proudnice",
 
-"Chození po nesprávné straně mety nebo hydrantu",
+"Chození po nesprávné straně",
 
-"Nesprávné svinutí hadice",
+"Nesprávné svinutí (dvojité přeložení)",
 
-"Nesprávné odpojení proudnice nebo hadice",
-
-"Jiné porušení pravidel – 10 s"
+"Nesprávné odpojení proudnice nebo hadice"
 
 ];
 
@@ -852,6 +849,10 @@ let modalMeasure=null;
    ČAS
 ========================= */
 
+/*
+15 55 → 15:55
+*/
+
 function normalizujCas(hodnota){
 
 let text=
@@ -859,12 +860,8 @@ String(hodnota ?? "")
 .trim();
 
 
-/*
-PRÁZDNÉ = PRÁZDNÉ
-*/
-
 if(text==="")
-return "";
+return "00:00";
 
 
 text=text.replace(":"," ");
@@ -872,10 +869,6 @@ text=text.replace(":"," ");
 let casti=
 text.split(/\s+/);
 
-
-/*
-15 55 → 15:55
-*/
 
 if(casti.length===2){
 
@@ -905,9 +898,7 @@ String(setiny).padStart(2,"0")
 }
 
 
-/*
-1555 → 15:55
-*/
+/* 1555 */
 
 if(/^\d{3,4}$/.test(text)){
 
@@ -921,8 +912,6 @@ parseInt(text.slice(0,-2),10);
 if(
 !isNaN(sekundy)&&
 !isNaN(setiny)&&
-sekundy>=0&&
-setiny>=0&&
 setiny<=99
 ){
 
@@ -997,10 +986,10 @@ return null;
 
 
 let cas=
-z["s"+relay+"m"+measure]||"";
+z["s"+relay+"m"+measure]||"00:00";
 
 
-if(cas==="")
+if(cas==="00:00")
 return null;
 
 
@@ -1099,9 +1088,19 @@ let s2=
 vysledekStafety(z,2);
 
 
+/*
+Štafeta 1 NP
+a štafeta 2 platná
+*/
+
 if(s1==="NP")
 return s2;
 
+
+/*
+Štafeta 2 NP
+a štafeta 1 platná
+*/
 
 if(s2==="NP")
 return s1;
@@ -1154,7 +1153,7 @@ id:d.id,
 
 
 /*
-ŘAZENÍ POUZE PODLE STARTU.
+Řazení podle startovního čísla.
 */
 
 data.sort(
@@ -1249,8 +1248,8 @@ start:maxStart+1,
 
 s1bezi:true,
 
-s1m1:"",
-s1m2:"",
+s1m1:"00:00",
+s1m2:"00:00",
 
 s1t1:0,
 s1t2:0,
@@ -1266,8 +1265,8 @@ s1t2Items:[],
 
 s2bezi:true,
 
-s2m1:"",
-s2m2:"",
+s2m1:"00:00",
+s2m2:"00:00",
 
 s2t1:0,
 s2t2:0,
@@ -1468,9 +1467,18 @@ Startovní číslo: ${z.start}
 
 <div class="relays">
 
-${vytvorStafety(z,1)}
 
-${vytvorStafety(z,2)}
+${vytvorStafety(
+z,
+1
+)}
+
+
+${vytvorStafety(
+z,
+2
+)}
+
 
 </div>
 
@@ -1541,7 +1549,9 @@ return `
 <div class="relay">
 
 <div class="relay-title">
+
 🏃 Štafeta 2
+
 </div>
 
 <div class="relay-status">
@@ -1567,6 +1577,21 @@ onclick="nastavBezi('${z.id}',true)">
 `;
 
 }
+
+
+let a=
+vysledekMereni(
+z,
+relay,
+1
+);
+
+let b=
+vysledekMereni(
+z,
+relay,
+2
+);
 
 
 let vys=
@@ -1601,13 +1626,6 @@ ${cisloNaCas(vys)}
 </strong>`;
 
 }
-
-
-const m1=
-z["s"+relay+"m1"]||"";
-
-const m2=
-z["s"+relay+"m2"]||"";
 
 
 return `
@@ -1647,16 +1665,21 @@ onclick="nastavBezi('${z.id}',false)">
 <div class="measure-box">
 
 <div class="measure-title">
+
 Měření 1
+
 </div>
+
 
 <input
 
 class="time"
 
-value="${m1}"
+value="${
+z["s"+relay+"m1"]||"00:00"
+}"
 
-placeholder=""
+placeholder="00:00"
 
 inputmode="numeric"
 
@@ -1697,6 +1720,7 @@ Number(z["s"+relay+"t1"])
 
 </div>
 
+
 </div>
 
 
@@ -1705,16 +1729,21 @@ Number(z["s"+relay+"t1"])
 <div class="measure-box">
 
 <div class="measure-title">
+
 Měření 2
+
 </div>
+
 
 <input
 
 class="time"
 
-value="${m2}"
+value="${
+z["s"+relay+"m2"]||"00:00"
+}"
 
-placeholder=""
+placeholder="00:00"
 
 inputmode="numeric"
 
@@ -1755,6 +1784,7 @@ Number(z["s"+relay+"t2"])
 
 </div>
 
+
 </div>
 
 
@@ -1764,7 +1794,9 @@ Number(z["s"+relay+"t2"])
 <div class="result">
 
 <span>
+
 Výsledek štafety
+
 </span>
 
 ${resultHTML}
@@ -1786,13 +1818,9 @@ ${resultHTML}
 window.pripravaCas=
 function(input){
 
-/*
-Časové pole je úplně prázdné.
-Pokud už v něm čas je,
-označí se celý text.
-*/
-
-if(input.value){
+if(
+input.value==="00:00"
+){
 
 input.select();
 
@@ -1817,14 +1845,9 @@ let hodnota=
 input.value.trim();
 
 
-/*
-Prázdné pole =
-nic se nemění.
-*/
-
 if(hodnota===""){
 
-return;
+hodnota="00:00";
 
 }
 
@@ -1840,7 +1863,7 @@ alert(
 "Zadej například:\n15 55"
 );
 
-input.value="";
+input.value="00:00";
 
 return;
 
@@ -1952,16 +1975,6 @@ modalRelay=relay;
 modalMeasure=measure;
 
 
-document
-.getElementById("modalInfo")
-.textContent=
-z.druzstvo+
-" · Štafeta "+
-relay+
-" · Měření "+
-measure;
-
-
 const ulozene=
 z[
 "s"+
@@ -2001,7 +2014,9 @@ ulozene.includes(index)
 >
 
 <span>
+
 ${t}
+
 </span>
 
 </label>
@@ -2025,6 +2040,16 @@ relay+
 "np"+
 measure
 ]||false;
+
+
+document
+.getElementById("modalInfo")
+.textContent=
+z.druzstvo+
+" · Štafeta "+
+relay+
+" · Měření "+
+measure;
 
 
 document
@@ -2494,8 +2519,8 @@ start:maxStart,
 
 s1bezi:true,
 
-s1m1:"",
-s1m2:"",
+s1m1:"00:00",
+s1m2:"00:00",
 
 s1t1:0,
 s1t2:0,
@@ -2508,8 +2533,8 @@ s1t2Items:[],
 
 s2bezi:true,
 
-s2m1:"",
-s2m2:"",
+s2m1:"00:00",
+s2m2:"00:00",
 
 s2t1:0,
 s2t2:0,

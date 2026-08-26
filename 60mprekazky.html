@@ -28,7 +28,7 @@ linear-gradient(145deg,#090d13,#151b24);
 }
 
 .app{
-max-width:1250px;
+max-width:1300px;
 margin:auto;
 padding:20px 16px 40px;
 }
@@ -154,7 +154,6 @@ margin-bottom:10px;
 width:100%;
 min-width:600px;
 border-collapse:collapse;
-margin:0;
 }
 
 .example-table th{
@@ -166,10 +165,7 @@ font-size:12px;
 .example-table td{
 padding:8px 10px;
 font-size:12px;
-
-border-bottom:
-1px solid rgba(255,255,255,.06);
-
+border-bottom:1px solid rgba(255,255,255,.06);
 white-space:nowrap;
 }
 
@@ -182,34 +178,23 @@ flex-wrap:wrap;
 
 .import-button{
 border:1px solid #394455;
-
 background:#252e3c;
-
 color:white;
-
 border-radius:12px;
-
 padding:13px 18px;
-
 font-weight:bold;
-
 cursor:pointer;
-}
-
-.import-button:hover{
-background:#394657;
 }
 
 .message{
 text-align:center;
-
-color:#36d399;
-
 font-size:13px;
-
 min-height:18px;
-
 margin-top:12px;
+}
+
+.message.success{
+color:#36d399;
 }
 
 .message.error{
@@ -217,7 +202,7 @@ color:#ef6b6b;
 }
 
 
-/* TABULKY */
+/* TABULKA */
 
 .table-wrap{
 overflow-x:auto;
@@ -227,7 +212,7 @@ table{
 width:100%;
 border-collapse:collapse;
 margin-top:10px;
-min-width:1100px;
+min-width:1050px;
 }
 
 th{
@@ -237,13 +222,9 @@ color:white;
 }
 
 td{
-padding:11px 8px;
-
-border-bottom:
-1px solid rgba(255,255,255,.08);
-
+padding:8px;
+border-bottom:1px solid rgba(255,255,255,.08);
 text-align:center;
-
 color:#dbe2eb;
 }
 
@@ -251,12 +232,6 @@ color:#dbe2eb;
 font-size:21px;
 font-weight:bold;
 margin-bottom:12px;
-}
-
-.result{
-font-size:19px;
-font-weight:bold;
-color:#ffd166;
 }
 
 .place{
@@ -276,6 +251,144 @@ color:#cfd3d8;
 color:#cd7f32;
 }
 
+
+/* POKUS */
+
+.attempt{
+min-width:190px;
+background:#101722;
+border:1px solid #354052;
+border-radius:14px;
+padding:11px;
+}
+
+.attempt.one{
+border-top:3px solid #4da3ff;
+}
+
+.attempt.two{
+border-top:3px solid #b36cff;
+}
+
+.attempt-title{
+font-size:13px;
+font-weight:bold;
+margin-bottom:8px;
+}
+
+.attempt.one .attempt-title{
+color:#65b3ff;
+}
+
+.attempt.two .attempt-title{
+color:#c38aff;
+}
+
+.attempt-time{
+display:flex;
+align-items:center;
+gap:6px;
+}
+
+.time-button{
+flex:1;
+
+border:1px solid #394455;
+background:#151d29;
+
+color:#fff;
+
+border-radius:9px;
+
+padding:9px 6px;
+
+font-size:16px;
+font-weight:bold;
+
+cursor:pointer;
+}
+
+.time-button:hover{
+border-color:#ef3333;
+}
+
+.time-input{
+width:100%;
+
+border:1px solid #ef3333;
+background:#151d29;
+
+color:white;
+
+border-radius:9px;
+
+padding:9px 5px;
+
+font-size:16px;
+font-weight:bold;
+
+text-align:center;
+}
+
+.np-button{
+border:1px solid #394455;
+
+background:#252e3c;
+
+color:#cbd5e1;
+
+border-radius:8px;
+
+padding:8px 10px;
+
+cursor:pointer;
+
+font-weight:bold;
+}
+
+.np-button:hover{
+background:#394657;
+}
+
+.np-button.active{
+background:#8b2929;
+border-color:#ef5555;
+color:white;
+}
+
+.attempt-status{
+font-size:11px;
+margin-top:7px;
+min-height:15px;
+color:#718096;
+}
+
+.attempt-status.np{
+color:#ff7070;
+font-weight:bold;
+}
+
+.attempt-status.valid{
+color:#36d399;
+}
+
+
+/* NEJLEPŠÍ */
+
+.best{
+font-size:20px;
+font-weight:bold;
+color:#ffd166;
+white-space:nowrap;
+}
+
+.best-np{
+color:#ff6666;
+}
+
+
+/* AKCE */
+
 .action{
 border:0;
 background:transparent;
@@ -283,89 +396,6 @@ color:#aeb9c8;
 cursor:pointer;
 font-size:18px;
 margin:0 3px;
-}
-
-
-/* ČAS */
-
-.time-button{
-border:0;
-background:transparent;
-color:#dbe2eb;
-cursor:pointer;
-font-size:15px;
-padding:5px 8px;
-min-width:75px;
-}
-
-.time-button:hover{
-background:rgba(255,255,255,.08);
-border-radius:7px;
-}
-
-.time-input{
-width:90px;
-padding:8px 6px;
-text-align:center;
-
-border:1px solid #394455;
-border-radius:8px;
-
-background:#101722;
-color:white;
-
-font-size:15px;
-}
-
-.time-input:focus{
-outline:none;
-border-color:#ef3333;
-}
-
-
-/* TRESTY */
-
-.penalty-button{
-border:1px solid #394455;
-background:#252e3c;
-color:#cbd5e1;
-
-border-radius:8px;
-padding:7px 10px;
-
-cursor:pointer;
-}
-
-.penalty-button:hover{
-background:#394657;
-}
-
-.empty{
-text-align:center;
-padding:25px;
-color:#718096;
-}
-
-.status{
-text-align:center;
-color:#68778b;
-font-size:12px;
-margin-top:20px;
-}
-
-.online{
-display:inline-block;
-
-width:7px;
-height:7px;
-
-border-radius:50%;
-
-background:#36d399;
-
-margin-right:6px;
-
-box-shadow:0 0 9px #36d399;
 }
 
 
@@ -377,19 +407,19 @@ display:none;
 position:fixed;
 inset:0;
 
-background:rgba(0,0,0,.78);
+background:rgba(0,0,0,.82);
 
 z-index:1000;
 
-padding:20px;
+padding:15px;
 
 overflow:auto;
 }
 
 .modal-box{
-max-width:600px;
+max-width:650px;
 
-margin:40px auto;
+margin:30px auto;
 
 background:#151b24;
 
@@ -397,80 +427,73 @@ border:1px solid #394455;
 
 border-radius:22px;
 
-padding:22px;
+padding:20px;
 }
 
 .modal-box h2{
 margin-top:0;
 }
 
-.modal-row{
-display:flex;
-
-align-items:center;
-
-justify-content:space-between;
-
-gap:15px;
-
-padding:14px 0;
-
-border-bottom:
-1px solid rgba(255,255,255,.08);
+.modal-info{
+color:#8995a6;
+font-size:13px;
+margin-bottom:15px;
 }
 
-.modal-name{
-font-size:14px;
-}
-
-.counter{
+.reason{
 display:flex;
 
-align-items:center;
+align-items:flex-start;
 
 gap:10px;
-}
-
-.counter button{
-border:1px solid #394455;
-
-background:#252e3c;
-
-color:white;
-
-border-radius:8px;
-
-padding:7px 12px;
-
-font-size:18px;
-
-cursor:pointer;
-}
-
-.counter-value{
-min-width:25px;
-text-align:center;
-font-weight:bold;
-}
-
-.modal-actions{
-display:flex;
-
-gap:10px;
-
-margin-top:20px;
-}
-
-.modal-actions button{
-flex:1;
 
 padding:12px;
+
+margin-bottom:7px;
+
+background:#101722;
+
+border:1px solid #303947;
 
 border-radius:10px;
 
 cursor:pointer;
+}
+
+.reason:hover{
+background:#18212e;
+}
+
+.reason input{
+width:20px;
+height:20px;
+margin:0;
+flex:none;
+}
+
+.reason span{
+font-size:14px;
+line-height:1.4;
+}
+
+.modal-actions{
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:10px;
+
+margin-top:18px;
+}
+
+.modal-actions button{
+padding:12px;
+
+border-radius:10px;
 
 font-weight:bold;
+
+cursor:pointer;
 }
 
 .cancel{
@@ -486,10 +509,35 @@ color:white;
 }
 
 
-@media(max-width:800px){
+/* NP PANEL */
+
+.np-box{
+margin-top:15px;
+
+padding:12px;
+
+background:rgba(185,40,40,.12);
+
+border:1px solid rgba(239,83,83,.25);
+
+border-radius:10px;
+
+color:#ffb4b4;
+
+font-size:13px;
+}
+
+
+/* MOBIL */
+
+@media(max-width:900px){
 
 .form{
 grid-template-columns:1fr;
+}
+
+.attempt{
+min-width:175px;
 }
 
 }
@@ -536,7 +584,7 @@ okres Nový Jičín · 60 m překážek
 </header>
 
 
-<!-- PŘIDÁNÍ ZÁVODNÍKA -->
+<!-- PŘIDÁNÍ -->
 
 <div class="card">
 
@@ -558,8 +606,7 @@ placeholder="Jméno">
 id="druzstvo"
 placeholder="Družstvo">
 
-<select
-id="kategorie">
+<select id="kategorie">
 
 <option value="mladsi_chlapci">
 👦 Mladší chlapci
@@ -602,7 +649,7 @@ onclick="pridatZavodnika()">
 
 <div class="excel-info">
 
-Excel musí obsahovat sloupce:
+Excel musí obsahovat:
 
 <b>Příjmení</b>,
 <b>Jméno</b>,
@@ -611,11 +658,11 @@ Excel musí obsahovat sloupce:
 
 <br><br>
 
-Kategorie může být:
+Kategorie:
 
 <b>Mladší chlapci</b>,
 <b>Mladší dívky</b>,
-<b>Starší chlapci</b> nebo
+<b>Starší chlapci</b>,
 <b>Starší dívky</b>.
 
 </div>
@@ -659,9 +706,7 @@ Kategorie může být:
 
 </div>
 
-
 <br>
-
 
 <div class="import-box">
 
@@ -669,7 +714,6 @@ Kategorie může být:
 type="file"
 id="excelFile"
 accept=".xlsx,.xls">
-
 
 <button
 class="import-button"
@@ -680,7 +724,6 @@ onclick="importExcel()">
 </button>
 
 </div>
-
 
 <div
 id="message"
@@ -710,11 +753,19 @@ class="message">
 <th>Příjmení</th>
 <th>Jméno</th>
 <th>Družstvo</th>
-<th>Pokus 1</th>
-<th>Tresty 1</th>
-<th>Pokus 2</th>
-<th>Tresty 2</th>
-<th>Nejlepší</th>
+
+<th>
+POKUS 1
+</th>
+
+<th>
+POKUS 2
+</th>
+
+<th>
+Nejlepší
+</th>
+
 <th>Akce</th>
 
 </tr>
@@ -751,10 +802,8 @@ class="message">
 <th>Příjmení</th>
 <th>Jméno</th>
 <th>Družstvo</th>
-<th>Pokus 1</th>
-<th>Tresty 1</th>
-<th>Pokus 2</th>
-<th>Tresty 2</th>
+<th>POKUS 1</th>
+<th>POKUS 2</th>
 <th>Nejlepší</th>
 <th>Akce</th>
 
@@ -792,10 +841,8 @@ class="message">
 <th>Příjmení</th>
 <th>Jméno</th>
 <th>Družstvo</th>
-<th>Pokus 1</th>
-<th>Tresty 1</th>
-<th>Pokus 2</th>
-<th>Tresty 2</th>
+<th>POKUS 1</th>
+<th>POKUS 2</th>
 <th>Nejlepší</th>
 <th>Akce</th>
 
@@ -833,10 +880,8 @@ class="message">
 <th>Příjmení</th>
 <th>Jméno</th>
 <th>Družstvo</th>
-<th>Pokus 1</th>
-<th>Tresty 1</th>
-<th>Pokus 2</th>
-<th>Tresty 2</th>
+<th>POKUS 1</th>
+<th>POKUS 2</th>
 <th>Nejlepší</th>
 <th>Akce</th>
 
@@ -856,7 +901,15 @@ class="message">
 
 <div class="status">
 
-<span class="online"></span>
+<span style="
+display:inline-block;
+width:7px;
+height:7px;
+border-radius:50%;
+background:#36d399;
+margin-right:6px;
+box-shadow:0 0 9px #36d399;
+"></span>
 
 Živá aktualizace
 
@@ -865,7 +918,7 @@ class="message">
 </div>
 
 
-<!-- MODAL TRESTŮ -->
+<!-- MODAL NP -->
 
 <div
 id="modal"
@@ -874,10 +927,22 @@ class="modal">
 <div class="modal-box">
 
 <h2 id="modalTitle">
-Trestné body
+❌ Neplatný pokus
 </h2>
 
-<div id="penaltyList">
+<div
+id="modalInfo"
+class="modal-info">
+</div>
+
+<div id="reasonList">
+</div>
+
+<div class="np-box">
+
+Pokud označíš NP, tento pokus nebude započítán.
+Při dvou NP bude výsledkem závodníka NP.
+
 </div>
 
 <div class="modal-actions">
@@ -892,9 +957,9 @@ Zrušit
 
 <button
 class="save"
-onclick="ulozitTresty()">
+onclick="ulozitNP()">
 
-Uložit
+Uložit NP
 
 </button>
 
@@ -915,7 +980,6 @@ initializeApp
 }
 from
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
-
 
 import {
 getFirestore,
@@ -970,19 +1034,35 @@ db,
 let data=[];
 
 
-/* TRESTNÉ BODY */
+/* =========================
+   DŮVODY NP
+========================= */
 
-const tresty=[
+const duvodyNP=[
 
-"Překážka",
+"Pomoc jiné osoby při plnění disciplíny.",
 
-"Nesprávné provedení",
+"Koncovky nejsou spojeny na všechny ozuby nebo se během pokusu rozpojí.",
 
-"Chybný úkon",
+"Seskočení z kladiny před ohraničující čárou nebo nešlápnutí na seběhový můstek bez opravy.",
 
-"Předčasný úkon",
+"Proudnice je nesena v ústech.",
 
-"Jiná chyba"
+"Proudnice spadne před překážkou a závodník se nevrátí k novému překonání překážky.",
+
+"Předčasné odpojení proudnice před pokynem rozhodčího.",
+
+"Závodník zkříží jinému závodníkovi dráhu a omezí nebo poškodí jeho pokus.",
+
+"Závodník nedokončí disciplínu.",
+
+"Závodník neprovádí disciplínu s výzbrojí nebo výstrojí, se kterou odstartoval.",
+
+"Rozdělovač je při napojování hadice nesen.",
+
+"Elektronická časomíra není správně protnuta nebo je paprsek úmyslně přerušen rukou.",
+
+"Závodník neproběhne cílem ve své dráze."
 
 ];
 
@@ -997,14 +1077,8 @@ let text=
 String(hodnota ?? "")
 .trim();
 
-
-/* Prázdné zůstává prázdné */
-
 if(text==="")
 return "";
-
-
-/* 15:55 → 15 55 */
 
 text=text.replace(":"," ");
 
@@ -1012,7 +1086,7 @@ let casti=
 text.split(/\s+/);
 
 
-/* 15 55 → 15:55 */
+/* 15 55 */
 
 if(casti.length===2){
 
@@ -1041,19 +1115,23 @@ String(setiny).padStart(2,"0")
 }
 
 
-/* 1555 → 15:55 */
+/* 1555 */
 
 if(/^\d{3,4}$/.test(text)){
 
 let setiny=
-parseInt(text.slice(-2),10);
+parseInt(
+text.slice(-2),
+10
+);
 
 let sekundy=
-parseInt(text.slice(0,-2),10);
+parseInt(
+text.slice(0,-2),
+10
+);
 
 if(
-!isNaN(sekundy)&&
-!isNaN(setiny)&&
 sekundy>=0&&
 setiny>=0&&
 setiny<=99
@@ -1069,76 +1147,70 @@ String(setiny).padStart(2,"0")
 
 }
 
-
 return null;
 
 }
 
 
-/* VALIDACE */
-
-function validTime(t){
-
-if(!t)
-return false;
-
-const cas=
-normalizujCas(t);
-
-return cas!==null&&cas!=="";
-
-}
-
-
-/* ČAS NA ČÍSLO */
+/* =========================
+   ČAS → ČÍSLO
+========================= */
 
 function casNaCislo(cas){
 
 if(!cas)
 return null;
 
-const normal=
+let normal=
 normalizujCas(cas);
 
 if(!normal)
 return null;
 
-const casti=
+let casti=
 normal.split(":");
 
-return Number(casti[0])*100+
-Number(casti[1]);
+return (
+Number(casti[0])*100+
+Number(casti[1])
+);
 
 }
 
 
-/* ČÍSLO NA ČAS */
+/* =========================
+   ČÍSLO → ČAS
+========================= */
 
 function cisloNaCas(cislo){
 
 if(cislo===null)
 return "—";
 
-const sekundy=
+let sekundy=
 Math.floor(cislo/100);
 
-const setiny=
+let setiny=
 cislo%100;
 
-return sekundy+
+return (
+sekundy+
 ":"+
-String(setiny).padStart(2,"0");
+String(setiny).padStart(2,"0")
+);
 
 }
 
 
-/* REALTIME */
+/* =========================
+   REALTIME
+========================= */
 
 onSnapshot(
 
 col,
 
-(snap)=>{
+snap=>{
 
 data=[];
 
@@ -1158,7 +1230,7 @@ render();
 
 },
 
-(error)=>{
+error=>{
 
 console.error(error);
 
@@ -1220,10 +1292,6 @@ return;
 
 try{
 
-/*
-Najdeme nejvyšší pořadí.
-*/
-
 let maxPoradi=0;
 
 data.forEach(
@@ -1238,13 +1306,9 @@ Number(z.poradi)||0
 });
 
 
-const novePoradi=
+const poradi=
 maxPoradi+1;
 
-
-/*
-Uložení závodníka
-*/
 
 await addDoc(
 
@@ -1264,19 +1328,25 @@ druzstvo,
 kategorie:
 kategorie,
 
-/*
-Toto pořadí zůstává stejné.
-Zadání času ho nezmění.
-*/
-
 poradi:
-novePoradi,
+poradi,
+
+/*
+Časy jsou úplně prázdné.
+*/
 
 pokus1:"",
 pokus2:"",
 
-tresty1:0,
-tresty2:0,
+/*
+NP je na začátku vypnuté.
+*/
+
+np1:false,
+np2:false,
+
+duvodNP1:[],
+duvodNP2:[],
 
 vytvoreno:
 serverTimestamp()
@@ -1285,10 +1355,6 @@ serverTimestamp()
 
 );
 
-
-/*
-Vyčistit formulář
-*/
 
 document
 .getElementById("prijmeni")
@@ -1302,18 +1368,14 @@ document
 .getElementById("druzstvo")
 .value="";
 
-
 }
 
 catch(error){
 
-console.error(
-"CHYBA PŘI PŘIDÁNÍ ZÁVODNÍKA:",
-error
-);
+console.error(error);
 
 alert(
-"Závodníka se nepodařilo přidat.\n\n"+
+"Závodníka se nepodařilo přidat:\n"+
 error.message
 );
 
@@ -1333,7 +1395,6 @@ const input=
 document.getElementById(
 "excelFile"
 );
-
 
 if(
 !input.files||
@@ -1400,7 +1461,6 @@ Number(z.poradi)||0
 0
 );
 
-
 let pocet=0;
 
 
@@ -1458,7 +1518,6 @@ normalizujKategorii(
 kategorie
 );
 
-
 if(!kat)
 continue;
 
@@ -1490,8 +1549,11 @@ maxPoradi,
 pokus1:"",
 pokus2:"",
 
-tresty1:0,
-tresty2:0,
+np1:false,
+np2:false,
+
+duvodNP1:[],
+duvodNP2:[],
 
 vytvoreno:
 serverTimestamp(),
@@ -1502,21 +1564,16 @@ importExcel:true
 
 );
 
-
 pocet++;
 
 }
 
 
 zobrazZpravu(
-
 "✓ Import dokončen. Přidáno závodníků: "+
 pocet,
-
 false
-
 );
-
 
 input.value="";
 
@@ -1527,12 +1584,9 @@ catch(error){
 console.error(error);
 
 zobrazZpravu(
-
-"Excel se nepodařilo načíst.\n"+
+"Chyba při importu: "+
 error.message,
-
 true
-
 );
 
 }
@@ -1541,7 +1595,7 @@ true
 
 
 /* =========================
-   NAJÍT HODNOTU
+   EXCEL HODNOTA
 ========================= */
 
 function najdiHodnotu(
@@ -1552,7 +1606,6 @@ nazvy
 const klice=
 Object.keys(row);
 
-
 for(
 const klic of klice
 ){
@@ -1562,7 +1615,6 @@ klic
 .toString()
 .trim()
 .toLowerCase();
-
 
 for(
 const nazev of nazvy
@@ -1580,7 +1632,6 @@ return row[klic];
 }
 
 }
-
 
 return "";
 
@@ -1635,46 +1686,35 @@ return "";
 
 
 /* =========================
-   VÝSLEDEK POKUSU
-========================= */
-
-function vysledekPokus(
-cas,
-tresty
-){
-
-if(!validTime(cas))
-return null;
-
-
-/*
-1 trestný bod = 10 sekund
-1000 setin = 10 sekund
-*/
-
-return casNaCislo(cas)+
-(Number(tresty)||0)*1000;
-
-}
-
-
-/* =========================
    NEJLEPŠÍ VÝSLEDEK
 ========================= */
 
 function nejlepsiVysledek(z){
 
-const a=
-vysledekPokus(
-z.pokus1,
-z.tresty1
-);
+let a=null;
+let b=null;
 
-const b=
-vysledekPokus(
-z.pokus2,
-z.tresty2
-);
+
+if(
+!z.np1&&
+z.pokus1
+){
+
+a=
+casNaCislo(z.pokus1);
+
+}
+
+
+if(
+!z.np2&&
+z.pokus2
+){
+
+b=
+casNaCislo(z.pokus2);
+
+}
 
 
 if(a===null&&b===null)
@@ -1717,9 +1757,12 @@ pokus===1
 :
 "pokus2";
 
-
-const staraHodnota=
-z[pole]||"";
+const npPole=
+pokus===1
+?
+"np1"
+:
+"np2";
 
 
 const td=
@@ -1727,27 +1770,23 @@ document.querySelector(
 `[data-time-cell="${id}-${pokus}"]`
 );
 
-
 if(!td)
 return;
+
+
+const stary=
+z[pole]||"";
 
 
 td.innerHTML=`
 
 <input
-
 class="time-input"
-
 id="timeEdit-${id}-${pokus}"
-
-value="${staraHodnota}"
-
+value="${stary}"
 placeholder=""
-
 inputmode="numeric"
-
 autocomplete="off"
-
 >
 
 `;
@@ -1758,34 +1797,25 @@ document.getElementById(
 `timeEdit-${id}-${pokus}`
 );
 
-
 input.focus();
 
 input.select();
 
 
-let ulozeno=false;
+let hotovo=false;
 
 
-/* ULOŽENÍ */
+async functionulozit(){
 
-async function ulozit(){
-
-if(ulozeno)
+if(hotovo)
 return;
 
-
-ulozeno=true;
+hotovo=true;
 
 
 let hodnota=
 input.value.trim();
 
-
-/*
-Prázdné znamená,
-že čas zůstane prázdný.
-*/
 
 if(hodnota===""){
 
@@ -1801,7 +1831,8 @@ id
 
 {
 
-[pole]:""
+[pole]:"",
+[npPole]:false
 
 }
 
@@ -1810,8 +1841,10 @@ id
 }
 catch(error){
 
+hotovo=false;
+
 alert(
-"Chyba při ukládání času:\n"+
+"Chyba při ukládání:\n"+
 error.message
 );
 
@@ -1828,7 +1861,7 @@ normalizujCas(hodnota);
 
 if(cas===null){
 
-ulozeno=false;
+hotovo=false;
 
 alert(
 "Špatný čas.\n\n"+
@@ -1856,7 +1889,9 @@ id
 {
 
 [pole]:
-cas
+cas,
+
+[npPole]:false
 
 }
 
@@ -1866,10 +1901,10 @@ cas
 
 catch(error){
 
-ulozeno=false;
+hotovo=false;
 
 alert(
-"Chyba při ukládání času:\n"+
+"Chyba při ukládání:\n"+
 error.message
 );
 
@@ -1877,8 +1912,6 @@ error.message
 
 }
 
-
-/* ENTER */
 
 input.addEventListener(
 "keydown",
@@ -1888,13 +1921,15 @@ if(e.key==="Enter"){
 
 e.preventDefault();
 
+hotovo=false;
+
 ulozit();
 
 }
 
 if(e.key==="Escape"){
 
-ulozeno=true;
+hotovo=true;
 
 render();
 
@@ -1903,15 +1938,13 @@ render();
 });
 
 
-/* KLIK MIMO */
-
 input.addEventListener(
 "blur",
 function(){
 
 setTimeout(
 ulozit,
-100
+120
 );
 
 });
@@ -1920,19 +1953,16 @@ ulozit,
 
 
 /* =========================
-   MODAL TRESTŮ
+   MODAL NP
 ========================= */
 
 let modalId=null;
-
 let modalPokus=null;
 
-let modalTresty=0;
 
+/* OTEVŘÍT NP */
 
-/* OTEVŘÍT */
-
-window.otevritTresty=
+window.otevritNP=
 function(
 id,
 pokus
@@ -1948,93 +1978,77 @@ return;
 
 
 modalId=id;
-
 modalPokus=pokus;
-
-
-modalTresty=
-Number(
-pokus===1
-?
-z.tresty1
-:
-z.tresty2
-)||0;
 
 
 document
 .getElementById("modalTitle")
 .textContent=
-"Trestné body – pokus "+
+"❌ Neplatný pokus";
+
+
+document
+.getElementById("modalInfo")
+.textContent=
+z.prijmeni+
+" "+
+z.jmeno+
+" · Pokus "+
 pokus;
 
 
-const list=
-document
-.getElementById("penaltyList");
+const ulozene=
+pokus===1
+?
+(z.duvodNP1||[])
+:
+(z.duvodNP2||[]);
 
-list.innerHTML="";
+
+let html="";
 
 
-tresty.forEach(
-(nazev,index)=>{
+duvodyNP.forEach(
+(duvod,index)=>{
 
-list.innerHTML+=`
+html+=`
 
-<div class="modal-row">
+<label class="reason">
 
-<div class="modal-name">
+<input
 
-${index+1}. ${nazev}
+type="checkbox"
 
-</div>
+class="npReason"
 
-</div>
+data-index="${index}"
+
+${
+ulozene.includes(index)
+?
+"checked"
+:
+""
+}
+
+>
+
+<span>
+
+${duvod}
+
+</span>
+
+</label>
 
 `;
 
 });
 
 
-list.innerHTML+=`
-
-<div class="modal-row">
-
-<div>
-
-Celkem trestných bodů
-
-</div>
-
-<div class="counter">
-
-<button
-onclick="zmenTrest(-1)">
-
-−
-
-</button>
-
-<div
-class="counter-value"
-id="trestValue">
-
-${modalTresty}
-
-</div>
-
-<button
-onclick="zmenTrest(1)">
-
-+
-
-</button>
-
-</div>
-
-</div>
-
-`;
+document
+.getElementById("reasonList")
+.innerHTML=html;
 
 
 document
@@ -2044,40 +2058,63 @@ document
 };
 
 
-/* ZMĚNA TRESTŮ */
+/* =========================
+   ULOŽIT NP
+========================= */
 
-window.zmenTrest=
-function(zmena){
-
-modalTresty+=zmena;
-
-if(modalTresty<0)
-modalTresty=0;
-
-
-document
-.getElementById("trestValue")
-.textContent=
-modalTresty;
-
-};
-
-
-/* ULOŽIT TRESTY */
-
-window.ulozitTresty=
+window.ulozitNP=
 async function(){
 
 if(!modalId)
 return;
 
 
-const pole=
+const vybrane=
+[
+...
+document.querySelectorAll(
+".npReason:checked"
+)
+]
+.map(
+x=>
+Number(x.dataset.index)
+);
+
+
+if(!vybrane.length){
+
+alert(
+"Vyber alespoň jeden důvod neplatného pokusu."
+);
+
+return;
+
+}
+
+
+const npPole=
 modalPokus===1
 ?
-"tresty1"
+"np1"
 :
-"tresty2";
+"np2";
+
+
+const duvodPole=
+modalPokus===1
+?
+"duvodNP1"
+:
+"duvodNP2";
+
+
+const casPole=
+modalPokus===1
+?
+"pokus1"
+:
+"pokus2";
 
 
 try{
@@ -2092,8 +2129,16 @@ modalId
 
 {
 
-[pole]:
-modalTresty
+[npPole]:true,
+
+[duvodPole]:
+vybrane,
+
+/*
+Při NP se případný čas vymaže.
+*/
+
+[casPole]:""
 
 }
 
@@ -2107,7 +2152,7 @@ zavritModal();
 catch(error){
 
 alert(
-"Chyba při ukládání trestů:\n"+
+"Chyba při ukládání NP:\n"+
 error.message
 );
 
@@ -2116,7 +2161,68 @@ error.message
 };
 
 
-/* ZAVŘÍT */
+/* =========================
+   ZRUŠIT NP
+========================= */
+
+window.zrusitNP=
+async function(
+id,
+pokus
+){
+
+const pole=
+pokus===1
+?
+"np1"
+:
+"np2";
+
+const duvodPole=
+pokus===1
+?
+"duvodNP1"
+:
+"duvodNP2";
+
+
+try{
+
+await updateDoc(
+
+doc(
+db,
+"60m_prekazky",
+id
+),
+
+{
+
+[pole]:false,
+
+[duvodPole]:[]
+
+}
+
+);
+
+}
+
+catch(error){
+
+alert(
+"Chyba:\n"+
+error.message
+);
+
+}
+
+};
+
+
+/* =========================
+   ZAVŘÍT MODAL
+========================= */
 
 window.zavritModal=
 function(){
@@ -2274,7 +2380,7 @@ error.message
 
 
 /* =========================
-   RENDER
+   VYKRESLENÍ
 ========================= */
 
 window.render=
@@ -2304,6 +2410,126 @@ vykresli(
 
 
 /* =========================
+   JEDEN POKUS
+========================= */
+
+function vykresliPokus(
+z,
+pokus
+){
+
+const np=
+pokus===1
+?
+z.np1
+:
+z.np2;
+
+const cas=
+pokus===1
+?
+z.pokus1
+:
+z.pokus2;
+
+
+const trida=
+pokus===1
+?
+"one"
+:
+"two";
+
+
+let obsah="";
+
+
+if(np){
+
+obsah=`
+
+<div class="attempt-time">
+
+<button
+class="time-button"
+onclick="otevritNP('${z.id}',${pokus})">
+
+NP
+
+</button>
+
+</div>
+
+<div class="attempt-status np">
+
+Neplatný pokus
+
+</div>
+
+`;
+
+}
+else{
+
+obsah=`
+
+<div class="attempt-time">
+
+<button
+class="time-button"
+onclick="ulozCas('${z.id}',${pokus})">
+
+${cas||"Čas"}
+
+</button>
+
+<button
+class="np-button"
+onclick="otevritNP('${z.id}',${pokus})">
+
+NP
+
+</button>
+
+</div>
+
+<div class="attempt-status">
+
+${
+cas
+?
+"✓ Platný pokus"
+:
+"Čas zatím není zadán"
+}
+
+</div>
+
+`;
+
+}
+
+
+return `
+
+<div class="attempt ${trida}">
+
+<div class="attempt-title">
+
+POKUS ${pokus}
+
+</div>
+
+${obsah}
+
+</div>
+
+`;
+
+}
+
+
+/* =========================
    TABULKA
 ========================= */
 
@@ -2326,20 +2552,10 @@ data
 z=>z.kategorie===kategorie
 )
 .sort(
-(a,b)=>{
-
-/*
-DŮLEŽITÉ:
-Řadíme pouze podle uloženého pořadí.
-Čas ho nikdy nezmění.
-*/
-
-return (
+(a,b)=>
 Number(a.poradi||0)-
 Number(b.poradi||0)
 );
-
-});
 
 
 if(!seznam.length){
@@ -2349,7 +2565,7 @@ tabulka.innerHTML=`
 <tr>
 
 <td
-colspan="10"
+colspan="8"
 class="empty">
 
 Zatím není přidaný žádný závodník.
@@ -2372,12 +2588,6 @@ const best=
 nejlepsiVysledek(z);
 
 
-/*
-Pořadí výsledků se zobrazuje
-podle času, ale samotné řazení
-tabulky se nemění.
-*/
-
 let trida="";
 
 
@@ -2395,11 +2605,26 @@ trida="bronze";
 }
 
 
-const t1=
-Number(z.tresty1)||0;
+let bestHTML="—";
 
-const t2=
-Number(z.tresty2)||0;
+
+if(
+z.np1&&
+z.np2
+){
+
+bestHTML=
+`<span class="best best-np">NP</span>`;
+
+}
+else if(best!==null){
+
+bestHTML=
+`<span class="best">
+${cisloNaCas(best)}
+</span>`;
+
+}
 
 
 tabulka.innerHTML+=`
@@ -2409,121 +2634,56 @@ tabulka.innerHTML+=`
 <td
 class="place ${trida}">
 
-${
-best!==null
-?
-(index+1)+"."
-:
-"-"
-}
+${index+1}.
 
 </td>
 
 <td>
-
 ${z.prijmeni}
-
 </td>
 
 <td>
-
 ${z.jmeno}
-
 </td>
 
 <td>
-
 ${z.druzstvo}
+</td>
+
+
+<td>
+
+${vykresliPokus(z,1)}
 
 </td>
 
-<td
-data-time-cell="${z.id}-1">
 
-<button
+<td>
 
-class="time-button"
-
-onclick="ulozCas('${z.id}',1)">
-
-${z.pokus1||"—"}
-
-</button>
+${vykresliPokus(z,2)}
 
 </td>
+
+
+<td>
+
+${bestHTML}
+
+</td>
+
 
 <td>
 
 <button
-
-class="penalty-button"
-
-onclick="otevritTresty('${z.id}',1)">
-
-${t1} b.
-
-</button>
-
-</td>
-
-<td
-data-time-cell="${z.id}-2">
-
-<button
-
-class="time-button"
-
-onclick="ulozCas('${z.id}',2)">
-
-${z.pokus2||"—"}
-
-</button>
-
-</td>
-
-<td>
-
-<button
-
-class="penalty-button"
-
-onclick="otevritTresty('${z.id}',2)">
-
-${t2} b.
-
-</button>
-
-</td>
-
-<td
-class="result">
-
-${
-best!==null
-?
-cisloNaCas(best)
-:
-"—"
-}
-
-</td>
-
-<td>
-
-<button
-
 class="action"
-
-onclick="editZavodnika('${z.id}')">
+onclick="editZavodnik('${z.id}')">
 
 ✏️
 
 </button>
 
 <button
-
 class="action"
-
 onclick="smazZavodnika('${z.id}')">
 
 🗑️
@@ -2566,7 +2726,7 @@ chyba
 ?
 "message error"
 :
-"message";
+"message success";
 
 
 setTimeout(
@@ -2584,4 +2744,4 @@ el.textContent="";
 
 </body>
 
-   </html> 
+</html> 

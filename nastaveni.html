@@ -293,7 +293,7 @@ input[type="date"]{
 }
 
 
-/* SPRÁVA */
+/* SPRÁVA VÝSLEDKŮ */
 
 .management-button{
 
@@ -658,7 +658,7 @@ class="message">
 </h2>
 
 <div class="subtitle">
-Otevři správu konkrétní soutěže.
+Zde můžeš vymazat výsledky konkrétní soutěže.
 </div>
 
 
@@ -666,7 +666,7 @@ Otevři správu konkrétní soutěže.
 
 <button
 class="management-button"
-onclick="window.location.href='pozarniutok.html'">
+onclick="smazatVysledky('pozarni_utok','Požární útok')">
 
 <div class="management-icon">
 🚒
@@ -675,11 +675,11 @@ onclick="window.location.href='pozarniutok.html'">
 <div>
 
 <div class="management-name">
-Požární útok
+Smazat výsledky – Požární útok
 </div>
 
 <div class="management-description">
-Mladší · Starší
+Smaže všechna družstva a výsledky požárního útoku.
 </div>
 
 </div>
@@ -691,7 +691,7 @@ Mladší · Starší
 
 <button
 class="management-button"
-onclick="window.location.href='stafetadvojic.html'">
+onclick="smazatVysledky('stafety_dvojic','Štafeta dvojic')">
 
 <div class="management-icon">
 🏃
@@ -700,11 +700,11 @@ onclick="window.location.href='stafetadvojic.html'">
 <div>
 
 <div class="management-name">
-Štafeta dvojic
+Smazat výsledky – Štafeta dvojic
 </div>
 
 <div class="management-description">
-Mladší · Starší
+Smaže všechna družstva a výsledky štafety.
 </div>
 
 </div>
@@ -716,7 +716,7 @@ Mladší · Starší
 
 <button
 class="management-button"
-onclick="window.location.href='60mprekazky.html'">
+onclick="smazatVysledky('60m_prekazky','60 m překážek')">
 
 <div class="management-icon">
 🏃‍♂️
@@ -725,11 +725,11 @@ onclick="window.location.href='60mprekazky.html'">
 <div>
 
 <div class="management-name">
-60 m překážek
+Smazat výsledky – 60 m překážek
 </div>
 
 <div class="management-description">
-Jednotlivci · Mladší · Starší
+Smaže všechny závodníky a jejich výsledky.
 </div>
 
 </div>
@@ -767,7 +767,10 @@ import {
 getFirestore,
 doc,
 getDoc,
-setDoc
+setDoc,
+collection,
+getDocs,
+deleteDoc
 }
 from
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
@@ -778,7 +781,7 @@ from
 const firebaseConfig={
 
 apiKey:
-"AIzaSyDHGLymt1Ram6s0LJSeQLMh-fZJvCM-9jo",
+"AIzaSyDHGLymt1Ram6s0LJSeQLmf-hZJvCM-9jo",
 
 authDomain:
 "deti-hra-plamen-lubina.firebaseapp.com",
@@ -835,7 +838,7 @@ document.getElementById(
 );
 
 
-/* NAČTENÍ */
+/* NAČTENÍ NASTAVENÍ */
 
 async function nacistNastaveni(){
 
@@ -849,14 +852,10 @@ nastaveniRef
 
 if(!snap.exists()){
 
-/*
-POKUD NASTAVENÍ
-JEŠTĚ NEEXISTUJE,
-VŠECHNO JE ZAPNUTÉ.
-*/
-
 pozarni.checked=true;
+
 stafeta.checked=true;
+
 prekazky.checked=true;
 
 return;
@@ -880,19 +879,25 @@ prekazky.checked=
 data.prekazky60 !== false;
 
 
-document.getElementById("datum").value=
+document
+.getElementById("datum")
+.value=
 data.datum || "";
 
 
-document.getElementById("rocnik").value=
+document
+.getElementById("rocnik")
+.value=
 data.rocnik || "";
 
 
-document.getElementById("misto").value=
+document
+.getElementById("misto")
+.value=
 data.misto || "";
 
-
 }
+
 catch(error){
 
 console.error(
@@ -910,7 +915,7 @@ true
 }
 
 
-/* AUTOMATICKÉ ULOŽENÍ SOUTĚŽÍ */
+/* AUTOMATICKÉ ULOŽENÍ VIDITELNOSTI */
 
 async function ulozitViditelnost(){
 
@@ -947,8 +952,8 @@ zobrazZpravu(
 false
 );
 
-
 }
+
 catch(error){
 
 console.error(
@@ -966,10 +971,7 @@ true
 }
 
 
-/*
-KAŽDÝ PŘEPÍNAČ
-SE ULOŽÍ OKAMŽITĚ
-*/
+/* PŘEPÍNAČE */
 
 pozarni.addEventListener(
 "change",
@@ -989,7 +991,7 @@ ulozitViditelnost
 );
 
 
-/* ULOŽENÍ ÚDAJŮ */
+/* ULOŽENÍ ÚDAJŮ ZÁVODU */
 
 window.ulozitUdaje=
 async function(){
@@ -1035,8 +1037,8 @@ zobrazZpravu(
 false
 );
 
-
 }
+
 catch(error){
 
 console.error(
@@ -1047,6 +1049,147 @@ error
 zobrazZpravu(
 "Chyba při ukládání údajů.",
 true
+);
+
+}
+
+};
+
+
+/* =================================================
+   SMAZÁNÍ VÝSLEDKŮ SOUTĚŽE
+================================================= */
+
+window.smazatVysledky=
+async function(
+kolekce,
+nazev
+){
+
+/*
+PRVNÍ POTVRZENÍ
+*/
+
+const potvrzeni=
+confirm(
+
+"POZOR!\n\n"+
+"Opravdu chceš smazat všechny výsledky soutěže:\n\n"+
+nazev+
+"?\n\n"+
+"Tato akce je nevratná."
+
+);
+
+
+if(!potvrzeni)
+return;
+
+
+/*
+DRUHÉ POTVRZENÍ
+*/
+
+const potvrzeni2=
+confirm(
+
+"POSLEDNÍ POTVRZENÍ\n\n"+
+"Budou smazána VŠECHNA data ze soutěže:\n"+
+nazev+
+".\n\n"+
+"Chceš opravdu pokračovat?"
+
+);
+
+
+if(!potvrzeni2)
+return;
+
+
+try{
+
+const reference=
+collection(
+db,
+kolekce
+);
+
+
+const snap=
+await getDocs(
+reference
+);
+
+
+if(snap.empty){
+
+zobrazZpravu(
+"Soutěž už neobsahuje žádné výsledky.",
+false
+);
+
+return;
+
+}
+
+
+/*
+SMAZÁNÍ JEDNOTLIVÝCH DOKUMENTŮ
+*/
+
+let pocet=0;
+
+
+for(
+const zaznam
+of snap.docs
+){
+
+await deleteDoc(
+doc(
+db,
+kolekce,
+zaznam.id
+)
+);
+
+pocet++;
+
+}
+
+
+zobrazZpravu(
+
+"✓ Smazáno "+
+
+pocet+
+
+" záznamů – "+
+
+nazev+
+
+".",
+
+false
+
+);
+
+}
+
+catch(error){
+
+console.error(
+"Chyba při mazání výsledků:",
+error
+);
+
+zobrazZpravu(
+
+"Chyba při mazání: "+
+error.message,
+
+true
+
 );
 
 }
@@ -1083,7 +1226,7 @@ function(){
 message.textContent="";
 
 },
-2500
+5000
 );
 
 }

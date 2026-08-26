@@ -285,6 +285,9 @@ font-size:18px;
 margin:0 3px;
 }
 
+
+/* ČAS */
+
 .time-button{
 border:0;
 background:transparent;
@@ -292,12 +295,39 @@ color:#dbe2eb;
 cursor:pointer;
 font-size:15px;
 padding:5px 8px;
+min-width:75px;
 }
 
 .time-button:hover{
 background:rgba(255,255,255,.08);
 border-radius:7px;
 }
+
+.time-input{
+width:90px;
+
+padding:8px 6px;
+
+text-align:center;
+
+border:1px solid #394455;
+
+border-radius:8px;
+
+background:#101722;
+
+color:white;
+
+font-size:15px;
+}
+
+.time-input:focus{
+outline:none;
+border-color:#ef3333;
+}
+
+
+/* TRESTY */
 
 .penalty-button{
 border:1px solid #394455;
@@ -954,6 +984,94 @@ const tresty=[
 ];
 
 
+/* =========================
+   ČAS
+========================= */
+
+function normalizujCas(hodnota){
+
+let text=
+String(hodnota ?? "")
+.trim();
+
+
+/* PRÁZDNÉ ZŮSTANE PRÁZDNÉ */
+
+if(text==="")
+return "";
+
+
+/* 15:55 → 15 55 */
+
+text=text.replace(":"," ");
+
+let casti=
+text.split(/\s+/);
+
+
+/* 15 55 → 15:55 */
+
+if(casti.length===2){
+
+let sekundy=
+parseInt(casti[0],10);
+
+let setiny=
+parseInt(casti[1],10);
+
+if(
+!isNaN(sekundy)&&
+!isNaN(setiny)&&
+sekundy>=0&&
+setiny>=0&&
+setiny<=99
+){
+
+return (
+sekundy+
+":"+
+String(setiny).padStart(2,"0")
+);
+
+}
+
+}
+
+
+/* 1555 → 15:55 */
+
+if(/^\d{3,4}$/.test(text)){
+
+let setiny=
+parseInt(text.slice(-2),10);
+
+let sekundy=
+parseInt(text.slice(0,-2),10);
+
+if(
+!isNaN(sekundy)&&
+!isNaN(setiny)&&
+sekundy>=0&&
+setiny>=0&&
+setiny<=99
+){
+
+return (
+sekundy+
+":"+
+String(setiny).padStart(2,"0")
+);
+
+}
+
+}
+
+
+return null;
+
+}
+
+
 /* VALIDACE ČASU */
 
 function validTime(t){
@@ -961,34 +1079,10 @@ function validTime(t){
 if(!t)
 return false;
 
-if(!t.includes(":"))
-return false;
+const cas=
+normalizujCas(t);
 
-const casti=t.split(":");
-
-if(casti.length!==2)
-return false;
-
-const sekundy=Number(casti[0]);
-
-const setiny=Number(casti[1]);
-
-if(
-isNaN(sekundy)||
-isNaN(setiny)
-)
-return false;
-
-if(sekundy<0)
-return false;
-
-if(
-setiny<0||
-setiny>99
-)
-return false;
-
-return true;
+return cas!==null&&cas!=="";
 
 }
 
@@ -997,7 +1091,17 @@ return true;
 
 function casNaCislo(cas){
 
-const casti=cas.split(":");
+if(!cas)
+return null;
+
+const normal=
+normalizujCas(cas);
+
+if(!normal)
+return null;
+
+const casti=
+normal.split(":");
 
 return Number(casti[0])*100+
 Number(casti[1]);
@@ -1489,7 +1593,9 @@ return Math.min(a,b);
 }
 
 
-/* ULOŽIT ČAS */
+/* =========================
+   EDITACE ČASU
+========================= */
 
 window.ulozCas=
 async function(
@@ -1514,35 +1620,120 @@ pokus===1
 "pokus2";
 
 
-const hodnota=
-prompt(
+const staraHodnota=
+z[pole]||"";
 
-"Pokus "+
-pokus+
-" – čas například 18:42",
 
-z[pole]||""
+/*
+Nahrazujeme prompt
+přímým políčkem v tabulce.
+*/
 
+const td=
+document.querySelector(
+`[data-time-cell="${id}-${pokus}"]`
 );
 
-
-if(hodnota===null)
+if(!td)
 return;
 
 
-if(
-hodnota!==""&&
-!validTime(hodnota)
-){
+td.innerHTML=`
+
+<input
+
+class="time-input"
+
+id="timeEdit-${id}-${pokus}"
+
+value="${staraHodnota}"
+
+placeholder=""
+
+inputmode="numeric"
+
+autocomplete="off"
+
+>
+
+`;
+
+
+const input=
+document.getElementById(
+`timeEdit-${id}-${pokus}`
+);
+
+
+input.focus();
+
+input.select();
+
+
+async function ulozit(){
+
+let hodnota=
+input.value.trim();
+
+
+/*
+Prázdné = prázdné.
+*/
+
+if(hodnota===""){
+
+try{
+
+await updateDoc(
+
+doc(
+db,
+"60m_prekazky",
+id
+),
+
+{
+
+[pole]:""
+
+}
+
+);
+
+}
+catch(error){
 
 alert(
-"Špatný čas. Použij například 18:42."
+"Chyba při ukládání času:\n"+
+error.message
 );
+
+}
 
 return;
 
 }
 
+
+const cas=
+normalizujCas(hodnota);
+
+
+if(cas===null){
+
+alert(
+"Špatný čas.\n\n"+
+"Zadej například:\n15 55"
+);
+
+input.focus();
+
+return;
+
+}
+
+
+try{
 
 await updateDoc(
 
@@ -1555,11 +1746,64 @@ id
 {
 
 [pole]:
-hodnota
+cas
 
 }
 
 );
+
+}
+catch(error){
+
+alert(
+"Chyba při ukládání času:\n"+
+error.message
+);
+
+}
+
+}
+
+
+/*
+Enter = uložit
+*/
+
+input.addEventListener(
+"keydown",
+function(e){
+
+if(e.key==="Enter"){
+
+e.preventDefault();
+
+ulozit();
+
+}
+
+if(e.key==="Escape"){
+
+render();
+
+}
+
+});
+
+
+/*
+Kliknutí mimo pole = uložit
+*/
+
+input.addEventListener(
+"blur",
+function(){
+
+setTimeout(
+ulozit,
+100
+);
+
+});
 
 };
 
@@ -1641,9 +1885,7 @@ list.innerHTML+=`
 <div class="modal-row">
 
 <div>
-
 Celkem trestných bodů
-
 </div>
 
 <div class="counter">
@@ -1838,8 +2080,6 @@ druzstvo.trim()
 
 }
 
-);
-
 };
 
 
@@ -1920,23 +2160,18 @@ z=>z.kategorie===kategorie
 .sort(
 (a,b)=>{
 
-const aa=
-nejlepsiVysledek(a);
+/*
+DŮLEŽITÉ:
+Pořadí se při zadání času nemění.
 
-const bb=
-nejlepsiVysledek(b);
+Proto řadíme podle původního
+pořadí přidání.
+*/
 
-
-if(aa===null&&bb===null)
-return 0;
-
-if(aa===null)
-return 1;
-
-if(bb===null)
-return -1;
-
-return aa-bb;
+return (
+Number(a.poradi||a.start||0)-
+Number(b.poradi||b.start||0)
+);
 
 });
 
@@ -2013,24 +2248,19 @@ best!==null
 </td>
 
 <td>
-
 ${z.prijmeni}
-
 </td>
 
 <td>
-
 ${z.jmeno}
-
 </td>
 
 <td>
-
 ${z.druzstvo}
-
 </td>
 
-<td>
+<td
+data-time-cell="${z.id}-1">
 
 <button
 class="time-button"
@@ -2054,7 +2284,8 @@ ${t1} b.
 
 </td>
 
-<td>
+<td
+data-time-cell="${z.id}-2">
 
 <button
 class="time-button"
@@ -2154,5 +2385,4 @@ el.textContent="";
 </script>
 
 </body>
-
-</html>
+</html> 

@@ -39,25 +39,15 @@ body{
     padding:20px 16px 40px;
 }
 
-
-/* ZPĚT */
-
 .back{
     border:1px solid #394455;
     background:transparent;
     color:#aeb9c8;
-
     padding:10px 15px;
-
     border-radius:11px;
-
     cursor:pointer;
-
     margin-bottom:15px;
 }
-
-
-/* HLAVIČKA */
 
 .header{
     text-align:center;
@@ -85,49 +75,31 @@ body{
     font-size:14px;
 }
 
-
-/* KARTY */
-
 .card{
     background:rgba(255,255,255,.055);
-
     border:1px solid rgba(255,255,255,.10);
-
     border-radius:22px;
-
     padding:20px;
-
     margin-bottom:16px;
 }
 
 .card h2{
     margin:0 0 8px;
-
     font-size:24px;
 }
 
 .subtitle{
     color:#8995a6;
-
     font-size:14px;
-
     margin-bottom:18px;
 }
 
-
-/* SOUTĚŽ */
-
 .setting{
     display:flex;
-
     align-items:center;
-
     justify-content:space-between;
-
     gap:15px;
-
     padding:17px 0;
-
     border-bottom:1px solid rgba(255,255,255,.08);
 }
 
@@ -137,84 +109,61 @@ body{
 
 .setting-info{
     display:flex;
-
     align-items:center;
-
     gap:14px;
 }
 
 .setting-icon{
     font-size:32px;
-
     width:42px;
-
     text-align:center;
 }
 
 .setting-name{
     font-size:17px;
-
     font-weight:bold;
 }
 
 .setting-description{
     color:#8995a6;
-
     font-size:13px;
-
     margin-top:4px;
 }
-
 
 /* SWITCH */
 
 .switch{
     position:relative;
-
     display:inline-block;
-
     width:54px;
     height:30px;
-
     flex-shrink:0;
 }
 
 .switch input{
     opacity:0;
-
     width:0;
     height:0;
 }
 
 .slider{
     position:absolute;
-
     cursor:pointer;
-
     inset:0;
-
     background:#303947;
-
     border-radius:30px;
-
     transition:.2s;
 }
 
 .slider:before{
     content:"";
-
     position:absolute;
-
     height:22px;
     width:22px;
-
     left:4px;
     top:4px;
-
     background:white;
-
     border-radius:50%;
-
     transition:.2s;
 }
 
@@ -225,7 +174,6 @@ input:checked + .slider{
 input:checked + .slider:before{
     transform:translateX(24px);
 }
-
 
 /* ÚDAJE */
 
@@ -239,59 +187,37 @@ input:checked + .slider:before{
 
 .form-row label{
     display:block;
-
     color:#aeb9c8;
-
     font-size:13px;
-
     margin-bottom:7px;
 }
 
 input[type="text"],
 input[type="date"]{
-
     width:100%;
-
     padding:13px;
-
     border-radius:12px;
-
     border:1px solid #354052;
-
     background:#101722;
-
     color:white;
-
     font-size:15px;
 }
 
-
-/* ULOŽIT */
-
 .primary{
     width:100%;
-
     border:0;
-
     border-radius:12px;
-
     padding:14px 18px;
-
     background:#d72f2f;
-
     color:white;
-
     font-weight:bold;
-
     font-size:15px;
-
     cursor:pointer;
 }
 
 .primary:hover{
     background:#ed3a3a;
 }
-
 
 /* SPRÁVA VÝSLEDKŮ */
 
@@ -328,45 +254,64 @@ input[type="date"]{
 
 .management-button:hover{
     background:#182231;
-
-    transform:translateY(-1px);
 }
 
 .management-icon{
     font-size:30px;
-
     width:40px;
-
     text-align:center;
 }
 
 .management-name{
     font-size:16px;
-
     font-weight:bold;
 }
 
 .management-description{
     color:#8995a6;
-
     font-size:13px;
-
     margin-top:4px;
 }
 
+/* MAZÁNÍ */
+
+.delete-button{
+
+    width:100%;
+
+    border:1px solid #7d3030;
+
+    border-radius:12px;
+
+    padding:12px 15px;
+
+    margin-bottom:15px;
+
+    background:#35191c;
+
+    color:#ffb4b4;
+
+    text-align:center;
+
+    cursor:pointer;
+
+    font-family:inherit;
+
+    font-weight:bold;
+
+}
+
+.delete-button:hover{
+    background:#4a2024;
+}
 
 /* ZPRÁVA */
 
 .message{
-
     text-align:center;
-
     font-size:13px;
-
     color:#36d399;
-
     min-height:18px;
-
     margin:14px 0;
 }
 
@@ -374,31 +319,22 @@ input[type="date"]{
     color:#ef6b6b;
 }
 
-
 /* STATUS */
 
 .status{
     text-align:center;
-
     color:#68778b;
-
     font-size:12px;
-
     margin-top:20px;
 }
 
 .online{
     display:inline-block;
-
     width:7px;
     height:7px;
-
     border-radius:50%;
-
     background:#36d399;
-
     margin-right:6px;
-
     box-shadow:0 0 9px #36d399;
 }
 
@@ -645,7 +581,6 @@ onclick="ulozitUdaje()">
 <div
 id="message"
 class="message">
-
 </div>
 
 
@@ -658,7 +593,7 @@ class="message">
 </h2>
 
 <div class="subtitle">
-Zde můžeš vymazat výsledky konkrétní soutěže.
+Otevření soutěže nebo smazání jejích výsledků.
 </div>
 
 
@@ -666,7 +601,7 @@ Zde můžeš vymazat výsledky konkrétní soutěže.
 
 <button
 class="management-button"
-onclick="smazatVysledky('pozarni_utok','Požární útok')">
+onclick="window.location.href='pozarniutok.html'">
 
 <div class="management-icon">
 🚒
@@ -675,14 +610,23 @@ onclick="smazatVysledky('pozarni_utok','Požární útok')">
 <div>
 
 <div class="management-name">
-Smazat výsledky – Požární útok
+Požární útok
 </div>
 
 <div class="management-description">
-Smaže všechna družstva a výsledky požárního útoku.
+Mladší · Starší · Otevřít správu výsledků
 </div>
 
 </div>
+
+</button>
+
+
+<button
+class="delete-button"
+onclick="smazatVysledky('pozarni_utok','Požární útok')">
+
+Smazat všechny výsledky – Požární útok
 
 </button>
 
@@ -691,7 +635,7 @@ Smaže všechna družstva a výsledky požárního útoku.
 
 <button
 class="management-button"
-onclick="smazatVysledky('stafety_dvojic','Štafeta dvojic')">
+onclick="window.location.href='stafetadvojic.html'">
 
 <div class="management-icon">
 🏃
@@ -700,14 +644,23 @@ onclick="smazatVysledky('stafety_dvojic','Štafeta dvojic')">
 <div>
 
 <div class="management-name">
-Smazat výsledky – Štafeta dvojic
+Štafeta dvojic
 </div>
 
 <div class="management-description">
-Smaže všechna družstva a výsledky štafety.
+Mladší · Starší · Otevřít správu výsledků
 </div>
 
 </div>
+
+</button>
+
+
+<button
+class="delete-button"
+onclick="smazatVysledky('stafety_dvojic','Štafeta dvojic')">
+
+Smazat všechny výsledky – Štafeta dvojic
 
 </button>
 
@@ -716,7 +669,7 @@ Smaže všechna družstva a výsledky štafety.
 
 <button
 class="management-button"
-onclick="smazatVysledky('60m_prekazky','60 m překážek')">
+onclick="window.location.href='60mprekazky.html'">
 
 <div class="management-icon">
 🏃‍♂️
@@ -725,14 +678,23 @@ onclick="smazatVysledky('60m_prekazky','60 m překážek')">
 <div>
 
 <div class="management-name">
-Smazat výsledky – 60 m překážek
+60 m překážek
 </div>
 
 <div class="management-description">
-Smaže všechny závodníky a jejich výsledky.
+Jednotlivci · Mladší · Starší · Otevřít správu výsledků
 </div>
 
 </div>
+
+</button>
+
+
+<button
+class="delete-button"
+onclick="smazatVysledky('60m_prekazky','60 m překážek')">
+
+Smazat všechny výsledky – 60 m překážek
 
 </button>
 
@@ -770,7 +732,7 @@ getDoc,
 setDoc,
 collection,
 getDocs,
-deleteDoc
+writeBatch
 }
 from
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
@@ -852,10 +814,13 @@ nastaveniRef
 
 if(!snap.exists()){
 
+/*
+Výchozí stav:
+všechny soutěže jsou zapnuté.
+*/
+
 pozarni.checked=true;
-
 stafeta.checked=true;
-
 prekazky.checked=true;
 
 return;
@@ -866,6 +831,12 @@ return;
 const data=
 snap.data();
 
+
+/*
+TOTO ZŮSTÁVÁ STEJNÉ.
+PŘEPÍNAČE OVLIVŇUJÍ
+POUZE VIDITELNOST SOUTĚŽÍ.
+*/
 
 pozarni.checked=
 data.pozarniUtok !== false;
@@ -879,21 +850,15 @@ prekazky.checked=
 data.prekazky60 !== false;
 
 
-document
-.getElementById("datum")
-.value=
+document.getElementById("datum").value=
 data.datum || "";
 
 
-document
-.getElementById("rocnik")
-.value=
+document.getElementById("rocnik").value=
 data.rocnik || "";
 
 
-document
-.getElementById("misto")
-.value=
+document.getElementById("misto").value=
 data.misto || "";
 
 }
@@ -971,19 +936,20 @@ true
 }
 
 
-/* PŘEPÍNAČE */
+/*
+PŘEPÍNAČE ZŮSTÁVAJÍ
+STEJNĚ JAKO PŘEDTÍM.
+*/
 
 pozarni.addEventListener(
 "change",
 ulozitViditelnost
 );
 
-
 stafeta.addEventListener(
 "change",
 ulozitViditelnost
 );
-
 
 prekazky.addEventListener(
 "change",
@@ -1056,9 +1022,9 @@ true
 };
 
 
-/* =================================================
-   SMAZÁNÍ VÝSLEDKŮ SOUTĚŽE
-================================================= */
+/* ==================================================
+   SMAZÁNÍ VÝSLEDKŮ JEDNÉ SOUTĚŽE
+================================================== */
 
 window.smazatVysledky=
 async function(
@@ -1074,10 +1040,11 @@ const potvrzeni=
 confirm(
 
 "POZOR!\n\n"+
-"Opravdu chceš smazat všechny výsledky soutěže:\n\n"+
+"Chceš opravdu smazat VŠECHNY výsledky soutěže:\n\n"+
 nazev+
-"?\n\n"+
-"Tato akce je nevratná."
+"\n\n"+
+"Tato akce smaže všechny závodníky a jejich výsledky z této soutěže.\n"+
+"Ostatní soutěže zůstanou beze změny."
 
 );
 
@@ -1090,54 +1057,47 @@ return;
 DRUHÉ POTVRZENÍ
 */
 
-const potvrzeni2=
+const druhePotvrzeni=
 confirm(
 
-"POSLEDNÍ POTVRZENÍ\n\n"+
-"Budou smazána VŠECHNA data ze soutěže:\n"+
+"OPRAVDU SMAZAT?\n\n"+
+"Soutěž: "+
 nazev+
-".\n\n"+
-"Chceš opravdu pokračovat?"
+"\n\n"+
+"Po potvrzení budou všechna data této soutěže odstraněna."
 
 );
 
 
-if(!potvrzeni2)
+if(!druhePotvrzeni)
 return;
 
 
 try{
 
-const reference=
-collection(
-db,
-kolekce
-);
-
+/*
+NAČTENÍ VŠECH DOKUMENTŮ
+*/
 
 const snap=
 await getDocs(
-reference
+collection(
+db,
+kolekce
+)
 );
-
-
-if(snap.empty){
-
-zobrazZpravu(
-"Soutěž už neobsahuje žádné výsledky.",
-false
-);
-
-return;
-
-}
 
 
 /*
-SMAZÁNÍ JEDNOTLIVÝCH DOKUMENTŮ
+Firebase batch má limit 500 operací.
+Proto mažeme po skupinách.
 */
 
+let batch=
+writeBatch(db);
+
 let pocet=0;
+let celkem=0;
 
 
 for(
@@ -1145,30 +1105,52 @@ const zaznam
 of snap.docs
 ){
 
-await deleteDoc(
-doc(
-db,
-kolekce,
-zaznam.id
-)
-);
+batch.delete(zaznam.ref);
 
 pocet++;
+celkem++;
+
+
+/*
+Každých 450 záznamů
+uložíme dávku.
+*/
+
+if(pocet>=450){
+
+await batch.commit();
+
+batch=
+writeBatch(db);
+
+pocet=0;
+
+}
 
 }
 
 
+/*
+Uložit poslední dávku.
+*/
+
+if(pocet>0){
+
+await batch.commit();
+
+}
+
+
+/*
+ÚSPĚŠNÉ SMAZÁNÍ
+*/
+
 zobrazZpravu(
 
-"✓ Smazáno "+
-
-pocet+
-
-" záznamů – "+
-
+"✓ Soutěž „"+
 nazev+
-
-".",
+"“ byla vymazána. Počet záznamů: "+
+celkem,
 
 false
 
@@ -1179,13 +1161,13 @@ false
 catch(error){
 
 console.error(
-"Chyba při mazání výsledků:",
+"Chyba při mazání:",
 error
 );
 
 zobrazZpravu(
 
-"Chyba při mazání: "+
+"Chyba při mazání výsledků: "+
 error.message,
 
 true
@@ -1226,7 +1208,7 @@ function(){
 message.textContent="";
 
 },
-5000
+4000
 );
 
 }

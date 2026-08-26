@@ -1217,14 +1217,30 @@ if(!z)
 return;
 
 
+/*
+Zadání času:
+
+15 55
+↓
+15:55
+
+15:55
+↓
+15:55
+
+1555
+↓
+15:55
+*/
+
 const hodnota=
 prompt(
 
 typ==="lp"
 ?
-"Čas levého terče LP:"
+"Čas levého terče LP:\n\nNapiš například: 15 55"
 :
-"Čas pravého terče PP:",
+"Čas pravého terče PP:\n\nNapiš například: 15 55",
 
 z[typ]||""
 
@@ -1235,19 +1251,123 @@ if(hodnota===null)
 return;
 
 
+const text=
+hodnota.trim();
+
+
+/*
+PRÁZDNÉ ZADÁNÍ
+
+Nic nemažeme
+a nic neměníme.
+*/
+
+if(text==="")
+return;
+
+
+let cas=null;
+
+
+/*
+15 55
+nebo
+15:55
+*/
+
+const casti=
+text
+.replace(":"," ")
+.trim()
+.split(/\s+/);
+
+
+if(casti.length===2){
+
+const sekundy=
+Number(casti[0]);
+
+const setiny=
+Number(casti[1]);
+
+
 if(
-hodnota!==""&&
-!validTime(hodnota)
+!isNaN(sekundy)&&
+!isNaN(setiny)&&
+sekundy>=0&&
+setiny>=0&&
+setiny<=99
 ){
 
+cas=
+sekundy+
+":"+
+String(setiny).padStart(2,"0");
+
+}
+
+}
+
+
+/*
+1555 → 15:55
+842 → 8:42
+*/
+
+else if(
+/^\d{3,4}$/.test(text)
+){
+
+const setiny=
+Number(text.slice(-2));
+
+const sekundy=
+Number(text.slice(0,-2));
+
+
+if(
+!isNaN(sekundy)&&
+!isNaN(setiny)&&
+sekundy>=0&&
+setiny>=0&&
+setiny<=99
+){
+
+cas=
+sekundy+
+":"+
+String(setiny).padStart(2,"0");
+
+}
+
+}
+
+
+/*
+CHYBNÝ ČAS
+*/
+
+if(cas===null){
+
 alert(
-"Špatný čas. Použij například 17:42."
+
+"Špatně zadaný čas.\n\n"+
+"Použij například:\n"+
+"15 55"
+
 );
 
 return;
 
 }
 
+
+/*
+ULOŽENÍ
+
+Pořadí družstev se zde
+vůbec nemění.
+*/
 
 await updateDoc(
 
@@ -1260,7 +1380,7 @@ id
 {
 
 [typ]:
-hodnota,
+cas,
 
 np:false
 
